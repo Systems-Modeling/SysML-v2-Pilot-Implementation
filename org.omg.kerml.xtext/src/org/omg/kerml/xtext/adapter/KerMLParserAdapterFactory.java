@@ -16,7 +16,7 @@ import java.util.Optional;
 import org.omg.sysml.lang.sysml.*;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
-public final class ParserAdapterFactory {
+public final class KerMLParserAdapterFactory {
 
 	public static ElementParserAdapter getAdapter(Element element) {
 		return getExistingAdapter(element).orElseGet(() -> createAdapter(element));
@@ -34,22 +34,9 @@ public final class ParserAdapterFactory {
 					.findFirst();
 	}
 
-	protected static ElementParserAdapter createAdapter(Element element) {
+	public static ElementParserAdapter createAdapter(Element element) {
 		ElementParserAdapter adapter = null;
-		// PortUsage must be checked before OccurrenceUsage because its parser adapter deliberately
-		// inherits directly from UsageParserAdapter and applies port-specific post-processing.
-		if (element instanceof PortUsage portUsage) {
-			adapter = new PortUsageParserAdapter(portUsage);
-		// Some concrete OccurrenceUsage subtypes have multiple inheritance. In the generated
-		// SysMLSwitch, caseFeature may then be visited before caseOccurrenceUsage and would select
-		// a FeatureParserAdapter, skipping the occurrence-specific portion post-processing.
-		} else if (element instanceof OccurrenceUsage occurrenceUsage) {
-			adapter = new OccurrenceUsageParserAdapter(occurrenceUsage);
-		// For the same reason, some other concrete Usage subtypes reach caseFeature before caseUsage.
-		// Selecting UsageParserAdapter here guarantees that their common Usage post-processing runs.
-		} else if (element instanceof Usage usage) {
-			adapter = new UsageParserAdapter(usage);
-		} else if (element != null) {
+		if (element != null) {
 			adapter = SWITCH.doSwitch(element);
 		}
 		if (adapter != null) {
@@ -58,10 +45,15 @@ public final class ParserAdapterFactory {
 		return adapter;
 	}
 
-	private ParserAdapterFactory() {
+	private KerMLParserAdapterFactory() {
 	}
 
-	private static final SysMLSwitch<ElementParserAdapter> SWITCH = new SysMLSwitch<ElementParserAdapter>() {
+	private static final SysMLSwitch<ElementParserAdapter> SWITCH = new KerMLFactoryAdapterSwitch();
+	
+	
+	
+	public static class KerMLFactoryAdapterSwitch extends SysMLSwitch<ElementParserAdapter> {
+		
 		@Override
 		public ElementParserAdapter caseAnnotation(Annotation element) {
 			return new AnnotationParserAdapter(element);
@@ -75,11 +67,6 @@ public final class ParserAdapterFactory {
 		@Override
 		public ElementParserAdapter caseConjugation(Conjugation element) {
 			return new ConjugationParserAdapter(element);
-		}
-
-		@Override
-		public ElementParserAdapter caseDefinition(Definition element) {
-			return new DefinitionParserAdapter(element);
 		}
 
 		@Override
@@ -148,23 +135,8 @@ public final class ParserAdapterFactory {
 		}
 
 		@Override
-		public ElementParserAdapter caseOccurrenceUsage(OccurrenceUsage element) {
-			return new OccurrenceUsageParserAdapter(element);
-		}
-
-		@Override
 		public ElementParserAdapter caseParameterMembership(ParameterMembership element) {
 			return new ParameterMembershipParserAdapter(element);
-		}
-
-		@Override
-		public ElementParserAdapter casePortConjugation(PortConjugation element) {
-			return new PortConjugationParserAdapter(element);
-		}
-
-		@Override
-		public ElementParserAdapter casePortUsage(PortUsage element) {
-			return new PortUsageParserAdapter(element);
 		}
 
 		@Override
@@ -205,11 +177,6 @@ public final class ParserAdapterFactory {
 		@Override
 		public ElementParserAdapter caseUnioning(Unioning element) {
 			return new UnioningParserAdapter(element);
-		}
-
-		@Override
-		public ElementParserAdapter caseUsage(Usage element) {
-			return new UsageParserAdapter(element);
 		}
 
 	};

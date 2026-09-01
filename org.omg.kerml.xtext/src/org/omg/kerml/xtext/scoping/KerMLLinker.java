@@ -36,7 +36,8 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.eclipse.xtext.util.OnChangeEvictingCache;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.omg.kerml.xtext.adapter.ParserAdapterFactory;
+import org.omg.kerml.xtext.adapter.ElementParserAdapter;
+import org.omg.kerml.xtext.adapter.KerMLParserAdapterFactory;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -76,7 +77,7 @@ public class KerMLLinker extends LazyLinker {
 					while (iterator.hasNext()) {
 						EObject obj = iterator.next();
 						if (obj instanceof Element element) {
-							ParserAdapterFactory.getAdapter(element).postProcess();
+							doGetAdapter(element).postProcess();
 						}
 					}
 				} finally {
@@ -84,11 +85,16 @@ public class KerMLLinker extends LazyLinker {
 					while (iterator.hasNext()) {
 						EObject obj = iterator.next();
 						if (obj instanceof Element element) {
-							ParserAdapterFactory.removeAdapter(element);
+							KerMLParserAdapterFactory.removeAdapter(element);
 						}
 					}
 				}
 			}
+
 		});
+	}
+	
+	protected ElementParserAdapter doGetAdapter(Element element) {
+		return KerMLParserAdapterFactory.getAdapter(element);
 	}
 }

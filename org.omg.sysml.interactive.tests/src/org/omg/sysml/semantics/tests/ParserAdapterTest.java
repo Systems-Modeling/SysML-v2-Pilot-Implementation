@@ -9,10 +9,10 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xpect.tests.linking;
+package org.omg.sysml.semantics.tests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
@@ -22,9 +22,9 @@ import org.junit.Test;
 import org.omg.kerml.xtext.adapter.ElementParserAdapter;
 import org.omg.kerml.xtext.adapter.ImportParserAdapter;
 import org.omg.kerml.xtext.adapter.LiteralStringParserAdapter;
-import org.omg.kerml.xtext.adapter.OccurrenceUsageParserAdapter;
-import org.omg.kerml.xtext.adapter.ParserAdapterFactory;
-import org.omg.kerml.xtext.adapter.PortUsageParserAdapter;
+import org.omg.sysml.xtext.adapter.OccurrenceUsageParserAdapter;
+import org.omg.sysml.xtext.adapter.SysMLParserAdapterFactory;
+import org.omg.sysml.xtext.adapter.PortUsageParserAdapter;
 import org.omg.kerml.xtext.adapter.RedefinitionParserAdapter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
@@ -56,27 +56,27 @@ public class ParserAdapterTest {
 	@Test
 	public void factorySelectsTheMostSpecificParserAdapterAndAvoidsDuplicates() {
 		PortUsage port = SysMLFactory.eINSTANCE.createPortUsage();
-		ElementParserAdapter portAdapter = ParserAdapterFactory.getAdapter(port);
+		ElementParserAdapter portAdapter = SysMLParserAdapterFactory.getAdapter(port);
 		assertTrue(portAdapter instanceof PortUsageParserAdapter);
-		assertEquals(portAdapter, ParserAdapterFactory.getAdapter(port));
+		assertEquals(portAdapter, SysMLParserAdapterFactory.getAdapter(port));
 		assertEquals(1L, port.eAdapters().stream().filter(ElementParserAdapter.class::isInstance).count());
 
 		OccurrenceUsage occurrence = SysMLFactory.eINSTANCE.createOccurrenceUsage();
-		assertTrue(ParserAdapterFactory.getAdapter(occurrence) instanceof OccurrenceUsageParserAdapter);
-		assertTrue(ParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createConnectionUsage())
+		assertTrue(SysMLParserAdapterFactory.getAdapter(occurrence) instanceof OccurrenceUsageParserAdapter);
+		assertTrue(SysMLParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createConnectionUsage())
 				instanceof OccurrenceUsageParserAdapter);
-		assertTrue(ParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createAllocationUsage())
+		assertTrue(SysMLParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createAllocationUsage())
 				instanceof OccurrenceUsageParserAdapter);
 
 		LiteralString literal = SysMLFactory.eINSTANCE.createLiteralString();
-		assertTrue(ParserAdapterFactory.getAdapter(literal) instanceof LiteralStringParserAdapter);
+		assertTrue(SysMLParserAdapterFactory.getAdapter(literal) instanceof LiteralStringParserAdapter);
 
-		assertTrue(ParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createRedefinition())
+		assertTrue(SysMLParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createRedefinition())
 				instanceof RedefinitionParserAdapter);
-		assertTrue(ParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createMembershipImport())
+		assertTrue(SysMLParserAdapterFactory.getAdapter(SysMLFactory.eINSTANCE.createMembershipImport())
 				instanceof ImportParserAdapter);
 
-		ParserAdapterFactory.removeAdapter(port);
+		SysMLParserAdapterFactory.removeAdapter(port);
 		assertFalse(port.eAdapters().stream().anyMatch(ElementParserAdapter.class::isInstance));
 	}
 
@@ -161,8 +161,8 @@ public class ParserAdapterTest {
 
 	protected static void postProcess(Element... elements) {
 		for (Element element : elements) {
-			ParserAdapterFactory.getAdapter(element).postProcess();
-			ParserAdapterFactory.removeAdapter(element);
+			SysMLParserAdapterFactory.getAdapter(element).postProcess();
+			SysMLParserAdapterFactory.removeAdapter(element);
 			assertFalse(element.eAdapters().stream().anyMatch(ElementParserAdapter.class::isInstance));
 		}
 	}

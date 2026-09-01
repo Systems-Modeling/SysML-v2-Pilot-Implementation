@@ -18,7 +18,6 @@ import org.omg.kerml.xpect.tests.imports.local.KerMLImportLocalTest;
 import org.omg.kerml.xpect.tests.imports.recursive.KerMLImportRecursiveTest;
 import org.omg.kerml.xpect.tests.indexing.KerMLIndexerTest;
 import org.omg.kerml.xpect.tests.linking.KerMLLinkingTest;
-import org.omg.kerml.xpect.tests.linking.ParserAdapterTest;
 import org.omg.kerml.xpect.tests.parsing.KerMLParsingTest;
 import org.omg.kerml.xpect.tests.scoping.KerMLScopingTest;
 import org.omg.kerml.xpect.tests.testsuite.KerMLXtextTest;
@@ -30,7 +29,6 @@ import org.omg.kerml.xpect.tests.visibility.KerMLVisibilityTest;
 		KerMLImportLocalTest.class, //
 		KerMLImportRecursiveTest.class, //
 		KerMLLinkingTest.class,//
-		ParserAdapterTest.class, //
 		KerMLParsingTest.class, //
 		KerMLScopingTest.class, //
 		KerMLXtextTest.class, //

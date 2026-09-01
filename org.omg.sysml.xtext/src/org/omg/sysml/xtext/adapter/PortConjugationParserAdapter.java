@@ -9,10 +9,11 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.adapter;
+package org.omg.sysml.xtext.adapter;
 
 import org.omg.sysml.lang.sysml.PortConjugation;
 import org.omg.sysml.lang.sysml.PortDefinition;
+import org.omg.kerml.xtext.adapter.ConjugationParserAdapter;
 import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;

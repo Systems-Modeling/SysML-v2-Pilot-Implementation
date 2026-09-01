@@ -9,8 +9,9 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.adapter;
+package org.omg.sysml.xtext.adapter;
 
+import org.omg.kerml.xtext.adapter.FeatureParserAdapter;
 import org.omg.sysml.lang.sysml.AttributeDefinition;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Type;

@@ -12,5 +12,5 @@ Require-Bundle: org.omg.sysml.interactive;bundle-version="0.62.0",
  org.omg.sysml.logic.bundle;bundle-version="0.62.0",
  org.omg.sysml;bundle-version="0.62.0",
  org.eclipse.xtext;bundle-version="2.22.0",
- org.omg.kerml.xtext;bundle-version="0.62.0"
- 
+ org.omg.kerml.xtext;bundle-version="0.62.0",
+ org.omg.sysml.xtext;bundle-version="0.62.0"

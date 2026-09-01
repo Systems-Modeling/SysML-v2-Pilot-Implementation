@@ -27,7 +27,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.junit.Test;
-import org.omg.kerml.xtext.adapter.ParserAdapterFactory;
+import org.omg.sysml.xtext.adapter.SysMLParserAdapterFactory;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -142,7 +142,7 @@ public class UsagePostProcessTest extends SysMLSemanticTest{
 	 */
 	protected static void postProcess(Element... elements) {
 		for (Element element: elements) {
-			ParserAdapterFactory.getAdapter(element).postProcess();
+			SysMLParserAdapterFactory.getAdapter(element).postProcess();
 		}
 	}
 	

@@ -11,6 +11,9 @@
 
 package org.omg.kerml.xtext.linking;
 
+import org.omg.sysml.lang.sysml.AttributeDefinition;
+import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.UsageUtil;
 
@@ -32,7 +35,9 @@ public class UsageParserAdapter extends FeatureParserAdapter {
 		if (target.isVariation()) {
 			target.setIsAbstract(true);
 		}
-		if (target.getDirection() != null || target.isEnd() || !UsageUtil.hasFeaturingType(target)) {
+        Type featuringType = UsageUtil.getExpectedFeaturingTypeOf(target);
+        if (target.getDirection() != null || target.isEnd() || featuringType == null ||
+                featuringType instanceof AttributeDefinition || featuringType instanceof AttributeUsage) {
 			target.setIsComposite(false);
 		}
 	}

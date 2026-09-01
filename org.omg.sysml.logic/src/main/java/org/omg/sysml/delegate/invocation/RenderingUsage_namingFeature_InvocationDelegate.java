@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
+import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.ViewRenderingMembership;
 
 public class RenderingUsage_namingFeature_InvocationDelegate extends Feature_namingFeature_InvocationDelegate {
@@ -35,19 +36,21 @@ public class RenderingUsage_namingFeature_InvocationDelegate extends Feature_nam
 		super(operation);
 	}
 	
-	/**
-	 * TODO: Update RenderingUsage with namingFeature redefinition.
-	 * 
-	 * See SYSML21-302
-	 */
 	@Override
 	public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
 		Feature self = (Feature) target;
 		
 		FeatureMembership membership = self.getOwningFeatureMembership();
-		return membership instanceof ViewRenderingMembership?
-				((ViewRenderingMembership)membership).getReferencedRendering():
-				super.dynamicInvoke(target, arguments);
+		if (membership instanceof ViewRenderingMembership) {
+			ReferenceSubsetting reference = self.getOwnedReferenceSubsetting();
+			if (reference != null) {
+				Feature referencedFeature = reference.getReferencedFeature();
+				if (referencedFeature != null) {
+					return referencedFeature.getFeatureTarget();
+				}
+			}
+		}
+		return super.dynamicInvoke(target, arguments);
 	}
 
 }

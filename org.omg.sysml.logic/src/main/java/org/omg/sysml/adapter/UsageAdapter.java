@@ -1,7 +1,11 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+<<<<<<< HEAD
  * Copyright (c) 2021-2025, 2026 Model Driven Solutions, Inc.
  * Copyright (c) 2026 Obeo
+=======
+ * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
+>>>>>>> refs/remotes/origin/HEAD
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -35,8 +39,8 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 

@@ -9,31 +9,29 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
+import org.omg.sysml.lang.sysml.EndFeatureMembership;
 import org.omg.sysml.lang.sysml.Feature;
 
-public class FeatureParserAdapter extends ElementParserAdapter {
+public class EndFeatureMembershipParserAdapter extends MembershipParserAdapter {
 
-	public FeatureParserAdapter(Feature element) {
+	public EndFeatureMembershipParserAdapter(EndFeatureMembership element) {
 		super(element);
 	}
 
 	@Override
-	public Feature getTarget() {
-		return (Feature)super.getTarget();
+	public EndFeatureMembership getTarget() {
+		return (EndFeatureMembership)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		setIsVariableIfConstant();
-	}
-
-	protected void setIsVariableIfConstant() {
-		Feature target = getTarget();
-		if (target.isConstant()) {
-			target.setIsVariable(true);
-		}		
+		EndFeatureMembership target = getTarget();
+		Feature endFeature = target.getOwnedMemberFeature();
+		if (endFeature != null) {
+			endFeature.setIsEnd(true);
+		}
 	}
 }

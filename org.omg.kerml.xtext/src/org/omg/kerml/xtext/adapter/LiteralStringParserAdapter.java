@@ -9,27 +9,26 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
-import org.omg.sysml.lang.sysml.TextualRepresentation;
+import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.util.ElementUtil;
 
-public class TextualRepresentationParserAdapter extends ElementParserAdapter {
+public class LiteralStringParserAdapter extends FeatureParserAdapter {
 
-	public TextualRepresentationParserAdapter(TextualRepresentation element) {
+	public LiteralStringParserAdapter(LiteralString element) {
 		super(element);
 	}
 
 	@Override
-	public TextualRepresentation getTarget() {
-		return (TextualRepresentation)super.getTarget();
+	public LiteralString getTarget() {
+		return (LiteralString)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		TextualRepresentation target = getTarget();
-		target.setLanguage(ElementUtil.unescapeString(target.getLanguage()));
-		target.setBody(ElementUtil.processCommentBody(target.getBody()));
+		LiteralString target = getTarget();
+		target.setValue(ElementUtil.unescapeString(target.getValue()));
 	}
 }

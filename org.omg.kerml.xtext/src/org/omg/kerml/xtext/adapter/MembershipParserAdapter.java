@@ -9,26 +9,30 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
-import org.omg.sysml.lang.sysml.LiteralString;
+import org.omg.sysml.lang.sysml.Membership;
+import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.util.ElementUtil;
 
-public class LiteralStringParserAdapter extends FeatureParserAdapter {
+public class MembershipParserAdapter extends ElementParserAdapter {
 
-	public LiteralStringParserAdapter(LiteralString element) {
+	public MembershipParserAdapter(Membership element) {
 		super(element);
 	}
 
 	@Override
-	public LiteralString getTarget() {
-		return (LiteralString)super.getTarget();
+	public Membership getTarget() {
+		return (Membership)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		LiteralString target = getTarget();
-		target.setValue(ElementUtil.unescapeString(target.getValue()));
+		Membership target = getTarget();
+		if (!(target instanceof OwningMembership)) {
+			target.setMemberName(ElementUtil.unescapeString(target.getMemberName()));
+			target.setMemberShortName(ElementUtil.unescapeString(target.getMemberShortName()));
+		}
 	}
 }

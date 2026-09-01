@@ -9,28 +9,27 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
+import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.util.ElementUtil;
 
-public class OccurrenceUsageParserAdapter extends UsageParserAdapter {
+public class CommentParserAdapter extends ElementParserAdapter {
 
-	public OccurrenceUsageParserAdapter(OccurrenceUsage element) {
+	public CommentParserAdapter(Comment element) {
 		super(element);
 	}
 
 	@Override
-	public OccurrenceUsage getTarget() {
-		return (OccurrenceUsage)super.getTarget();
+	public Comment getTarget() {
+		return (Comment)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		
-		OccurrenceUsage self = getTarget();
-		if (self.getPortionKind() != null) {
-			self.setIsPortion(true);
-		}
+		Comment target = getTarget();
+		target.setLocale(ElementUtil.unescapeString(target.getLocale()));
+		target.setBody(ElementUtil.processCommentBody(target.getBody()));
 	}
 }

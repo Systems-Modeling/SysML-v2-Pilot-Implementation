@@ -9,27 +9,27 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
-import org.omg.sysml.lang.sysml.Comment;
+import org.omg.sysml.lang.sysml.TextualRepresentation;
 import org.omg.sysml.util.ElementUtil;
 
-public class CommentParserAdapter extends ElementParserAdapter {
+public class TextualRepresentationParserAdapter extends ElementParserAdapter {
 
-	public CommentParserAdapter(Comment element) {
+	public TextualRepresentationParserAdapter(TextualRepresentation element) {
 		super(element);
 	}
 
 	@Override
-	public Comment getTarget() {
-		return (Comment)super.getTarget();
+	public TextualRepresentation getTarget() {
+		return (TextualRepresentation)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		Comment target = getTarget();
-		target.setLocale(ElementUtil.unescapeString(target.getLocale()));
+		TextualRepresentation target = getTarget();
+		target.setLanguage(ElementUtil.unescapeString(target.getLanguage()));
 		target.setBody(ElementUtil.processCommentBody(target.getBody()));
 	}
 }

@@ -27,7 +27,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.ecore.EClass;
 import org.junit.Test;
-import org.omg.kerml.xtext.linking.ParserAdapterFactory;
+import org.omg.kerml.xtext.adapter.ParserAdapterFactory;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;

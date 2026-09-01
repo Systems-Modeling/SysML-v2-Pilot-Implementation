@@ -11,21 +11,21 @@
 
 package org.omg.kerml.xpect.tests.linking;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.omg.kerml.xtext.linking.ElementParserAdapter;
-import org.omg.kerml.xtext.linking.ImportParserAdapter;
-import org.omg.kerml.xtext.linking.LiteralStringParserAdapter;
-import org.omg.kerml.xtext.linking.OccurrenceUsageParserAdapter;
-import org.omg.kerml.xtext.linking.ParserAdapterFactory;
-import org.omg.kerml.xtext.linking.PortUsageParserAdapter;
-import org.omg.kerml.xtext.linking.RedefinitionParserAdapter;
+import org.omg.kerml.xtext.adapter.ElementParserAdapter;
+import org.omg.kerml.xtext.adapter.ImportParserAdapter;
+import org.omg.kerml.xtext.adapter.LiteralStringParserAdapter;
+import org.omg.kerml.xtext.adapter.OccurrenceUsageParserAdapter;
+import org.omg.kerml.xtext.adapter.ParserAdapterFactory;
+import org.omg.kerml.xtext.adapter.PortUsageParserAdapter;
+import org.omg.kerml.xtext.adapter.RedefinitionParserAdapter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;

@@ -9,38 +9,38 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Differencing;
+import org.omg.sysml.lang.sysml.Intersecting;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class DifferencingParserAdapter extends ElementParserAdapter {
+public class IntersectingParserAdapter extends ElementParserAdapter {
 
-	public DifferencingParserAdapter(Differencing element) {
+	public IntersectingParserAdapter(Intersecting element) {
 		super(element);
 	}
 
 	@Override
-	public Differencing getTarget() {
-		return (Differencing)super.getTarget();
+	public Intersecting getTarget() {
+		return (Intersecting)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
-		Differencing obj = getTarget();
+		Intersecting obj = getTarget();
 		
-		// If a Differencing is parsed targeting a Feature chain, then the differencingType will be empty,
-		// but the Differencing will own the differencingType. So, in this case, the differencingType should
+		// If a Intersecting is parsed targeting a Feature chain, then the intersectingType will be empty,
+		// but the Intersecting will own the intersectingType. So, in this case, the intersectingType should
 		// be set to the (last) ownedRelatedelement.
-		Object differencingType = obj.eGet(SysMLPackage.Literals.DIFFERENCING__DIFFERENCING_TYPE, false);
-		if (differencingType == null) {
-			// Handle a differencingType that is a Feature chain.
+		Object intersectingType = obj.eGet(SysMLPackage.Literals.INTERSECTING__INTERSECTING_TYPE, false);
+		if (intersectingType == null) {
+			// Handle a intersectingType that is a Feature chain.
 			EList<Element> ownedRelatedElements = obj.getOwnedRelatedElement();
 			if (!ownedRelatedElements.isEmpty()) {
-				obj.setDifferencingType((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
+				obj.setIntersectingType((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
 			}
 		}
 	}

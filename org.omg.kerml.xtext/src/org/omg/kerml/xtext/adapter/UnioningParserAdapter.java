@@ -9,38 +9,38 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Intersecting;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Unioning;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class IntersectingParserAdapter extends ElementParserAdapter {
+public class UnioningParserAdapter extends ElementParserAdapter {
 
-	public IntersectingParserAdapter(Intersecting element) {
+	public UnioningParserAdapter(Unioning element) {
 		super(element);
 	}
 
 	@Override
-	public Intersecting getTarget() {
-		return (Intersecting)super.getTarget();
+	public Unioning getTarget() {
+		return (Unioning)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
-		Intersecting obj = getTarget();
+		Unioning obj = getTarget();
 		
-		// If a Intersecting is parsed targeting a Feature chain, then the intersectingType will be empty,
-		// but the Intersecting will own the intersectingType. So, in this case, the intersectingType should
+		// If a Unioning is parsed targeting a Feature chain, then the unioningType will be empty,
+		// but the Unioning will own the unioningType. So, in this case, the unioningType should
 		// be set to the (last) ownedRelatedelement.
-		Object intersectingType = obj.eGet(SysMLPackage.Literals.INTERSECTING__INTERSECTING_TYPE, false);
-		if (intersectingType == null) {
+		Object unioningType = obj.eGet(SysMLPackage.Literals.UNIONING__UNIONING_TYPE, false);
+		if (unioningType == null) {
 			// Handle a intersectingType that is a Feature chain.
 			EList<Element> ownedRelatedElements = obj.getOwnedRelatedElement();
 			if (!ownedRelatedElements.isEmpty()) {
-				obj.setIntersectingType((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
+				obj.setUnioningType((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
 			}
 		}
 	}

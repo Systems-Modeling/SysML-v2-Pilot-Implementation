@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.omg.sysml.lang.sysml.PortDefinition;

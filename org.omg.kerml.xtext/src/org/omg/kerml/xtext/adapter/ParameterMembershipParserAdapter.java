@@ -9,27 +9,29 @@
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 
-package org.omg.kerml.xtext.linking;
+package org.omg.kerml.xtext.adapter;
 
-import org.omg.sysml.lang.sysml.Definition;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.ParameterMembership;
 
-public class DefinitionParserAdapter extends ElementParserAdapter {
+public class ParameterMembershipParserAdapter extends MembershipParserAdapter {
 
-	public DefinitionParserAdapter(Definition element) {
+	public ParameterMembershipParserAdapter(ParameterMembership element) {
 		super(element);
 	}
 
 	@Override
-	public Definition getTarget() {
-		return (Definition)super.getTarget();
+	public ParameterMembership getTarget() {
+		return (ParameterMembership)super.getTarget();
 	}
 
 	@Override
 	public void postProcess() {
 		super.postProcess();
-		Definition target = getTarget();
-		if (target.isVariation()) {
-			target.setIsAbstract(true);
+		ParameterMembership target = getTarget();
+		Feature parameter = target.getOwnedMemberParameter();
+		if (parameter != null) {
+			parameter.setDirection(target.parameterDirection());
 		}
 	}
 }

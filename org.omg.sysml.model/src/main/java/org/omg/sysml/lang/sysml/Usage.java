@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.EList;
  * nestedFlow = nestedUsage->selectByKind(FlowUsage)
  * nestedInterface = nestedUsage->selectByKind(ReferenceUsage)
  * nestedItem = nestedUsage->selectByKind(ItemUsage)
- * nestedMetadata = nestedUsage->selectByKind(MetadataUsage)
+ * nestedMetadata = ownedMember->selectByKind(MetadataUsage)
  * nestedOccurrence = nestedUsage->selectByKind(OccurrenceUsage)
  * nestedPart = nestedUsage->selectByKind(PartUsage)
  * nestedPort = nestedUsage->selectByKind(PortUsage)

@@ -3615,7 +3615,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//      ownedRelationship += OwnedMultiplicity
 		//    | ( ownedRelationship += OwnedMultiplicity )?
 		//      ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//      | isUnique = Nonunique isOrdered ?= 'ordered'?
+		//      | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//      )
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -3623,7 +3623,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//  ownedRelationship += OwnedMultiplicity
 		//| ( ownedRelationship += OwnedMultiplicity )?
 		//  ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//  | isUnique = Nonunique isOrdered ?= 'ordered'?
+		//  | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//  )
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -3635,7 +3635,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//( ownedRelationship += OwnedMultiplicity )?
 		//     ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//     | isUnique = Nonunique isOrdered ?= 'ordered'?
+		//     | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//     )
 		public Group getGroup_1() { return cGroup_1; }
 		
@@ -3646,7 +3646,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		public RuleCall getOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0_0() { return cOwnedRelationshipOwnedMultiplicityParserRuleCall_1_0_0; }
 		
 		//( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-		//| isUnique = Nonunique isOrdered ?= 'ordered'?
+		//| isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		//)
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
@@ -3665,7 +3665,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Nonunique
 		public RuleCall getIsUniqueNonuniqueParserRuleCall_1_1_0_1_0() { return cIsUniqueNonuniqueParserRuleCall_1_1_0_1_0; }
 		
-		//isUnique = Nonunique isOrdered ?= 'ordered'?
+		//isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
 		
 		//isUnique = Nonunique
@@ -3674,7 +3674,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//Nonunique
 		public RuleCall getIsUniqueNonuniqueParserRuleCall_1_1_1_0_0() { return cIsUniqueNonuniqueParserRuleCall_1_1_1_0_0; }
 		
-		//isOrdered ?= 'ordered'?
+		//( isOrdered ?= 'ordered' )?
 		public Assignment getIsOrderedAssignment_1_1_1_1() { return cIsOrderedAssignment_1_1_1_1; }
 		
 		//'ordered'
@@ -3685,10 +3685,12 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cNonuniqueKeyword = (Keyword)rule.eContents().get(1);
 		
 		//Nonunique returns Ecore::EBoolean :
+		//    // Note: A value converter converts the value of this keyword to "false".
 		//    'nonunique'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//// Note: A value converter converts the value of this keyword to "false".
 		//'nonunique'
 		public Keyword getNonuniqueKeyword() { return cNonuniqueKeyword; }
 	}
@@ -4734,23 +4736,37 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	public class FeatureConjugationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.FeatureConjugation");
-		private final Assignment cOriginalTypeAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cOriginalTypeFeatureCrossReference_0 = (CrossReference)cOriginalTypeAssignment.eContents().get(0);
-		private final RuleCall cOriginalTypeFeatureQualifiedNameParserRuleCall_0_1 = (RuleCall)cOriginalTypeFeatureCrossReference_0.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cOriginalTypeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final CrossReference cOriginalTypeFeatureCrossReference_0_0 = (CrossReference)cOriginalTypeAssignment_0.eContents().get(0);
+		private final RuleCall cOriginalTypeFeatureQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cOriginalTypeFeatureCrossReference_0_0.eContents().get(1);
+		private final Assignment cOwnedRelatedElementAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0 = (RuleCall)cOwnedRelatedElementAssignment_1.eContents().get(0);
 		
 		//FeatureConjugation returns SysML::Conjugation :
-		//    originalType = [SysML::Feature | QualifiedName ]
+		//      originalType = [SysML::Feature | QualifiedName ]
+		//    | ownedRelatedElement += OwnedFeatureChain
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//  originalType = [SysML::Feature | QualifiedName ]
+		//| ownedRelatedElement += OwnedFeatureChain
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
 		//originalType = [SysML::Feature | QualifiedName ]
-		public Assignment getOriginalTypeAssignment() { return cOriginalTypeAssignment; }
+		public Assignment getOriginalTypeAssignment_0() { return cOriginalTypeAssignment_0; }
 		
 		//[SysML::Feature | QualifiedName ]
-		public CrossReference getOriginalTypeFeatureCrossReference_0() { return cOriginalTypeFeatureCrossReference_0; }
+		public CrossReference getOriginalTypeFeatureCrossReference_0_0() { return cOriginalTypeFeatureCrossReference_0_0; }
 		
 		//QualifiedName
-		public RuleCall getOriginalTypeFeatureQualifiedNameParserRuleCall_0_1() { return cOriginalTypeFeatureQualifiedNameParserRuleCall_0_1; }
+		public RuleCall getOriginalTypeFeatureQualifiedNameParserRuleCall_0_0_1() { return cOriginalTypeFeatureQualifiedNameParserRuleCall_0_0_1; }
+		
+		//ownedRelatedElement += OwnedFeatureChain
+		public Assignment getOwnedRelatedElementAssignment_1() { return cOwnedRelatedElementAssignment_1; }
+		
+		//OwnedFeatureChain
+		public RuleCall getOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0() { return cOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0; }
 	}
 	public class ValuePartElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.omg.kerml.xtext.KerML.ValuePart");
@@ -6934,17 +6950,17 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cOwnedRelationshipMetadataTypingParserRuleCall_1_0 = (RuleCall)cOwnedRelationshipAssignment_1.eContents().get(0);
 		
 		//fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
-		//    ( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
+		//    ( Identification? ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
+		//( Identification? ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 		public Group getGroup() { return cGroup; }
 		
-		//( Identification ( ':' | 'typed' 'by' ) )?
+		//( Identification? ( ':' | 'typed' 'by' ) )?
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//Identification
+		//Identification?
 		public RuleCall getIdentificationParserRuleCall_0_0() { return cIdentificationParserRuleCall_0_0; }
 		
 		//( ':' | 'typed' 'by' )
@@ -8768,7 +8784,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//      ownedRelationship += OwnedMultiplicity
 	//    | ( ownedRelationship += OwnedMultiplicity )?
 	//      ( isOrdered ?= 'ordered' ( isUnique = Nonunique )?
-	//      | isUnique = Nonunique isOrdered ?= 'ordered'?
+	//      | isUnique = Nonunique ( isOrdered ?= 'ordered' )?
 	//      )
 	//;
 	public MultiplicityPartElements getMultiplicityPartAccess() {
@@ -8780,6 +8796,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Nonunique returns Ecore::EBoolean :
+	//    // Note: A value converter converts the value of this keyword to "false".
 	//    'nonunique'
 	//;
 	public NonuniqueElements getNonuniqueAccess() {
@@ -9095,7 +9112,8 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//FeatureConjugation returns SysML::Conjugation :
-	//    originalType = [SysML::Feature | QualifiedName ]
+	//      originalType = [SysML::Feature | QualifiedName ]
+	//    | ownedRelatedElement += OwnedFeatureChain
 	//;
 	public FeatureConjugationElements getFeatureConjugationAccess() {
 		return pFeatureConjugation;
@@ -9839,7 +9857,7 @@ public class KerMLGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
-	//    ( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
+	//    ( Identification? ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 	//;
 	public MetadataFeatureDeclarationElements getMetadataFeatureDeclarationAccess() {
 		return pMetadataFeatureDeclaration;

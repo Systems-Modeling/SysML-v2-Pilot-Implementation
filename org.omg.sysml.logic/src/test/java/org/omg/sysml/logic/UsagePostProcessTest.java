@@ -28,6 +28,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.emf.ecore.EClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -70,6 +71,12 @@ public class UsagePostProcessTest {
 		 *	   variation part q {
 		 *	       variant part r;
 		 *     }
+		 *     attribute def B {
+		 *         part p1;
+		 *     }
+		 *     attribute b {
+		 *         part p2;
+		 *     }
 		 * }
 		 */
 		Package test = (Package) createElement(SysMLPackage.Literals.PACKAGE, "test", null);
@@ -88,8 +95,15 @@ public class UsagePostProcessTest {
 		q.setIsVariation(true);
 		Usage r = (Usage) createElement(SysMLPackage.Literals.PART_USAGE, "r", q);
 		
+		Definition B = SysMLFactory.eINSTANCE.createAttributeDefinition();
+		Usage p1 = SysMLFactory.eINSTANCE.createPartUsage();
+		TypeUtil.addOwnedFeatureTo(B, p1);
+		Usage b = SysMLFactory.eINSTANCE.createAttributeUsage();
+		Usage p2 = SysMLFactory.eINSTANCE.createPartUsage();
+		TypeUtil.addOwnedFeatureTo(b, p2);
+		
 		// Post-process after creating the entire model.
-		postProcess(p, a, x, y, z, u, v, w, q, r);
+		postProcess(p, a, x, y, z, u, v, w, q, r, B, p1, b, p2);
 		
 		assertTrue(p.isReference());
 		assertTrue(a.isReference());
@@ -101,6 +115,10 @@ public class UsagePostProcessTest {
 		assertTrue(w.isReference());
 		assertTrue(q.isReference());
 		assertTrue(r.isReference());
+		
+		assertTrue(p1.isReference());
+		assertTrue(b.isReference());
+		assertTrue(p2.isReference());
 	}
 	
 	/**

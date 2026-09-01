@@ -327,7 +327,31 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	public boolean isImplicitSpecializationFor(EClass eClass, Type general) {
-		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).contains(general);
+		return implicitGeneralTypes.getOrDefault(eClass, Collections.emptyList()).stream().
+				anyMatch(existingGeneral->areEquivalentImplicitGeneralTypes(existingGeneral, general));
+	}
+
+	/**
+	 * Feature chains are derived Types for which object identity is not sufficient:
+	 * two independently created chains may represent the same ordered sequence of
+	 * chaining Features.
+	 */
+	protected static boolean areEquivalentImplicitGeneralTypes(Type first, Type second) {
+		if (first == second) {
+			return true;
+		} else if (first instanceof Feature && second instanceof Feature) {
+			List<Feature> firstChain = ((Feature)first).getChainingFeature();
+			List<Feature> secondChain = ((Feature)second).getChainingFeature();
+			if (!firstChain.isEmpty() && firstChain.size() == secondChain.size()) {
+				for (int i = 0; i < firstChain.size(); i++) {
+					if (firstChain.get(i) != secondChain.get(i)) {
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	protected static boolean hasNoConformingSpecializations(Type type, Class<?> kind, Type defaultGeneral) {

@@ -299,16 +299,10 @@ public class UsageUtil {
 	
 	public static boolean isSubrequirement(RequirementUsage requirement) {
 		Type owningType = requirement.getOwningType();
-		/*
-		 * TODO: Update checkRequirementUsageSubrequirementSpecialization
-		 * 
-		 * !isAssumptionConstraint is not in the OCL
-		 * See SYSML21-300
-		 * 
-		 */
-		return !isAssumptionConstraint(requirement) && requirement.isComposite() &&
+		return requirement.isComposite() &&
 			   (owningType instanceof RequirementDefinition || 
-			    owningType instanceof RequirementUsage);
+			    owningType instanceof RequirementUsage) &&
+			   !(requirement.getOwningFeatureMembership() instanceof RequirementConstraintMembership);
 	}
 
 	public static boolean isObjective(RequirementUsage requirement) {
@@ -346,7 +340,7 @@ public class UsageUtil {
 	public static Stream<ConstraintUsage> getRequirementConstraints(Type owner, RequirementConstraintKind kind) {
 		return getRequirementConstraints(owner, RequirementConstraintMembership.class, kind);
 	}
-		
+	
 	public static Stream<RequirementUsage> getVerifiedRequirements(Type owner) {
 		return owner.getOwnedFeatureMembership().stream().
 				filter(RequirementVerificationMembership.class::isInstance).

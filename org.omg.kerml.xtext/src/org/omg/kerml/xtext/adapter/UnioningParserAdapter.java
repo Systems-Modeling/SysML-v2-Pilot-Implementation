@@ -1,6 +1,8 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
+ * 
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -30,6 +32,7 @@ public class UnioningParserAdapter extends ElementParserAdapter {
 
 	@Override
 	public void postProcess() {
+		super.postProcess();
 		Unioning obj = getTarget();
 		
 		// If a Unioning is parsed targeting a Feature chain, then the unioningType will be empty,

@@ -18,7 +18,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class DifferencingParserPostProcessor extends ElementParserPostProcessor {
+public class DifferencingParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public DifferencingParserPostProcessor(Differencing element) {
 		super(element);

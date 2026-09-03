@@ -19,7 +19,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class SpecializationParserPostProcessor extends ElementParserPostProcessor {
+public class SpecializationParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public SpecializationParserPostProcessor(Specialization element) {
 		super(element);

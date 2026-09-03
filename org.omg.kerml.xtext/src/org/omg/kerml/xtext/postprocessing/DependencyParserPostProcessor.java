@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.omg.sysml.lang.sysml.Dependency;
 import org.omg.sysml.lang.sysml.Element;
 
-public class DependencyParserPostProcessor extends ElementParserPostProcessor {
+public class DependencyParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public DependencyParserPostProcessor(Dependency element) {
 		super(element);

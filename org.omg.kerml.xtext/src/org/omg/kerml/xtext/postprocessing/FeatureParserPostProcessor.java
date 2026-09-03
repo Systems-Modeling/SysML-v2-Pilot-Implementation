@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -13,7 +14,7 @@ package org.omg.kerml.xtext.postprocessing;
 
 import org.omg.sysml.lang.sysml.Feature;
 
-public class FeatureParserPostProcessor extends ElementParserPostProcessor {
+public class FeatureParserPostProcessor extends TypeParserPostProcessor {
 
 	public FeatureParserPostProcessor(Feature element) {
 		super(element);

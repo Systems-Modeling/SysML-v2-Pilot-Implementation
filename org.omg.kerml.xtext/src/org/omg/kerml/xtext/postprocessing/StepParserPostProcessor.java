@@ -1,6 +1,5 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2026 Obeo
  * Copyright (c) 2026 Model Driven Solutions, Inc.
  *
  * This program and the accompanying materials are made available under the
@@ -12,25 +11,17 @@
 
 package org.omg.kerml.xtext.postprocessing;
 
-import org.omg.sysml.lang.sysml.Comment;
-import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.lang.sysml.Step;
 
-public class CommentParserPostProcessor extends AnnotatingElementParserPostProcessor {
+public class StepParserPostProcessor extends FeatureParserPostProcessor {
 
-	public CommentParserPostProcessor(Comment element) {
+	public StepParserPostProcessor(Step element) {
 		super(element);
 	}
 
 	@Override
-	public Comment getTarget() {
-		return (Comment)super.getTarget();
+	public Step getTarget() {
+		return (Step)super.getTarget();
 	}
 
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		Comment target = getTarget();
-		target.setLocale(ElementUtil.unescapeString(target.getLocale()));
-		target.setBody(ElementUtil.processCommentBody(target.getBody()));
-	}
 }

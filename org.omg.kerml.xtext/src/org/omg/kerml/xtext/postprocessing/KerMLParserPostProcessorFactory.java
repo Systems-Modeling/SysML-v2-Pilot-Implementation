@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -23,15 +24,23 @@ public final class KerMLParserPostProcessorFactory {
 	private KerMLParserPostProcessorFactory() {
 	}
 
-	private static final SysMLSwitch<ElementParserPostProcessor> SWITCH = new KerMLFactoryPostProcessorSwitch();
-	
-	
+	private static final SysMLSwitch<ElementParserPostProcessor> SWITCH = new KerMLFactoryPostProcessorSwitch();	
 	
 	public static class KerMLFactoryPostProcessorSwitch extends SysMLSwitch<ElementParserPostProcessor> {
 		
 		@Override
+		public ElementParserPostProcessor caseAnnotatingElement(AnnotatingElement element) {
+			return new AnnotatingElementParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseAnnotation(Annotation element) {
 			return new AnnotationParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseClassifier(Classifier element) {
+			return new ClassifierParserPostProcessor(element);
 		}
 
 		@Override
@@ -70,8 +79,18 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseExpression(Expression element) {
+			return new ExpressionParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseFeature(Feature element) {
 			return new FeatureParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseFeatureMembership(FeatureMembership element) {
+			return new FeatureMembershipParserPostProcessor(element);
 		}
 
 		@Override
@@ -95,6 +114,11 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseLiteralExpression(LiteralExpression element) {
+			return new LiteralExpressionParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseLiteralString(LiteralString element) {
 			return new LiteralStringParserPostProcessor(element);
 		}
@@ -102,6 +126,11 @@ public final class KerMLParserPostProcessorFactory {
 		@Override
 		public ElementParserPostProcessor caseMembership(Membership element) {
 			return new MembershipParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseNamespace(Namespace element) {
+			return new NamespaceParserPostProcessor(element);
 		}
 
 		@Override
@@ -125,8 +154,18 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseRelationship(Relationship element) {
+			return new RelationshipParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseSpecialization(Specialization element) {
 			return new SpecializationParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseStep(Step element) {
+			return new StepParserPostProcessor(element);
 		}
 
 		@Override
@@ -142,6 +181,11 @@ public final class KerMLParserPostProcessorFactory {
 		@Override
 		public ElementParserPostProcessor caseTextualRepresentation(TextualRepresentation element) {
 			return new TextualRepresentationParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseType(Type element) {
+			return new TypeParserPostProcessor(element);
 		}
 
 		@Override

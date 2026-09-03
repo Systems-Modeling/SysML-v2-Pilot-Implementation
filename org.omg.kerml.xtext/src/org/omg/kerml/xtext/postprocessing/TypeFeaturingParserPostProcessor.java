@@ -17,7 +17,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class TypeFeaturingParserPostProcessor extends ElementParserPostProcessor {
+public class TypeFeaturingParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public TypeFeaturingParserPostProcessor(TypeFeaturing element) {
 		super(element);

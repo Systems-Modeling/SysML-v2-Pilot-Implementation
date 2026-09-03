@@ -1,8 +1,8 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
-  * Copyright (c) 2026 Model Driven Solutions, Inc.
-*
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
+ *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -18,7 +18,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class FeatureInvertingParserPostProcessor extends ElementParserPostProcessor {
+public class FeatureInvertingParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public FeatureInvertingParserPostProcessor(FeatureInverting element) {
 		super(element);

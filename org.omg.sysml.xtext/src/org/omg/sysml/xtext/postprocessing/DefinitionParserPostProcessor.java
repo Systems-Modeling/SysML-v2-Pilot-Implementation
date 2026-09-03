@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -11,10 +12,10 @@
 
 package org.omg.sysml.xtext.postprocessing;
 
-import org.omg.kerml.xtext.postprocessing.ElementParserPostProcessor;
+import org.omg.kerml.xtext.postprocessing.ClassifierParserPostProcessor;
 import org.omg.sysml.lang.sysml.Definition;
 
-public class DefinitionParserPostProcessor extends ElementParserPostProcessor {
+public class DefinitionParserPostProcessor extends ClassifierParserPostProcessor {
 
 	public DefinitionParserPostProcessor(Definition element) {
 		super(element);

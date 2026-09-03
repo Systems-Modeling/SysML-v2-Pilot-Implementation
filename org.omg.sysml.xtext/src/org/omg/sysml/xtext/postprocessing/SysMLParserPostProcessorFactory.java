@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,15 +13,7 @@ package org.omg.sysml.xtext.postprocessing;
 
 import org.omg.kerml.xtext.postprocessing.ElementParserPostProcessor;
 import org.omg.kerml.xtext.postprocessing.KerMLParserPostProcessorFactory.KerMLFactoryPostProcessorSwitch;
-import org.omg.sysml.lang.sysml.ConnectionUsage;
-import org.omg.sysml.lang.sysml.Definition;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.PortConjugation;
-import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.lang.sysml.*;
 import org.omg.sysml.lang.sysml.util.SysMLSwitch;
 
 public class SysMLParserPostProcessorFactory {
@@ -36,6 +29,21 @@ public class SysMLParserPostProcessorFactory {
 	
 	public static class SysMLFactoryPostProcessorSwitch extends KerMLFactoryPostProcessorSwitch {
 
+		@Override
+		public ElementParserPostProcessor caseActionUsage(ActionUsage element) {
+			return new ActionUsageParserPostProcessor(element);
+		}
+		
+		@Override
+		public ElementParserPostProcessor caseCalculationUsage(CalculationUsage element) {
+			return new CalculationUsageParserPostProcessor(element);
+		}
+		
+		@Override
+		public ElementParserPostProcessor caseCaseUsage(CaseUsage element) {
+			return new CaseUsageParserPostProcessor(element);
+		}
+		
 		@Override
 		public ElementParserPostProcessor caseConnectionUsage(ConnectionUsage element) {
 			return new ConnectionUsageParserPostProcessor(element);

@@ -18,7 +18,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class ConjugationParserPostProcessor extends ElementParserPostProcessor {
+public class ConjugationParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public ConjugationParserPostProcessor(Conjugation element) {
 		super(element);

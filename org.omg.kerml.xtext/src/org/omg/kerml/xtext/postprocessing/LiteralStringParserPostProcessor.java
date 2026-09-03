@@ -14,7 +14,7 @@ package org.omg.kerml.xtext.postprocessing;
 import org.omg.sysml.lang.sysml.LiteralString;
 import org.omg.sysml.util.ElementUtil;
 
-public class LiteralStringParserPostProcessor extends FeatureParserPostProcessor {
+public class LiteralStringParserPostProcessor extends LiteralExpressionParserPostProcessor {
 
 	public LiteralStringParserPostProcessor(LiteralString element) {
 		super(element);

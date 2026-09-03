@@ -18,7 +18,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class IntersectingParserPostProcessor extends ElementParserPostProcessor {
+public class IntersectingParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public IntersectingParserPostProcessor(Intersecting element) {
 		super(element);

@@ -19,7 +19,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class DisjoiningParserPostProcessor extends ElementParserPostProcessor {
+public class DisjoiningParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public DisjoiningParserPostProcessor(Disjoining element) {
 		super(element);

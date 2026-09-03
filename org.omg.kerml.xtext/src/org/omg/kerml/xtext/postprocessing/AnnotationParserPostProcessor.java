@@ -17,7 +17,7 @@ import org.omg.sysml.lang.sysml.Annotation;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class AnnotationParserPostProcessor extends ElementParserPostProcessor {
+public class AnnotationParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public AnnotationParserPostProcessor(Annotation element) {
 		super(element);

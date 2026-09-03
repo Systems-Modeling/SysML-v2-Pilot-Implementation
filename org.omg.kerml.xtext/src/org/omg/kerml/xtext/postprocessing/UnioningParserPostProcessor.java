@@ -19,7 +19,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Unioning;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
-public class UnioningParserPostProcessor extends ElementParserPostProcessor {
+public class UnioningParserPostProcessor extends RelationshipParserPostProcessor {
 
 	public UnioningParserPostProcessor(Unioning element) {
 		super(element);

@@ -17,7 +17,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.omg.kerml.xtext.postprocessing.ElementParserPostProcessor;
 import org.omg.kerml.xtext.postprocessing.ImportParserPostProcessor;
@@ -40,18 +39,10 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.logic.SysMLLogicStandaloneSetup;
 import org.omg.sysml.util.TypeUtil;
 
 public class ParserPostProcessorTest extends SysMLInteractiveTest {
-
-	@BeforeClass
-	public static void setUp() {
-		SysMLLogicStandaloneSetup.doSetup();
-		SysMLPackage.eINSTANCE.eClass();
-	}
 
 	@Test
 	public void factorySelectsTheMostSpecificParserPostProcessorWithoutAttachingIt() {

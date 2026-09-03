@@ -8,18 +8,29 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
-package org.omg.sysml.xtext.scoping;
+
+package org.omg.sysml.xtext.postprocessing;
 
 import org.omg.kerml.xtext.postprocessing.ElementParserPostProcessor;
-import org.omg.kerml.xtext.scoping.KerMLLinker;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.xtext.postprocessing.SysMLParserPostProcessorFactory;
+import org.omg.sysml.lang.sysml.Definition;
 
-public class SysMLLinker extends KerMLLinker{
-	
-	@Override
-	protected ElementParserPostProcessor doGetPostProcessor(Element element) {
-		return SysMLParserPostProcessorFactory.getPostProcessor(element);
+public class DefinitionParserPostProcessor extends ElementParserPostProcessor {
+
+	public DefinitionParserPostProcessor(Definition element) {
+		super(element);
 	}
 
+	@Override
+	public Definition getTarget() {
+		return (Definition)super.getTarget();
+	}
+
+	@Override
+	public void postProcess() {
+		super.postProcess();
+		Definition target = getTarget();
+		if (target.isVariation()) {
+			target.setIsAbstract(true);
+		}
+	}
 }

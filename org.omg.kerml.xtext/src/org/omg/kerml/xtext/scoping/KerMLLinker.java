@@ -36,8 +36,8 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.eclipse.xtext.util.OnChangeEvictingCache;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
-import org.omg.kerml.xtext.adapter.ElementParserAdapter;
-import org.omg.kerml.xtext.adapter.KerMLParserAdapterFactory;
+import org.omg.kerml.xtext.postprocessing.ElementParserPostProcessor;
+import org.omg.kerml.xtext.postprocessing.KerMLParserPostProcessorFactory;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
@@ -72,21 +72,11 @@ public class KerMLLinker extends LazyLinker {
 		cache.execWithoutCacheClear(model.eResource(), new IUnitOfWork.Void<Resource>() {
 			@Override
 			public void process(Resource state) throws Exception {
-				try {
-					TreeIterator<EObject> iterator = getAllLinkableContents(model);
-					while (iterator.hasNext()) {
-						EObject obj = iterator.next();
-						if (obj instanceof Element element) {
-							doGetAdapter(element).postProcess();
-						}
-					}
-				} finally {
-					TreeIterator<EObject> iterator = getAllLinkableContents(model);
-					while (iterator.hasNext()) {
-						EObject obj = iterator.next();
-						if (obj instanceof Element element) {
-							KerMLParserAdapterFactory.removeAdapter(element);
-						}
+				TreeIterator<EObject> iterator = getAllLinkableContents(model);
+				while (iterator.hasNext()) {
+					EObject obj = iterator.next();
+					if (obj instanceof Element element) {
+						doGetPostProcessor(element).postProcess();
 					}
 				}
 			}
@@ -94,7 +84,7 @@ public class KerMLLinker extends LazyLinker {
 		});
 	}
 	
-	protected ElementParserAdapter doGetAdapter(Element element) {
-		return KerMLParserAdapterFactory.getAdapter(element);
+	protected ElementParserPostProcessor doGetPostProcessor(Element element) {
+		return KerMLParserPostProcessorFactory.getPostProcessor(element);
 	}
 }

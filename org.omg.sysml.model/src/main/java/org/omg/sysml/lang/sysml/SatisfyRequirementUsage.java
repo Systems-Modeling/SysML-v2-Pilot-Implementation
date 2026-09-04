@@ -15,7 +15,7 @@ package org.omg.sysml.lang.sysml;
  *         selectByKind(BindingConnector)->
  *         select(b | b.relatedElement->includes(subjectParameter)) in
  *     if bindings->isEmpty() or 
- *        bindings->first().relatedElement->exits(r | r <> subjectParameter) 
+ *        not bindings->first().relatedElement->exits(r | r <> subjectParameter) 
  *     then null
  *     else bindings->first().relatedElement->any(r | r <> subjectParameter)
  *     endif

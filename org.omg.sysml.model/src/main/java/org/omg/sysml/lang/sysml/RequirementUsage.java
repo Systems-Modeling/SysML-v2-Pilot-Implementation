@@ -42,15 +42,18 @@ import org.eclipse.emf.common.util.EList;
  * specializesFromLibrary('Requirements::requirementChecks')
  * isComposite and owningType <> null and
  *     (owningType.oclIsKindOf(RequirementDefinition) or
- *      owningType.oclIsKindOf(RequirementUsage)) implies
+ *      owningType.oclIsKindOf(RequirementUsage)) and 
+ *     not owningFeatureMembership.oclIsKindOf(RequirementConstraintMembership) implies
  *     specializesFromLibrary('Requirements::RequirementCheck::subrequirements')
  * owningfeatureMembership <> null and
  * owningfeatureMembership.oclIsKindOf(ObjectiveMembership) implies
  *     owningType.ownedSpecialization.general->forAll(gen |
  *         (gen.oclIsKindOf(CaseDefinition) implies
  *             redefines(gen.oclAsType(CaseDefinition).objectiveRequirement)) and
- *         (gen.oclIsKindOf(CaseUsage) implies
- *             redefines(gen.oclAsType(CaseUsage).objectiveRequirement))
+ *         (gen.oclIsKindOf(Feature) and 
+ *          gen.oclAsType(Feature).featureTarget.oclIsKindOf(CaseUsage) implies
+ *             redefines(gen.oclAsType(Feature).featureTarget.
+ *                         oclAsType(CaseUsage).objectiveRequirement))
  * owningFeatureMembership <> null and
  * owningFeatureMembership.oclIsKindOf(RequirementVerificationMembership) implies
  *     specializesFromLibrary('VerificationCases::VerificationCase::obj::requirementVerifications')

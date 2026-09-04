@@ -7196,18 +7196,40 @@ ruleFeatureConjugation returns [EObject current=null]
 }:
 	(
 		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getFeatureConjugationRule());
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFeatureConjugationRule());
+					}
 				}
-			}
-			{
-				newCompositeNode(grammarAccess.getFeatureConjugationAccess().getOriginalTypeFeatureCrossReference_0());
-			}
-			ruleQualifiedName
-			{
-				afterParserOrEnumRuleCall();
-			}
+				{
+					newCompositeNode(grammarAccess.getFeatureConjugationAccess().getOriginalTypeFeatureCrossReference_0_0());
+				}
+				ruleQualifiedName
+				{
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getFeatureConjugationAccess().getOwnedRelatedElementOwnedFeatureChainParserRuleCall_1_0());
+				}
+				lv_ownedRelatedElement_1_0=ruleOwnedFeatureChain
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getFeatureConjugationRule());
+					}
+					add(
+						$current,
+						"ownedRelatedElement",
+						lv_ownedRelatedElement_1_0,
+						"org.omg.kerml.expressions.xtext.KerMLExpressions.OwnedFeatureChain");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;
@@ -10897,17 +10919,19 @@ ruleMetadataFeatureDeclaration[EObject in_current]  returns [EObject current=in_
 }:
 	(
 		(
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getMetadataFeatureDeclarationRule());
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMetadataFeatureDeclarationRule());
+					}
+					newCompositeNode(grammarAccess.getMetadataFeatureDeclarationAccess().getIdentificationParserRuleCall_0_0());
 				}
-				newCompositeNode(grammarAccess.getMetadataFeatureDeclarationAccess().getIdentificationParserRuleCall_0_0());
-			}
-			this_Identification_0=ruleIdentification[$current]
-			{
-				$current = $this_Identification_0.current;
-				afterParserOrEnumRuleCall();
-			}
+				this_Identification_0=ruleIdentification[$current]
+				{
+					$current = $this_Identification_0.current;
+					afterParserOrEnumRuleCall();
+				}
+			)?
 			(
 				otherlv_1=':'
 				{

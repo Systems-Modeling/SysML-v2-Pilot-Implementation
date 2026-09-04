@@ -53,7 +53,7 @@ public interface PortDefinition extends OccurrenceDefinition, Structure {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <codeConjugatedPortDefinition</code> that is conjugate to this <code>PortDefinition</code>.</p>
+	 * <p>The <code>ConjugatedPortDefinition</code> that is conjugate to this <code>PortDefinition</code>.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conjugated Port Definition</em>' reference.
 	 * @see #setConjugatedPortDefinition(ConjugatedPortDefinition)

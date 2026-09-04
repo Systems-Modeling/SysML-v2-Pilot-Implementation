@@ -33,6 +33,7 @@ package AssignmentActionUsage_invalid {
         attribute a;
         protected attribute b;
         private attribute c;
+        action d;
     }
 	action def A {
         assign i.a := null;
@@ -40,5 +41,7 @@ package AssignmentActionUsage_invalid {
         assign i.b := null;
         // XPECT errors --> "Couldn't resolve reference to Element 'c'." at "c"
         assign i.c := null;
+        // XPECT errors --> "Referent must be time varying." at "d"
+        assign i.d := null;
 	}
 }

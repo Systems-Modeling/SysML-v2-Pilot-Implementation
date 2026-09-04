@@ -2,7 +2,6 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2018-2025 Model Driven Solutions, Inc.
  * Copyright (c) 2018 IncQuery Labs Ltd.
- * Copyright (c) 2019 Maplesoft (Waterloo Maple, Inc.)
  * Copyright (c) 2019 Mgnite Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -23,7 +22,7 @@
  *  Ed Seidewitz, MDS
  *  Zoltan Kiss, IncQuery
  *  Balazs Grill, IncQuery
- *  Hisashi Miyashita, Maplesoft/Mgnite
+ *  Hisashi Miyashita, Mgnite
  * 
  *****************************************************************************/
 
@@ -732,7 +731,8 @@ fragment FeatureConjugationPart returns SysML::Feature :
 ;
 
 FeatureConjugation returns SysML::Conjugation :
-	originalType = [SysML::Feature | QualifiedName ]
+	  originalType = [SysML::Feature | QualifiedName ]
+	| ownedRelatedElement += OwnedFeatureChain
 ;
 
 /* FEATURE VALUES */
@@ -1088,7 +1088,7 @@ MetadataFeature returns SysML::MetadataFeature :
 ;
 
 fragment MetadataFeatureDeclaration returns SysML::MetadataFeature :
-	( Identification ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
+	( Identification? ( ':' | 'typed' 'by' ) )? ownedRelationship += MetadataTyping
 ;
 
 MetadataTyping returns SysML::FeatureTyping :

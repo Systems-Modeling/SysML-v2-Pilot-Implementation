@@ -33,7 +33,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.impl.ApiElementProcessingFacade;
 
 /**

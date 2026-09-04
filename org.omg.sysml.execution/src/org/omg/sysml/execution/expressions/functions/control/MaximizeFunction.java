@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.EvaluationUtil;
 
 public class MaximizeFunction extends ReduceFunction {

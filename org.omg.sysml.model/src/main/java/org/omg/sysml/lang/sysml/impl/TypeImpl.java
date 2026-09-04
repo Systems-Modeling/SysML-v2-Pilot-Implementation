@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.omg.sysml.lang.sysml.util.DerivedUnionEObjectEList;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Differencing;

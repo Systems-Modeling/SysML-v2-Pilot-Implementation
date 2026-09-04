@@ -78,31 +78,33 @@ import org.eclipse.emf.common.util.EList;
  *         (i = 1 implies 
  *             redefinesFromLibrary('Transfers::Transfer::source::sourceOutput')) and
  *         (i = 2 implies
- *             redefinesFromLibrary('Transfers::Transfer::source::targetInput'))
+ *             redefinesFromLibrary('Transfers::Transfer::target::targetInput'))
  *                  
  * owningType <> null and
- * not owningFeatureMembership.
- *     oclIsKindOf(ReturnParameterMembership) and
  * (owningType.oclIsKindOf(Behavior) or
  *  owningType.oclIsKindOf(Step) and
  *     (owningType.oclIsKindOf(InvocationExpression) implies
- *       not ownedRedefinition->exists(not isImplied)) 
+ *         not ownedRedefinition->exists(not isImplied)))
  * implies
- *     let i : Integer =
+ *     let ownerParameters : Sequence(Feature) =
  *         owningType.ownedFeature->select(direction <> null)->
  *             reject(owningFeatureMembership.
- *                 oclIsKindOf(ReturnParameterMembership))->
- *             indexOf(self) in
- *     owningType.ownedSpecialization.general->
- *         forAll(supertype |
- *             let ownedParameters : Sequence(Feature) =
- *                 supertype.ownedFeature->select(direction <> null)->
- *                      reject(owningFeatureMembership.
- *                          oclIsKindOf(ReturnParameterMembership)) in
- *             ownedParameters->size() >= i implies
- *                 redefines(ownedParameters->at(i))
+ *                 oclIsKindOf(ReturnParameterMembership)) in
+ *     ownerParameters->includes(self) implies
+ *         let i : Integer = ownerParameters.indexof(self) in
+ *         owningType.ownedSpecialization.general->
+ *             forAll(supertype |
+ *                 supertype.oclIsKindOf(Behavior) or 
+ *                     supertype.oclIsKindOf(Step) 
+ *                 implies
+ *                     let ownedParameters : Sequence(Feature) =
+ *                         supertype.ownedFeature->select(direction <> null)->
+ *                             reject(owningFeatureMembership.
+ *                                 oclIsKindOf(ReturnParameterMembership)) in
+ *                     ownedParameters->size() >= i implies
+ *                         redefines(ownedParameters->at(i)))
  * ownedTyping.type->exists(selectByKind(Structure)) implies
- *     specializesFromLibary('Objects::objects')
+ *     specializesFromLibrary('Objects::objects')
  * owningType <> null and
  * (owningType.oclIsKindOf(Function) and
  *     self = owningType.oclAsType(Function).result or
@@ -121,7 +123,7 @@ import org.eclipse.emf.common.util.EList;
  *     select(fi | fi.featureInverted = self)
  * featuringType =
  *     let featuringTypes : OrderedSet(Type) = 
- *         featuring.type->asOrderedSet() in
+ *         typeFeaturing.type->asOrderedSet() in
  *     if chainingFeature->isEmpty() then featuringTypes
  *     else
  *         featuringTypes->
@@ -1070,18 +1072,21 @@ public interface Feature extends Type {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>If this <code>Feature</code> is an end <code>Feature</code> of its <code>owningType</code>, then return the first <code>ownedMember</code> of the <code>Feature</code> that is a <code>Feature</code>, but not a <code>Multiplicity</code> or a <code>MetadataFeature</code>, and whose <code>owningMembership</code> is <em>not</em> a <code>FeatureMembership</code>. If this exists, it is the <code>crossFeature</code> of the end <code>Feature</code>.</p>
+	 * <p>If this <code>Feature</code> is an end <code>Feature</code> of its <code>owningType</code>, then return the first <code>ownedMember</code> of the <code>Feature</code> that is a <code>Feature</code>, but <em>not</em> a <code>Multiplicity</code>, <code>MetadataFeature</code>, or <code>BindingConnector</code>, and whose <code>owningMembership</code> is <em>not</em> a <code>FeatureMembership</code> or <code>FeatureValue</code>. If this exists, it is the <code>crossFeature</code> of the end <code>Feature</code>.</p>
 	 * if not isEnd or owningType = null then null
 	 * else
 	 *     let ownedMemberFeatures: Sequence(Feature) =
 	 *         ownedMember->selectByKind(Feature)->
-	 *             reject(oclIsKindOf(Multiplicity) or 
+	 *             reject(oclIsKindOf(Multiplicity) or
 	 *                    oclIsKindOf(MetadataFeature) or
-	 *                    oclIsKindOf(FeatureValue))->
-	 *             reject(owningMembership.oclIsKindOf(FeatureMembership)) in
+	 *                    oclIsKindOf(BindingConnector))->
+	 *             reject(owningMembership.oclIsKindOf(FeatureMembership) or
+	 *                    owningMembership.oclIsKindOf(FeatureValue)) in
 	 *     if ownedMemberFeatures.isEmpty() then null
 	 *     else ownedMemberFeatures->first()
 	 *     endif
+	 * endif
+	 * 
 	 * <!-- end-model-doc -->
 	 * @model ordered="false"
 	 *        annotation="http://www.omg.org/spec/SysML"

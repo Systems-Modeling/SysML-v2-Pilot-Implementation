@@ -15387,6 +15387,7 @@
       "anyTrue",
       "collect",
       "dataValues",
+      "equals",
       "exactlyOne",
       "exists",
       "forAll",
@@ -280190,5 +280191,5 @@
       "withoutOccurrences"
     ]
   },
-  "checksum": "83ebd85a5305dcef0cc1f3f11c219737ad8f38448d8bc28af253c0a2d8af413e"
+  "checksum": "e69c541524fc1effc91c174657bf78869a7064934d7a70994d63fd364f44d6ae"
 }

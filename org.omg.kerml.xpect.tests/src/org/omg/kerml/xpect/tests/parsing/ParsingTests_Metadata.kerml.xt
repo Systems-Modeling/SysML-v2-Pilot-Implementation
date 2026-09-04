@@ -41,14 +41,15 @@ package Metadata {
 	metaclass C;
 	
 	feature x {
-		metaclass A {
+		metadata A {
 			f = null;
 		}
+		metadata : B;
 	}
 	
 	feature y {
 		@A { f = null; }
-		@B;
+		@ : B;
 	}
 	
 	private #A #B feature z1;

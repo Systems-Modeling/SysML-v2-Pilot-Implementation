@@ -183,7 +183,7 @@ public interface RequirementDefinition extends ConstraintDefinition {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>The <code>parameters</code> of this <code>RequirementDefinition</code> that represent stakeholders for th requirement.</p>
+	 * <p>The <code>parameters</code> of this <code>RequirementDefinition</code> that represent stakeholders for the requirement.</p>
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stakeholder Parameter</em>' reference list.
 	 * @see org.omg.sysml.lang.sysml.SysMLPackage#getRequirementDefinition_StakeholderParameter()

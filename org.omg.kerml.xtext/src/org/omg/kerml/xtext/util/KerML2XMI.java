@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.omg.kerml.xtext.KerMLStandaloneSetup;
+import org.omg.sysml.io.SysMLUtil;
 import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.util.SysMLUtil;
 
 /**
  * This is a utility program for reading one or more KerML source files and writing the corresponding KerML

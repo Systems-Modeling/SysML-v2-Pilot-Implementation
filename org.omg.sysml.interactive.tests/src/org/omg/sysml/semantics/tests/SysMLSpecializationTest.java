@@ -46,7 +46,7 @@ import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NamespaceUtil;
 

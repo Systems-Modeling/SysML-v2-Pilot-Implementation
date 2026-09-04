@@ -1,0 +1,68 @@
+//* 
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.valid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+       	File {from ="/library.kernel/Performances.kerml"}
+       	File {from ="/library.kernel/Transfers.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Connections.sysml"}
+		File {from ="/library.systems/Interfaces.sysml"}
+		File {from ="/library.systems/Flows.sysml"}
+		File {from ="/library.systems/Actions.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+ 		      	File {from ="/library.kernel/Objects.kerml"}
+ 		      	File {from ="/library.kernel/Performances.kerml"}
+ 		      	File {from ="/library.kernel/Transfers.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Connections.sysml"}
+				File {from ="/library.systems/Interfaces.sysml"}
+				File {from ="/library.systems/Flows.sysml"}
+				File {from ="/library.systems/Actions.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+// XPECT noErrors ---> ""
+package InterfaceTest {
+	
+	port def P1;
+	port def P2;
+	
+	interface def I1 {
+		end port p1: P1;
+		end port p2: P2;
+	}
+	
+	interface def I2 {
+		end p1: P1;
+		end p2: P2;
+	}
+	
+	part def A {
+		part x {
+			port p1 : P1;
+		}
+		part y {
+			port p2 : P2;
+		}
+		interface i1 : I1 connect x.p1 to y.p2;
+		abstract interface i = i1;
+	}
+	
+}

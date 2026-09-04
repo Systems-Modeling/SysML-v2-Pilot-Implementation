@@ -30,7 +30,7 @@ import com.google.inject.Singleton
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.omg.sysml.lang.sysml.Element
 import org.eclipse.emf.ecore.util.EcoreUtil
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.sysml.logic.api.IModelLibraryProvider
 import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider
 import org.omg.sysml.lang.sysml.SysMLPackage
 

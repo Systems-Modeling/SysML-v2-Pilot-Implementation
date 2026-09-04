@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2021-2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -38,6 +38,13 @@ public abstract class SysMLInteractiveTest {
 	
 	public String getLibraryPath() {
 		return System.getProperty(SYSML_LIBRARY_PATH_KEY);
+	}
+	
+	public SysMLInteractive createSysMLInteractiveInstance() {
+		SysMLInteractive instance = SysMLInteractive.createInstance();
+		instance.setVerbose(false);
+		instance.loadLibrary(getLibraryPath());
+		return instance;
 	}
 	
 	public SysMLInteractive getSysMLInteractiveInstance() {

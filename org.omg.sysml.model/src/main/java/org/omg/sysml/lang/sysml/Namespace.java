@@ -329,7 +329,7 @@ public interface Namespace extends Element {
 	 *     let memberships : Membership = membership->
 	 *         select(memberShortName = name or memberName = name) in
 	 *     if memberships->notEmpty() then memberships->first()
-	 *     else owningNamspace.resolveLocal(name)
+	 *     else owningNamespace.resolveLocal(name)
 	 *     endif
 	 * endif
 	 * <!-- end-model-doc -->

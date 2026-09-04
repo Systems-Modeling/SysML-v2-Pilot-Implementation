@@ -10,6 +10,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
+import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.xtext.validation.CompositeEValidator
 import org.eclipse.xtext.validation.IResourceValidator
 import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
@@ -17,7 +18,7 @@ import org.omg.kerml.xtext.conversion.KerMLValueConverterService
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 import org.omg.kerml.xtext.scoping.KerMLLinker
 import org.omg.kerml.xtext.validation.KerMLResourceValidator
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.sysml.logic.api.IModelLibraryProvider
 import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
@@ -25,11 +26,25 @@ import org.omg.kerml.xtext.library.ILibraryIndexProvider
 import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider
 import com.google.inject.Provides
 import org.eclipse.xtext.conversion.IValueConverterService
+import org.omg.sysml.util.SysMLLibraryUtil
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
+
+	new() {
+		SysMLLibraryUtil.setProviderLookup([
+			resource |
+				try {
+					val serviceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.URI)
+					if (serviceProvider === null) null else serviceProvider.get(IModelLibraryProvider)
+				} catch (Exception e) {
+					System.out.println("[SysMLLibraryUtil] Cannot get library provider: " + e)
+					null
+				}
+		])
+	}
 	
 	override Class<? extends IValueConverterService> bindIValueConverterService() {
     	return KerMLValueConverterService;

@@ -23,15 +23,39 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.xtext.resource.IResourceDescriptions
 import org.eclipse.xtext.resource.generic.AbstractGenericResourceRuntimeModule
 import org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
-import org.omg.sysml.lang.sysml.util.IModelLibraryProvider
+import org.omg.sysml.logic.api.IModelLibraryProvider
+import org.omg.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.xtext.library.SysMLLibraryProvider
 
 class SysMLxRuntimeModule extends AbstractGenericResourceRuntimeModule {
+
+	/**
+	 * Installs the library-provider lookup used by {@link SysMLLibraryUtil} for
+	 * the generic SysML XMI runtime.
+	 *
+	 * <p>The lookup resolves the {@link IModelLibraryProvider} from the
+	 * {@link IResourceServiceProvider} associated with the current resource URI so
+	 * SysML library resolution works in this non-generated XMI-based runtime just
+	 * as it does in the regular Xtext runtime modules.
+	 */
+	new() {
+		SysMLLibraryUtil.setProviderLookup([
+			resource |
+				try {
+					val serviceProvider = IResourceServiceProvider.Registry.INSTANCE.getResourceServiceProvider(resource?.URI)
+					if (serviceProvider === null) null else serviceProvider.get(IModelLibraryProvider)
+				} catch (Exception e) {
+					System.out.println("[SysMLLibraryUtil] Cannot get library provider: " + e)
+					null
+				}
+		])
+	}
 	
 	public val EXTENSION = 'sysmlx'
 	public static val SYSMLX_LANGUAGE_NAME = 'org.omg.sysml.sysmlx'

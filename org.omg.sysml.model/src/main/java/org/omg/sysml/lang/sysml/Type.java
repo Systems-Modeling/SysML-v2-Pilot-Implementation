@@ -39,8 +39,10 @@ import org.eclipse.emf.common.util.EList;
  * specializesFromLibrary('Base::Anything')
  * directedFeature = feature->select(f | directionOf(f) <> null)
  * feature = featureMembership.ownedMemberFeature
- * featureMembership = ownedFeatureMembership->union(
- *     inheritedMembership->selectByKind(FeatureMembership))
+ * featureMembership = ownedFeatureMembership->
+ *     union(inheritedMembership->
+ *         selectByKind(FeatureMembership)->
+ *         select(mem | self.specializes(mem.owningType)))
  * ownedFeature = ownedFeatureMembership.ownedMemberFeature
  * differencingType = ownedDifferencing.differencingType
  * intersectingType->excludes(self)

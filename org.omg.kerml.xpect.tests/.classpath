@@ -6,6 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.omg.sysml.logic"/>
 	<classpathentry kind="src" path="src">
 		<attributes>
 			<attribute name="test" value="true"/>

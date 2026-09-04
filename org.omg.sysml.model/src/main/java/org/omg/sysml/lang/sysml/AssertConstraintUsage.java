@@ -21,7 +21,7 @@ package org.omg.sysml.lang.sysml;
  * else
  *     specializesFromLibrary('Constraints::assertedConstraintChecks')
  * endif
- * referencedFeaureTarget() <> null implies
+ * referencedFeatureTarget() <> null implies
  *     referencedFeatureTarget().oclIsKindOf(ConstraintUsage)
  * <!-- end-model-doc -->
  *

@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * viewpointStakeholder = framedConcern.featureMemberhsip->
  *     selectByKind(StakeholderMembership).
  *     ownedStakeholderParameter
- * specializesFromLibrary('Views::Viewpoint')
+ * specializesFromLibrary('Views::ViewpointCheck')
  * <!-- end-model-doc -->
  *
  * <p>

@@ -3,6 +3,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
 	ResourceSet {
        ThisFile {}
         File {from ="/library/Base.kerml"}
+        File {from ="/library/Links.kerml"}
         File {from ="/library/Occurrences.kerml"}
         File {from ="/library/Objects.kerml"}
         File {from ="/library/Performances.kerml"}
@@ -12,6 +13,7 @@ XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
             SrcFolder {
                 ThisFile {}
 		            File {from ="/library/Base.kerml"}
+		            File {from ="/library/Links.kerml"}
 		            File {from ="/library/Occurrences.kerml"}
 		            File {from ="/library/Objects.kerml"}
 		            File {from ="/library/Performances.kerml"}
@@ -26,8 +28,27 @@ package RedefinitionEnd {
 	}
 	
 	classifier B :> A {
-		// XPECT errors ---> "Redefining feature must be an end feature" at "e"
 		feature :>> e;
+	}
+	
+	assoc R {
+		end a : A;
+		end b : B;
+	}
+	
+	abstract connector r : R {
+		end a;
+		end b;
+	}
+	
+	abstract assoc R1 :> R {
+		// XPECT errors ---> "Redefining feature must be an end feature" at "a"
+		feature a1 :>> a;
+	}
+	
+	abstract connector r1 :> r {
+		// XPECT errors ---> "Redefining feature must be an end feature" at "a"
+		feature a1 :>> a;
 	}
 
 }

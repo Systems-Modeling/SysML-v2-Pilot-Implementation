@@ -60,6 +60,27 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>update-project-versions</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>java</goal>
+						</goals>
+						<configuration>
+							<mainClass>org.omg.sysml.xtext.util.StdLibVersionUtil</mainClass>
+							<arguments>
+								<argument>--workspace</argument>
+								<argument>${maven.multiModuleProjectDirectory}/sysml.library</argument>
+								<argument>--build-tag</argument>
+								<argument>${sysml.build-tag}</argument>
+								<argument>--metamodel-tag</argument>
+								<argument>${sysml.metamodel-tag}</argument>
+							</arguments>
+							<classpathScope>compile</classpathScope>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.xtend</groupId>

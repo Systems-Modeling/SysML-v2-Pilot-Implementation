@@ -28,7 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.traversal.facade.impl.JsonElementProcessingFacade;
 
 /**

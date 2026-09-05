@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -210,7 +211,7 @@ public class TypeUtil {
 		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, (InternalEObject)type, SysMLPackage.TYPE__FEATURE);
 		getFeatureMembershipOf(type).stream().
 			map(FeatureMembership::getOwnedMemberFeature).
-			filter(f->f != null).
+			filter(Objects::nonNull).
 			forEachOrdered(features::add);
 		return features;
 	}
@@ -339,9 +340,9 @@ public class TypeUtil {
 	}
 
 	public static EList<Feature> getOutputOf(Type type) {
-		EList<Feature> inputs = new NonNotifyingEObjectEList<>(Feature.class, (InternalEObject)type, SysMLPackage.TYPE__INPUT);
-		TypeUtil.getFeatureOf(type).stream().filter(f->FeatureUtil.isInputParameter(f, type)).forEachOrdered(inputs::add);
-		return inputs;
+		EList<Feature> outputs = new NonNotifyingEObjectEList<>(Feature.class, (InternalEObject)type, SysMLPackage.TYPE__OUTPUT);
+		type.getFeature().stream().filter(f->FeatureUtil.isOutputParameter(f, type)).forEachOrdered(outputs::add);
+		return outputs;
 	}
 
 	public static EList<Feature> getDirectedFeatureOf(Type type) {
@@ -381,7 +382,7 @@ public class TypeUtil {
 		return type.getOwnedFeatureMembership().stream().
 				filter(kind::isInstance).
 				map(FeatureMembership::getOwnedMemberFeature).
-				filter(f->f != null);
+				filter(Objects::nonNull);
 	}
 
 	public static <M extends Membership, E extends Element> void addOwnedFeaturesByMembership(Type type, 

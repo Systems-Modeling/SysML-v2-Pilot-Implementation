@@ -22,6 +22,7 @@ package org.omg.sysml.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.EList;
@@ -97,7 +98,7 @@ public class ExpressionUtil {
 		return expression.getOwnedMembership().stream().
 				filter(mem->!(mem instanceof ParameterMembership)).
 				map(Membership::getMemberElement).
-				filter(el->el != null).
+				filter(Objects::nonNull).
 				findFirst().orElse(null);
 	}
 	
@@ -214,7 +215,7 @@ public class ExpressionUtil {
 		instantiatedTypeFeatures.stream().
 			flatMap(f->argumentFeatures.stream().filter(rf->rf.redefines(f))).
 			map(FeatureUtil::getValueExpressionFor).
-			filter(e->e != null).
+			filter(Objects::nonNull).
 			forEachOrdered(arguments::add);		
 	}
 

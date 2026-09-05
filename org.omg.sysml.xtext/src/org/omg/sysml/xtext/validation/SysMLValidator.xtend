@@ -152,7 +152,7 @@ class SysMLValidator extends KerMLValidator {
     public static val INVALID_USAGE_IS_REFERENTIAL = "validateUsageIsReferential"
     public static val INVALID_USAGE_IS_REFERENTIAL_MSG_1 = "A directed usage must be referential."
     public static val INVALID_USAGE_IS_REFERENTIAL_MSG_2 = "An end usage must be referential."
-    public static val INVALID_USAGE_IS_REFERENTIAL_MSG_3 = "A package-lebel usage must be referential."
+    public static val INVALID_USAGE_IS_REFERENTIAL_MSG_3 = "A package-level usage must be referential."
     public static val INVALID_USAGE_VARIATION_IS_ABSTRACT = "validateUsageVariationIsAbstract"
     public static val INVALID_USAGE_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_USAGE_VARIATION_MEMBERSHIP = "validateUsageVariationMembership"

@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2019, 2020, 2022, 2024, 2025 Model Driven Solutions, Inc.
  * Copyright (c) 2023 Mgnite Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -331,12 +332,6 @@ public class ElementUtil {
 		getElementAdapter(element).setElementId(elementId);
 	}
 	
-	// Parse post-processing
-	
-	public static void postProcess(Element element) {
-		getElementAdapter(element).postProcess();
-	}
-
 	// Transformation 
 	
 	public static void transformAll(ResourceSet resourceSet, boolean addImplicitElements) {

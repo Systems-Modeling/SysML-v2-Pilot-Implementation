@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -73,22 +74,6 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	public Feature getTarget() {
 		return (Feature)super.getTarget();
-	}
-	
-	// Post-processing
-	
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		setIsVariableIfConstant();
-	}
-	
-	// Note: Can be individually overridden.
-	protected void setIsVariableIfConstant() {
-		Feature target = getTarget();
-		if (target.isConstant()) {
-			target.setIsVariable(true);
-		}		
 	}
 	
 	// Caching

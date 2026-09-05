@@ -76,22 +76,6 @@ public class FeatureAdapter extends TypeAdapter {
 		return (Feature)super.getTarget();
 	}
 	
-	// Post-processing
-	
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		setIsVariableIfConstant();
-	}
-	
-	// Note: Can be individually overridden.
-	protected void setIsVariableIfConstant() {
-		Feature target = getTarget();
-		if (target.isConstant()) {
-			target.setIsVariable(true);
-		}		
-	}
-	
 	// Caching
 	
 	EList<Type> types = null;

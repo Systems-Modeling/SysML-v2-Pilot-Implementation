@@ -4,29 +4,29 @@
 package org.omg.sysml.xtext
 
 import com.google.inject.Binder
+import com.google.inject.Provides
 import com.google.inject.name.Names
+import org.eclipse.xtext.conversion.IValueConverterService
 import org.eclipse.xtext.linking.ILinker
 import org.eclipse.xtext.naming.IQualifiedNameConverter
 import org.eclipse.xtext.naming.IQualifiedNameProvider
+import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.scoping.IGlobalScopeProvider
-import org.eclipse.xtext.resource.IResourceServiceProvider
 import org.eclipse.xtext.validation.CompositeEValidator
 import org.eclipse.xtext.validation.IResourceValidator
-import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
 import org.omg.kerml.xtext.conversion.KerMLValueConverterService
+import org.omg.kerml.xtext.library.ILibraryIndexProvider
+import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider
+import org.omg.kerml.xtext.linking.KerMLLazyLinkingResource
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
-import org.omg.kerml.xtext.scoping.KerMLLinker
 import org.omg.kerml.xtext.validation.KerMLResourceValidator
 import org.omg.sysml.logic.api.IModelLibraryProvider
+import org.omg.sysml.util.SysMLLibraryUtil
 import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
-import org.omg.kerml.xtext.library.ILibraryIndexProvider
-import org.omg.kerml.xtext.library.PrecalculatedLibraryIndexProvider
-import com.google.inject.Provides
-import org.eclipse.xtext.conversion.IValueConverterService
-import org.omg.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.xtext.scoping.SysMLLinker
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -67,7 +67,7 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	}
 	
 	override Class<? extends ILinker> bindILinker() {
-		KerMLLinker
+		SysMLLinker
 	}
 
 	def void configureUseEObjectValidator(Binder binder) {

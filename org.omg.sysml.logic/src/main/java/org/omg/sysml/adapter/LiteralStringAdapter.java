@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.LiteralString;
-import org.omg.sysml.util.ElementUtil;
 
 public class LiteralStringAdapter extends ExpressionAdapter {
 
@@ -34,11 +34,5 @@ public class LiteralStringAdapter extends ExpressionAdapter {
 		return (LiteralString)super.getTarget();
 	}
 	
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		LiteralString target = getTarget();
-		target.setValue(ElementUtil.unescapeString(target.getValue()));
-	}
 	
 }

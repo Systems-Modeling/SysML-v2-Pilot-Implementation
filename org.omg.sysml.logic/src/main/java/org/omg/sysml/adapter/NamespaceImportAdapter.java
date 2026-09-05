@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2024 Budapest University of Technology and Economics
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -25,10 +26,8 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.NamespaceImport;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.lang.sysml.Namespace;
 
@@ -42,24 +41,6 @@ public class NamespaceImportAdapter extends ImportAdapter {
 		return (NamespaceImport)super.getTarget();
 	}
 	
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		
-		NamespaceImport obj = getTarget();		
-		// If importedNamespace is empty, then set it to the first ownedRelatedElement, if this is a namespace
-		// (filling in the implicit import for a filter package). Otherwise, set it to the importOwningNamspace.
-		Object importedNamespace = obj.eGet(SysMLPackage.Literals.NAMESPACE_IMPORT__IMPORTED_NAMESPACE, false);
-		if (importedNamespace == null) {
-			EList<Element> ownedRelatedElement = obj.getOwnedRelatedElement();
-			if (!ownedRelatedElement.isEmpty() && ownedRelatedElement.get(0) instanceof Namespace) {
-				// Fill in the implicit import for a filter package.
-				obj.setImportedNamespace((Namespace)ownedRelatedElement.get(0));
-			} else {
-				obj.setImportedNamespace(obj.getImportOwningNamespace());
-			}
-		}
-	}
 	
 	@Override
 	public void importMemberships(EList<Membership> importedMemberships, Set<Namespace> excluded) {

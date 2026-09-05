@@ -608,13 +608,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 		}
 		
 		// validateFeatureMultiplicityDomain
-		// TODO: Update OCL for owned cross feature multiplicity featuring type.
 		val m = f.multiplicity;
-		val featuringTypes = f.featuringType
-		var mFeaturingTypes =
-			if (FeatureUtil.isOwnedCrossFeature(f)) (f.owningNamespace as Feature).featuringType
-			else featuringTypes
-		if (m !== null && mFeaturingTypes.toSet != m.featuringType.toSet) {
+		if (m !== null && f.featuringType.toSet != m.featuringType.toSet) {
 			error(INVALID_FEATURE_MULTIPLICITY_DOMAIN_MSG, f, SysMLPackage.eINSTANCE.type_Multiplicity, INVALID_FEATURE_MULTIPLICITY_DOMAIN)
 		}
 		
@@ -730,10 +725,13 @@ class KerMLValidator extends AbstractKerMLValidator {
 				}
 			}
 			
-			// validatRedefinitionEndConformance			
+			// validateRedefinitionEndConformance			
 			if (redefinedFeature.isEnd && !redefiningFeature.isEnd) {
-				error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
-						SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
+				val redefiningOwner = redefiningFeature.owningType
+				if (redefiningOwner instanceof Association || redefiningOwner instanceof Connector) {
+					error(INVALID_REDEFINITION_END_CONFORMANCE_MSG, redef, 
+							SysMLPackage.eINSTANCE.redefinition_RedefinedFeature, INVALID_REDEFINITION_END_CONFORMANCE)
+				}
 			}
 		}		
 	}

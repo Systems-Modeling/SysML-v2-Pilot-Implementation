@@ -30,9 +30,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ItemDefinition;
+import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
+import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -180,6 +182,58 @@ public class SysMLSpecializationSpecialTest extends SysMLSemanticTest {
 		ElementUtil.transformAll(root, true);
 		
 		assertTrue(String.format("OccurrenceUsage specializes subobjects instead of %s", getSpecifics(occurrence)), occurrence.specializes((Type)libraryElement));
+	}
+	
+	@Test
+	public void checkOccurrenceUsageTimesliceSpecialization_OccurrenceUsage() {
+		//create and add root package
+		org.omg.sysml.lang.sysml.Package root = SysMLFactory.eINSTANCE.createPackage();
+		getResource().getContents().add(root);
+		
+		//check if library element exists
+		Element libraryElement = SysMLLibraryUtil.getLibraryElement(root, "Occurrences::Occurrence::timeSlices");
+		assertTrue(libraryElement instanceof Type);
+
+		//create owning type
+		Type owner = (Type) SysMLFactory.eINSTANCE.createOccurrenceDefinition();
+		NamespaceUtil.addOwnedMemberTo(root, owner);	
+		
+		//create occurrence usage
+		OccurrenceUsage occurrence = SysMLFactory.eINSTANCE.createOccurrenceUsage();
+		occurrence.setIsReference(true);
+		occurrence.setPortionKind(PortionKind.TIMESLICE);
+		TypeUtil.addOwnedFeatureTo(owner, occurrence);
+		
+		//run transformation, add implicit elements
+		ElementUtil.transformAll(root, true);
+		
+		assertTrue(String.format("OccurrenceUsage specializes timeslices instead of %s", getSpecifics(occurrence)), occurrence.specializes((Type)libraryElement));
+	}
+	
+	@Test
+	public void checkOccurrenceUsageTimesliceSpecialization_PortUsage() {
+		//create and add root package
+		org.omg.sysml.lang.sysml.Package root = SysMLFactory.eINSTANCE.createPackage();
+		getResource().getContents().add(root);
+		
+		//check if library element exists
+		Element libraryElement = SysMLLibraryUtil.getLibraryElement(root, "Occurrences::Occurrence::timeSlices");
+		assertTrue(libraryElement instanceof Type);
+
+		//create owning type
+		Type owner = (Type) SysMLFactory.eINSTANCE.createPortDefinition();
+		NamespaceUtil.addOwnedMemberTo(root, owner);	
+		
+		//create port usage
+		PortUsage port = SysMLFactory.eINSTANCE.createPortUsage();
+		port.setIsReference(true);
+		port.setPortionKind(PortionKind.TIMESLICE);
+		TypeUtil.addOwnedFeatureTo(owner, port);
+		
+		//run transformation, add implicit elements
+		ElementUtil.transformAll(root, true);
+		
+		assertTrue(String.format("PortUsage specializes timeslices instead of %s", getSpecifics(port)), port.specializes((Type)libraryElement));
 	}
 	
 	@Test

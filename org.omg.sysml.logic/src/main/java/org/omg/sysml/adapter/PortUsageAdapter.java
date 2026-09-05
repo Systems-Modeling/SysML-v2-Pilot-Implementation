@@ -27,7 +27,7 @@ import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.Type;
 
-public class PortUsageAdapter extends UsageAdapter {
+public class PortUsageAdapter extends OccurrenceUsageAdapter {
 
 	public PortUsageAdapter(PortUsage element) {
 		super(element);

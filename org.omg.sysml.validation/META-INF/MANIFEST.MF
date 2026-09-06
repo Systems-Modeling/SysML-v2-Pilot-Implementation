@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SysML Validation
+Bundle-SymbolicName: org.omg.sysml.validation
+Bundle-Version: 0.62.0.qualifier
+Bundle-Vendor: OMG Systems Modeling Community
+Automatic-Module-Name: org.omg.sysml.validation
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Require-Bundle: org.omg.sysml;bundle-version="0.62.0",
+ org.omg.kerml.validation;bundle-version="0.62.0"
+Import-Package: org.omg.sysml.lang.sysml

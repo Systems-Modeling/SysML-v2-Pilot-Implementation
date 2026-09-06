@@ -49,6 +49,8 @@
     <module>org.omg.sysml.editor</module>
     <module>org.omg.sysml.execution</module>
     <module>org.omg.kerml.expressions.xtext</module>
+    <module>org.omg.kerml.validation</module>
+    <module>org.omg.sysml.validation</module>
     <module>org.omg.kerml.xtext</module>
     <module>org.omg.sysml.xtext</module>
     <module>org.omg.kerml.expressions.xtext.ide</module>

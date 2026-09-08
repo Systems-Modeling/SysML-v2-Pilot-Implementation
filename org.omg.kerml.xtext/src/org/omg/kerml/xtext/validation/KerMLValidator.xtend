@@ -646,7 +646,7 @@ class KerMLValidator extends AbstractKerMLValidator {
 		val crossSubsettings = f.ownedRelationship.filter[r | r instanceof CrossSubsetting].toList
 		if (crossSubsettings.size > 1) {
 			for (var i = 1; i < crossSubsettings.size; i++)
-				error(INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG, refSubsettings.get(i), null, INVALID_FEATURE_OWNED_CROSS_SUBSETTING)
+				error(INVALID_FEATURE_OWNED_CROSS_SUBSETTING_MSG, crossSubsettings.get(i), null, INVALID_FEATURE_OWNED_CROSS_SUBSETTING)
 		}
 		
 		// validateFeatureEndMultiplicity

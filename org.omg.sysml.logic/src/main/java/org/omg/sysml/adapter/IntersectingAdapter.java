@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2024 Budapest University of Technology and Economics
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -21,11 +22,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
 import org.omg.sysml.lang.sysml.Intersecting;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class IntersectingAdapter extends RelationshipAdapter {
 
@@ -38,21 +35,5 @@ public class IntersectingAdapter extends RelationshipAdapter {
 		return (Intersecting)super.getTarget();
 	}
 	
-	@Override
-	public void postProcess() {
-		Intersecting obj = getTarget();
-		
-		// If a Intersecting is parsed targeting a Feature chain, then the intersectingType will be empty,
-		// but the Intersecting will own the intersectingType. So, in this case, the intersectingType should
-		// be set to the (last) ownedRelatedelement.
-		Object intersectingType = obj.eGet(SysMLPackage.Literals.INTERSECTING__INTERSECTING_TYPE, false);
-		if (intersectingType == null) {
-			// Handle a intersectingType that is a Feature chain.
-			EList<Element> ownedRelatedElements = obj.getOwnedRelatedElement();
-			if (!ownedRelatedElements.isEmpty()) {
-				obj.setIntersectingType((Feature)ownedRelatedElements.get(ownedRelatedElements.size() - 1));
-			}
-		}
-	}
 	
 }

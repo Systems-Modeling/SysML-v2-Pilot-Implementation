@@ -215,7 +215,7 @@ public class FeatureUtil {
 	}
 	
 	public static List<Feature> getAllSubsettingFeaturesIn(Type type, Feature subsettedFeature) {
-		return type.getFeature().stream().
+		return TypeUtil.getFeatureOf(type).stream().
 				filter(f->TypeUtil.specializes(f, subsettedFeature)).
 				collect(Collectors.toList());
 	}

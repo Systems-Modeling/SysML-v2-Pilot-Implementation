@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -24,9 +24,9 @@ package org.omg.sysml.delegate.setting;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.NonNotifyingEObjectEList;
+import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.TypeUtil;
 
 public class Type_directedFeature_SettingDelegate extends BasicDerivedListSettingDelegate {
 
@@ -36,11 +36,8 @@ public class Type_directedFeature_SettingDelegate extends BasicDerivedListSettin
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
-		EList<Feature> directedFeatures = new NonNotifyingEObjectEList<>(Feature.class, owner, eStructuralFeature.getFeatureID());
-		((Type)owner).getFeature().stream().
-			filter(f->f.getDirection() != null).
-			forEachOrdered(directedFeatures::add);
-		return directedFeatures;
+		ElementUtil.clearCachesOf((Type)owner);
+		return TypeUtil.getDirectedFeatureOf((Type)owner);
 	}
 
 }

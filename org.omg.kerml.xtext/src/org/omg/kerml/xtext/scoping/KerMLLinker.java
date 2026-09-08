@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2020-2021, 2024, 2026 Model Driven Solutions, Inc.
  * Copyright (c) 2024 Budapest University of Technology and Economics
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -35,9 +36,10 @@ import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 import org.eclipse.xtext.util.OnChangeEvictingCache;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
+import org.omg.kerml.xtext.postprocessing.ElementParserPostProcessor;
+import org.omg.kerml.xtext.postprocessing.KerMLParserPostProcessorFactory;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ElementUtil;
 
 import com.google.inject.Inject;
 
@@ -73,11 +75,16 @@ public class KerMLLinker extends LazyLinker {
 				TreeIterator<EObject> iterator = getAllLinkableContents(model);
 				while (iterator.hasNext()) {
 					EObject obj = iterator.next();
-					if (obj instanceof Element) {
-						ElementUtil.postProcess((Element)obj);
+					if (obj instanceof Element element) {
+						doGetPostProcessor(element).postProcess();
 					}
 				}
 			}
+
 		});
+	}
+	
+	protected ElementParserPostProcessor doGetPostProcessor(Element element) {
+		return KerMLParserPostProcessorFactory.getPostProcessor(element);
 	}
 }

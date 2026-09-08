@@ -36,11 +36,10 @@ public class EventOccurrenceUsageImpl extends OccurrenceUsageImpl implements Eve
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected EventOccurrenceUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

@@ -18,11 +18,10 @@ public class BindingConnectorAsUsageImpl extends ConnectorAsUsageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected BindingConnectorAsUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

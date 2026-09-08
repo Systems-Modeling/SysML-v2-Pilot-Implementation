@@ -57,4 +57,16 @@ package AssociationTest_CrossFeatures_invalid {
 			member feature y1 [0..1] featured by C1;
 		}
 	}
+	
+    class C3 {
+        feature x : C3;
+        feature y : C3;
+    }
+
+	assoc A4 {
+        end a : C3;
+        // XPECT errors --> "At most one cross subsetting is allowed" at "a.y"
+        end b : C3 crosses a.x crosses a.y;
+    }
+		
 }

@@ -1,7 +1,8 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
- *    
+ * Copyright (c) 2026 Obeo
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -73,22 +74,6 @@ public class FeatureAdapter extends TypeAdapter {
 	@Override
 	public Feature getTarget() {
 		return (Feature)super.getTarget();
-	}
-	
-	// Post-processing
-	
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		setIsVariableIfConstant();
-	}
-	
-	// Note: Can be individually overridden.
-	protected void setIsVariableIfConstant() {
-		Feature target = getTarget();
-		if (target.isConstant()) {
-			target.setIsVariable(true);
-		}		
 	}
 	
 	// Caching
@@ -558,7 +543,7 @@ public class FeatureAdapter extends TypeAdapter {
 		computeImplicitGeneralTypes();
 		getFeatureTypes(types, visitedFeatures);
 		for (Feature typingFeature : feature.typingFeatures()) {
-			if (!visitedFeatures.contains(typingFeature)) {
+			if (typingFeature != null && !visitedFeatures.contains(typingFeature)) {
 				FeatureUtil.getTypesOf(typingFeature, types, visitedFeatures);
 			}
 		}
@@ -690,7 +675,7 @@ public class FeatureAdapter extends TypeAdapter {
 	 * @satisfies checkFeatureEndRedefinition
 	 */
 	protected List<? extends Feature> getEndRelevantFeatures(Type type) {
-		return getTarget().getOwningType() == type? type.getOwnedEndFeature(): type.getEndFeature();
+		return getTarget().getOwningType() == type? type.getOwnedEndFeature(): TypeUtil.getEndFeatureOf(type);
 	}
 	
 	/**
@@ -703,7 +688,7 @@ public class FeatureAdapter extends TypeAdapter {
 		} else {
 			Type instantiatedType = ((ConstructorExpression)(owningType.getOwningNamespace())).getInstantiatedType();
 			return type != instantiatedType? Collections.emptyList():
-				instantiatedType.getFeature().stream().filter(f->
+				TypeUtil.getFeatureOf(instantiatedType).stream().filter(f->
 					f.getOwningFeatureMembership().getVisibility() == VisibilityKind.PUBLIC).toList();
 		}
 	}

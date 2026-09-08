@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2022, 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -106,14 +107,6 @@ public class ElementAdapter extends AdapterImpl {
 			}
 		}
 		return metaclassFeature;
-	}
-	
-	// Parse post-processing
-	
-	public void postProcess() {
-		Element target = getTarget();
-		target.setDeclaredName(ElementUtil.unescapeString(target.getDeclaredName()));
-		target.setDeclaredShortName(ElementUtil.unescapeString(target.getDeclaredShortName()));
 	}
 	
 	// Transformation

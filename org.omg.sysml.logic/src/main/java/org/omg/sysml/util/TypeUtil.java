@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -34,6 +35,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.BindingConnector;
@@ -105,10 +107,6 @@ public class TypeUtil {
 				toList();
 	}
 	
-	public static EList<FeatureMembership> getFeatureMembershipOf(Type type) {
-		return getTypeAdapter(type).getFeatureMembership();
-	}
-
 	// Supertypes
 	
 	public static List<Type> getSupertypesOf(Type type) {
@@ -205,6 +203,19 @@ public class TypeUtil {
 	
 	// Features
 	
+	public static EList<FeatureMembership> getFeatureMembershipOf(Type type) {
+		return getTypeAdapter(type).getFeatureMembership();
+	}
+	
+	public static EList<Feature> getFeatureOf(Type type) {
+		EList<Feature> features = new NonNotifyingEObjectEList<>(Feature.class, (InternalEObject)type, SysMLPackage.TYPE__FEATURE);
+		getFeatureMembershipOf(type).stream().
+			map(FeatureMembership::getOwnedMemberFeature).
+			filter(Objects::nonNull).
+			forEachOrdered(features::add);
+		return features;
+	}
+
 	public static List<Feature> getPublicFeaturesOf(Type type) {
 		return type.visibleMemberships(new BasicEList<>(), false, false).stream().
 				filter(FeatureMembership.class::isInstance).
@@ -213,8 +224,22 @@ public class TypeUtil {
 				collect(Collectors.toList());
 	}
 	
+	public static EList<Feature> getEndFeatureOf(Type type) {
+		return getEndFeatureOf(type, Feature.class, SysMLPackage.FEATURE__END_FEATURE);
+	}
+	
+	public static <T> EList<T> getEndFeatureOf(Type type, Class<T> kind, int featureId) {
+		EList<T> endFeatures = new NonNotifyingEObjectEList<>(kind, (InternalEObject)type, featureId);
+		TypeUtil.getFeatureOf((Type)type).stream().
+			filter(Feature::isEnd).
+			filter(kind::isInstance).
+			map(kind::cast).
+			forEachOrdered(endFeatures::add);
+		return endFeatures;
+	}
+	
 	public static List<Feature> getAllEndFeaturesOf(Type type) {
-		return type == null? Collections.emptyList(): type.getEndFeature();
+		return type == null? Collections.emptyList(): getEndFeatureOf(type);
 	}
 	
 	public static List<Feature> getOwnedEndFeaturesOf(Type type) {
@@ -222,7 +247,7 @@ public class TypeUtil {
 	}
 	
 	public static List<Feature> getAllParametersOf(Type type) {
-		return type.getDirectedFeature();
+		return TypeUtil.getDirectedFeatureOf(type);
 	}
 	
 	public static List<Feature> getOwnedParametersOf(Type type) {
@@ -308,6 +333,26 @@ public class TypeUtil {
 		return resultExpressions;
 	}
 
+	public static EList<Feature> getInputOf(Type type) {
+		EList<Feature> inputs = new NonNotifyingEObjectEList<>(Feature.class, (InternalEObject)type, SysMLPackage.TYPE__INPUT);
+		TypeUtil.getFeatureOf(type).stream().filter(f->FeatureUtil.isInputParameter(f, type)).forEachOrdered(inputs::add);
+		return inputs;
+	}
+
+	public static EList<Feature> getOutputOf(Type type) {
+		EList<Feature> outputs = new NonNotifyingEObjectEList<>(Feature.class, (InternalEObject)type, SysMLPackage.TYPE__OUTPUT);
+		type.getFeature().stream().filter(f->FeatureUtil.isOutputParameter(f, type)).forEachOrdered(outputs::add);
+		return outputs;
+	}
+
+	public static EList<Feature> getDirectedFeatureOf(Type type) {
+		EList<Feature> directedFeatures = new NonNotifyingEObjectEList<>(Feature.class, (InternalEObject)type, SysMLPackage.TYPE__DIRECTED_FEATURE);
+		TypeUtil.getFeatureOf(type).stream().
+			filter(f->f.getDirection() != null).
+			forEachOrdered(directedFeatures::add);
+		return directedFeatures;
+	}
+
 	// Membership
 
 	public static <M extends Membership, T> Stream<T> getInheritedMembersByMembershipIn(Type type, Class<M> kind, Class<T> memberType) {
@@ -319,7 +364,7 @@ public class TypeUtil {
 	}
 
 	public static <T extends Membership> Stream<Feature> getFeaturesByMembershipIn(Type type, Class<T> kind) {
-		return type.getFeatureMembership().stream().
+		return getFeatureMembershipOf(type).stream().
 				filter(kind::isInstance).
 				map(FeatureMembership::getOwnedMemberFeature);
 	}
@@ -337,7 +382,7 @@ public class TypeUtil {
 		return type.getOwnedFeatureMembership().stream().
 				filter(kind::isInstance).
 				map(FeatureMembership::getOwnedMemberFeature).
-				filter(f->f != null);
+				filter(Objects::nonNull);
 	}
 
 	public static <M extends Membership, E extends Element> void addOwnedFeaturesByMembership(Type type, 

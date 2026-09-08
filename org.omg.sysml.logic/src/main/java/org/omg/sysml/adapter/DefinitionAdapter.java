@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -33,13 +34,5 @@ public class DefinitionAdapter extends ClassifierAdapter {
 		return (Definition)super.getTarget();
 	}
 	
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		Definition target = getTarget();
-		if (target.isVariation()) {
-			target.setIsAbstract(true);
-		}
-	}
 	
 }

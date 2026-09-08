@@ -20,12 +20,20 @@
 
 package org.omg.sysml.logic;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.AssignmentActionUsage;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * Tests utility behavior reached from SysML derived properties.
@@ -47,5 +55,49 @@ public class TypeUtilTest {
 		assignment.getOwnedRelationship().add(unresolvedChaining);
 
 		assertNull(assignment.getValueExpression());
+	}
+
+	/**
+	 * Verifies that feature utility methods derive ordered feature subsets from
+	 * feature memberships while feature lists omit empty memberships.
+	 */
+	@Test
+	public void featureUtilityMethodsReturnTheExpectedOrderedSubsets() {
+		SysMLLogicStandaloneSetup.doSetup();
+
+		Type type = SysMLFactory.eINSTANCE.createBehavior();
+		Feature input = feature(FeatureDirectionKind.IN, false);
+		Feature output = feature(FeatureDirectionKind.OUT, false);
+		Feature inoutEnd = feature(FeatureDirectionKind.INOUT, true);
+		FeatureMembership inputMembership = TypeUtil.addOwnedFeatureTo(type, input);
+		FeatureMembership outputMembership = TypeUtil.addOwnedFeatureTo(type, output);
+		FeatureMembership inoutEndMembership = TypeUtil.addOwnedFeatureTo(type, inoutEnd);
+		FeatureMembership emptyMembership = SysMLFactory.eINSTANCE.createFeatureMembership();
+		type.getOwnedRelationship().add(emptyMembership);
+
+		assertEquals(List.of(inputMembership, outputMembership, inoutEndMembership, emptyMembership),
+				TypeUtil.getFeatureMembershipOf(type));
+		assertEquals(List.of(input, output, inoutEnd), TypeUtil.getFeatureOf(type));
+		assertEquals(List.of(inoutEnd), TypeUtil.getEndFeatureOf(type));
+		assertEquals(List.of(inoutEnd), TypeUtil.getEndFeatureOf(type, Feature.class, 0));
+		assertEquals(List.of(input, inoutEnd), TypeUtil.getInputOf(type));
+		assertEquals(List.of(output, inoutEnd), TypeUtil.getOutputOf(type));
+		assertEquals(List.of(input, output, inoutEnd), TypeUtil.getDirectedFeatureOf(type));
+	}
+
+	/**
+	 * Creates a feature with the requested direction and end status.
+	 *
+	 * @param direction
+	 *            the feature direction
+	 * @param isEnd
+	 *            whether the feature is an end
+	 * @return the configured feature
+	 */
+	private Feature feature(FeatureDirectionKind direction, boolean isEnd) {
+		Feature feature = SysMLFactory.eINSTANCE.createFeature();
+		feature.setDirection(direction);
+		feature.setIsEnd(isEnd);
+		return feature;
 	}
 }

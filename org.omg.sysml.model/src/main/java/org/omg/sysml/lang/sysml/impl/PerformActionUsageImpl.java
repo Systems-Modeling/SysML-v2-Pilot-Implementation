@@ -38,11 +38,10 @@ public class PerformActionUsageImpl extends ActionUsageImpl implements PerformAc
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected PerformActionUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

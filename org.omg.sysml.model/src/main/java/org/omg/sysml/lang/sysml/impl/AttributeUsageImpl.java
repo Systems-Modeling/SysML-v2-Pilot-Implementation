@@ -41,11 +41,10 @@ public class AttributeUsageImpl extends UsageImpl implements AttributeUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected AttributeUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

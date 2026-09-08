@@ -105,7 +105,7 @@ public class FlowEndAdapter extends FeatureAdapter {
 			EList<Feature> ownedFeatures = target.getOwnedFeature();
 			if (!ownedFeatures.isEmpty()) {
 				Feature flowFeature = ownedFeatures.get(0);
-				int i = ((Feature)owner).getEndFeature().indexOf(target);
+				int i = TypeUtil.getEndFeatureOf((Feature)owner).indexOf(target);
 				if (i == 0 || i == 1) {
 					TypeUtil.addImplicitGeneralTypeTo(flowFeature, 
 							SysMLPackage.eINSTANCE.getRedefinition(),

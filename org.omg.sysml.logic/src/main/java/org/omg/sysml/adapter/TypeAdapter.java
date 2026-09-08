@@ -488,7 +488,7 @@ public class TypeAdapter extends NamespaceAdapter {
 				// with name resolution when applying semantic metadata.
 				metadataFeature.getMetaclass();
 				isGetBaseTypes = false;
-				metadataFeature.getFeature().stream().
+				TypeUtil.getFeatureOf(metadataFeature).stream().
 						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
 						map(FeatureUtil::getValueExpressionFor).
 						filter(expr->expr != null).

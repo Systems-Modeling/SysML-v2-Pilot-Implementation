@@ -3,10 +3,12 @@ package org.omg.kerml.validation.checker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.Step;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ExpressionUtil;
 
 public class ParameterMembershipValidationChecker extends FeatureMembershipValidationChecker {
@@ -19,13 +21,11 @@ public class ParameterMembershipValidationChecker extends FeatureMembershipValid
 	}
 						
 	public void validateParameterMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		// validateParameterMembershipOwningType
 		if (element instanceof ParameterMembership m) {
 			if (!(m instanceof ReturnParameterMembership)) {
-			    var owningType = m.getOwningType();
+			    Type owningType = m.getOwningType();
 			    if (!(owningType instanceof Behavior || owningType instanceof Step ||
-			          ExpressionUtil.isConstructorResult(owningType))) {
-			        
+			          ExpressionUtil.isConstructorResult(owningType))) {			        
 			        messageAccepter.error(m, SysMLPackage.eINSTANCE.getParameterMembership_OwnedMemberParameter(), "validateParameterMembershipOwningType");
 			    }
 			}
@@ -34,10 +34,10 @@ public class ParameterMembershipValidationChecker extends FeatureMembershipValid
 	
 	public void validateParameterMembershipParameterDirection(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof ParameterMembership m) {
-			var ownedMemberParameter = m.getOwnedMemberParameter();
+			Feature ownedMemberParameter = m.getOwnedMemberParameter();
 
 			if (ownedMemberParameter != null && ownedMemberParameter.getDirection() != m.parameterDirection()) {
-			    messageAccepter.error(m, null, "validateParameterMembershipParameterDirection"); //probably wrong 
+			    messageAccepter.error(m, null, "validateParameterMembershipParameterDirection", m.parameterDirection().toString().toLowerCase());
 			}
 		}
 	}

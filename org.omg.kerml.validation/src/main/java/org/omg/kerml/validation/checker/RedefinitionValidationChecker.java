@@ -27,7 +27,9 @@ public class RedefinitionValidationChecker extends SubsettingValidationChecker {
 		if (element instanceof Redefinition redef) {
 			var redefiningFeature = redef.getRedefiningFeature();
 			var redefinedFeature = redef.getRedefinedFeature(); 
-			checkRedefinitionDirection(redefiningFeature, redefinedFeature, redef, messageAccepter);
+			if (redefiningFeature != null && redefinedFeature != null) {
+				checkRedefinitionDirection(redefiningFeature, redefinedFeature, redef, messageAccepter);
+			}
 		}
 	}
 	
@@ -35,7 +37,8 @@ public class RedefinitionValidationChecker extends SubsettingValidationChecker {
 		if (element instanceof Redefinition redef) {
 			var redefiningFeature = redef.getRedefiningFeature();
 			var redefinedFeature = redef.getRedefinedFeature(); 
-			if (redefinedFeature.isEnd() && !redefiningFeature.isEnd()) {
+			if (redefinedFeature != null && redefinedFeature.isEnd() && 
+				redefiningFeature != null && !redefiningFeature.isEnd()) {
 			    messageAccepter.error(redef, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validatRedefinitionEndConformance");
 			}
 		}
@@ -45,31 +48,31 @@ public class RedefinitionValidationChecker extends SubsettingValidationChecker {
 		if (element instanceof Redefinition redef) {
 			var redefiningFeature = redef.getRedefiningFeature();
 			var redefinedFeature = redef.getRedefinedFeature();
-			var redefiningFeaturingTypes = effectiveFeaturingTypes(redefiningFeature);
-			var redefinedFeatureTypes = effectiveFeaturingTypes(redefinedFeature);
-			
-			if (redefinedFeature.getOwningRelationship() != redef &&
-				    new HashSet<>(redefinedFeatureTypes).equals(new HashSet<>(redefiningFeaturingTypes))) {
-				    
-				    if (redefiningFeaturingTypes.isEmpty()) {
-				        messageAccepter.error(redef, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validateRedefinitionFeaturingTypes");
-				    } else {
-				        messageAccepter.error(redef, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validateRedefinitionFeaturingTypes");
-				    }
+			if (redefiningFeature != null && redefinedFeature != null) {
+				var redefiningFeaturingTypes = effectiveFeaturingTypes(redefiningFeature);
+				var redefinedFeatureTypes = effectiveFeaturingTypes(redefinedFeature);
+				
+				if (redefinedFeature.getOwningRelationship() != redef &&
+					    new HashSet<>(redefinedFeatureTypes).equals(new HashSet<>(redefiningFeaturingTypes))) {
+					    
+					    if (redefiningFeaturingTypes.isEmpty()) {
+					        messageAccepter.error(redef, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validateRedefinitionFeaturingTypes_1");
+					    } else {
+					        messageAccepter.error(redef, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validateRedefinitionFeaturingTypes_2");
+					    }
+				}
 			}
 		}
 	}
-	public static void checkRedefinitionDirection (Feature redefiningFeature, Feature redefinedFeature, Element source, ValidationMessageAccepter messageAccepter) {
-		
+	
+	public static void checkRedefinitionDirection (Feature redefiningFeature, Feature redefinedFeature, Element source, ValidationMessageAccepter messageAccepter) {		
 	    FeatureDirectionKind redefiningDirection = redefiningFeature.getDirection();
-	    
-	  
 	    for (Type featuringType : effectiveFeaturingTypes(redefiningFeature)) {
 	        FeatureDirectionKind redefinedDirection = featuringType.directionOf(redefinedFeature);
 	        
-	        if (((redefinedDirection == FeatureDirectionKind.IN || redefinedDirection == FeatureDirectionKind.OUT) 
-	                && redefiningDirection != redefinedDirection) || 
-	            (redefinedDirection == FeatureDirectionKind.INOUT && redefiningDirection == null)) {
+	        if ((redefinedDirection == FeatureDirectionKind.IN || redefinedDirection == FeatureDirectionKind.OUT) 
+	                && redefiningDirection != redefinedDirection || 
+	            redefinedDirection == FeatureDirectionKind.INOUT && redefiningDirection == null) {
 	                
 	            if (source instanceof Redefinition) {
 	            	messageAccepter.error(source, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validateRedefinitionDirectionConformance");
@@ -79,6 +82,7 @@ public class RedefinitionValidationChecker extends SubsettingValidationChecker {
 	        }
 	    }
 	}
+	
 	public static List<Type> effectiveFeaturingTypes(Feature feature) {
 	    if (feature.isVariable()) {
 	        return Collections.singletonList(feature.getOwningType());

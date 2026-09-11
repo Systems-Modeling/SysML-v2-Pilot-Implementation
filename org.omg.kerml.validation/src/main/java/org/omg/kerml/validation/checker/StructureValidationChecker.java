@@ -16,8 +16,7 @@ public class StructureValidationChecker extends ClassValidationChecker {
 	}
 						
 	public void validateStructureSpecialization(Element element, ValidationMessageAccepter messageAccepter) {
-		if (element instanceof Structure c) {
-		   
+		if (element instanceof Structure c) {		   
 		    for (Specialization s : c.getOwnedSpecialization()) {
 		        if (s.getGeneral() instanceof Behavior) {
 		            messageAccepter.error(s, SysMLPackage.eINSTANCE.getSpecialization_General(), "validateStructureSpecialization");

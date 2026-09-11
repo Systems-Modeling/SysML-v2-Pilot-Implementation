@@ -1,17 +1,15 @@
 package org.omg.kerml.validation.checker;
 
-import org.omg.kerml.util.ValidationUtil;
+import java.util.List;
+
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.ConstructorExpression;
-
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
-import org.omg.sysml.lang.sysml.Feature;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ConstructorExpressionValidationChecker extends InstantiationExpressionValidationChecker {
 	
@@ -21,23 +19,19 @@ public class ConstructorExpressionValidationChecker extends InstantiationExpress
 		validateConstructorExpressionNoDuplicateFeatureRedefinition(element, messageAccepter);
 		validateConstructorExpressionOwnedFeatures(element, messageAccepter);
 	}
-	//Need review 					
+						
 	public void validateConstructorExpressionNoDuplicateFeatureRedefinition(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof ConstructorExpression ce) {
-			String redefMsg = "checkConstructorExpressionResultFeatureRedefinition";
-			String dupMsg = "validateConstructorExpressionNoDuplicateParameterRedefinition";
-		    
 		    Type type = ce.instantiatedType();
 		    Feature result = TypeUtil.getOwnedResultParameterOf(ce);
 		    
 		    if (type != null && result != null) {
-		        // Filter public type features
-		        List<Feature> typeFeatures = type.getFeature().stream().filter(f -> f.getOwningMembership() != null && f.getOwningMembership().getVisibility() == VisibilityKind.PUBLIC).collect(Collectors.toList());
-		            
-		        // Filter input-directed result features
-		        List<Feature> resultFeatures = result.getOwnedFeature().stream().filter(p -> FeatureUtil.isInputDirected(p)).collect(Collectors.toList());
-		            //need help here. 
-		        ValidationUtil.checkInstantiationExpressionFeatures(ce, typeFeatures, resultFeatures,redefMsg, dupMsg, messageAccepter );
+		        List<Feature> typeFeatures = type.getFeature().stream().filter(f -> f.getOwningMembership() != null && f.getOwningMembership().getVisibility() == VisibilityKind.PUBLIC).toList();
+		        List<Feature> resultFeatures = result.getOwnedFeature().stream().filter(p -> FeatureUtil.isInputDirected(p)).toList();
+		        checkInstantiationExpressionFeatures(ce, typeFeatures, resultFeatures, 
+		        		"checkConstructorExpressionResultFeatureRedefinition", 
+		        		"validateConstructorExpressionNoDuplicateParameterRedefinition", 
+		        		messageAccepter);
 		    }
 		}    
 	}

@@ -1,7 +1,7 @@
 package org.omg.kerml.validation.checker;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 import org.eclipse.emf.ecore.EObject;
 import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationMessageAccepter;
@@ -22,8 +22,8 @@ public class FlowValidationChecker extends ConnectorValidationChecker {
 	
 	public void validateFlowPayloadFeature(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Flow flow) {
-			List<? extends EObject> list = flow.getOwnedFeature().stream().filter(PayloadFeature.class::isInstance).collect(Collectors.toList());	
-			ValidationUtil.checkAtMostOne(list, messageAccepter, null, "validateFlowItemFeature");
+			List<? extends EObject> list = flow.getOwnedFeature().stream().filter(PayloadFeature.class::isInstance).toList();	
+			ValidationUtil.checkAtMostOne(list, messageAccepter, null, "validateFlowPayloadFeature");
 		}
 	}
 }

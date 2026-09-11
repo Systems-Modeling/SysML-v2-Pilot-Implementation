@@ -17,7 +17,6 @@ public class ReturnParameterMembershipValidationChecker extends ParameterMembers
 						
 	public void validateReturnParameterMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof ReturnParameterMembership m) {
-		    // validateReturnParameterMembershipOwningType
 		    Object owningType = m.getOwningType();
 		    if (!(owningType instanceof Function || owningType instanceof Expression)) {
 		        messageAccepter.error(m, SysMLPackage.eINSTANCE.getParameterMembership_OwnedMemberParameter(), "validateReturnParameterMembershipOwningType");

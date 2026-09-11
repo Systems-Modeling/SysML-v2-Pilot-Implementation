@@ -24,8 +24,8 @@ public class FeatureChainExpressionValidationChecker extends OperatorExpressionV
 			Element feature = ExpressionUtil.getTargetFeatureFor(fce);
 			Namespace rel = NamespaceUtil.getRelativeNamespaceFor(fce);
 			
-			if (feature != null && (!(feature instanceof Feature) || (rel instanceof Type && !((Feature) feature).isFeaturedWithin((Type) rel)))) {
-				messageAccepter.error(fce, SysMLPackage.eINSTANCE.getMembership_MemberElement() , "validateFeatureChainExpressionFeatureConformance");
+			if (feature != null && (!(feature instanceof Feature) || rel instanceof Type && !((Feature) feature).isFeaturedWithin((Type) rel))) {
+				messageAccepter.error(fce.getOwnedMembership().get(1), SysMLPackage.eINSTANCE.getMembership_MemberElement() , "validateFeatureChainExpressionFeatureConformance");
 			}
 		}
 		

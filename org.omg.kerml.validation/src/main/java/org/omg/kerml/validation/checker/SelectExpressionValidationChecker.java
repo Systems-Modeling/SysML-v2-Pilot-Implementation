@@ -14,7 +14,7 @@ public class SelectExpressionValidationChecker extends OperatorExpressionValidat
 						
 	public void validateSelectExpressionOperator(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof SelectExpression e) {
-			if (e.getOperator() != "select") {
+			if (!"select".equals(e.getOperator())) {
 				messageAccepter.error(e, null, "validateSelectExpressionOperator");
 			}
 		}

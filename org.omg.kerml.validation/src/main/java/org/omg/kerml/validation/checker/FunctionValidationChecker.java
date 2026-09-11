@@ -21,16 +21,14 @@ public class FunctionValidationChecker extends BehaviorValidationChecker {
 	}
 						
 	public void validateFunctionResultExpressionMembership(Element element, ValidationMessageAccepter messageAccepter) {
-		// validateFunctionResultExpressionMembership
-		if (element instanceof Function f) {
-			
+		if (element instanceof Function f) {			
 			Set<ResultExpressionMembership> reMems = TypeUtil.getResultExpressionMembershipsOf(f);
 
 			if (reMems.size() > 1) {
 			    List<ResultExpressionMembership> ownedMem = reMems.stream().filter(m -> m.getMembershipOwningNamespace() == f).toList();
 
 			    if (!ownedMem.isEmpty()) {
-			        messageAccepter.error(f, SysMLPackage.eINSTANCE.getResultExpressionMembership_OwnedResultExpression(), "validateFunctionResultExpressionMembership");
+			        messageAccepter.error(ownedMem.get(0), SysMLPackage.eINSTANCE.getResultExpressionMembership_OwnedResultExpression(), "validateFunctionResultExpressionMembership");
 			    } else {
 			        messageAccepter.error(f, null, "validateFunctionResultExpressionMembership");              
 			    }
@@ -40,7 +38,6 @@ public class FunctionValidationChecker extends BehaviorValidationChecker {
 	
 	public void validateFunctionResultParameterMembership(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Function f) {
-			// validateFunctionResultParameterMembership
 			List<ReturnParameterMembership> mems = f.getOwnedFeatureMembership().stream().filter(ReturnParameterMembership.class::isInstance).map(ReturnParameterMembership.class::cast).toList();
 
 			ValidationUtil.checkAtMostOne(mems, messageAccepter, SysMLPackage.eINSTANCE.getParameterMembership_OwnedMemberParameter(), "validateFunctionResultParameterMembership");

@@ -1,6 +1,7 @@
 package org.omg.kerml.validation.checker;
 
-import org.eclipse.emf.common.util.EList;
+import java.util.List;
+
 import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Association;
@@ -27,12 +28,13 @@ public class AssociationValidationChecker extends ClassifierValidationChecker {
 						
 	public void validateAssociationBinarySpecialization(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Association a) {
+			// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
 			var ownedEndFeatures = TypeUtil.getOwnedEndFeaturesOf(a);
 			if (ownedEndFeatures.size() > 2) {
 				Type binaryLinkType = (Type) SysMLLibraryUtil.getLibraryElement(a, "Link::BinaryLink");
 				if (ValidationUtil.conformsTo(a, binaryLinkType)) {
 					for (int i = 2; i < ownedEndFeatures.size(); i++) {
-						messageAccepter.error(a, null, "validateAssociationBinarySpecialization");
+						messageAccepter.error(ownedEndFeatures.get(i), null, "validateAssociationBinarySpecialization");
 					}
 				}
 			}
@@ -42,9 +44,10 @@ public class AssociationValidationChecker extends ClassifierValidationChecker {
 	public void validateAssociationEndTypes(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
 			var ownedEndFeatures = f.getOwnedEndFeature();
-			for (Feature endF : ownedEndFeatures) {
-				if (endF.getType() == null || endF.getType().size() != 1) {
-					messageAccepter.error(f,  null, "validateAssociationEndType");
+			for (Feature end : ownedEndFeatures) {
+				List<Type> types = end.getType();
+				if (types == null || types.size() != 1) {
+					messageAccepter.error(end,  null, "validateAssociationEndType");
 				}
 			}
 		}
@@ -53,17 +56,16 @@ public class AssociationValidationChecker extends ClassifierValidationChecker {
 	public void validateAssociationRelatedTypes(Element element, ValidationMessageAccepter messageAccepter) {
 	    if (element instanceof Association association) {
 	        if (!association.isAbstract()) {
-	            EList<Type> relatedTypes = association.getRelatedType();
-
+	            List<Type> relatedTypes = association.getRelatedType();
 	            if (relatedTypes == null || relatedTypes.size() < 2) {
-	                messageAccepter.error(association, null, "validateAssociationRelatedTypes");
+	                messageAccepter.error(association, SysMLPackage.eINSTANCE.getRelationship_RelatedElement(), "validateAssociationRelatedTypes");
 	            }
 	        }
 	    }
 	}
 	
 	public void validateAssociationStructureIntersection(Element element, ValidationMessageAccepter messageAccepter) {
-		// This note is in KerMLValidator.xtend - validateAssociationStructureIntersection is automatically satisfied
+		// validateAssociationStructureIntersection is automatically satisfied
 	}
 	
 }

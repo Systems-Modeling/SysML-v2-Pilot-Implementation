@@ -1,72 +1,73 @@
 package org.omg.kerml.validation.checker;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.InstantiationExpression;
 import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
+
 public class InvocationExpressionValidationChecker extends InstantiationExpressionValidationChecker {
 	
 	@Override
 	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
 		super.validate(element, messageAccepter);
 		validateInvocationExpressionInstantiatedType(element, messageAccepter);
-		validateInvocationExpressionNoDuplicateParameterRedefinition(element, messageAccepter);
+		validateInvocationExpressionNoDuplicateAndParameterRedefinition(element, messageAccepter);
 		validateInvocationExpressionOwnedFeatures(element, messageAccepter);
-		validateInvocationExpressionParameterRedefinition(element, messageAccepter);
 	}
 						
 	public void validateInvocationExpressionInstantiatedType(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof InvocationExpression e) {
-			var type = e.getInstantiatedType(); 
-			if (!(type instanceof Behavior || (type instanceof Feature && ((Feature) type).getType().size() == 1 && ((Feature) type).getType().get(0) instanceof Behavior))) {
+			if (!instantiatedTypeIsValid(e)) {
 				messageAccepter.error(e, null, "validateInvocationExpressionInstantiatedType");
 			}
 		}	
 	}
 	
-	public void validateInvocationExpressionNoDuplicateParameterRedefinition(Element element, ValidationMessageAccepter messageAccepter) {
+	public void validateInvocationExpressionNoDuplicateAndParameterRedefinition(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof InvocationExpression e) {
-			var type = e.getInstantiatedType(); 
-			List<Feature> typeParams = type.getInput(); 
-			String redefMsg = "validateInvocationExpressionParameterRedefinition";
-			String dupMsg = "validateInvocationExpressionNoDuplicateParameterRedefinition";
-			List<Feature> exprParams = e.getOwnedFeature().stream().filter(p -> FeatureUtil.isInputDirected(p)).collect(Collectors.toList());
-			ValidationUtil.checkInstantiationExpressionFeatures(e, typeParams, exprParams, redefMsg, dupMsg, messageAccepter);
+			// Don't check the if the instantiated type is invalid, 
+			// to avoid unnecessary multiple error messages.
+			if (instantiatedTypeIsValid(e)) {
+				var type = e.getInstantiatedType(); 
+				List<Feature> typeParams = type.getInput(); 
+				List<Feature> exprParams = e.getOwnedFeature().stream().filter(FeatureUtil::isInputDirected).toList();
+				checkInstantiationExpressionFeatures(e, typeParams, exprParams, 
+						"validateInvocationExpressionParameterRedefinition", 
+						"validateInvocationExpressionNoDuplicateParameterRedefinition", 
+						messageAccepter);
+			}
 		}
 	}
 	
 	public void validateInvocationExpressionOwnedFeatures(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof InvocationExpression e) {
-			// validateInvocationExpressionOwnedFeatures
-			Feature result = TypeUtil.getOwnedResultParameterOf(e);
-
-			for (Feature f : e.getOwnedFeature()) {
-			    if (f != result && f.getDirection() != FeatureDirectionKind.IN) {
-			        messageAccepter.error(f, null, "validateInvocationExpressionOwnedFeatures");
-			    }
+			// Don't check the if the instantiated type is invalid, 
+			// to avoid unnecessary multiple error messages.
+			if (instantiatedTypeIsValid(e)) {
+				Feature result = TypeUtil.getOwnedResultParameterOf(e);
+	
+				for (Feature f : e.getOwnedFeature()) {
+				    if (f != result && f.getDirection() != FeatureDirectionKind.IN) {
+				        messageAccepter.error(f, null, "validateInvocationExpressionOwnedFeatures");
+				    }
+				}
 			}
 		}
 	}
-	//????
-	public void validateInvocationExpressionParameterRedefinition(Element element, ValidationMessageAccepter messageAccepter) {
-		if (element instanceof InvocationExpression e) {
-				var type = e.getInstantiatedType(); 
-				List<Feature> typeParams = type.getInput(); 
-				String redefMsg = "validateInvocationExpressionParameterRedefinition";
-				String dupMsg = "validateInvocationExpressionNoDuplicateParameterRedefinition";
-				List<Feature> exprParams = e.getOwnedFeature().stream().filter(p -> FeatureUtil.isInputDirected(p)).collect(Collectors.toList());
-				ValidationUtil.checkInstantiationExpressionFeatures(e, typeParams, exprParams, redefMsg, dupMsg, messageAccepter);
-		}
+	
+	protected static boolean instantiatedTypeIsValid(InvocationExpression e) {
+		Type type = e.getInstantiatedType();
+		return type instanceof Behavior || 
+				type instanceof Feature && 
+				((Feature) type).getType().size() == 1 && 
+				((Feature) type).getType().get(0) instanceof Behavior;
 	}
+
 }

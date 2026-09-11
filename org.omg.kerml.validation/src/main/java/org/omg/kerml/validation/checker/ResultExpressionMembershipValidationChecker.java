@@ -17,8 +17,6 @@ public class ResultExpressionMembershipValidationChecker extends FeatureMembersh
 						
 	public void validateResultExpressionMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof ResultExpressionMembership m) {
-			
-		    // validateResultExpressionMembershipOwningType
 		    Object owningType = m.getOwningType();
 		    if (!(owningType instanceof Function || owningType instanceof Expression)) {
 		        messageAccepter.error(m, SysMLPackage.eINSTANCE.getParameterMembership_OwnedMemberParameter(), "validateResultExpressionMembershipOwningType");

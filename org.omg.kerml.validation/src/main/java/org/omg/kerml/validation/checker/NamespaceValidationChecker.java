@@ -82,7 +82,7 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 		}
 	}
 
-	protected Map<String, Set<Membership>> createNameMap(List<Membership> memberships) {
+	protected static Map<String, Set<Membership>> createNameMap(List<Membership> memberships) {
 		var nameMap = new HashMap<String, Set<Membership>>();
 		for (var mem: memberships) {
 			var shortName = mem.getMemberShortName();
@@ -107,7 +107,7 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 		return nameMap;	
 	}
 	
-	protected void checkDistinguishibility(Namespace namesp, Membership mem, Map<String, Set<Membership>> nameMap, String msg, ValidationMessageAccepter messageAccepter) {
+	protected static void checkDistinguishibility(Namespace namesp, Membership mem, Map<String, Set<Membership>> nameMap, String msg, ValidationMessageAccepter messageAccepter) {
 		var memShortName = mem.getMemberShortName();
 		var memName = mem.getMemberName();
 		var memElement = mem.getMemberElement();
@@ -142,7 +142,7 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 		}
 	}
 	
-	protected void checkDistinguishibility(Namespace namesp, Map<String, Set<Membership>> nameMap, String msg, ValidationMessageAccepter messageAccepter) {
+	protected static void checkDistinguishibility(Namespace namesp, Map<String, Set<Membership>> nameMap, String msg, ValidationMessageAccepter messageAccepter) {
 		nameMap.forEach((name, dups)->{
 			if (dups.size() > 1 && dups.stream().map(Membership::getMemberElement).collect(Collectors.toSet()).size() > 1) {
 				var msgDups = identifyDuplicates(msg, namesp, name, dups);
@@ -151,7 +151,7 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 		});
 	}
 	
-	protected String identifyDuplicates(String msg, Namespace memNs, String name, Set<Membership> dups) {
+	protected static String identifyDuplicates(String msg, Namespace memNs, String name, Set<Membership> dups) {
 		var nsNames = dups.stream().
 						map(Membership::getMembershipOwningNamespace).filter(ns->ns != memNs).
 						map(Namespace::getName).map(n->n == null? "": n).sorted().

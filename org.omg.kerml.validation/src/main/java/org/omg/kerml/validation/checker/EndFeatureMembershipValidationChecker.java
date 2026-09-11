@@ -17,7 +17,7 @@ public class EndFeatureMembershipValidationChecker extends FeatureMembershipVali
 		if (element instanceof EndFeatureMembership efm) {
 			Feature ownedMemberFeature = efm.getOwnedMemberFeature();
 		    if (ownedMemberFeature != null && !ownedMemberFeature.isEnd()) {
-		    	messageAccepter.error(efm, null, "validateEndFeatureMembershpIsEnd");
+		    	messageAccepter.error(ownedMemberFeature, null, "validateEndFeatureMembershpIsEnd");
 		    }
 		}	
 	}	

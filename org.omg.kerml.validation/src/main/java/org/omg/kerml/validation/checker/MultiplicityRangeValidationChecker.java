@@ -3,6 +3,7 @@ package org.omg.kerml.validation.checker;
 import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.MultiplicityRange; 
 
 public class MultiplicityRangeValidationChecker extends MultiplicityValidationChecker {
@@ -15,8 +16,9 @@ public class MultiplicityRangeValidationChecker extends MultiplicityValidationCh
 	}
 						
 	public void validateMultiplicityRangeBoundResultTypes(Element element, ValidationMessageAccepter messageAccepter) {
+		// TODO: Correct validateMultiplicityBoundResults OCL from KERML-199.
 		if (element instanceof MultiplicityRange mult) {
-			for (var b : mult.getBound()) {
+			for (Expression b : mult.getBound()) {
 			    boolean isInvalid;
 				if (b.isModelLevelEvaluable())
 					isInvalid = mult.valueOf(b) == -2;
@@ -33,7 +35,6 @@ public class MultiplicityRangeValidationChecker extends MultiplicityValidationCh
 	}
 	
 	public void validateMultiplicityRangeBounds(Element element, ValidationMessageAccepter messageAccepter) {
-		// validateMultiplicityRangeBounds
 		if (element instanceof MultiplicityRange mult) {
 			var ownedMembers = mult.getOwnedMember();
 			var lowerBound = mult.getLowerBound();

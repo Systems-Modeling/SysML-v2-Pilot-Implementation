@@ -36,7 +36,7 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	}
 END_SETUP 
 */
-package P {
+package FlowUsage_Invalid {
 	part def A;	
 	
 	abstract flow def F;

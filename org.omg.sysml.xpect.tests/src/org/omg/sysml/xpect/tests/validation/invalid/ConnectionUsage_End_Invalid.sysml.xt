@@ -6,8 +6,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 		File {from ="/library.kernel/Links.kerml"}
 		File {from ="/library.kernel/Occurrences.kerml"}
        	File {from ="/library.kernel/Objects.kerml"}
-       	File {from ="/library.kernel/Performances.kerml"}
-		File {from ="/library.kernel/BaseFunctions.kerml"}
 		File {from ="/library.systems/Items.sysml"}
 		File {from ="/library.systems/Parts.sysml"}
 		File {from ="/library.systems/Ports.sysml"}
@@ -21,8 +19,6 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 				File {from ="/library.kernel/Links.kerml"}
 				File {from ="/library.kernel/Occurrences.kerml"}
  		      	File {from ="/library.kernel/Objects.kerml"}
- 		      	File {from ="/library.kernel/Performances.kerml"}
-				File {from ="/library.kernel/BaseFunctions.kerml"}
 				File {from ="/library.systems/Items.sysml"}
 				File {from ="/library.systems/Parts.sysml"}
 				File {from ="/library.systems/Ports.sysml"}
@@ -32,32 +28,8 @@ XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
 	}
 END_SETUP 
 */
-package ConnectionUsage_Invalid {
-	part def A;	
-	part def B;	
-	part def C;	
-	part def D;	
-	part def E;
-	
-	connection def DE {
-		end : D[1];
-		end : E[1];
-	}
-	connection def BC {
-		end : B[1];
-		end : C[1];
-	}
-	part apart : A {
-		part b :B[1];
-		part c: C[1];
-		
-		connection bc : BC connect b to c;
-		connection de : DE, BC connect b to c;
-		
-		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :A connect b to c;"
-		connection :A connect b to c;
-		// XPECT errors --> "A connection must be typed by connection definitions." at "connection :apart connect b to c;"
-		connection :apart connect b to c;
-	}
+package ConnectionUsage_End_Invalid {	
+    // XPECT errors --> "A connection definition end must be a usage." at "abstract connection def B :> Links::BinaryLink;"
+	abstract connection def B :> Links::BinaryLink;
 }
 

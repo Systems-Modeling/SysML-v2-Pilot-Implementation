@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2024 Budapest University of Technology and Economics
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -21,10 +22,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class TypeFeaturingAdapter extends RelationshipAdapter {
 
@@ -37,18 +35,5 @@ public class TypeFeaturingAdapter extends RelationshipAdapter {
 		return (TypeFeaturing)super.getTarget();
 	}
 	
-	@Override
-	public void postProcess() {
-		TypeFeaturing obj = getTarget();
-		
-		// If the featureOfType is empty, then set it to the owningRelatedElement (if this is a Feature).
-		Object featureOfType = obj.eGet(SysMLPackage.Literals.TYPE_FEATURING__FEATURE_OF_TYPE, false);
-		if (featureOfType == null) {
-			Element owner = obj.getOwningRelatedElement();
-			if (owner instanceof Feature) {
-				obj.setFeatureOfType((Feature)owner);
-			}
-		}
-	}
 	
 }

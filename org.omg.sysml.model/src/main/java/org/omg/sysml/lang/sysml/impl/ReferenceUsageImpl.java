@@ -18,11 +18,10 @@ public class ReferenceUsageImpl extends UsageImpl implements ReferenceUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected ReferenceUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

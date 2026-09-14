@@ -21,15 +21,26 @@
 
 package org.omg.sysml.logic;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+
+import java.util.List;
 
 import org.junit.Test;
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.TransitionFeatureKind;
+import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 
 /**
  * Tests transition derived-property computations.
@@ -53,5 +64,45 @@ public class TransitionUsageAdapterTest {
 		parameterMembership.setOwnedMemberParameter(parameter);
 		transition.getOwnedRelationship().add(parameterMembership);
 		assertNull(transition.getSource());
+	}
+
+	/**
+	 * A structurally equivalent feature chain already registered as an implicit
+	 * Subsetting must not be duplicated when the transition payload default
+	 * general type is computed.
+	 */
+	@Test
+	public void transitionPayloadDoesNotDuplicateEquivalentImplicitSubsetting() {
+		SysMLLogicStandaloneSetup.doSetup();
+		SysMLPackage.eINSTANCE.eClass();
+		SysMLFactory factory = SysMLFactory.eINSTANCE;
+		TransitionUsage transition = factory.createTransitionUsage();
+		addParameter(transition, factory.createReferenceUsage());
+		ReferenceUsage transitionPayload = factory.createReferenceUsage();
+		addParameter(transition, transitionPayload);
+
+		AcceptActionUsage trigger = factory.createAcceptActionUsage();
+		ReferenceUsage triggerPayload = factory.createReferenceUsage();
+		addParameter(trigger, triggerPayload);
+		TransitionFeatureMembership triggerMembership = factory.createTransitionFeatureMembership();
+		triggerMembership.setKind(TransitionFeatureKind.TRIGGER);
+		triggerMembership.getOwnedRelatedElement().add(trigger);
+		transition.getOwnedRelationship().add(triggerMembership);
+
+		Feature existingChain = FeatureUtil.chainFeatures(trigger, triggerPayload);
+		TypeUtil.addImplicitGeneralTypeTo(transitionPayload, SysMLPackage.Literals.SUBSETTING, existingChain);
+
+		TypeUtil.getImplicitGeneralTypesFor(transitionPayload);
+
+		List<Type> implicitSubsettings = TypeUtil.getImplicitGeneralTypesOnly(transitionPayload, SysMLPackage.Literals.SUBSETTING);
+		assertEquals(1, implicitSubsettings.size());
+		assertSame(existingChain, implicitSubsettings.get(0));
+	}
+
+	private static void addParameter(Type owner, Feature parameter) {
+		parameter.setDirection(FeatureDirectionKind.IN);
+		ParameterMembership membership = SysMLFactory.eINSTANCE.createParameterMembership();
+		membership.setOwnedMemberParameter(parameter);
+		owner.getOwnedRelationship().add(membership);
 	}
 }

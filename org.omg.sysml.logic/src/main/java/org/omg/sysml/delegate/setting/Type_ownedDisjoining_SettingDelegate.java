@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -40,7 +40,7 @@ public class Type_ownedDisjoining_SettingDelegate extends BasicDerivedListSettin
 		((Type)owner).getOwnedRelationship().stream().
 			filter(Disjoining.class::isInstance).
 			map(Disjoining.class::cast).
-			filter(gen->gen.getTypeDisjoined() == this).
+			filter(gen->gen.getTypeDisjoined() == owner).
 			forEachOrdered(disjoinings::add);
 		return disjoinings;
 	}

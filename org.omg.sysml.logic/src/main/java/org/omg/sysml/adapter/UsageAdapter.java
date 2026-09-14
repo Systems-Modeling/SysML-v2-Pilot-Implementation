@@ -1,6 +1,11 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+<<<<<<< HEAD
+ * Copyright (c) 2021-2025, 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
+=======
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
+>>>>>>> refs/remotes/origin/HEAD
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -22,8 +27,6 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.AttributeDefinition;
-import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -36,8 +39,8 @@ import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
-import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -50,31 +53,6 @@ public class UsageAdapter extends FeatureAdapter {
 	@Override
 	public Usage getTarget() {
 		return (Usage)super.getTarget();
-	}
-	
-	// Post-processing
-	
-	/**
-	 * @satisfies validateUsageIsReferential
-	 * @satisfies validateAttributeDefinitionFeature
-	 * @satisfies validateAttributeUsageFeature
-	 */
-	@Override
-	public void postProcess () {
-		super.postProcess();
-		Usage target = getTarget();
-		if (target.isVariation()) {
-			target.setIsAbstract(true);
-		}
-		Type featuringType = UsageUtil.getExpectedFeaturingTypeOf(target);
-		if (target.getDirection() != null || target.isEnd() || featuringType == null ||
-			featuringType instanceof AttributeDefinition || featuringType instanceof AttributeUsage) {
-			target.setIsComposite(false);
-		}
-	}
-	
-	@Override
-	protected void setIsVariableIfConstant() {
 	}
 	
 	// Caching

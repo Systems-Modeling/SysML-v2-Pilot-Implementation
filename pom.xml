@@ -4,8 +4,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <properties>
-	<revision>0.61.0-SNAPSHOT</revision>
-    <sysml.build-tag>20260701</sysml.build-tag>
+	<revision>0.62.0-SNAPSHOT</revision>
+    <sysml.build-tag>20260801</sysml.build-tag>
     <sysml.metamodel-tag>20250201</sysml.metamodel-tag>
     <tycho-version>4.0.13</tycho-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -18,11 +18,10 @@ public class SuccessionAsUsageImpl extends ConnectorAsUsageImpl implements Succe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	protected SuccessionAsUsageImpl() {
 		super();
-		isComposite = false;
 	}
 
 	/**

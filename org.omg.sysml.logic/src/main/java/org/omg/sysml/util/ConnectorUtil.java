@@ -101,7 +101,15 @@ public class ConnectorUtil {
     	return FeatureUtil.getReferencedFeatureOf(end);
 	}
 	
+	/**
+	 * Returns the features referenced by the connector ends, refreshing derived caches after model edits.
+	 * The utility lookup bypasses the cache-clearing derived-feature delegates used by connectorEnd.
+	 *
+	 * @param connector the connector whose related features are queried
+	 * @return the referenced features in connector-end order
+	 */
 	public static EList<Feature> getRelatedFeaturesOf(Connector connector) {
+		ElementUtil.clearCachesOf(connector);
 		EList<Feature> relatedFeatures = new BasicInternalEList<Feature>(Feature.class);
         for (Object end: TypeUtil.getEndFeatureOf(connector).toArray()) {
 			if (end != null) {

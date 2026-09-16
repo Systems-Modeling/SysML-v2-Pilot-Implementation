@@ -363,7 +363,17 @@ public class TypeUtil {
 				map(memberType::cast);
 	}
 
+	/**
+	 * Returns features with the requested membership kind, refreshing derived caches so edits made since the
+	 * previous query are visible. The utility lookup bypasses the cache-clearing featureMembership delegate.
+	 *
+	 * @param type the type whose features are queried
+	 * @param kind the membership kind to select
+	 * @param <T> the membership type
+	 * @return the matching owned and inherited features
+	 */
 	public static <T extends Membership> Stream<Feature> getFeaturesByMembershipIn(Type type, Class<T> kind) {
+		ElementUtil.clearCachesOf(type);
 		return getFeatureMembershipOf(type).stream().
 				filter(kind::isInstance).
 				map(FeatureMembership::getOwnedMemberFeature);

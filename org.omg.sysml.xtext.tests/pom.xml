@@ -21,6 +21,8 @@
 			  mvn test -pl org.omg.sysml.xtext.tests -Dsysml.tests.parser.roots=/path/to/models
 		-->
 		<sysml.tests.parser.roots>${project.basedir}/models/parser</sysml.tests.parser.roots>
+		<!-- Manifest(s) of the validation tests (JSON); same separator rule as above. -->
+		<sysml.tests.validation.manifests>${project.basedir}/models/validation/tests.json</sysml.tests.validation.manifests>
 		<!-- Standard library used by the validation tests. -->
 		<sysml.tests.library.path>${maven.multiModuleProjectDirectory}/sysml.library</sysml.tests.library.path>
 	</properties>
@@ -42,6 +44,7 @@
 					<argLine>-Dfile.encoding=UTF-8</argLine>
 					<systemPropertyVariables>
 						<sysml.tests.parser.roots>${sysml.tests.parser.roots}</sysml.tests.parser.roots>
+						<sysml.tests.validation.manifests>${sysml.tests.validation.manifests}</sysml.tests.validation.manifests>
 						<sysml.tests.library.path>${sysml.tests.library.path}</sysml.tests.library.path>
 					</systemPropertyVariables>
 				</configuration>

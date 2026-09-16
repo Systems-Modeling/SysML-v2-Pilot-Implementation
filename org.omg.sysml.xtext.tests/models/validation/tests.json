@@ -1,0 +1,21 @@
+[
+  {"file": "validateAssociationRelatedTypes_invalid1.sysml", "rule": "validateAssociationRelatedTypes", "expected": "invalid"},
+  {"file": "validateAssociationRelatedTypes_valid1.sysml", "rule": "validateAssociationRelatedTypes", "expected": "valid"},
+  {"file": "validateAssociationRelatedTypes_valid2.sysml", "rule": "validateAssociationRelatedTypes", "expected": "valid"},
+  {"file": "validateBehaviorSpecialization_invalid1.sysml", "rule": "validateBehaviorSpecialization", "expected": "invalid"},
+  {"file": "validateBehaviorSpecialization_valid1.sysml", "rule": "validateBehaviorSpecialization", "expected": "valid"},
+  {"file": "validateBindingConnectorIsBinary_invalid1.sysml", "rule": "validateBindingConnectorIsBinary", "expected": "invalid"},
+  {"file": "validateBindingConnectorIsBinary_valid1.sysml", "rule": "validateBindingConnectorIsBinary", "expected": "valid"},
+  {"file": "validateFeatureChainingFeatureNotOne_invalid1.kerml", "rule": "validateFeatureChainingFeatureNotOne", "expected": "invalid"},
+  {"file": "validateFeatureChainingFeatureNotOne_valid1.kerml", "rule": "validateFeatureChainingFeatureNotOne", "expected": "valid"},
+  {"file": "validateFeatureCrossFeatureType_invalid1.sysml", "rule": "validateFeatureCrossFeatureType", "expected": "invalid"},
+  {"file": "validateFeatureCrossFeatureType_valid1.sysml", "rule": "validateFeatureCrossFeatureType", "expected": "valid"},
+  {"file": "validateFlowDefinitionFlowEnds_invalid1.sysml", "rule": "validateFlowDefinitionFlowEnds", "expected": "invalid", "code": "validateFlowDefinitionConnectionEnds"},
+  {"file": "validateFlowDefinitionFlowEnds_valid1.sysml", "rule": "validateFlowDefinitionFlowEnds", "expected": "valid", "code": "validateFlowDefinitionConnectionEnds"},
+  {"file": "validatePortUsageNestedUsagesNotComposite_invalid1.sysml", "rule": "validatePortUsageNestedUsagesNotComposite", "expected": "invalid"},
+  {"file": "validatePortUsageNestedUsagesNotComposite_valid1.sysml", "rule": "validatePortUsageNestedUsagesNotComposite", "expected": "valid"},
+  {"file": "validateSpecificationSpecificNotConjugated_invalid1.kerml", "rule": "validateSpecializationSpecificNotConjugated", "expected": "invalid", "comment": "file name says validateSpecificationSpecificNotConjugated"},
+  {"file": "validateSpecificationSpecificNotConjugated_valid1.kerml", "rule": "validateSpecializationSpecificNotConjugated", "expected": "valid", "comment": "file name says validateSpecificationSpecificNotConjugated"},
+  {"file": "validateStructureSpecialization_invalid1.sysml", "rule": "validateStructureSpecialization", "expected": "invalid"},
+  {"file": "validateStructureSpecialization_valid1.sysml", "rule": "validateStructureSpecialization", "expected": "valid"}
+]

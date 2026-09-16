@@ -1,0 +1,1 @@
+multiplicity[true.."Sample string"];

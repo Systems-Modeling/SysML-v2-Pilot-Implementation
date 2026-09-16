@@ -1,0 +1,3 @@
+constraint def{
+	return ordered;
+}

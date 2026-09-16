@@ -1,0 +1,1 @@
+allocate MyFeature to MyFeature;

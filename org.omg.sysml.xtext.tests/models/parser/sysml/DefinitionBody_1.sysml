@@ -1,0 +1,4 @@
+attribute def{
+	package;
+	package;
+}

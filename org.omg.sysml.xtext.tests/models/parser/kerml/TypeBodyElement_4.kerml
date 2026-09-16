@@ -1,0 +1,3 @@
+binding{
+	public import MyMembership;
+}

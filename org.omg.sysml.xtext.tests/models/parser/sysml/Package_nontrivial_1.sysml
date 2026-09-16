@@ -1,0 +1,1 @@
+public#MyType#MyType package;

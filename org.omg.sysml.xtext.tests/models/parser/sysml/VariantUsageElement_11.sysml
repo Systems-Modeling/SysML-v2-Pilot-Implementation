@@ -1,0 +1,3 @@
+interface def{
+	variant part;
+}

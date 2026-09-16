@@ -1,0 +1,4 @@
+#MyType@MyType{
+	package;
+	package;
+}

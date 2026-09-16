@@ -1,0 +1,3 @@
+view{
+	expose MyMembership[null];
+}

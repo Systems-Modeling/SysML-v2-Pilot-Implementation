@@ -1,0 +1,2 @@
+viewpoint def{
+}

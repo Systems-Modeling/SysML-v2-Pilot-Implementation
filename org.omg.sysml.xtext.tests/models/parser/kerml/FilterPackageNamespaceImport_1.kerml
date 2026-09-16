@@ -1,0 +1,1 @@
+public import MyNamespace::*::**[null];

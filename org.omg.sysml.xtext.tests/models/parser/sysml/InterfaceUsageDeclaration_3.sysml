@@ -1,0 +1,1 @@
+interface MyFeature to MyFeature;

@@ -1,0 +1,1 @@
+public filter all MyType;

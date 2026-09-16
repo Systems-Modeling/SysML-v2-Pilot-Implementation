@@ -1,0 +1,4 @@
+viewpoint def{
+	package;
+	package;
+}

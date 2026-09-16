@@ -1,0 +1,1 @@
+specialization typing MyFeature:MyType;

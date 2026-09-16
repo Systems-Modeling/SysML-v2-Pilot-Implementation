@@ -1,0 +1,1 @@
+specialization redefinition MyType:>>MyType;

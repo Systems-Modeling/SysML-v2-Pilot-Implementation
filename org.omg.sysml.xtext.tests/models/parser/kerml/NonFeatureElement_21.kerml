@@ -1,0 +1,1 @@
+disjoint MyType from MyType;

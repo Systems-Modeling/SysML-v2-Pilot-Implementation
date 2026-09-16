@@ -1,0 +1,1 @@
+individual snapshot#MyType#MyType;

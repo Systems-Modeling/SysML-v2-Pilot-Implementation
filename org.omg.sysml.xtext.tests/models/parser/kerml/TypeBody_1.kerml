@@ -1,0 +1,4 @@
+binding{
+	namespace;
+	namespace;
+}

@@ -1,0 +1,3 @@
+public abstract attribute def{
+	public in derived abstract constant[true..true]ordered nonunique=null;
+}

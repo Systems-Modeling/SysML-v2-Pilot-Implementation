@@ -1,0 +1,1 @@
+verification def specializes MyClassifier;

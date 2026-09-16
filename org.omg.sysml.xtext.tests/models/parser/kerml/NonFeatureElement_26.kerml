@@ -1,0 +1,1 @@
+featuring MyFeature by MyType;

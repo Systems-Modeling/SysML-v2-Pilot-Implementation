@@ -1,0 +1,1 @@
+subset MyType subsets MyType;

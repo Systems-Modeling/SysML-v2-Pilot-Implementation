@@ -1,0 +1,1 @@
+filter MyElement meta MyType;

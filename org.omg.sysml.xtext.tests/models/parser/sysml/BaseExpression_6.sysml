@@ -1,0 +1,1 @@
+filter new MyFeature.MyFeature();

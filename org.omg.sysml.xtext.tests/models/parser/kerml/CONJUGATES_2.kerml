@@ -1,0 +1,1 @@
+conjugate MyType conjugates MyType;

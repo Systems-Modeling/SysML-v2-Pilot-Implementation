@@ -1,0 +1,1 @@
+filter null hastype MyType;

@@ -1,0 +1,4 @@
+#MyType namespace{
+	namespace;
+	namespace;
+}

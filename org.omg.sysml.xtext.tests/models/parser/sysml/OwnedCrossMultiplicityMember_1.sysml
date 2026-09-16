@@ -1,0 +1,1 @@
+bind[true]MyFeature=MyFeature;

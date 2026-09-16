@@ -1,0 +1,2 @@
+#MyType@MyType{
+}

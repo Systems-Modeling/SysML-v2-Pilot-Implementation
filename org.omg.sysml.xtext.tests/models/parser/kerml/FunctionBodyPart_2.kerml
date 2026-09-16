@@ -1,0 +1,4 @@
+bool ordered{
+	namespace;
+	namespace;
+}

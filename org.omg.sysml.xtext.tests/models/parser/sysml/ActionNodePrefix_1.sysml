@@ -1,0 +1,4 @@
+action def{
+	action loop{
+	}
+}

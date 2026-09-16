@@ -1,0 +1,4 @@
+interface def{
+	package;
+	package;
+}

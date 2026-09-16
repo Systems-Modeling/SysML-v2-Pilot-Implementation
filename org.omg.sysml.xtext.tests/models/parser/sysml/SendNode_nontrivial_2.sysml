@@ -1,0 +1,3 @@
+public abstract individual action def{
+	public in derived abstract constant ref individual snapshot send null via null to null;
+}

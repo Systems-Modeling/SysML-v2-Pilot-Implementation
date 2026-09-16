@@ -1,0 +1,3 @@
+action def{
+	join ordered;
+}

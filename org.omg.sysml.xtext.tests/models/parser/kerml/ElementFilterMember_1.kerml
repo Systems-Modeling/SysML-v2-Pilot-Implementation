@@ -1,0 +1,3 @@
+#MyType package{
+	filter null;
+}

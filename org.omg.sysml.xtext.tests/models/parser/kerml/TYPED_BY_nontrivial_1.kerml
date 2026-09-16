@@ -1,0 +1,1 @@
+public typing MyFeature:MyType;

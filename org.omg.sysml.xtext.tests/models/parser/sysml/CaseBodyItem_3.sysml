@@ -1,0 +1,3 @@
+verification def{
+	objective ordered;
+}

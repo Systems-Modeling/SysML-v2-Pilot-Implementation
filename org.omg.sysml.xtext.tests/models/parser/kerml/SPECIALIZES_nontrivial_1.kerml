@@ -1,0 +1,1 @@
+public subclassifier MyClassifier:>MyClassifier;

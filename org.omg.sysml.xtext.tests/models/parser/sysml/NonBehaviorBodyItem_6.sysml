@@ -1,0 +1,3 @@
+state def{
+	variant ref;
+}

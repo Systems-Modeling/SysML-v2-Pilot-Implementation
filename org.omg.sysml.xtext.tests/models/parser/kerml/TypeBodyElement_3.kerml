@@ -1,0 +1,3 @@
+binding{
+	alias for MyElement;
+}

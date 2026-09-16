@@ -1,0 +1,4 @@
+view def{
+	package;
+	package;
+}

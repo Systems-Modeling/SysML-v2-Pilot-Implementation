@@ -1,0 +1,3 @@
+enum def{
+	/* Sample comment */
+}

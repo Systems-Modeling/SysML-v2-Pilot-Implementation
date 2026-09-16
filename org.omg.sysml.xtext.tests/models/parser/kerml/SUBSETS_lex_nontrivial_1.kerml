@@ -1,0 +1,1 @@
+public subset MyType:>MyType;

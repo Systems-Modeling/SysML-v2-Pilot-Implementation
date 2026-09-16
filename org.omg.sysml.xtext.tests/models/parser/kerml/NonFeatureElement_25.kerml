@@ -1,0 +1,1 @@
+redefinition MyType:>>MyType;

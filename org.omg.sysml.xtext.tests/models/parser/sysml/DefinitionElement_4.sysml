@@ -1,0 +1,1 @@
+dependency MyElement to MyElement;

@@ -1,0 +1,1 @@
+#MyType@defined by MyType;

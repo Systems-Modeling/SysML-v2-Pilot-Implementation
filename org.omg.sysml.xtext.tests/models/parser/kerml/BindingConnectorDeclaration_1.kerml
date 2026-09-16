@@ -1,0 +1,1 @@
+binding all MyType=MyType;

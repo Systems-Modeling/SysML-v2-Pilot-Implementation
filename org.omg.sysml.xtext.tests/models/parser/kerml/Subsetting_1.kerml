@@ -1,0 +1,1 @@
+specialization subset MyType:>MyType;

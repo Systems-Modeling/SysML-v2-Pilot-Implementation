@@ -1,0 +1,1 @@
+subset MyFeature.MyFeature:>MyType;

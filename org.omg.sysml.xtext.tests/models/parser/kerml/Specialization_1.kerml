@@ -1,0 +1,1 @@
+specialization subtype MyType:>MyType;

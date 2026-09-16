@@ -1,0 +1,3 @@
+bool ordered{
+	return feature;
+}

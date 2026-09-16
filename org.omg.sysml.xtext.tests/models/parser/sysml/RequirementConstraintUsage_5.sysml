@@ -1,0 +1,3 @@
+viewpoint def{
+	assume MyFeature;
+}

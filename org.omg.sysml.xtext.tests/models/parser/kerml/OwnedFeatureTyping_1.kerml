@@ -1,0 +1,1 @@
+flow of[true]MyType;

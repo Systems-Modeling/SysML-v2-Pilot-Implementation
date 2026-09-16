@@ -1,0 +1,1 @@
+assert MyFeature ordered;

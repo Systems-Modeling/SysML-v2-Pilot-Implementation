@@ -59,6 +59,7 @@
     <module>org.omg.sysml.xtext.ui</module>
     <module>org.omg.sysml.interactive</module>
     <module>org.omg.sysml.interactive.tests</module>
+    <module>org.omg.kerml.xtext.tests</module>
     <module>org.omg.sysml.xtext.tests</module>
     <module>org.omg.sysml.jupyter.kernel</module>
     <module>org.omg.sysml.jupyter.jupyterlab</module>

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.omg.kerml.xtext.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Bundle-SymbolicName: org.omg.kerml.xtext.tests;singleton:=true
+Bundle-Version: 0.63.0.qualifier
+Automatic-Module-Name: org.omg.kerml.xtext.tests
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: SysML v2 Submission Team
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext,
+ com.google.inject,
+ org.omg.sysml.model.bundle;bundle-version="0.63.0",
+ org.omg.sysml.logic.bundle;bundle-version="0.63.0",
+ org.omg.sysml;bundle-version="0.63.0",
+ org.omg.kerml.xtext;bundle-version="0.63.0"

@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.omg.sysml</groupId>
+		<artifactId>org.omg.sysml.parent</artifactId>
+		<version>${revision}</version>
+	</parent>
+
+	<artifactId>org.omg.kerml.xtext.tests</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<properties>
+		<!--
+			Directories (or single files) scanned recursively for *.kerml parser test models.
+			Separate multiple entries with the platform path separator (';' on Windows, ':' elsewhere).
+			Override on the command line, e.g.:
+			  mvn test -pl org.omg.kerml.xtext.tests -Dkerml.tests.parser.roots=/path/to/models
+		-->
+		<kerml.tests.parser.roots>${project.basedir}/models/parser</kerml.tests.parser.roots>
+	</properties>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<!-- Tycho compiles the plug-in sources into target/classes; point surefire's test classes there. -->
+		<testOutputDirectory>target/classes</testOutputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${junit.version}</version>
+				<configuration>
+					<testSourceDirectory>src</testSourceDirectory>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+					<argLine>-Dfile.encoding=UTF-8</argLine>
+					<systemPropertyVariables>
+						<kerml.tests.parser.roots>${kerml.tests.parser.roots}</kerml.tests.parser.roots>
+					</systemPropertyVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>${junit.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

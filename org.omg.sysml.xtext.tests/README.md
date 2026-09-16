@@ -1,6 +1,8 @@
 # org.omg.sysml.xtext.tests
 
-Model-driven JUnit tests for the KerML and SysML Xtext languages. The test *logic* is a
+Model-driven JUnit tests for the SysML Xtext language, plus the validation tests of both
+languages. The KerML parser tests live in the sibling bundle `org.omg.kerml.xtext.tests`,
+which carries its own copy of the (small) harness described here. The test *logic* is a
 small, fixed set of Java classes; the test *cases* are plain `.kerml` / `.sysml` model files
 that live outside the Java source tree and are discovered at run time. Adding a test case
 means adding a model file, not writing Java.
@@ -51,17 +53,15 @@ Layout of the default root:
 
 ```
 models/parser/
-  kerml/**/*.kerml
   sysml/**/*.sysml
 ```
 
 Sub-directories are free-form; they only affect the reported test name.
 
-The current corpus (`<Rule>_<n>.kerml` / `.sysml`, including the `_nontrivial_`
-variants) is generated from the KerML and SysML textual-notation grammars (the `kebnf`
-grammar files), one or more snippets per grammar rule, named after the rule they exercise.
-Two files, `RootNamespace_2.kerml` and `RootNamespace_2.sysml`, are intentionally empty: an
-empty file is a valid root namespace. Regenerate the corpus from the grammars rather than
+The current corpus (`<Rule>_<n>.sysml`, including the `_nontrivial_` variants) is generated
+from the SysML textual-notation grammar (the `kebnf` grammar file), one or more snippets per
+grammar rule, named after the rule they exercise. `RootNamespace_2.sysml` is intentionally
+empty: an empty file is a valid root namespace. Regenerate the corpus from the grammars rather than
 editing these files by hand.
 
 ## Validation tests

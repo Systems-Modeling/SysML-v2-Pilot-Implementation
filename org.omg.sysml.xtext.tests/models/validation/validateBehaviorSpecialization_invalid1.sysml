@@ -1,3 +1,6 @@
+// Constraint: validateBehaviorSpecialization (context: Behavior)
+// A Behavior must not specialize a Structure.
+// ownedSpecialization.general->forAll(not oclIsKindOf(Structure))
 package validateBehaviorSpecialization_invalid1 {
 	doc /* 
 	 * Errors:

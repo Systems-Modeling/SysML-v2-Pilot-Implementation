@@ -23,26 +23,15 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.EcoreUtil2;
-import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Classifier;
 import org.omg.sysml.lang.sysml.ConnectionDefinition;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureMembership;
@@ -63,32 +52,7 @@ import org.omg.sysml.util.VirtualContainer;
  * (feature chains and binding connectors) are linked to the model element for which they are created,
  * and that {@link ElementUtil#getEffectiveContainer(EObject)} reaches the model from them.
  */
-public class VirtualContainerTest {
-
-	private static ResourceSet resourceSet;
-	private final List<Resource> models = new ArrayList<>();
-
-	/** Loads and resolves libraries once. */
-	@BeforeClass
-	public static void loadLibraries() {
-		SysMLInteractive interactive = SysMLInteractive.createInstance();
-		interactive.setVerbose(false);
-		interactive.getLibraryIndexCache().setIndexDisabled(true);
-		interactive.loadLibrary(Path.of(System.getProperty("libraryPath")).toAbsolutePath().toString());
-		resourceSet = interactive.getResourceSet();
-		for (int i = 0; i < resourceSet.getResources().size(); i++) {
-			EcoreUtil2.resolveLazyCrossReferences(resourceSet.getResources().get(i), null);
-		}
-	}
-
-	/** Removes each scenario without altering the shared library contents. */
-	@After
-	public void removeModels() {
-		for (Resource resource : models) {
-			resource.unload();
-			resourceSet.getResources().remove(resource);
-		}
-	}
+public class VirtualContainerTest extends AbstractImplicitSpecializationTest {
 
 	/**
 	 * The result of a {@code FeatureChainExpression} subsets a chain of the source parameter and the
@@ -325,8 +289,7 @@ public class VirtualContainerTest {
 	public void resourceRootStaysInItsResourceAfterTransformation() throws Exception {
 		// A Type cannot be the root of a parsed resource, whose root is a Namespace: the model is built
 		// programmatically, a ConnectionDefinition with two end Features as the only resource content.
-		Resource resource = resourceSet.createResource(URI.createURI("memory:/root.sysml"));
-		models.add(resource);
+		Resource resource = createResource("root.sysml");
 		ConnectionDefinition connectionDefinition = SysMLFactory.eINSTANCE.createConnectionDefinition();
 		resource.getContents().add(connectionDefinition);
 		for (int i = 0; i < 2; i++) {
@@ -454,50 +417,6 @@ public class VirtualContainerTest {
 		assertSame(x.eContainer(), ElementUtil.getEffectiveContainer(x));
 	}
 
-	/**
-	 * Parses a model into a new in-memory resource of the shared resource set and registers it for
-	 * removal after the test.
-	 *
-	 * @param name the resource name, whose extension selects the language
-	 * @param text the textual model
-	 * @return the loaded resource, checked to have no parsing errors
-	 * @throws Exception when the text cannot be loaded
-	 */
-	private Resource parse(String name, String text) throws Exception {
-		Resource resource = resourceSet.createResource(URI.createURI("memory:/" + name));
-		models.add(resource);
-		resource.load(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)), Map.of());
-		assertTrue(resource.getErrors().toString(), resource.getErrors().isEmpty());
-		return resource;
-	}
-
-	/**
-	 * Returns the first element of a resource with the given declared name and metaclass.
-	 *
-	 * @param resource the resource searched, in containment order
-	 * @param name the declared name
-	 * @param kind the expected metaclass
-	 * @return the element found
-	 * @throws AssertionError when no such element exists
-	 */
-	private static <T extends Element> T findByName(Resource resource, String name, Class<T> kind) {
-		for (var contents = resource.getAllContents(); contents.hasNext();) {
-			EObject object = contents.next();
-			if (kind.isInstance(object) && name.equals(((Element)object).getDeclaredName())) {
-				return kind.cast(object);
-			}
-		}
-		throw new AssertionError("Missing " + kind.getSimpleName() + " " + name);
-	}
-
-	/**
-	 * Returns the first feature chain that is not contained in the model among the given general
-	 * types.
-	 *
-	 * @param generals the general types searched, in order
-	 * @return the detached feature chain
-	 * @throws AssertionError when the list contains no detached feature chain
-	 */
 	private static Feature findDetachedChain(List<Type> generals) {
 		for (Type general : generals) {
 			if (general instanceof Feature feature && !feature.getOwnedFeatureChaining().isEmpty()

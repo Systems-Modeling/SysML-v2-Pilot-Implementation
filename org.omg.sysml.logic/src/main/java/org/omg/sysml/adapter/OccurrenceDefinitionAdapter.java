@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -33,15 +34,4 @@ public class OccurrenceDefinitionAdapter extends DefinitionAdapter {
 		return (OccurrenceDefinition)super.getTarget();
 	}
 	
-	/**
-	 * @satisfies checkOccurrenceDefinitionIndividualSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		
-		if (getTarget().isIndividual()) {
-			addDefaultGeneralType("life");
-		}
-	}
 }

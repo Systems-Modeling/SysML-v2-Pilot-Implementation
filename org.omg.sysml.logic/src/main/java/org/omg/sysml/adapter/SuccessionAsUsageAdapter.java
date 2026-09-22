@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,15 +21,10 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.DecisionNode;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.MergeNode;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SuccessionAsUsage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.UsageUtil;
 
 public class SuccessionAsUsageAdapter extends SuccessionAdapter {
 
@@ -51,42 +47,4 @@ public class SuccessionAsUsageAdapter extends SuccessionAdapter {
 		}
 	}
 	
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		addDecisionNodeOutgoingSuccessionSpecialization();
-		addMergeNodeIncomingSuccessionSpecialization();
-	}
-	
-	/**
-	 * @satisfies checkDecisionNodeOutgoingSuccessionSpecialization
-	 * 
-	 * TODO: Update checkDecisionNodeOutgoingSuccessionSpecialization
-	 * 
-	 * OCL refers to MergePerformance::outgoingHBLink rather than DecisionPerformance::outgoingHBLink.
-	 * See SYSML21-306
-	 */
-	protected void addDecisionNodeOutgoingSuccessionSpecialization() {
-		SuccessionAsUsage succession = getTarget();
-		// Note: Use utility method to get source feature, to avoid infinite recursion.
-		Feature sourceFeature = UsageUtil.getSourceOf(succession);
-		if (sourceFeature instanceof DecisionNode) {
-			addImplicitGeneralType(getSpecializationEClass(), 
-					FeatureUtil.chainFeatures(sourceFeature, (Feature)getLibraryType(getDefaultSupertype("decision"))));
-		}
-	}
-	
-	/**
-	 * @satisfies checkMergeNodeIncomingSuccessionSpecialization
-	 */
-	protected void addMergeNodeIncomingSuccessionSpecialization() {
-		SuccessionAsUsage succession = getTarget();
-		// Note: Use utility method to get target feature, to avoid infinite recursion.
-		Feature targetFeature = UsageUtil.getTargetOf(succession);
-		if (targetFeature instanceof MergeNode) {
-			addImplicitGeneralType(getSpecializationEClass(), 
-					FeatureUtil.chainFeatures(targetFeature, (Feature)getLibraryType(getDefaultSupertype("merge"))));
-		}
-	}
-
 }

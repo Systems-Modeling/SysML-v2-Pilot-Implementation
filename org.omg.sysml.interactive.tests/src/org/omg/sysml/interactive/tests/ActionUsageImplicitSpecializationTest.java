@@ -18,37 +18,31 @@
  */
 package org.omg.sysml.interactive.tests;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
 import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the implicit-specialization defaults
- * applied to {@link ActionUsage} subtypes (SysML Table 32 &sect;8.4.1, with
- * per-subtype citations in &sect;8.4.13/8.4.18-21). Checks the raw candidate
- * through {@link TypeUtil#getImplicitGeneralTypesFor(Type)} before
- * transformation, then transforms and checks the same expectation against
- * the materialized {@code getOwnedSpecialization()} — a plain EMF read,
- * independent of whichever engine computed the candidates.
+ * Tests the implicit-specialization defaults of {@link ActionUsage} subtypes (SysML Table 32,
+ * &sect;8.4.13 and &sect;8.4.18 to &sect;8.4.21).
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@code getOwnedSpecialization()} after it.
  */
 public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpecializationTest {
 
 
 	/**
-	 * A transition trigger {@link AcceptActionUsage} must get none of the
-	 * generic ActionUsage defaults: SysML &sect;8.3.17.2 "AcceptActionUsage"
-	 * (the {@code isTriggerAction()} operation) and the
-	 * {@code checkAcceptActionUsageTriggerActionSpecialization} constraint
-	 * (&sect;8.4.13.6 "Accept Action Usages") mean the whole default-typing
-	 * fallback is suppressed for it, not just the ActionUsage-subtype dispatch.
+	 * A transition-trigger {@link AcceptActionUsage} gets none of the ActionUsage defaults: its
+	 * match in the {@code PRIORITY_EXCLUSIVE} rule family (defined in
+	 * the "Computation order" section of {@code org.omg.sysml.logic/doc/implicit-specialization.md}) suppresses every fallback
+	 * ({@code checkAcceptActionUsageTriggerActionSpecialization}, SysML &sect;8.4.13.6).
 	 */
 	@Test
 	public void triggerAcceptActionGetsNoDefaultTyping() throws Exception {
@@ -65,15 +59,15 @@ public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpeci
 					state starting;
 					transition t1 first off accept Signal then starting;
 				}
-				""");
+				""", true);
 		AcceptActionUsage trigger = findSingle(resource, AcceptActionUsage.class);
 
 		// The ordinary AcceptActionUsage base default (Actions::acceptActions) must be
 		// absent: it would otherwise always apply via the ActionUsage fallback case.
-		assertNotContains(TypeUtil.getImplicitGeneralTypesFor(trigger), "Actions::acceptActions");
+		assertNotContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(trigger), "Actions::acceptActions");
 		// Nor does the generic action-ownership fallback ("subaction"/"ownedAction") apply.
-		assertNotContains(TypeUtil.getImplicitGeneralTypesFor(trigger), "Actions::Action::subactions");
-		assertNotContains(TypeUtil.getImplicitGeneralTypesFor(trigger), "Parts::Part::ownedActions");
+		assertNotContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(trigger), "Actions::Action::subactions");
+		assertNotContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(trigger), "Parts::Part::ownedActions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationDoesNotContain(trigger, "Actions::acceptActions");
@@ -82,13 +76,10 @@ public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpeci
 	}
 
 	/**
-	 * An {@code include use case} usage is an {@link IncludeUseCaseUsage},
-	 * which is itself a kind of {@link UseCaseUsage}. SysML Table 32
-	 * {@code checkIncludeUseCaseSpecialization} subsets the reference
-	 * (non-composite) {@code UseCases::UseCase::includedUseCases}, while the
-	 * plain-nested-use-case rule {@code checkUseCaseUsageSubUseCaseSpecialization}
-	 * subsets the composite {@code UseCases::UseCase::subUseCases} and
-	 * requires {@code isComposite()}.
+	 * An {@link IncludeUseCaseUsage} subsets the non-composite
+	 * {@code UseCases::UseCase::includedUseCases} ({@code checkIncludeUseCaseSpecialization}).
+	 * It is also a {@link UseCaseUsage}, whose rule requires a composite usage: if the plain
+	 * use-case rule were selected instead, the feature would get no default at all.
 	 */
 	@Test
 	public void includedUseCaseSubsetsTheNonCompositeIncludedUseCases() throws Exception {
@@ -103,14 +94,14 @@ public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpeci
 					include use case ucInclude : UC1;
 					use case ucNested : UC1;
 				}
-				""");
+				""", true);
 		IncludeUseCaseUsage included = findSingle(resource, IncludeUseCaseUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(included), "UseCases::UseCase::includedUseCases");
-		assertNotContains(TypeUtil.getImplicitGeneralTypesFor(included), "UseCases::UseCase::subUseCases");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(included), "UseCases::UseCase::includedUseCases");
+		assertNotContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(included), "UseCases::UseCase::subUseCases");
 
 		// The plain nested (composite) UseCaseUsage takes the sibling, composite-only rule.
 		UseCaseUsage nested = findByName(resource, "ucNested", UseCaseUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(nested), "UseCases::UseCase::subUseCases");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(nested), "UseCases::UseCase::subUseCases");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(included, "UseCases::UseCase::includedUseCases");
@@ -120,7 +111,8 @@ public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpeci
 
 	/**
 	 * An {@link ActionUsage} composite under another {@link ActionUsage} with
-	 * no more specific subtype falls through to the generic
+	 * no more specific subtype (not a case/analysis/verification/use case/
+	 * calculation/state) falls through to the generic
 	 * {@code checkActionUsageSubactionSpecialization} default (SysML Table 32,
 	 * &sect;8.4.13), subsetting {@code Actions::Action::subactions}.
 	 */
@@ -135,21 +127,19 @@ public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpeci
 				action a : A {
 					action b;
 				}
-				""");
+				""", true);
 		ActionUsage b = findByName(resource, "b", ActionUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(b), "Actions::Action::subactions");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(b), "Actions::Action::subactions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(b, "Actions::Action::subactions");
 	}
 
 	/**
-	 * A composite {@code AnalysisCaseUsage} nested under an
-	 * {@code AnalysisCaseDefinition} gets the exclusive subtype default
-	 * ({@code checkAnalysisCaseUsageSubAnalysisCaseSpecialization}, SysML
-	 * Table 32 &sect;8.4.19 "Analysis Case Usages"); the unconditional,
-	 * cumulative performance default (Table 10) is a raw candidate too but is
-	 * reduced away at materialization time, see below.
+	 * A composite {@code AnalysisCaseUsage} nested under an {@code AnalysisCaseDefinition} gets
+	 * both its subtype default ({@code checkAnalysisCaseUsageSubAnalysisCaseSpecialization},
+	 * SysML &sect;8.4.19) and the cumulative performance default
+	 * ({@code checkStepSubperformanceSpecialization}, KerML Table 10).
 	 */
 	@Test
 	public void analysisCaseUsageGetsBothTheSubtypeDefaultAndThePerformanceDefault() throws Exception {
@@ -162,10 +152,11 @@ public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpeci
 				analysis def AnalysisPlan {
 					analysis massAnalysisCase : MassAnalysisCase;
 				}
-				""");
+				""", true);
 		ActionUsage massAnalysisCase = findByName(resource, "massAnalysisCase", ActionUsage.class);
-		List<Type> candidates = TypeUtil.getImplicitGeneralTypesFor(massAnalysisCase);
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(massAnalysisCase);
 		assertContains(candidates, "AnalysisCases::AnalysisCase::subAnalysisCases");
+		assertContains(candidates, "Performances::Performance::subperformances");
 
 		// After reduction, "subperformances" stays a raw candidate but is not
 		// materialized: Actions::Action::subactions (itself reached transitively
@@ -173,13 +164,67 @@ public class ActionUsageImplicitSpecializationTest extends AbstractImplicitSpeci
 		// subcalculations) already subsets Performances::Performance::subperformances
 		// in the standard library, so the more specific subAnalysisCases edge alone
 		// is inserted (KerML &sect;8.4.2 — a more specific implied relationship
-		// subsumes a less specific one, which is then not inserted). This reduction
-		// is identical on the pre-refactoring adapter mechanism, since it is driven
-		// entirely by the standard library's own subsetting chain, not by which
-		// engine computes the candidates.
+		// subsumes a less specific one, which is then not inserted).
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(massAnalysisCase, "AnalysisCases::AnalysisCase::subAnalysisCases");
 	}
 
+	/**
+	 * An ExhibitStateUsage owned by a PartDefinition subsets {@code Parts::Part::exhibitedStates}
+	 * ({@code checkExhibitStateUsageSpecialization}, SysML &sect;8.3.18.2), in addition to its
+	 * StateUsage default.
+	 */
+	@Test
+	public void exhibitStateUsageOfAPartSubsetsTheExhibitedStates() throws Exception {
+		// state def Running;
+		// part def Vehicle {
+		//     exhibit state running : Running;
+		// }
+		Resource resource = parse("exhibit.sysml", """
+				state def Running;
+				part def Vehicle {
+					exhibit state running : Running;
+				}
+				""", true);
+		ExhibitStateUsage running = findByName(resource, "running", ExhibitStateUsage.class);
 
+		// Raw candidates: the StateUsage default and the exhibited-state subsetting of the part.
+		var candidates = getImplicitSpecializationService().getImplicitSpecializationCandidates(running);
+		assertContains(candidates, "States::stateActions");
+		assertContains(candidates, "Parts::Part::exhibitedStates");
+
+		// Parts::Part::exhibitedStates is the more specific general and is materialized.
+		ElementUtil.transformAll(resource, true);
+		assertOwnedSpecializationContains(running, "Parts::Part::exhibitedStates");
+	}
+
+	/**
+	 * An IncludeUseCaseUsage owned by a PartDefinition subsets {@code Parts::Part::performedActions}
+	 * ({@code includeUseCaseUsagePerformedActionSpecialization}, which applies
+	 * {@code checkPerformActionUsageSpecialization}, SysML &sect;8.3.17.14, to an
+	 * IncludeUseCaseUsage, a kind of PerformActionUsage).
+	 */
+	@Test
+	public void includeUseCaseUsageOfAPartSubsetsThePerformedActions() throws Exception {
+		// use case def Drive;
+		// part def Driver {
+		//     include use case drive : Drive;
+		// }
+		Resource resource = parse("include.sysml", """
+				use case def Drive;
+				part def Driver {
+					include use case drive : Drive;
+				}
+				""", true);
+		IncludeUseCaseUsage drive = findByName(resource, "drive", IncludeUseCaseUsage.class);
+
+		// The owner is a part, not a use case: the performed-action subsetting applies, not
+		// UseCases::UseCase::includedUseCases.
+		var candidates = getImplicitSpecializationService().getImplicitSpecializationCandidates(drive);
+		assertContains(candidates, "Parts::Part::performedActions");
+		assertNotContains(candidates, "UseCases::UseCase::includedUseCases");
+
+		ElementUtil.transformAll(resource, true);
+		assertOwnedSpecializationContains(drive, "Parts::Part::performedActions");
+	}
 }

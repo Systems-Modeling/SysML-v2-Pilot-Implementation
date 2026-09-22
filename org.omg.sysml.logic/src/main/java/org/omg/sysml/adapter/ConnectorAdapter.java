@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2024-2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,12 +22,7 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.Connector;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ConnectorUtil;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class ConnectorAdapter extends FeatureAdapter {
 
@@ -40,44 +36,10 @@ public class ConnectorAdapter extends FeatureAdapter {
 	}
 	
 	/**
-	 * @satisfies checkConnectorBinaryObjectSpecialization
-	 * @satisfies checkConnectorBinarySpecialization
-	 * @satisfies checkConnectorObjectSpecialization
-	 * @satisfies checkConnectorSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		Connector target = getTarget();
-		int numEnds = TypeUtil.getOwnedEndFeaturesOf(target).size();
-		return hasStructureType()?
-				numEnds != 2? 
-					getDefaultSupertype("object"):
-					getDefaultSupertype("binaryObject"):
-				numEnds != 2? 
-					getDefaultSupertype("base"):
-					getDefaultSupertype("binary");
-	}
-	
-	/**
 	 * @satisfies checkConnectorTypeFeaturing
 	 */
 	protected void addContextFeaturingType() {
 		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(getTarget()));
-	}
-	
-	public static void addEndSubsetting(Connector target) {
-		for (Feature end: TypeUtil.getEndFeatureOf(target)) {
-			if (end != null) {
-				Expression expression = end.getOwnedFeature().stream().
-						filter(Expression.class::isInstance).
-						map(Expression.class::cast).
-						findFirst().orElse(null);
-				if (expression != null) {
-					ElementUtil.transform(expression);
-					TypeUtil.addImplicitGeneralTypeTo(end, SysMLPackage.eINSTANCE.getSubsetting(), expression.getResult());
-				}
-			}
-		}
 	}
 	
 	/**
@@ -85,10 +47,8 @@ public class ConnectorAdapter extends FeatureAdapter {
 	 */
 	@Override
 	public void doTransform() {
-		Connector target = getTarget();
 		super.doTransform();
 		addContextFeaturingType();
-		addEndSubsetting(target);
 	}
 	
 }

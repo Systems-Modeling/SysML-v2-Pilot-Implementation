@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2023, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,9 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.VerificationCaseDefinition;
 import org.omg.sysml.lang.sysml.VerificationCaseUsage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class VerificationCaseUsageAdapter extends CaseUsageAdapter {
 
@@ -33,22 +32,6 @@ public class VerificationCaseUsageAdapter extends CaseUsageAdapter {
 	@Override
 	public VerificationCaseUsage getTarget() {
 		return (VerificationCaseUsage)super.getTarget();
-	}
-	
-	/**
-	 * @satisfies checkVerificationCaseUsageSubVerification
-	 * @satisfies checkVerificationCaseUsageSubVerification
-	 */
-	@Override
-	protected String getSubactionType() {
-		return isSubVerificationCase()? "subVerificationCase": super.getSubactionType();	
-	}
-		
-	public boolean isSubVerificationCase() {
-		VerificationCaseUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() && 
-			   (owningType instanceof VerificationCaseDefinition || owningType instanceof VerificationCaseUsage);
 	}
 	
 }

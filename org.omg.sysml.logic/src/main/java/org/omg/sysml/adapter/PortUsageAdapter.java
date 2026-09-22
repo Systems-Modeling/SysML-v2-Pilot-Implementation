@@ -21,11 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.PartDefinition;
-import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class PortUsageAdapter extends OccurrenceUsageAdapter {
 
@@ -40,42 +36,6 @@ public class PortUsageAdapter extends OccurrenceUsageAdapter {
 	/**
 	 * @satisfies validatePortUsageIsReference
 	 */
-	
-	// Implicit Generalization
-	
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (isStructureOwnedComposite()) {
-			addDefaultGeneralType("subobject");
-		}
-	}
-	
-	/**
-	 * @satisfies checkPortUsageOwnedPortSpecialization
-	 * @satisfies checkPortUsageSubportSpecialization
-	 * @satisfies checkPortUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return isOwnedPort()?
-					getDefaultSupertype("ownedPort"):
-			   isSubport()?
-					getDefaultSupertype("subport"):
-					getDefaultSupertype("base");
-	}
-	
-	public boolean isOwnedPort() {
-		PortUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return owningType instanceof PartDefinition || owningType instanceof PartUsage;		
-	}
-	
-	public boolean isSubport() {
-		PortUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() && (owningType instanceof PortDefinition || owningType instanceof PortUsage);
-	}
 	
 	// Transformation
 	

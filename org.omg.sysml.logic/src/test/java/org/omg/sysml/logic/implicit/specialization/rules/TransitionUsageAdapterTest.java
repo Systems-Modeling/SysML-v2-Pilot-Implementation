@@ -19,7 +19,7 @@
  *
  *******************************************************************************/
 
-package org.omg.sysml.logic;
+package org.omg.sysml.logic.implicit.specialization.rules;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -39,8 +39,11 @@ import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.SysMLLogicStandaloneSetup;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationEvaluationContext;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationResult;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
  * Tests transition derived-property computations.
@@ -90,11 +93,17 @@ public class TransitionUsageAdapterTest {
 		transition.getOwnedRelationship().add(triggerMembership);
 
 		Feature existingChain = FeatureUtil.chainFeatures(trigger, triggerPayload);
-		TypeUtil.addImplicitGeneralTypeTo(transitionPayload, SysMLPackage.Literals.SUBSETTING, existingChain);
+		ImplicitSpecializationEvaluationContext context =
+				new ImplicitSpecializationEvaluationContext(new ImplicitSpecializationService());
+		ImplicitSpecializationResult result = new ImplicitSpecializationResult(transitionPayload);
+		result.add(SysMLPackage.Literals.SUBSETTING, existingChain);
 
-		TypeUtil.getImplicitGeneralTypesFor(transitionPayload);
+		// Applying the payload rule must retain the already registered equivalent chain.
+		List<ImplicitSpecializationRule> payloadRule = ImplicitSpecializationRuleCatalog.rules().stream()
+				.filter(rule -> rule.id().equals("checkTransitionUsagePayloadSpecialization")).toList();
+		new ImplicitSpecializationRules(payloadRule).apply(transitionPayload, result, context);
 
-		List<Type> implicitSubsettings = TypeUtil.getImplicitGeneralTypesOnly(transitionPayload, SysMLPackage.Literals.SUBSETTING);
+		List<Type> implicitSubsettings = result.getOnly(SysMLPackage.Literals.SUBSETTING);
 		assertEquals(1, implicitSubsettings.size());
 		assertSame(existingChain, implicitSubsettings.get(0));
 	}

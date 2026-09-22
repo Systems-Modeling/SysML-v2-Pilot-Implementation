@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2023-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -41,24 +42,6 @@ public class CaseUsageAdapter extends CalculationUsageAdapter {
 	public boolean hasRelevantSubjectParameter() {
 		Type owningType = getTarget().getOwningType();
 		return owningType instanceof CaseDefinition || owningType instanceof CaseUsage;
-	}
-	
-	// Implicit Generalization
-	
-	/**
-	 * @satisfies checkCaseUsageSpecialization
-	 * @satisfies checkCaseUsageSubcaseSpecialization
-	 */
-	@Override
-	protected String getSubactionType() {
-		return isSubcase()? "subcase": super.getSubactionType();	
-	}
-		
-	public boolean isSubcase() {
-		CaseUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() &&
-			   (owningType instanceof CaseDefinition || owningType instanceof CaseUsage);
 	}
 	
 }

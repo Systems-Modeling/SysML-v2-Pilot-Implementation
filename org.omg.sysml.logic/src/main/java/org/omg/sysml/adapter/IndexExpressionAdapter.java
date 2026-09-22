@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,14 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.IndexExpression;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 
@@ -40,27 +34,6 @@ public class IndexExpressionAdapter extends OperatorExpressionAdapter {
 	@Override
 	public IndexExpression getTarget() {
 		return (IndexExpression)super.getTarget();
-	}
-	
-	/**
-	 * @satisfies checkIndexExpressionResultSpecialization
-	 */
-	@Override
-	protected void addResultTyping() {
-		IndexExpression target = getTarget();
-		EList<Expression> arguments = target.getArgument();
-		if (!arguments.isEmpty()) {
-			Expression seqArgument = arguments.get(0);
-			ElementUtil.transform(seqArgument);
-			Feature seqResult = seqArgument.getResult();
-			Type collectionType = getLibraryType(COLLECTIONS_TYPE);
-			if (!TypeUtil.specializes(seqResult, collectionType)) {
-				Feature resultFeature = target.getResult();
-				if (resultFeature != null && seqResult != null) {
-					TypeUtil.addImplicitGeneralTypeTo(resultFeature, SysMLPackage.eINSTANCE.getSubsetting(), seqResult);
-				}
-			}
-		}
 	}
 	
 }

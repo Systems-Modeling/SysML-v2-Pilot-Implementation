@@ -31,6 +31,8 @@ import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 import org.omg.sysml.logic.api.IModelLibraryProvider
 import org.omg.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationService
+import org.omg.kerml.xtext.PilotImplicitSpecializationService
 import org.omg.sysml.xtext.library.SysMLLibraryProvider
 
 class SysMLxRuntimeModule extends AbstractGenericResourceRuntimeModule {
@@ -45,6 +47,7 @@ class SysMLxRuntimeModule extends AbstractGenericResourceRuntimeModule {
 	 * as it does in the regular Xtext runtime modules.
 	 */
 	new() {
+		PilotImplicitSpecializationService.configureServiceFactory()
 		SysMLLibraryUtil.setProviderLookup([
 			resource |
 				try {
@@ -85,4 +88,9 @@ class SysMLxRuntimeModule extends AbstractGenericResourceRuntimeModule {
 	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
 		SysMLLibraryProvider
 	}
+	/** The Pilot explicitly opts into automatic caching through its injectable service. */
+	def Class<? extends IImplicitSpecializationService> bindIImplicitSpecializationService() {
+		PilotImplicitSpecializationService
+	}
+
 }

@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2023-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -22,17 +23,12 @@ package org.omg.sysml.adapter;
 
 import java.util.List;
 
-import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
-import org.omg.sysml.lang.sysml.StateDefinition;
-import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
@@ -47,36 +43,6 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public TransitionUsage getTarget() {
 		return (TransitionUsage)super.getTarget();
-	}
-	
-	// Implicit Generalization
-	
-	/**
-	 * @satisfies checkTransitionUsageStateSpecialization
-	 * @satisfies checkTransitionUsageActionSpecialization
-	 * @satisfies checkTransitionUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return isStateTransition()? getDefaultSupertype("stateTransition"):
-			   isActionTransition()? getDefaultSupertype("actionTransition"):
-			   getDefaultSupertype("base");
-	}
-	
-	protected boolean isActionTransition() {
-		TransitionUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() && 
-			   (owningType instanceof ActionDefinition || owningType instanceof ActionUsage) &&
-			   !(target.getSource() instanceof StateUsage);
-	}	
-	
-	protected boolean isStateTransition() {
-		TransitionUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() &&
-			   (owningType instanceof StateDefinition || owningType instanceof StateUsage) &&
-			   target.getSource() instanceof StateUsage;
 	}
 	
 	// Transformation

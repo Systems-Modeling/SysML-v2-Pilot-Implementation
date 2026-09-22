@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -33,15 +34,4 @@ public class PerformActionUsageAdapter extends ActionUsageAdapter {
 		return (PerformActionUsage)super.getTarget();
 	}
 	
-	/**
-	 * @satisfies checkPerformActionUsageSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (isPerformedAction()) {
-			addDefaultGeneralType("performedAction");
-		}
-	}
-		
 }

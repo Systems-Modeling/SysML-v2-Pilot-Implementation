@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021-2022, 2024-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,18 +21,12 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collections;
-import java.util.List;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.Namespace;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.ImplicitGeneralizationMap;
 
 public class ExpressionAdapter extends StepAdapter {
 
@@ -44,60 +39,6 @@ public class ExpressionAdapter extends StepAdapter {
 	@Override
 	public Expression getTarget() {
 		return (Expression)super.getTarget();
-	}
-	
-	// Implicit Generalization
-	
-	/**
-	 * @satisfies checkStepOwnedPerformanceSpecialization
-	 * @satisfies checkStepSubperformanceSpecialization
-	 * @satisfies checkStepEnclosedPerformanceSpecialization
-	 * 
-	 * Note: These are satisfied by getDefaultSupertype in StepAdapter, 
-	 * which is overridden in ExpressionAdapater.
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (isStructureOwnedComposite()) {
-			addDefaultGeneralType("ownedPerformance");
-		}
-		if (isBehaviorOwnedComposite()) {
-			addDefaultGeneralType("subperformance");
-		}
-		if (isBehaviorOwned()) {
-			addDefaultGeneralType("enclosedPerformance");
-		}
-	}
-	
-	/**
-	 * @satisfies checkExpressionSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
-	}
-	
-	// Computed Redefinition
-
-	@Override
-	protected List<? extends Feature> getRelevantFeatures(Type type) {
-		Expression target = getTarget();
-		Type owningType = target.getOwningType();
-		return ExpressionUtil.isTransitionGuard(target)?
-					type == owningType? Collections.singletonList(target):
-					Collections.singletonList((Feature)getLibraryType(EXPRESSION_GUARD_FEATURE)):
-			   owningType instanceof FeatureValue? Collections.emptyList():
-			   super.getRelevantFeatures(type);
-	}
-	
-	@Override
-	protected List<Type> getGeneralTypes(Type type, Element skip) {
-		Expression target = getTarget();
-		Type owningType = target.getOwningType();
-		return ExpressionUtil.isTransitionGuard(target) && type == owningType?
-				Collections.singletonList(getLibraryType(ImplicitGeneralizationMap.getDefaultSupertypeFor(type.getClass(), "base"))):
-				super.getGeneralTypes(type, skip);
 	}
 	
 	// Transformation

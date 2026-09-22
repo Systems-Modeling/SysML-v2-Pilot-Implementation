@@ -28,18 +28,14 @@ import org.omg.sysml.lang.sysml.ConnectionDefinition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.RequirementUsage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the implicit-redefinition rules:
- * assignment write redefinition, positional parameter/end/objective
- * redefinition, and the state/transition action-membership mappings
- * (entry/do/exit/trigger/guard/effect). Checks the raw candidate through
- * {@link TypeUtil#getImplicitGeneralTypesFor(Type)} before transformation,
- * then transforms and checks the same expectation against the materialized
- * {@code getOwnedRedefinition()}.
+ * Tests the implied redefinitions computed by the rules of the {@code REDEFINITION} family.
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@code getOwnedRedefinition()} after it.
  */
 public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImplicitSpecializationTest {
 
@@ -70,17 +66,17 @@ public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImpli
 						assign count := count;
 					}
 				}
-				""");
+				""", true);
 		AssignmentActionUsage assignment = findSingle(resource, AssignmentActionUsage.class);
 		Feature target = assignment.getParameter().get(0);
 		Feature startingAt = target.getOwnedFeature().get(0);
 		Feature accessedFeature = startingAt.getOwnedFeature().get(0);
 
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(startingAt),
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(startingAt),
 				"FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(accessedFeature),
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(accessedFeature),
 				"FeatureReferencingPerformances::FeatureAccessPerformance::onOccurrence::startingAt::accessedFeature");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(accessedFeature),
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(accessedFeature),
 				assignment.getReferent().getQualifiedName());
 
 		ElementUtil.transformAll(resource, true);
@@ -109,14 +105,14 @@ public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImpli
 					do action b;
 					exit action c;
 				}
-				""");
+				""", true);
 		ActionUsage entry = findByName(resource, "a", ActionUsage.class);
 		ActionUsage doAction = findByName(resource, "b", ActionUsage.class);
 		ActionUsage exit = findByName(resource, "c", ActionUsage.class);
 
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(entry), "States::StateAction::entryAction");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(doAction), "States::StateAction::doAction");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(exit), "States::StateAction::exitAction");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(entry), "States::StateAction::entryAction");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(doAction), "States::StateAction::doAction");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(exit), "States::StateAction::exitAction");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedRedefinitionContains(entry, "States::StateAction::entryAction");
@@ -146,14 +142,14 @@ public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImpli
 					state s2;
 					transition t1 first s1 accept sig : Sig if true do send sig to p then s2;
 				}
-				""");
+				""", true);
 		TransitionUsage transition = findByName(resource, "t1", TransitionUsage.class);
 
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(transition.getTriggerAction().get(0)),
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(transition.getTriggerAction().get(0)),
 				"Actions::TransitionAction::accepter");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(transition.getGuardExpression().get(0)),
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(transition.getGuardExpression().get(0)),
 				"TransitionPerformances::TransitionPerformance::guard");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(transition.getEffectAction().get(0)),
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(transition.getEffectAction().get(0)),
 				"Actions::TransitionAction::effect");
 
 		ElementUtil.transformAll(resource, true);
@@ -166,7 +162,8 @@ public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImpli
 	/**
 	 * KerML §7.4.7.2 Behavior Declaration / SysML §7.17.2 Action Definitions
 	 * and Usages: an owned parameter must, in order, redefine the parameter at
-	 * the same position of each direct general.
+	 * the same position of each direct general. No explicit {@code redefines}
+	 * is written here — the redefinition must be inferred purely from position.
 	 */
 	@Test
 	public void subtypeParameterImplicitlyRedefinesSamePositionGeneralParameter() throws Exception {
@@ -183,10 +180,10 @@ public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImpli
 				action b : A {
 					in y;
 				}
-				""");
+				""", true);
 		Feature x = findByName(resource, "x", Feature.class);
 		Feature y = findByName(resource, "y", Feature.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(y), x.getQualifiedName());
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(y), x.getQualifiedName());
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedRedefinitionContains(y, x.getQualifiedName());
@@ -216,15 +213,15 @@ public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImpli
 					end item a2;
 					end item b2;
 				}
-				""");
+				""", true);
 		ConnectionDefinition link2 = findByName(resource, "Link2", ConnectionDefinition.class);
 		assertTrue(link2.getOwnedEndFeature().size() >= 2);
 		Feature a = findByName(resource, "a", Feature.class);
 		Feature b = findByName(resource, "b", Feature.class);
 		Feature a2 = findByName(resource, "a2", Feature.class);
 		Feature b2 = findByName(resource, "b2", Feature.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(a2), a.getQualifiedName());
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(b2), b.getQualifiedName());
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(a2), a.getQualifiedName());
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(b2), b.getQualifiedName());
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedRedefinitionContains(a2, a.getQualifiedName());
@@ -251,13 +248,12 @@ public class FeatureRedefinitionImplicitSpecializationTest extends AbstractImpli
 				case def C2 :> C1 {
 					objective obj2;
 				}
-				""");
+				""", true);
 		RequirementUsage obj1 = findByName(resource, "obj1", RequirementUsage.class);
 		RequirementUsage obj2 = findByName(resource, "obj2", RequirementUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(obj2), obj1.getQualifiedName());
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(obj2), obj1.getQualifiedName());
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedRedefinitionContains(obj2, obj1.getQualifiedName());
 	}
-	
 }

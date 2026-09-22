@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,7 +21,6 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SendActionUsage;
 
 public class SendActionUsageAdapter extends ActionUsageAdapter {
@@ -32,17 +32,6 @@ public class SendActionUsageAdapter extends ActionUsageAdapter {
 	@Override
 	public SendActionUsage getTarget() {
 		return (SendActionUsage)super.getTarget();
-	}
-
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		addDefaultGeneralType();
-		super.addComputedRedefinitions(skip);
 	}
 
 }

@@ -27,6 +27,8 @@ import org.omg.sysml.xtext.library.SysMLLibraryProvider
 import org.omg.sysml.xtext.naming.SysMLQualifiedNameConverter
 import org.omg.sysml.xtext.scoping.SysMLGlobalScopeProvider
 import org.omg.sysml.xtext.scoping.SysMLLinker
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationService
+import org.omg.kerml.xtext.PilotImplicitSpecializationService
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -34,6 +36,7 @@ import org.omg.sysml.xtext.scoping.SysMLLinker
 class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 
 	new() {
+		PilotImplicitSpecializationService.configureServiceFactory()
 		SysMLLibraryUtil.setProviderLookup([
 			resource |
 				try {
@@ -86,4 +89,9 @@ class SysMLRuntimeModule extends AbstractSysMLRuntimeModule {
 	override Class<? extends XtextResource> bindXtextResource() {
 		KerMLLazyLinkingResource
 	}	
+	/** The Pilot explicitly opts into automatic caching through its injectable service. */
+	def Class<? extends IImplicitSpecializationService> bindIImplicitSpecializationService() {
+		PilotImplicitSpecializationService
+	}
+
 }

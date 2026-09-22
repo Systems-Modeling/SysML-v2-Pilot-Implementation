@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2026 Obeo
  *    
@@ -22,9 +23,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.FlowUsage;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.PortionKind;
-import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
@@ -39,67 +37,6 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 	}
 	
 	/**
-	 * @satisfies checkActionUsageOwnedActionSpecialization
-	 * @satisfies checkActionUsageSubactionSpecialization
-	 * @satisfies checkStepEnclosedPerformanceSpecialization
-	 * @satisfies checkStepOwnedPerformanceSpecialization
-	 * @satisfies checkStepSubperformanceSpecialization
-	 * @satisfies checkOccurrenceUsageTimeSliceSpecialization
-	 * @satisfies checkOccurrenceUsageSnapshotSpecialization
-	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		
-		// From OccurrenceAdapter
-		if (isSuboccurrence()) {
-			addDefaultGeneralType("suboccurrence");
-		}
-		PortionKind portionKind = getTarget().getPortionKind();
-		if (portionKind  == PortionKind.SNAPSHOT) {
-			addDefaultGeneralType("snapshot");
-		} else if (portionKind == PortionKind.TIMESLICE) {
-			addDefaultGeneralType("timeslice");
-		}
-
-		// From ActionUsageAdapter
-		if (isActionOwnedComposite()) {
-			addDefaultGeneralType("subaction");
-		} else if (isPartOwnedComposite()) {
-			addDefaultGeneralType("ownedAction");
-		}
-		
-		// From StepAdapter
-		if (isStructureOwnedComposite()) {
-			addDefaultGeneralType("ownedPerformance");
-		} else if (isBehaviorOwnedComposite()) {
-			addDefaultGeneralType("subperformance");
-		} else if (isBehaviorOwned()) {
-			addDefaultGeneralType("enclosedPerformance");
-		}
-}
-	
-	@Override
-	protected boolean isSuboccurrence() {
-		OccurrenceUsage target = getTarget();
-		return super.isSuboccurrence() ||
-				target.isComposite() && 
-			   	target.getOwningType() instanceof OccurrenceUsage;
-	}
-	
-	/**
-	 * @satisfies checkFlowUsageFlowSpecialization
-	 * @satisfies checkFlowUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return UsageUtil.isMessage(getTarget())?
-				getDefaultSupertype("message"):
-				getDefaultSupertype("base");
-	}
-		
-	/**
 	 * @satisfies validateConnectorRelatedFeatures
 	 * (For a FlowUsage that is a message.)
 	 */
@@ -112,7 +49,6 @@ public class FlowUsageAdapter extends ConnectorAsUsageAdapter {
 	
 	@Override
 	public void doTransform() {
-		ConnectorUtil.transformConnectorEndsOf(getTarget());
 		makeMessageAbstract();
 		super.doTransform();
 	}

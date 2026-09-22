@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2023, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,8 +21,6 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.UseCaseDefinition;
 import org.omg.sysml.lang.sysml.UseCaseUsage;
 
 public class UseCaseUsageAdapter extends CaseUsageAdapter {
@@ -33,23 +32,6 @@ public class UseCaseUsageAdapter extends CaseUsageAdapter {
 	@Override
 	public UseCaseUsage getTarget() {
 		return (UseCaseUsage)super.getTarget();
-	}
-	
-	/**
-	 * @satisfies checkIncludeUseCaseSpecialization
-	 * @satisfies checkUseCaseUsageSpecialization
-	 * @satisfies checkUseCaseUsageSubUseCaseSpecialization
-	 */
-	@Override
-	protected String getSubactionType() {
-		return isSubUseCase()? "subUseCase": super.getSubactionType();	
-	}
-		
-	public boolean isSubUseCase() {	
-		UseCaseUsage target = getTarget();
-		Type owningType = target.getOwningType();		
-		return target.isComposite() &&
-			   (owningType instanceof UseCaseDefinition || owningType instanceof UseCaseUsage);
 	}
 	
 }

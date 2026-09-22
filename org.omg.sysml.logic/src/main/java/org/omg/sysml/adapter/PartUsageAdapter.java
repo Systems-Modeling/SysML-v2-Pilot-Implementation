@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,13 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.CaseDefinition;
-import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.PartUsage;
-import org.omg.sysml.lang.sysml.RequirementDefinition;
-import org.omg.sysml.lang.sysml.RequirementUsage;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
 
 public class PartUsageAdapter extends ItemUsageAdapter {
 
@@ -38,47 +33,4 @@ public class PartUsageAdapter extends ItemUsageAdapter {
 		return (PartUsage)super.getTarget();
 	}
 	
-	/**
-	 * @satisfies checkPartUsageActorSpecialization
-	 * @satisfies checkPartUsageStakeholderSpecialization
-	 * @satisfies checkPartUsageSubpartSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return isRequirementActor()? getDefaultSupertype("requirementActor"):
-			   isRequirementStakeholder()? getDefaultSupertype("requirementStakeholder"):
-			   isCaseActor()? getDefaultSupertype("caseActor"):
-			   super.getDefaultSupertype();
-	}
-	
-	protected boolean isRequirementActor() {
-		PartUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return UsageUtil.isActorParameter(target) &&
-			   ( owningType instanceof RequirementDefinition ||
-				 owningType instanceof RequirementUsage);
-	}
-
-	protected boolean isRequirementStakeholder() {
-		/*
-		 * Note: checkPartUsageStakeholderSpecialization OCL doesn't explicitly require the owningType 
-		 * to be a RequirmentDefinition or RequirementUsage. However, a valid stakeholder must be owned
-		 * by a RequirementDefinition or RequirementUsage and, if it isn't the implied subsetting won't
-		 * be valid, so don't add it.
-		 */
-		PartUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return UsageUtil.isStakeholderParameter(target) &&
-			   ( owningType instanceof RequirementDefinition ||
-				 owningType instanceof RequirementUsage);
-	}
-
-	protected boolean isCaseActor() {
-		PartUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return UsageUtil.isActorParameter(target) &&
-			   ( owningType instanceof CaseDefinition ||
-				 owningType instanceof CaseUsage);
-	}
-
 }

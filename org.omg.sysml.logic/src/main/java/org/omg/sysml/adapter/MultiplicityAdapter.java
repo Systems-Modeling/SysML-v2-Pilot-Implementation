@@ -1,7 +1,8 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2024-2026 Model Driven Solutions, Inc.
- *    
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
  * the Eclipse Foundation, version 2 of the License.
@@ -20,14 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Multiplicity;
-import org.omg.sysml.lang.sysml.Type;
 
 public class MultiplicityAdapter extends FeatureAdapter {
 
@@ -39,26 +33,7 @@ public class MultiplicityAdapter extends FeatureAdapter {
 	public Multiplicity getTarget() {
 		return (Multiplicity)super.getTarget();
 	}
-	
-	/**
-	 * @satisfies checkOccurrenceDefinitionMultiplicitySpecialization, Note: SysML grammar adds the empty multiplicity
-	 * @satisfies checkMultiplicitySpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		Element owner = getTarget().getOwner();
-		return owner instanceof Classifier?
-					getDefaultSupertype("classifier"):
-			   owner instanceof Feature?
-					getDefaultSupertype("feature"):
-					getDefaultSupertype("base");
-	}
-	
-	@Override
-	protected List<Multiplicity> getRelevantFeatures(Type type) {
-		return Collections.emptyList();
-	}
-	
+
 	/**
 	 * @satisfies checkMultiplicityTypeFeaturing
 	 */

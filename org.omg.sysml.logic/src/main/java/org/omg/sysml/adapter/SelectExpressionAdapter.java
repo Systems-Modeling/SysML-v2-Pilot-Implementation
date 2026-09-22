@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,12 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.eclipse.emf.common.util.EList;
-import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.SelectExpression;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class SelectExpressionAdapter extends OperatorExpressionAdapter {
 
@@ -38,19 +34,4 @@ public class SelectExpressionAdapter extends OperatorExpressionAdapter {
 		return (SelectExpression)super.getTarget();
 	}
 
-	/**
-	 * @satisfies checkSelectExpressionResultSpecialization
-	 */
-	@Override
-	protected void addResultTyping() {
-		SelectExpression target = getTarget();
-		EList<Expression> arguments = target.getArgument();
-		if (!arguments.isEmpty()) {
-			Expression collectionExpression = arguments.get(0);
-			ElementUtil.transform(collectionExpression);
-			TypeUtil.addImplicitGeneralTypeTo(target.getResult(),
-					SysMLPackage.eINSTANCE.getSubsetting(), ((Expression)collectionExpression).getResult());
-		}
-	}
-	
 }

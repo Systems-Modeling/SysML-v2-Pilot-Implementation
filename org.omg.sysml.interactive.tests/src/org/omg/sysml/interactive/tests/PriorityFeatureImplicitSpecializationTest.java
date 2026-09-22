@@ -23,45 +23,33 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.FeatureTyping;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TriggerInvocationExpression;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.ViewpointUsage;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 /**
- * Behavior-contract regression tests for the "pre-default feature" rules
- * (variant FeatureTyping, OperatorExpression FeatureTyping, trigger-at
- * FeatureTyping, requirement assume/require constraint subsetting, framed
- * concern subsetting, and the pre-existing verified-requirement bug). Checks
- * the raw candidate through {@link TypeUtil#getImplicitGeneralTypesFor(Type)}
- * before transformation, then transforms and checks the same expectation
- * against the materialized {@code getOwnedSpecialization()}.
- *
- * <p>Two branches are not covered here and are left as explicit gaps rather
- * than forced: the {@code ReferenceUsage} transition payload chaining (no
- * minimal, self-contained textual form was found without a deeper grammar
- * investigation) and the {@code SatisfyRequirementUsage} of a
- * {@code ViewpointUsage} "satisfied" branch (no textual construct was found
- * that reliably creates an explicit {@code SatisfyRequirementUsage} owned by
- * a {@code view def} whose satisfied requirement is a nested
- * {@code viewpoint} usage; the fixtures only show implicit view/viewpoint
- * ownership without a visible satisfy relationship).</p>
+ * Tests the rules of the priority families ({@code PRIORITY_EXCLUSIVE} and {@code PRIORITY}). The
+ * transition-trigger AcceptActionUsage is covered by
+ * {@code ActionUsageImplicitSpecializationTest.triggerAcceptActionGetsNoDefaultTyping}.
+ * <p>
  */
 public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitSpecializationTest {
 
 	/**
 	 * A {@code variant} member of a {@code variation} Definition gets a
-	 * FeatureTyping to the owning variation Definition itself (SysML
-	 * &sect;8.4.2.3 "Variation Definitions and Usages").
+	 * FeatureTyping to the owning variation Definition itself
+	 * ({@code checkUsageVariationDefinitionSpecialization}, SysML &sect;8.4.2.3
+	 * "Variation Definitions and Usages").
 	 */
 	@Test
 	public void variantOfAVariationDefinitionGetsFeatureTypingToIt() throws Exception {
@@ -74,22 +62,15 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 					variant attribute a1;
 					variant attribute a2;
 				}
-				""");
+				""", true);
 		AttributeUsage a1 = findByName(resource, "a1", AttributeUsage.class);
 		Type choices = findByName(resource, "AttributeChoices", Type.class);
 		assertTrue(UsageUtil.isVariant(a1));
-
-		// The old adapter mechanism doesn't expose a kind-tagged candidate
-		// list through the public TypeUtil facade, but TypeAdapter itself
-		// keeps its raw candidates in a Map<EClass, List<Type>> keyed by
-		// specialization kind: triggering computation through the no-arg
-		// getImplicitGeneralTypes() first, then reading the FEATURE_TYPING
-		// bucket directly, reproduces the same kind-filtered check.
-		TypeAdapter adapter = (TypeAdapter) ElementUtil.getElementAdapter(a1);
-		adapter.getImplicitGeneralTypes();
-		boolean typedByChoices = adapter.getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).contains(choices);
-		assertTrue("Expected a1 to be FeatureTyping'd by AttributeChoices, got "
-				+ adapter.getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING), typedByChoices);
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(a1);
+		boolean typedByChoices = candidates.stream()
+				.anyMatch(candidate -> candidate.specializationKind() == SysMLPackage.Literals.FEATURE_TYPING
+						&& candidate.generalType() == choices);
+		assertTrue("Expected a1 to be FeatureTyping'd by AttributeChoices, got " + candidates, typedByChoices);
 
 		ElementUtil.transformAll(resource, true);
 		boolean materializedTypedByChoices = a1.getOwnedSpecialization().stream()
@@ -100,8 +81,9 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 
 	/**
 	 * An {@link OperatorExpression} (here, integer addition) gets a
-	 * FeatureTyping to the resolved operator function from the Kernel
-	 * Function Library (KerML &sect;8.3.4.8.17 "OperatorExpression").
+	 * FeatureTyping to the resolved operator function from the Kernel Function
+	 * Library (KerML &sect;8.3.4.8.17 "OperatorExpression"; narrative
+	 * &sect;7.4.9.2 "Operator Expressions").
 	 */
 	@Test
 	public void operatorExpressionGetsFeatureTypingToResolvedOperator() throws Exception {
@@ -112,12 +94,12 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 				attribute def A {
 					attribute x = 1 + 2;
 				}
-				""");
+				""", true);
 		OperatorExpression plus = findSingle(resource, OperatorExpression.class);
-		TypeAdapter adapter = (TypeAdapter) ElementUtil.getElementAdapter(plus);
-		adapter.getImplicitGeneralTypes();
-		boolean typed = !adapter.getImplicitGeneralTypes(SysMLPackage.Literals.FEATURE_TYPING).isEmpty();
-		assertTrue("Expected a FeatureTyping candidate for the '+' OperatorExpression", typed);
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(plus);
+		boolean typed = candidates.stream()
+				.anyMatch(candidate -> candidate.specializationKind() == SysMLPackage.Literals.FEATURE_TYPING);
+		assertTrue("Expected a FeatureTyping candidate for the '+' OperatorExpression, got " + candidates, typed);
 
 		ElementUtil.transformAll(resource, true);
 		boolean materializedTyped = plus.getOwnedSpecialization().stream()
@@ -140,9 +122,9 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 				action a1 {
 					then accept at new Time::Iso8601DateTime("2022-01-30T01:00:00Z");
 				}
-				""");
+				""", true);
 		TriggerInvocationExpression trigger = findSingle(resource, TriggerInvocationExpression.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(trigger), "Triggers::TriggerAt");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(trigger), "Triggers::TriggerAt");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(trigger, "Triggers::TriggerAt");
@@ -150,9 +132,10 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 
 	/**
 	 * An {@code assume constraint} member of a {@code requirement def} gets
-	 * subsetting to {@code Requirements::RequirementCheck::assumptions}
-	 * (SysML &sect;8.3.20.4 "ConstraintUsage", &sect;8.3.21.7
-	 * "RequirementConstraintMembership").
+	 * {@code checkConstraintUsageRequirementConstraintSpecialization} (SysML
+	 * &sect;8.3.20.4 "ConstraintUsage", &sect;8.3.21.7
+	 * "RequirementConstraintMembership"): subsetting
+	 * {@code Requirements::RequirementCheck::assumptions}.
 	 */
 	@Test
 	public void assumeConstraintGetsAssumptionSubsetting() throws Exception {
@@ -165,9 +148,9 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 				requirement def R {
 					assume constraint c1 : C;
 				}
-				""");
+				""", true);
 		ConstraintUsage c1 = findByName(resource, "c1", ConstraintUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(c1), "Requirements::RequirementCheck::assumptions");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(c1), "Requirements::RequirementCheck::assumptions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(c1, "Requirements::RequirementCheck::assumptions");
@@ -175,7 +158,8 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 
 	/**
 	 * A {@code require constraint} member of a {@code requirement def} gets
-	 * the sibling subsetting to {@code Requirements::RequirementCheck::constraints}.
+	 * the sibling {@code checkConstraintUsageRequirementConstraintSpecialization}
+	 * branch: subsetting {@code Requirements::RequirementCheck::constraints}.
 	 */
 	@Test
 	public void requireConstraintGetsRequirementSubsetting() throws Exception {
@@ -188,18 +172,19 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 				requirement def R {
 					require constraint c1 : C;
 				}
-				""");
+				""", true);
 		ConstraintUsage c1 = findByName(resource, "c1", ConstraintUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(c1), "Requirements::RequirementCheck::constraints");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(c1), "Requirements::RequirementCheck::constraints");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(c1, "Requirements::RequirementCheck::constraints");
 	}
 
 	/**
-	 * A framed {@link ConcernUsage} (via {@code frame}) gets subsetting to
-	 * {@code Requirements::RequirementCheck::concerns} (SysML &sect;8.3.21.4
-	 * "ConcernUsage", &sect;8.3.21.5 "FramedConcernMembership").
+	 * A framed {@link ConcernUsage} (via {@code frame}) gets
+	 * {@code checkConcernUsageFramedConcernSpecialization} (SysML &sect;8.3.21.4
+	 * "ConcernUsage", &sect;8.3.21.5 "FramedConcernMembership"): subsetting
+	 * {@code Requirements::RequirementCheck::concerns}.
 	 */
 	@Test
 	public void framedConcernGetsConcernSubsetting() throws Exception {
@@ -212,7 +197,7 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 				requirement def R2 {
 					frame c3;
 				}
-				""");
+				""", true);
 		ConcernUsage framed = null;
 		for (var contents = resource.getAllContents(); contents.hasNext();) {
 			Object object = contents.next();
@@ -222,25 +207,22 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 			}
 		}
 		assertNotNull("Expected a framed ConcernUsage", framed);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(framed), "Requirements::RequirementCheck::concerns");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(framed), "Requirements::RequirementCheck::concerns");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(framed, "Requirements::RequirementCheck::concerns");
 	}
 
 	/**
-	 * A verified {@link RequirementUsage} (via {@code verify} in a
-	 * {@code verification def}'s objective) is correctly detected by
-	 * {@code UsageUtil.isVerifiedRequirement}.
-	 *
-	 * <p><b>Known pre-existing bug, not fixed here:</b> the actual subsetting
-	 * this branch resolves through {@code ImplicitGeneralizationMap}
-	 * (key {@code RequirementUsageImpl.class, "verification"}) does not appear,
-	 * because the map's qualified name is {@code Verifications::VerificationCase::
-	 * obj::requirementVerifications} while the real standard library package is
-	 * {@code VerificationCases}. The library lookup therefore silently fails to
-	 * resolve and no candidate is added. This test asserts today's actual
-	 * (buggy) behavior as the pre-refactoring baseline.</p>
+	 * A verified {@link RequirementUsage} (via {@code verify} in a {@code verification def}
+	 * objective) is detected by {@code UsageUtil.isVerifiedRequirement}, which selects the
+	 * {@code checkRequirementUsageRequirementVerificationSpecialization} branch (SysML
+	 * &sect;8.3.21.9).
+	 * <p>
+	 * <b>Known bug:</b> the map entry {@code (RequirementUsageImpl, "verification")} names
+	 * {@code Verifications::VerificationCase::obj::requirementVerifications}, but the library
+	 * package is {@code VerificationCases}. The lookup fails and no candidate is added; this test
+	 * asserts that current behavior until the map entry is fixed.
 	 */
 	@Test
 	public void verifiedRequirementGetsVerificationSubsetting() throws Exception {
@@ -259,7 +241,7 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 						verify r;
 					}
 				}
-				""");
+				""", true);
 		RequirementUsage verified = null;
 		for (var contents = resource.getAllContents(); contents.hasNext();) {
 			Object object = contents.next();
@@ -270,9 +252,9 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 		assertNotNull("Expected the anonymous RequirementUsage created by 'verify r;' to be detected"
 				+ " as a verified requirement", verified);
 		// Document the current (buggy) outcome rather than the spec-correct one — see class Javadoc above.
-		assertNotContains(TypeUtil.getImplicitGeneralTypesFor(verified),
+		assertNotContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(verified),
 				"Verifications::VerificationCase::obj::requirementVerifications");
-		assertNotContains(TypeUtil.getImplicitGeneralTypesFor(verified),
+		assertNotContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(verified),
 				"VerificationCases::VerificationCase::obj::requirementVerifications");
 
 		// The bug persists after materialization too: neither the broken nor
@@ -281,5 +263,41 @@ public class PriorityFeatureImplicitSpecializationTest extends AbstractImplicitS
 		assertOwnedSpecializationNotContains(verified, "Verifications::VerificationCase::obj::requirementVerifications");
 		assertOwnedSpecializationNotContains(verified, "VerificationCases::VerificationCase::obj::requirementVerifications");
 	}
-	
+
+	/**
+	 * A SatisfyRequirementUsage owned by a ViewDefinition that satisfies a ViewpointUsage subsets
+	 * {@code Views::View::viewpointSatisfactions}
+	 * ({@code checkViewpointUsageViewpointSatisfactionSpecialization}, SysML &sect;8.3.26.9). The
+	 * candidate is raw only: the satisfaction also subsets the satisfied viewpoint {@code vp},
+	 * which already subsets {@code Views::View::viewpointSatisfactions}, so the reduced view omits
+	 * it as redundant.
+	 */
+	@Test
+	public void viewpointSatisfiedByAViewSubsetsTheViewpointSatisfactions() throws Exception {
+		// viewpoint def VP;
+		// view def V {
+		//     viewpoint vp : VP;
+		//     satisfy vp;
+		// }
+		Resource resource = parse("viewpoint.sysml", """
+				viewpoint def VP;
+				view def V {
+					viewpoint vp : VP;
+					satisfy vp;
+				}
+				""", true);
+		SatisfyRequirementUsage satisfaction = findSingle(resource, SatisfyRequirementUsage.class);
+		ViewpointUsage viewpoint = findByName(resource, "vp", ViewpointUsage.class);
+
+		// The satisfied requirement is the ViewpointUsage vp and there is no "by" clause.
+		var candidates = getImplicitSpecializationService().getImplicitSpecializationCandidates(satisfaction);
+		assertContains(candidates, "Views::View::viewpointSatisfactions");
+
+		// vp, a viewpoint of a view, subsets Views::View::viewpointSatisfactions itself.
+		assertContains(getImplicitSpecializationService().getImplicitSpecializationCandidates(viewpoint),
+				"Views::View::viewpointSatisfactions");
+		// Hence the reduced view of the satisfaction, which subsets vp, omits the redundant candidate.
+		assertNotContains(getImplicitSpecializationService().getImplicitSpecializations(satisfaction),
+				"Views::View::viewpointSatisfactions");
+	}
 }

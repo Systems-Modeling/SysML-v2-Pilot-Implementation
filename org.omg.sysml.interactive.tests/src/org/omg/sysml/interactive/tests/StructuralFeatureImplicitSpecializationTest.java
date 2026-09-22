@@ -20,9 +20,10 @@ package org.omg.sysml.interactive.tests;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
-import org.omg.sysml.adapter.TypeAdapter;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
@@ -30,29 +31,24 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.IfActionUsage;
 import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
+import org.omg.sysml.logic.implicit.specialization.api.ImplicitSpecialization;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the structural, non-subtype-selection
- * defaults ({@code addBoundValueSubsetting}, {@code addParticipantSubsetting},
- * and several small ownership-conditioned mapped defaults). Checks the raw
- * candidate through {@link TypeUtil#getImplicitGeneralTypesFor(Type)} (or, for
- * the kind-tagged first test, the underlying {@link TypeAdapter}) before
- * transformation, then transforms and checks the same expectation against the
- * materialized {@code getOwnedSpecialization()}.
+ * Tests the additional structural defaults of Features: bound-value and participant
+ * subsettings, and ownership-conditioned library defaults.
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@code getOwnedSpecialization()} after it.
  */
 public class StructuralFeatureImplicitSpecializationTest extends AbstractImplicitSpecializationTest{
 
 	/**
-	 * A directionless, non-default-valued Feature with no explicit
-	 * specialization must subset the result parameter of its value Expression
-	 * (KerML &sect;8.4.4.11 "Feature Values Semantics"). The target is a
-	 * synthesized feature chain (value expression -&gt; its result parameter),
-	 * not a named library type, so this test asserts the Subsetting's general
-	 * is a Feature distinct from the ordinary "attribute values" default
-	 * rather than comparing qualified names.
+	 * A directionless, non-default valued Feature with no explicit specialization subsets the
+	 * result of its value Expression ({@code checkFeatureValuationSpecialization}, KerML
+	 * &sect;8.4.4.11). The general is a synthesized chain, so the test checks for a Feature
+	 * general distinct from the attribute default rather than a qualified name.
 	 */
 	@Test
 	public void nonDefaultValuedFeatureSubsetsItsValueExpressionResult() throws Exception {
@@ -64,20 +60,14 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 				part def P {
 					attribute x = 1;
 				}
-				""");
+				""", true);
 		Feature x = findByName(resource, "x", Feature.class);
-
-		// The old adapter mechanism doesn't expose a kind-tagged candidate
-		// list through the public TypeUtil facade, but TypeAdapter itself
-		// keeps its raw candidates in a Map<EClass, List<Type>> keyed by
-		// specialization kind: triggering computation through the no-arg
-		// getImplicitGeneralTypes() first, then reading the SUBSETTING
-		// bucket directly, reproduces the same kind-filtered check.
-		TypeAdapter adapter = (TypeAdapter) ElementUtil.getElementAdapter(x);
-		adapter.getImplicitGeneralTypes();
-		boolean hasChainSubsetting = adapter.getImplicitGeneralTypes(SysMLPackage.Literals.SUBSETTING).stream()
-				.anyMatch(general -> general instanceof Feature feature && !feature.getOwnedFeatureChaining().isEmpty());
-		assertTrue("Expected a feature-chain Subsetting", hasChainSubsetting);
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(x);
+		boolean hasChainSubsetting = candidates.stream()
+				.anyMatch(candidate -> candidate.specializationKind() == SysMLPackage.Literals.SUBSETTING
+						&& candidate.generalType() instanceof Feature general
+						&& !general.getOwnedFeatureChaining().isEmpty());
+		assertTrue("Expected a feature-chain Subsetting among " + describe(candidates), hasChainSubsetting);
 
 		ElementUtil.transformAll(resource, true);
 		boolean materializedChainSubsetting = x.getOwnedSpecialization().stream()
@@ -89,13 +79,10 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 	}
 
 	/**
-	 * A Feature with {@code isEnd = true} owned by a Connector (or Association)
-	 * without an explicit redefinition must subset {@code Links::Link::participant}
-	 * (KerML &sect;8.3.3.3.4 "Feature"; semantics &sect;8.4.4.5 "Associations
-	 * Semantics"). Uses three ends (not two): a 2-end connector's ends
-	 * implicitly redefine {@code Connections::BinaryConnection::source}/
-	 * {@code target} (a distinct, higher-priority rule), which suppresses this
-	 * one — confirmed empirically while writing this test.
+	 * An end Feature of a Connector without redefinition subsets {@code Links::Link::participant}
+	 * ({@code checkFeatureEndSpecialization}, KerML &sect;8.3.3.3.4). The connector has three
+	 * ends: the ends of a binary connector redefine {@code source} and {@code target}, which
+	 * suppresses this rule.
 	 */
 	@Test
 	public void connectorEndSubsetsTheStandardParticipant() throws Exception {
@@ -106,9 +93,9 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 					end item b;
 					end item c;
 				}
-				""");
+				""", true);
 		Feature a = findByName(resource, "a", Feature.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(a), "Links::Link::participant");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(a), "Links::Link::participant");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(a, "Links::Link::participant");
@@ -116,7 +103,8 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 
 	/**
 	 * A composite {@code ConstraintUsage} nested under an {@code ItemDefinition}
-	 * subsets {@code Items::Item::checkedConstraints} (SysML Table 32,
+	 * subsets {@code Items::Item::checkedConstraints}.
+	 * {@code checkConstraintUsageCheckedConstraintSpecialization} (SysML Table 32,
 	 * &sect;8.4.1; narrated &sect;8.4.6 "Items Semantics").
 	 */
 	@Test
@@ -128,17 +116,21 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 				item def I {
 					constraint c { 1 == 1 }
 				}
-				""");
+				""", true);
 		ConstraintUsage c = findByName(resource, "c", ConstraintUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(c), "Items::Item::checkedConstraints");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(c), "Items::Item::checkedConstraints");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(c, "Items::Item::checkedConstraints");
 	}
 
+	// TODO: cover the "subobject" default of a PortUsage (isStructureOwnedComposite). A "port p;"
+	// nested in a "part def" is not composite, and no textual form of a composite port was found.
+
 	/**
 	 * A composite {@code ConnectionUsage} owned by an {@code ItemDefinition}
-	 * counts as a "subitem", giving it the "subpart" default (reused for
+	 * counts as a "subitem" ({@code isSubitem}), giving it the "subpart" default
+	 * ({@code checkPartUsageSubpartSpecialization}, reused for
 	 * {@code ConnectionUsage} because it is also a {@code PartUsage}; SysML
 	 * Table 32 &sect;8.4.1).
 	 */
@@ -151,18 +143,19 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 				item def I {
 					connection c;
 				}
-				""");
+				""", true);
 		ConnectionUsage c = findByName(resource, "c", ConnectionUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(c), "Items::Item::subparts");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(c), "Items::Item::subparts");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(c, "Items::Item::subparts");
 	}
 
 	/**
-	 * An {@code IfActionUsage} with an {@code else} branch gets the "has an
-	 * else clause" outcome, subsetting {@code Actions::ifThenElseActions}
-	 * (SysML Table 32, &sect;8.4.1; narrated &sect;8.4.13 "Actions Semantics").
+	 * An {@code IfActionUsage} with an {@code else} branch gets
+	 * {@code checkIfActionUsageSpecialization}'s "has an else clause" outcome,
+	 * subsetting {@code Actions::ifThenElseActions} (SysML Table 32, &sect;8.4.1;
+	 * narrated &sect;8.4.13 "Actions Semantics").
 	 */
 	@Test
 	public void ifActionWithElseGetsTheIfThenElseDefault() throws Exception {
@@ -183,9 +176,9 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 						action B2;
 					}
 				}
-				""");
+				""", true);
 		IfActionUsage ifAction = findSingle(resource, IfActionUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(ifAction), "Actions::ifThenElseActions");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(ifAction), "Actions::ifThenElseActions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(ifAction, "Actions::ifThenElseActions");
@@ -194,7 +187,7 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 	/**
 	 * A {@code PerformActionUsage} owned by a {@code PartDefinition} gets the
 	 * "performedAction" default, {@code Parts::Part::performedActions}
-	 * (SysML Table 32, &sect;8.4.1).
+	 * ({@code checkPerformActionUsageSpecialization}, SysML Table 32, &sect;8.4.1).
 	 */
 	@Test
 	public void performActionOwnedByAPartGetsThePerformedActionDefault() throws Exception {
@@ -209,9 +202,9 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 					action a : A;
 					perform a;
 				}
-				""");
+				""", true);
 		PerformActionUsage perform = findSingle(resource, PerformActionUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(perform), "Parts::Part::performedActions");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(perform), "Parts::Part::performedActions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(perform, "Parts::Part::performedActions");
@@ -220,8 +213,11 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 	/**
 	 * A composite {@code ConcernUsage} nested directly under a
 	 * {@code RequirementDefinition} (not via a {@code require}/{@code assume}
-	 * constraint membership) counts as a subrequirement, resolving to
-	 * {@code Requirements::RequirementCheck::subrequirements} (SysML Table 32,
+	 * constraint membership) counts as a subrequirement
+	 * ({@code UsageUtil.isSubrequirement}), resolving through
+	 * {@code RequirementUsageImpl}'s "subrequirement" map entry to
+	 * {@code Requirements::RequirementCheck::subrequirements}
+	 * ({@code checkRequirementUsageSubrequirementSpecialization}, SysML Table 32,
 	 * &sect;8.4.1).
 	 */
 	@Test
@@ -233,14 +229,17 @@ public class StructuralFeatureImplicitSpecializationTest extends AbstractImplici
 				requirement def R {
 					concern c;
 				}
-				""");
+				""", true);
 		ConcernUsage c = findByName(resource, "c", ConcernUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(c), "Requirements::RequirementCheck::subrequirements");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(c), "Requirements::RequirementCheck::subrequirements");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(c, "Requirements::RequirementCheck::subrequirements");
 	}
 
-
-	
+	private static String describe(List<ImplicitSpecialization> candidates) {
+		return candidates.stream()
+				.map(candidate -> candidate.specializationKind().getName() + " -> " + candidate.generalType())
+				.toList().toString();
+	}
 }

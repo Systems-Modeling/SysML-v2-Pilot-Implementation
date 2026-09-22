@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2023 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -21,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConcernUsage;
-import org.omg.sysml.util.UsageUtil;
 
 public class ConcernUsageAdapter extends RequirementUsageAdapter {
 
@@ -32,37 +32,6 @@ public class ConcernUsageAdapter extends RequirementUsageAdapter {
 	@Override
 	public ConcernUsage getTarget() {
 		return (ConcernUsage)super.getTarget();
-	}
-	
-	/**
-	 * @satisfies checkRequirementUsageSubrequirementSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (UsageUtil.isSubrequirement(getTarget())) {
-			addDefaultGeneralType("subrequirement");
-		}
-	}
-	
-	/**
-	 * @satisfies checkConcernUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
-	}
-	
-	/**
-	 * @satisfies checkConcernUsageFramedConcernSpecialization
-	 */
-	@Override
-	public void addRequirementConstraintSubsetting() {
-		if (UsageUtil.isFramedConcern(getTarget())) {
-			addSubsetting(getDefaultSupertype("concern"));
-		} else {
-			super.addRequirementConstraintSubsetting();
-		}
 	}
 	
 }

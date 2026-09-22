@@ -19,6 +19,7 @@
 package org.omg.sysml.interactive.tests;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
@@ -26,37 +27,21 @@ import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.IndexExpression;
+import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.SelectExpression;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationCache;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the expression-result contextual
- * rules (KerML &sect;8.4.4.9 "Expressions Semantics"). Each test navigates to
- * the specific expression's own {@code getResult()} feature via the live
- * parsed model — the same feature the contextual rule itself targets —
- * rather than by declared name, since result features are anonymous, and
- * compares against the exact object the rule composes its candidate from
- * wherever that object is a synthesized (not library-named) feature. Checks
- * the raw candidate through {@link TypeUtil#getImplicitGeneralTypesFor(Type)}
- * before transformation, then transforms and checks the same expectation
- * against the materialized {@code getOwnedSpecialization()}.
- *
- * <p>Not covered here: {@code FeatureChainExpression}'s own result rule
- * subsets a synthesized two-hop chain feature with no simple identity or
- * name to assert against without more investigation than this pass allows —
- * skipped rather than forcing a fragile structural assertion. The
- * {@code InvocationExpression} branch of the instantiation-result rule is
- * also skipped: it shares the exact same code path already exercised by the
- * {@code ConstructorExpression} test below, and constructing a working
- * non-constructor, non-Function invocation expression textually did not
- * succeed in the time available.</p>
+ * Tests the rules of the {@code EXPRESSION_RESULT} family (KerML §8.4.4.9), defined in
+ * the "Computation order" section of {@code org.omg.sysml.logic/doc/implicit-specialization.md}. Each test reaches the
+ * anonymous result feature through {@code getResult()}.
+ * <p>
+ * Not covered: the FeatureChainExpression result rule, whose general is a synthesized chain.
  */
 public class ContextualExpressionResultImplicitSpecializationTest extends AbstractImplicitSpecializationTest{
-
-	
 
 	/**
 	 * A {@link FeatureReferenceExpression}'s result must subset the
@@ -71,16 +56,15 @@ public class ContextualExpressionResultImplicitSpecializationTest extends Abstra
 					feature original;
 					feature copy = original;
 				}
-				""");
+				""", true);
 		Feature original = findByName(resource, "original", Feature.class);
 		Feature copy = findByName(resource, "copy", Feature.class);
 		FeatureReferenceExpression expression = (FeatureReferenceExpression)FeatureUtil.getValuationFor(copy).getValue();
 		Feature resultFeature = expression.getResult();
 		assertNotNull("Missing result feature", resultFeature);
 
-		// Unlike the constructor-result rule below, this rule is computed while
-		// transforming the owning expression on the old adapter mechanism, not
-		// lazily before it; transform first.
+		assertContainsGeneral( getImplicitSpecializationService().getImplicitSpecializationCandidates(resultFeature), original);
+
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContainsGeneral(resultFeature, original);
 	}
@@ -102,7 +86,7 @@ public class ContextualExpressionResultImplicitSpecializationTest extends Abstra
 					feature a : A[*];
 					feature b = a#(1);
 				}
-				""");
+				""", true);
 		Feature b = findByName(resource, "b", Feature.class);
 		IndexExpression expression = (IndexExpression)FeatureUtil.getValuationFor(b).getValue();
 		Feature resultFeature = expression.getResult();
@@ -110,8 +94,45 @@ public class ContextualExpressionResultImplicitSpecializationTest extends Abstra
 		Feature sequenceResult = expression.getArgument().get(0).getResult();
 		assertNotNull("Missing sequence argument result", sequenceResult);
 
+		assertContainsGeneral( getImplicitSpecializationService().getImplicitSpecializationCandidates(resultFeature), sequenceResult);
+
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContainsGeneral(resultFeature, sequenceResult);
+	}
+
+	/**
+	 * Regression test: the raw result of an {@link IndexExpression}'s result is complete. The index
+	 * rule reads the arguments of the expression, which are ordered by the parameters their owned
+	 * features redefine, including the result being computed. The rules of the
+	 * {@code EXPRESSION_RESULT} family run after the redefinitions of that result are published, so
+	 * this read uses them instead of reentering the computation; when the index rule ran before
+	 * the redefinitions, the read was a cycle and the result was cached as provisional.
+	 */
+	@Test
+	public void indexExpressionResultIsComplete() throws Exception {
+		// part def Wheel;
+		// part def Vehicle {
+		//     part wheels : Wheel[2];
+		//     ref frontWheel = wheels#(1);
+		// }
+		Resource resource = parse("indexComplete.sysml", """
+				part def Wheel;
+				part def Vehicle {
+					part wheels : Wheel[2];
+					ref frontWheel = wheels#(1);
+				}
+				""", true);
+		IndexExpression expression = findSingle(resource, IndexExpression.class);
+		Feature resultFeature = expression.getResult();
+		assertNotNull("Missing result feature", resultFeature);
+
+		// Computing the raw candidates fills the cache of the result feature.
+		getImplicitSpecializationService().getImplicitSpecializationCandidates(resultFeature);
+		IImplicitSpecializationCache cache = IImplicitSpecializationCache.find(resultFeature);
+		assertNotNull("Missing cache of the result feature", cache);
+		// Expected: complete. It was provisional when the index rule read the arguments before the
+		// redefinitions of the result were published.
+		assertTrue("The raw result of the index expression result is provisional", cache.isComplete());
 	}
 
 	/**
@@ -129,7 +150,7 @@ public class ContextualExpressionResultImplicitSpecializationTest extends Abstra
 					feature x : Integer[*] = (1, 2, 3);
 					feature d = x.?{in xx; xx != null};
 				}
-				""");
+				""", true);
 		Feature d = findByName(resource, "d", Feature.class);
 		SelectExpression expression = (SelectExpression)FeatureUtil.getValuationFor(d).getValue();
 		Feature resultFeature = expression.getResult();
@@ -137,16 +158,15 @@ public class ContextualExpressionResultImplicitSpecializationTest extends Abstra
 		Feature firstArgumentResult = expression.getArgument().get(0).getResult();
 		assertNotNull("Missing first argument result", firstArgumentResult);
 
+		assertContainsGeneral( getImplicitSpecializationService().getImplicitSpecializationCandidates(resultFeature), firstArgumentResult);
+
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContainsGeneral(resultFeature, firstArgumentResult);
 	}
 
 	/**
-	 * A {@link ConstructorExpression}'s result gets a FeatureTyping to the
-	 * instantiated type when that type is a Classifier (not a Feature).
-	 * KerML §8.4.4.9.4 Constructor Expressions,
-	 * {@code checkConstructorExpressionResultSpecialization} (also Table 10,
-	 * §8.4.4.1).
+	 * A {@link ConstructorExpression}'s result is typed by the instantiated type when that type
+	 * is a Classifier (KerML §8.4.4.9.4, {@code checkConstructorExpressionResultSpecialization}).
 	 */
 	@Test
 	public void constructorExpressionResultGetsFeatureTypingToTheInstantiatedClassifier() throws Exception {
@@ -156,17 +176,45 @@ public class ContextualExpressionResultImplicitSpecializationTest extends Abstra
 					classifier L;
 					feature l = new L();
 				}
-				""");
+				""", true);
 		Feature l = findByName(resource, "l", Feature.class);
 		Type instantiatedType = findByName(resource, "L", Type.class);
 		ConstructorExpression expression = (ConstructorExpression)FeatureUtil.getValuationFor(l).getValue();
 		Feature resultFeature = expression.getResult();
 		assertNotNull("Missing result feature", resultFeature);
 
-		assertContainsGeneral(TypeUtil.getImplicitGeneralTypesFor(resultFeature), instantiatedType);
+		assertContainsGeneral( getImplicitSpecializationService().getImplicitSpecializationCandidates(resultFeature), instantiatedType);
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContainsGeneral(resultFeature, instantiatedType);
 	}
 
+	/**
+	 * The result of an InvocationExpression whose instantiated type is a Behavior that is not a
+	 * Function is typed by that Behavior ({@code checkInvocationExpressionBehaviorResultSpecialization},
+	 * KerML &sect;8.3.4.8.8).
+	 */
+	@Test
+	public void invocationOfABehaviorTypesTheResultByTheBehavior() throws Exception {
+		// action def Move;
+		// part p {
+		//     ref r = Move();
+		// }
+		Resource resource = parse("invocation.sysml", """
+				action def Move;
+				part p {
+					ref r = Move();
+				}
+				""", true);
+		Type move = findByName(resource, "Move", Type.class);
+		InvocationExpression invocation = findSingle(resource, InvocationExpression.class);
+		Feature resultFeature = invocation.getResult();
+		assertNotNull("Missing result feature", resultFeature);
+
+		// Move is an ActionDefinition, a Behavior but not a Function: the result is typed by it.
+		assertContainsGeneral(getImplicitSpecializationService().getImplicitSpecializationCandidates(resultFeature), move);
+
+		ElementUtil.transformAll(resource, true);
+		assertOwnedSpecializationContainsGeneral(resultFeature, move);
+	}
 }

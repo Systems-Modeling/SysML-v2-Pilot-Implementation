@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -32,16 +33,4 @@ public class ExhibitStateUsageAdapter extends StateUsageAdapter {
 	public ExhibitStateUsage getTarget() {
 		return (ExhibitStateUsage)super.getTarget();
 	}
-	
-	/**
-	 * @satisfies checkExhibitStateUsageSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (isPerformedAction()) {
-			addDefaultGeneralType("performedAction");
-		}
-	}
-		
 }

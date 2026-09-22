@@ -27,35 +27,33 @@ import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the "relationship-shaped" default
- * key selection: Association/Connector/ConnectionDefinition/FlowDefinition/
- * Multiplicity/TransitionUsage/EventOccurrenceUsage/Flow. Checks the raw
- * candidate through {@link TypeUtil#getImplicitGeneralTypesFor(Type)} before
- * transformation, then transforms and checks the same expectation against
- * the materialized {@code getOwnedSpecialization()}.
+ * Tests the default-key selection of the {@code DEFAULT_KEY} rules for relationship-like types.
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@code getOwnedSpecialization()} after it.
  */
 public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractImplicitSpecializationTest{
 
-
 	/**
-	 * An Association with exactly two owned end features picks "binary"
-	 * ({@code checkAssociationBinarySpecialization}, KerML Table 10
-	 * &sect;8.4.4.1), else "base" ({@code checkAssociationSpecialization}).
+	 * {@code caseAssociation}: an Association with exactly two owned end
+	 * features picks "binary" ({@code checkAssociationBinarySpecialization},
+	 * KerML Table 10 &sect;8.4.4.1), else "base"
+	 * ({@code checkAssociationSpecialization}).
 	 */
 	@Test
 	public void associationBinaryVsBase() throws Exception {
 		Resource resource = parse("association.kerml", """
 				assoc Unary { end feature a; }
 				assoc Binary { end feature a; end feature b; }
-				""");
+				""", true);
 		Association unary = findByName(resource, "Unary", Association.class);
 		Association binary = findByName(resource, "Binary", Association.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(unary), "Links::Link");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(binary), "Links::BinaryLink");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(unary), "Links::Link");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(binary), "Links::BinaryLink");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(unary, "Links::Link");
@@ -63,9 +61,10 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 	}
 
 	/**
-	 * A plain KerML Connector combines "2 ends" with structural typing to pick
-	 * "binary"/"object"/"binaryObject"/"base" ({@code checkConnectorSpecialization}
-	 * and its binary/object/binaryObject variants, KerML Table 10 &sect;8.4.4.1).
+	 * {@code caseConnector}: a plain KerML Connector combines "2 ends" with
+	 * {@code hasStructureType} to pick "binary"/"object"/"binaryObject"/"base"
+	 * ({@code checkConnectorSpecialization} and its binary/object/binaryObject
+	 * variants, KerML Table 10 &sect;8.4.4.1).
 	 */
 	@Test
 	public void connectorCombinesEndCountAndStructureType() throws Exception {
@@ -86,15 +85,15 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 					connector object : S (a, b, e);
 					connector binaryObject : S from a to b;
 				}
-				""");
+				""", true);
 		Connector base3 = findByName(resource, "base3", Connector.class);
 		Connector binary = findByName(resource, "binary", Connector.class);
 		Connector object = findByName(resource, "object", Connector.class);
 		Connector binaryObject = findByName(resource, "binaryObject", Connector.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(base3), "Links::links");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(binary), "Links::binaryLinks");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(object), "Objects::linkObjects");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(binaryObject), "Objects::binaryLinkObjects");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(base3), "Links::links");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(binary), "Links::binaryLinks");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(object), "Objects::linkObjects");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(binaryObject), "Objects::binaryLinkObjects");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(base3, "Links::links");
@@ -104,8 +103,9 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 	}
 
 	/**
-	 * Both ConnectionDefinition and FlowDefinition pick "binary" with exactly
-	 * two owned end features ({@code checkConnectionDefinitionBinarySpecialization},
+	 * {@code caseConnectionDefinition} and {@code caseFlowDefinition}: both
+	 * pick "binary" with exactly two owned end features
+	 * ({@code checkConnectionDefinitionBinarySpecialization},
 	 * {@code checkFlowDefinitionBinarySpecialization}, SysML Table 31
 	 * &sect;8.4.1), else "base".
 	 */
@@ -116,11 +116,11 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 		Resource resource = parse("connectiondef.sysml", """
 				connection def Unary { end item a; }
 				connection def Binary { end item a; end item b; }
-				""");
+				""", true);
 		Type unary = findByName(resource, "Unary", Type.class);
 		Type binary = findByName(resource, "Binary", Type.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(unary), "Connections::Connection");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(binary), "Connections::BinaryConnection");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(unary), "Connections::Connection");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(binary), "Connections::BinaryConnection");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(unary, "Connections::Connection");
@@ -128,27 +128,30 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 	}
 
 	/**
-	 * Textual multiplicities are always parsed as a {@code MultiplicityRange}
-	 * (a {@code Multiplicity} subtype); this test asserts the "feature" key
-	 * target for a multiplicity owned by a Feature ({@code part p[1..3];}).
+	 * {@code caseMultiplicity}: a textual multiplicity is a {@code MultiplicityRange}; one owned
+	 * by a Feature ({@code part p[1..3];}) specializes {@code Base::naturals}.
+	 * <p>
+	 * TODO: cover a multiplicity owned by a Classifier (the "classifier" key); no textual form
+	 * was found for it ({@code part def P[2..5];} does not parse).
 	 */
 	@Test
 	public void multiplicityOwnedByFeature() throws Exception {
 		// part p[1..3];
 		Resource resource = parse("multiplicity.sysml", """
 				part p[1..3];
-				""");
+				""", true);
 		Multiplicity featureOwned = findSingleWhere(resource, Multiplicity.class,
 				m -> m.getOwner() instanceof org.omg.sysml.lang.sysml.Feature);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(featureOwned), "Base::naturals");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(featureOwned), "Base::naturals");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(featureOwned, "Base::naturals");
 	}
 
 	/**
-	 * A composite transition under a {@code StateDefinition}/{@code StateUsage}
-	 * whose source is a {@code StateUsage} picks "stateTransition"
+	 * {@code caseTransitionUsage}: a composite transition under a
+	 * {@code StateDefinition}/{@code StateUsage} whose source is a
+	 * {@code StateUsage} picks "stateTransition"
 	 * ({@code checkTransitionUsageStateSpecialization}, SysML Table 31
 	 * &sect;8.4.1, narrated at &sect;8.4.14.3 Transition Usages).
 	 */
@@ -167,19 +170,20 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 					state starting;
 					transition t1 first off accept Signal then starting;
 				}
-				""");
+				""", true);
 		TransitionUsage transition = findByName(resource, "t1", TransitionUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(transition), "States::StateAction::stateTransitions");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(transition), "States::StateAction::stateTransitions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(transition, "States::StateAction::stateTransitions");
 	}
 
 	/**
-	 * An {@code event} usage owned by an {@code OccurrenceDefinition}/
-	 * {@code OccurrenceUsage} (here a {@code part def}, itself an Occurrence)
-	 * picks "suboccurrence" ({@code checkEventOccurrenceUsageSpecialization},
-	 * SysML Table 32 &sect;8.4.1).
+	 * {@code caseEventOccurrenceUsage}: an {@code event} usage owned by an
+	 * {@code OccurrenceDefinition}/{@code OccurrenceUsage} (here a
+	 * {@code part def}, itself an Occurrence) picks "suboccurrence"
+	 * ({@code checkEventOccurrenceUsageSpecialization}, SysML Table 32
+	 * &sect;8.4.1).
 	 */
 	@Test
 	public void eventOccurrenceOwnedByOccurrenceDefinitionGetsSuboccurrence() throws Exception {
@@ -188,18 +192,19 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 				part def P {
 					event occurrence e;
 				}
-				""");
+				""", true);
 		EventOccurrenceUsage event = findByName(resource, "e", EventOccurrenceUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(event), "Occurrences::Occurrence::timeEnclosedOccurrences");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(event), "Occurrences::Occurrence::timeEnclosedOccurrences");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(event, "Occurrences::Occurrence::timeEnclosedOccurrences");
 	}
 
 	/**
-	 * A plain KerML {@code Flow} (distinct from {@code FlowUsage}) with owned
-	 * end features picks "flow" ({@code checkFlowWithEndsSpecialization},
-	 * KerML Table 10 &sect;8.4.4.1), else "base" ({@code checkFlowSpecialization}).
+	 * {@code caseFlow}: a plain KerML {@code Flow} (distinct from
+	 * {@code FlowUsage}) with owned end features picks "flow"
+	 * ({@code checkFlowWithEndsSpecialization}, KerML Table 10 &sect;8.4.4.1),
+	 * else "base" ({@code checkFlowSpecialization}).
 	 */
 	@Test
 	public void flowWithEndsVsWithoutEnds() throws Exception {
@@ -214,11 +219,11 @@ public class DefaultKeyRelationshipImplicitSpecializationTest extends AbstractIm
 					flow noEnds;
 					flow withEnds from a to b;
 				}
-				""");
+				""", true);
 		Flow noEnds = findByName(resource, "noEnds", Flow.class);
 		Flow withEnds = findByName(resource, "withEnds", Flow.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(noEnds), "Transfers::transfers");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(withEnds), "Transfers::flowTransfers");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(noEnds), "Transfers::transfers");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(withEnds), "Transfers::flowTransfers");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(noEnds, "Transfers::transfers");

@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -19,10 +20,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.TransitionFeatureKind;
-import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
 
 public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 
@@ -34,34 +31,4 @@ public class AcceptActionUsageAdapter extends ActionUsageAdapter {
 		return (AcceptActionUsage)super.getTarget();
 	}
 	
-	// Implicit Generalization
-	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addComputedRedefinitions(null);
-	}
-	
-	@Override
-	public void addDefaultGeneralType() {
-		// Don't add a default type for a transition trigger action because such
-		// an action will always redefine TransitionAction::accepter anyway: checkAcceptActionUsageTriggerActionSpecialization
-		if (!isTriggerAction()) {
-			super.addDefaultGeneralType();
-		}
-	}
-	
-	public boolean isTriggerAction() {
-		FeatureMembership owningFeatureMembership = getTarget().getOwningFeatureMembership();
-		return owningFeatureMembership instanceof TransitionFeatureMembership &&
-				((TransitionFeatureMembership)owningFeatureMembership).getKind() == TransitionFeatureKind.TRIGGER;
-	}
-	
-	// Computed Redefinition
-	
-	@Override
-	public void addComputedRedefinitions(Element skip) {
-		addDefaultGeneralType();
-		super.addComputedRedefinitions(skip);
-	}
-
 }

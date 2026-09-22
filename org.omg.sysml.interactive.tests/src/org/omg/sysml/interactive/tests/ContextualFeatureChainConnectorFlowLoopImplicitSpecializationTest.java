@@ -18,12 +18,14 @@
  */
 package org.omg.sysml.interactive.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.EcoreUtil2;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
@@ -32,34 +34,23 @@ import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.FlowEnd;
 import org.omg.sysml.lang.sysml.ForLoopActionUsage;
 import org.omg.sysml.lang.sysml.ReferenceUsage;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
 
 /**
- * Behavior-contract regression tests for the feature-chain-target,
- * flow-feature and loop-variable contextual rules. On this pre-refactoring
- * mechanism, all three are computed as part of transforming the owning
- * expression/connector/action rather than lazily before it, so each test
- * transforms first, then checks the expectation against the materialized
- * {@code getOwnedRedefinition()}.
- *
- * <p>{@code applyConnectorEndRules} is not covered here: constructing a
- * minimal textual connector whose end directly owns a value Expression
- * (rather than going through an ordinary {@code FeatureValue}) was not
- * confirmed against a working fixture in the time available for this pass —
- * left for a follow-up rather than forcing a guessed, possibly-wrong model.</p>
+ * Tests the rules of the {@code CONTEXT} family for feature-chain targets, flow ends and loop
+ * variables. The families are defined in the "Computation order" section of {@code org.omg.sysml.logic/doc/implicit-specialization.md}. Each test reaches the anonymous feature through the model API used by the rule,
+ * such as {@code sourceTargetFeature()}.
+ * <p>
  */
 public class ContextualFeatureChainConnectorFlowLoopImplicitSpecializationTest extends AbstractImplicitSpecializationTest{
 
-
 	/**
-	 * The nested target feature of a feature-chain expression's source
-	 * parameter must redefine both the standard chain-target library feature
-	 * ({@code ControlFunctions::'.'::source::target}) and the chain
-	 * expression's own {@code targetFeature}. KerML §8.3.4.8.4
-	 * FeatureChainExpression, {@code checkFeatureChainExpressionTargetRedefinition}
-	 * / {@code checkFeatureChainExpressionSourceTargetRedefinition} (Table 11
-	 * Note 5, §8.4.4.1).
+	 * The nested target feature of a feature-chain source parameter redefines both
+	 * {@code ControlFunctions::'.'::source::target} and the expression's {@code targetFeature}
+	 * (KerML §8.3.4.8.4). This redefinition fully determines the feature, so no later rule family
+	 * applies.
 	 */
 	@Test
 	public void featureChainSourceTargetRedefinesTheStandardChainTargetAndTheExpressionTarget() throws Exception {
@@ -73,29 +64,33 @@ public class ContextualFeatureChainConnectorFlowLoopImplicitSpecializationTest e
 					feature v1 : V;
 					feature v1n = v1.n;
 				}
-				""");
+				""", true);
+		// sourceTargetFeature() is an invocation-delegate operation that reads a
+		// nested feature created by lazy linking; force resolution before reading it.
+		EcoreUtil2.resolveLazyCrossReferences(resource, null);
 		Feature v1n = findByName(resource, "v1n", Feature.class);
 		FeatureValue valuation = FeatureUtil.getValuationFor(v1n);
 		assertNotNull("Missing valuation for v1n", valuation);
 		FeatureChainExpression chain = (FeatureChainExpression)valuation.getValue();
-
-		// sourceTargetFeature() is computed while transforming the owning
-		// expression on the old adapter mechanism, not lazily before it;
-		// transform first.
-		ElementUtil.transformAll(resource, true);
 		Feature sourceTarget = chain.sourceTargetFeature();
 		assertNotNull("Missing sourceTargetFeature()", sourceTarget);
+
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(sourceTarget);
+		assertContainsGeneral(candidates, chain.getTargetFeature());
+		assertTrue("Expected a redefinition to the standard chain-target library feature in " + candidates,
+				candidates.stream().anyMatch(c -> "ControlFunctions::'.'::source::target".equals(
+						c.generalType() == null ? null : c.generalType().getQualifiedName())));
+
+		ElementUtil.transformAll(resource, true);
 		assertOwnedRedefinitionContainsGeneral(sourceTarget, chain.getTargetFeature());
 		assertOwnedRedefinitionContainsQualifiedName(sourceTarget, "ControlFunctions::'.'::source::target");
 	}
 
 	/**
 	 * The first owned feature of a {@link FlowEnd} redefines
-	 * {@code Transfers::Transfer::source::sourceOutput} when it is the flow's
-	 * first end, and {@code Transfers::Transfer::target::targetInput} when it
-	 * is the second — {@code checkFeatureFlowFeatureRedefinition} (KerML
-	 * §8.4.4.10.2 Flows), matching the {@code FlowEndImpl} "sourceOutput"/
-	 * "targetInput" entries in {@code ImplicitGeneralizationMap}.
+	 * {@code Transfers::Transfer::source::sourceOutput} for the first end of the flow and
+	 * {@code Transfers::Transfer::target::targetInput} for the second
+	 * ({@code checkFeatureFlowFeatureRedefinition}, KerML §8.4.4.10.2).
 	 */
 	@Test
 	public void flowEndFeaturesRedefineSourceOutputAndTargetInput() throws Exception {
@@ -112,7 +107,7 @@ public class ContextualFeatureChainConnectorFlowLoopImplicitSpecializationTest e
 						in :>> payload : S;
 					}
 				}
-				""");
+				""", true);
 		Flow flow = findByName(resource, "a2", org.omg.sysml.lang.sysml.ActionUsage.class).getOwnedFeature().stream()
 				.filter(Flow.class::isInstance).map(Flow.class::cast).findFirst()
 				.orElseThrow(() -> new AssertionError("Missing owned Flow"));
@@ -123,18 +118,66 @@ public class ContextualFeatureChainConnectorFlowLoopImplicitSpecializationTest e
 		Feature sourceFeature = sourceEnd.getOwnedFeature().get(0);
 		Feature targetFeature = targetEnd.getOwnedFeature().get(0);
 
-		// The old adapter mechanism computes this rule while transforming the
-		// owning Flow, not lazily before it; transform first, per class Javadoc.
+		assertContainsQualifiedName( getImplicitSpecializationService().getImplicitSpecializationCandidates(sourceFeature),
+				"Transfers::Transfer::source::sourceOutput");
+		assertContainsQualifiedName( getImplicitSpecializationService().getImplicitSpecializationCandidates(targetFeature),
+				"Transfers::Transfer::target::targetInput");
+
 		ElementUtil.transformAll(resource, true);
 		assertOwnedRedefinitionContainsQualifiedName(sourceFeature, "Transfers::Transfer::source::sourceOutput");
 		assertOwnedRedefinitionContainsQualifiedName(targetFeature, "Transfers::Transfer::target::targetInput");
 	}
 
 	/**
-	 * A {@code for} loop's loop variable redefines
-	 * {@code Actions::ForLoopAction::var} — SysML §8.3.17.9 ForLoopActionUsage,
-	 * {@code checkForLoopActionUsageVarRedefinition} (narrated §8.4.13.10 Loop
-	 * Action Usages).
+	 * The target feature of a flow nested in a part redefines only its explicit feature and
+	 * {@code Transfers::Transfer::target::targetInput}; it must not redefine the part that owns the
+	 * flow.
+	 * <p>
+	 * KerML §8.4.4.10.2 gives the target FlowEnd feature no redefinition of the flow owner. A rule
+	 * kept from the removed "flow from" notation used to add one for every flow owned by a Feature.
+	 */
+	@Test
+	public void flowTargetFeatureDoesNotRedefineTheFlowOwner() throws Exception {
+		// package FlowTest {
+		//     part def A { out item x; }
+		//     part def B { in item y; }
+		//     part p { part a : A; part b : B; flow a.x to b.y; }
+		// }
+		Resource resource = parse("flowOwner.sysml", """
+				package FlowTest {
+					part def A { out item x; }
+					part def B { in item y; }
+					part p {
+						part a : A;
+						part b : B;
+						flow a.x to b.y;
+					}
+				}
+				""", true);
+		Feature owner = findByName(resource, "p", Feature.class);
+		Flow flow = owner.getOwnedFeature().stream()
+				.filter(Flow.class::isInstance).map(Flow.class::cast).findFirst()
+				.orElseThrow(() -> new AssertionError("Missing owned Flow"));
+		// Target feature: the first owned feature of the second FlowEnd, which explicitly redefines B::y.
+		Feature targetFeature = ((FlowEnd)flow.getOwnedEndFeature().get(1)).getOwnedFeature().get(0);
+
+		// Before transformation, targetInput is the only implicit redefinition; FlowTest::p must not appear.
+		List<String> implicitRedefinitions = getImplicitSpecializationService()
+				.getImplicitSpecializationCandidates(targetFeature).stream()
+				.filter(candidate -> candidate.specializationKind() == SysMLPackage.Literals.REDEFINITION)
+				.map(candidate -> candidate.generalType().getQualifiedName()).toList();
+		assertEquals(List.of("Transfers::Transfer::target::targetInput"), implicitRedefinitions);
+
+		// After transformation, no materialized redefinition targets the owner of the flow.
+		ElementUtil.transformAll(resource, true);
+		assertTrue(targetFeature.getOwnedRedefinition().stream()
+				.noneMatch(redefinition -> redefinition.getRedefinedFeature() == owner));
+	}
+
+	/**
+	 * A {@code for} loop variable redefines {@code Actions::ForLoopAction::var}
+	 * ({@code checkForLoopActionUsageVarRedefinition}, SysML §8.3.17.9) and subsets the sequence
+	 * parameter of the loop.
 	 */
 	@Test
 	public void forLoopVariableRedefinesTheStandardLoopVariableAndSubsetsTheSequence() throws Exception {
@@ -144,7 +187,7 @@ public class ContextualFeatureChainConnectorFlowLoopImplicitSpecializationTest e
 					for n : ScalarValues::Integer in (1, 2, 3) {
 					}
 				}
-				""");
+				""", true);
 		ForLoopActionUsage loop = findByName(resource, "a", org.omg.sysml.lang.sysml.ActionUsage.class)
 				.getOwnedFeature().stream().filter(ForLoopActionUsage.class::isInstance)
 				.map(ForLoopActionUsage.class::cast).findFirst()
@@ -152,10 +195,10 @@ public class ContextualFeatureChainConnectorFlowLoopImplicitSpecializationTest e
 		ReferenceUsage loopVariable = loop.getLoopVariable();
 		assertNotNull("Missing loop variable", loopVariable);
 
-		// Same as the flow case: computed while transforming the owning action.
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(loopVariable);
+		assertContainsQualifiedName(candidates, "Actions::ForLoopAction::var");
+
 		ElementUtil.transformAll(resource, true);
 		assertOwnedRedefinitionContainsQualifiedName(loopVariable, "Actions::ForLoopAction::var");
 	}
-
-
 }

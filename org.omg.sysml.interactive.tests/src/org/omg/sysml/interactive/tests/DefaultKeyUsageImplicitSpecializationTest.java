@@ -37,31 +37,24 @@ import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the "usage-shaped" default key
- * selection: SatisfyRequirementUsage/AssertConstraintUsage negated-vs-base,
- * ViewpointUsage/RequirementUsage/RenderingUsage/ViewUsage/PortUsage
- * subtype-vs-base, PartUsage actor/stakeholder roles, ConnectionUsage
- * binary-vs-base, ItemUsage subitem-vs-base and FlowUsage message-vs-base.
- * Checks the raw candidate through
- * {@link TypeUtil#getImplicitGeneralTypesFor(Type)} before transformation,
- * then transforms and checks the same expectation against the materialized
- * {@code getOwnedSpecialization()}.
- *
- * <p>{@code caseInvariant} is not covered here: KerML's bare {@code inv}
- * construct did not parse cleanly within the time available in a {@code .sysml}
- * resource nor combined with the other constructs here; left as a TODO for a
- * dedicated small file if needed.</p>
+ * Tests the default-key selection of the {@code DEFAULT_KEY} rules for usages.
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@code getOwnedSpecialization()} after it.
+ * <p>
+ * TODO: cover {@code caseInvariant}; the KerML {@code inv} construct does not parse in a
+ * {@code .sysml} resource.
  */
 public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitSpecializationTest{
 
 	/**
-	 * A bare {@code not satisfy} usage picks "negated"
-	 * ({@code checkSatisfyRequirementUsageSpecialization}, SysML Table 32
-	 * &sect;8.4.1), else "base".
+	 * {@code caseSatisfyRequirementUsage}: a bare {@code not satisfy} usage
+	 * picks "negated" ({@code checkSatisfyRequirementUsageSpecialization},
+	 * SysML Table 32 &sect;8.4.1), else "base".
 	 */
 	@Test
 	public void satisfyRequirementNegatedVsBase() throws Exception {
@@ -78,7 +71,7 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 				part p;
 				satisfy r1 by p;
 				not satisfy r2 by p;
-				""");
+				""", true);
 		List<SatisfyRequirementUsage> satisfies = new ArrayList<>();
 		for (var contents = resource.getAllContents(); contents.hasNext();) {
 			var object = contents.next();
@@ -89,8 +82,8 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 		assertTrue("Expected exactly two SatisfyRequirementUsage, found " + satisfies.size(), satisfies.size() == 2);
 		SatisfyRequirementUsage base = satisfies.get(0).isNegated() ? satisfies.get(1) : satisfies.get(0);
 		SatisfyRequirementUsage negated = satisfies.get(0).isNegated() ? satisfies.get(0) : satisfies.get(1);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(base), "Requirements::satisfiedRequirementChecks");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(negated), "Requirements::notSatisfiedRequirementChecks");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(base), "Requirements::satisfiedRequirementChecks");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(negated), "Requirements::notSatisfiedRequirementChecks");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(base, "Requirements::satisfiedRequirementChecks");
@@ -98,7 +91,7 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * {@code assert not} picks "negated"
+	 * {@code caseAssertConstraintUsage}: {@code assert not} picks "negated"
 	 * ({@code checkAssertConstraintUsageSpecialization}, SysML Table 32
 	 * &sect;8.4.1), else "base".
 	 */
@@ -111,7 +104,7 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 				constraint def C1;
 				assert C1;
 				assert not C1;
-				""");
+				""", true);
 		List<AssertConstraintUsage> asserts = new ArrayList<>();
 		for (var contents = resource.getAllContents(); contents.hasNext();) {
 			var object = contents.next();
@@ -122,8 +115,8 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 		assertTrue("Expected exactly two AssertConstraintUsage, found " + asserts.size(), asserts.size() == 2);
 		AssertConstraintUsage base = asserts.get(0).isNegated() ? asserts.get(1) : asserts.get(0);
 		AssertConstraintUsage negated = asserts.get(0).isNegated() ? asserts.get(0) : asserts.get(1);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(base), "Constraints::assertedConstraintChecks");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(negated), "Constraints::negatedConstraintChecks");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(base), "Constraints::assertedConstraintChecks");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(negated), "Constraints::negatedConstraintChecks");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(base, "Constraints::assertedConstraintChecks");
@@ -131,9 +124,10 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A viewpoint owned by a {@code ViewDefinition}/{@code ViewUsage} picks
-	 * "satisfied" ({@code checkViewpointUsageViewpointSatisfactionSpecialization},
-	 * SysML Table 32 &sect;8.4.1, &sect;8.3.26.9), else "base".
+	 * {@code caseViewpointUsage}: a viewpoint owned by a
+	 * {@code ViewDefinition}/{@code ViewUsage} picks "satisfied"
+	 * ({@code checkViewpointUsageViewpointSatisfactionSpecialization}, SysML
+	 * Table 32 &sect;8.4.1, &sect;8.3.26.9), else "base".
 	 */
 	@Test
 	public void viewpointOwnedByViewGetsSatisfied() throws Exception {
@@ -148,11 +142,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 				view def V {
 					viewpoint vp : VP;
 				}
-				""");
+				""", true);
 		ViewpointUsage topVp = findByName(resource, "topVp", ViewpointUsage.class);
 		ViewpointUsage vp = findByName(resource, "vp", ViewpointUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(topVp), "Views::viewpointChecks");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(vp), "Views::View::viewpointSatisfactions");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(topVp), "Views::viewpointChecks");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(vp), "Views::View::viewpointSatisfactions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(topVp, "Views::viewpointChecks");
@@ -160,7 +154,7 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A composite requirement nested under a
+	 * {@code caseRequirementUsage}: a composite requirement nested under a
 	 * {@code RequirementDefinition}/{@code RequirementUsage} (and not a
 	 * requirement/assumption constraint membership) picks "subrequirement"
 	 * ({@code checkRequirementUsageSubrequirementSpecialization}, SysML Table
@@ -177,11 +171,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 					requirement sub;
 				}
 				requirement topReq;
-				""");
+				""", true);
 		RequirementUsage sub = findByName(resource, "sub", RequirementUsage.class);
 		RequirementUsage topReq = findByName(resource, "topReq", RequirementUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(sub), "Requirements::RequirementCheck::subrequirements");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(topReq), "Requirements::requirementChecks");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(sub), "Requirements::RequirementCheck::subrequirements");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(topReq), "Requirements::requirementChecks");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(sub, "Requirements::RequirementCheck::subrequirements");
@@ -189,9 +183,10 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A rendering nested under a {@code RenderingDefinition}/{@code RenderingUsage}
-	 * picks "subrendering" ({@code checkRenderingUsageSubrenderingSpecialization},
-	 * SysML Table 32 &sect;8.4.1), else "base".
+	 * {@code caseRenderingUsage}: a rendering nested under a
+	 * {@code RenderingDefinition}/{@code RenderingUsage} picks "subrendering"
+	 * ({@code checkRenderingUsageSubrenderingSpecialization}, SysML Table 32
+	 * &sect;8.4.1), else "base".
 	 */
 	@Test
 	public void renderingSubrenderingVsBase() throws Exception {
@@ -204,11 +199,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 					rendering sub;
 				}
 				rendering topRendering : R;
-				""");
+				""", true);
 		RenderingUsage sub = findByName(resource, "sub", RenderingUsage.class);
 		RenderingUsage topRendering = findByName(resource, "topRendering", RenderingUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(sub), "Views::Rendering::subrenderings");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(topRendering), "Views::renderings");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(sub), "Views::Rendering::subrenderings");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(topRendering), "Views::renderings");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(sub, "Views::Rendering::subrenderings");
@@ -216,9 +211,10 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A view nested under a {@code ViewDefinition}/{@code ViewUsage} picks
-	 * "subview" ({@code checkViewUsageSubviewSpecialization}, SysML Table 32
-	 * &sect;8.4.1), else "base".
+	 * {@code caseViewUsage}: a view nested under a
+	 * {@code ViewDefinition}/{@code ViewUsage} picks "subview"
+	 * ({@code checkViewUsageSubviewSpecialization}, SysML Table 32 &sect;8.4.1),
+	 * else "base".
 	 */
 	@Test
 	public void viewSubviewVsBase() throws Exception {
@@ -229,11 +225,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 				view def V {
 					view sub : V;
 				}
-				""");
+				""", true);
 		ViewUsage sub = findByName(resource, "sub", ViewUsage.class);
 		Type v = findByName(resource, "V", Type.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(sub), "Views::View::subviews");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(v), "Views::View");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(sub), "Views::View::subviews");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(v), "Views::View");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(sub, "Views::View::subviews");
@@ -241,8 +237,9 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A port owned by a {@code PartDefinition}/{@code PartUsage} picks
-	 * "ownedPort" ({@code checkPortUsageOwnedPortSpecialization}, SysML Table 32
+	 * {@code casePortUsage}: a port owned by a
+	 * {@code PartDefinition}/{@code PartUsage} picks "ownedPort"
+	 * ({@code checkPortUsageOwnedPortSpecialization}, SysML Table 32
 	 * &sect;8.4.1); a composite port owned by a
 	 * {@code PortDefinition}/{@code PortUsage} picks "subport"
 	 * ({@code checkPortUsageSubportSpecialization}).
@@ -262,11 +259,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 				part def P {
 					port p : PD;
 				}
-				""");
+				""", true);
 		PortUsage sub = findByName(resource, "sub", PortUsage.class);
 		PortUsage p = findByName(resource, "p", PortUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(sub), "Ports::Port::subports");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(p), "Parts::Part::ownedPorts");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(sub), "Ports::Port::subports");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(p), "Parts::Part::ownedPorts");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(sub, "Ports::Port::subports");
@@ -274,8 +271,8 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * An {@code actor}/{@code stakeholder} parameter owned by a
-	 * {@code RequirementDefinition}/{@code RequirementUsage} picks
+	 * {@code casePartUsage}: an {@code actor}/{@code stakeholder} parameter
+	 * owned by a {@code RequirementDefinition}/{@code RequirementUsage} picks
 	 * "requirementActor"/"requirementStakeholder"
 	 * ({@code checkPartUsageActorSpecialization},
 	 * {@code checkPartUsageStakeholderSpecialization}, SysML Table 32
@@ -301,13 +298,13 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 				case def Case1 {
 					actor user : Person;
 				}
-				""");
+				""", true);
 		PartUsage driver = findByName(resource, "driver", PartUsage.class);
 		PartUsage owner = findByName(resource, "owner", PartUsage.class);
 		PartUsage user = findByName(resource, "user", PartUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(driver), "Requirements::RequirementCheck::actors");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(owner), "Requirements::RequirementCheck::stakeholders");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(user), "Cases::Case::actors");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(driver), "Requirements::RequirementCheck::actors");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(owner), "Requirements::RequirementCheck::stakeholders");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(user), "Cases::Case::actors");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(driver, "Requirements::RequirementCheck::actors");
@@ -316,9 +313,9 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A connection with exactly two owned end features picks "binary"
-	 * ({@code checkConnectionUsageBinarySpecialization}, SysML Table 32
-	 * &sect;8.4.1), else "base".
+	 * {@code caseConnectionUsage}: a connection with exactly two owned end
+	 * features picks "binary" ({@code checkConnectionUsageBinarySpecialization},
+	 * SysML Table 32 &sect;8.4.1), else "base".
 	 */
 	@Test
 	public void connectionUsageBinaryVsBase() throws Exception {
@@ -327,11 +324,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 		Resource resource = parse("connectionusage.sysml", """
 				connection unary { end item a; }
 				connection binary1 { end item a; end item b; }
-				""");
+				""", true);
 		ConnectionUsage unary = findByName(resource, "unary", ConnectionUsage.class);
 		ConnectionUsage binary1 = findByName(resource, "binary1", ConnectionUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(unary), "Connections::connections");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(binary1), "Connections::binaryConnections");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(unary), "Connections::connections");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(binary1), "Connections::binaryConnections");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(unary, "Connections::connections");
@@ -339,9 +336,10 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A composite item owned by an {@code ItemDefinition}/{@code ItemUsage}
-	 * picks "subitem" ({@code checkItemUsageSubitemSpecialization}, SysML
-	 * Table 32 &sect;8.4.1), else "base".
+	 * {@code caseItemUsage}: a composite item owned by an
+	 * {@code ItemDefinition}/{@code ItemUsage} picks "subitem"
+	 * ({@code checkItemUsageSubitemSpecialization}, SysML Table 32
+	 * &sect;8.4.1), else "base".
 	 */
 	@Test
 	public void itemUsageSubitemVsBase() throws Exception {
@@ -354,11 +352,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 					item sub;
 				}
 				item topItem;
-				""");
+				""", true);
 		ItemUsage sub = findByName(resource, "sub", ItemUsage.class);
 		ItemUsage topItem = findByName(resource, "topItem", ItemUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(sub), "Items::Item::subitems");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(topItem), "Items::items");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(sub), "Items::Item::subitems");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(topItem), "Items::items");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(sub, "Items::Item::subitems");
@@ -366,9 +364,10 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 	}
 
 	/**
-	 * A flow with no owned end features ({@code UsageUtil.isMessageConnection})
-	 * picks "message" ({@code checkFlowUsageFlowSpecialization} variant, SysML
-	 * Table 32 &sect;8.4.1), else "base".
+	 * {@code caseFlowUsage}: a flow with no owned end features
+	 * ({@code UsageUtil.isMessageConnection}) picks "message"
+	 * ({@code checkFlowUsageFlowSpecialization} variant, SysML Table 32
+	 * &sect;8.4.1), else "base".
 	 */
 	@Test
 	public void flowUsageMessageVsBase() throws Exception {
@@ -381,11 +380,11 @@ public class DefaultKeyUsageImplicitSpecializationTest extends AbstractImplicitS
 				part x : P; part y : P;
 				flow messageFlow;
 				flow endedFlow from x.a to y.b;
-				""");
+				""", true);
 		FlowUsage messageFlow = findByName(resource, "messageFlow", FlowUsage.class);
 		FlowUsage endedFlow = findByName(resource, "endedFlow", FlowUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(messageFlow), "Flows::messages");
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(endedFlow), "Flows::flows");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(messageFlow), "Flows::messages");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(endedFlow), "Flows::flows");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(messageFlow, "Flows::messages");

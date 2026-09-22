@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,11 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.omg.sysml.lang.sysml.MetadataFeature;
-import org.omg.sysml.lang.sysml.Type;
 
 public class MetadataFeatureAdapter extends FeatureAdapter {
 	
@@ -35,18 +32,4 @@ public class MetadataFeatureAdapter extends FeatureAdapter {
 	public MetadataFeature getTarget() {
 		return (MetadataFeature)super.getTarget();
 	}
-	
-	/**
-	 * @satisfies checkMetadataFeatureSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
-	}
-	
-	@Override
-	protected List<Type> getBaseTypes() {
-		return Collections.emptyList();
-	}
-
 }

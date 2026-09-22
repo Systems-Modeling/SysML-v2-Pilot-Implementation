@@ -26,6 +26,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.omg.sysml.delegate.invocation.OperationInvocationDelegateFactory;
 import org.omg.sysml.delegate.setting.DerivedPropertySettingDelegateFactory;
 import org.omg.sysml.logic.api.IModelLibraryProvider;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationServices;
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationService;
 import org.omg.sysml.util.SysMLLibraryUtil;
 
 /**
@@ -46,27 +49,29 @@ public final class SysMLLogicStandaloneSetup {
 	}
 
 	/**
-	 * Installs the default standalone logic bootstrap using a plain-EMF library
-	 * provider.
-	 *
-	 * <p>Call this before creating or loading SysML model instances that rely on
-	 * SysML setting or invocation delegates.
+	 * Installs the standalone logic bootstrap with a plain-EMF library provider and an
+	 * implicit-specialization service that caches every attached type.
+	 * <p>
+	 * Call this before creating or loading SysML model instances that rely on SysML setting or
+	 * invocation delegates.
 	 */
 	public static void doSetup() {
-		doSetup(DEFAULT_LIBRARY_PROVIDER);
+        doSetup(DEFAULT_LIBRARY_PROVIDER, new ImplicitSpecializationService(type -> true));
 	}
 
 	/**
-	 * Installs the standalone logic bootstrap using the given library provider.
-	 *
-	 * <p>This registers the SysML derived-property setting delegate factory and
-	 * operation invocation delegate factory in the global EMF registries, then
-	 * installs the supplied provider for library element lookup.
+	 * Installs the standalone logic bootstrap.
+	 * <p>
+	 * This registers the SysML derived-property setting delegate factory and operation
+	 * invocation delegate factory in the global EMF registries, installs the given library
+	 * provider for library element lookup, and makes the given service the one used by model
+	 * scopes that have no explicitly installed service.
 	 *
 	 * @param libraryProvider the provider used to resolve SysML/KerML library
 	 *        elements in standalone mode
+	 * @param implicitSpecializationService the implicit-specialization service used by default
 	 */
-	public static void doSetup(IModelLibraryProvider libraryProvider) {
+	public static void doSetup(IModelLibraryProvider libraryProvider, IImplicitSpecializationService implicitSpecializationService) {
 		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(
 				DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION,
 				new DerivedPropertySettingDelegateFactory());
@@ -74,5 +79,6 @@ public final class SysMLLogicStandaloneSetup {
 				OperationInvocationDelegateFactory.SYSML_ANNOTATION,
 				new OperationInvocationDelegateFactory());
 		SysMLLibraryUtil.setProviderLookup(resource -> libraryProvider);
+        ImplicitSpecializationServices.setServiceFactory(r -> implicitSpecializationService);
 	}
 }

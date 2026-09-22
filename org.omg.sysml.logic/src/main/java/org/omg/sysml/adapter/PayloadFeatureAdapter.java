@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021-2022, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,11 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.PayloadFeature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.util.SysMLLibraryUtil;
 
 public class PayloadFeatureAdapter extends FeatureAdapter {
 
@@ -37,13 +34,4 @@ public class PayloadFeatureAdapter extends FeatureAdapter {
 		return (PayloadFeature)super.getTarget();
 	}
 	
-	/**
-	 * @satisfies checkPayloadFeatureRedefinition
-	 */
-	@Override
-	public void addRedefinitions(Element skip) {
-		Feature redefinedFeature = (Feature)SysMLLibraryUtil.getLibraryType(getTarget(), getDefaultSupertype("payload"));
-		addImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition(), redefinedFeature);
-	}
-
 }

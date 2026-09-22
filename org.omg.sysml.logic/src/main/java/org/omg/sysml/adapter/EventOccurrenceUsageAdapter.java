@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -21,9 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage;
-import org.omg.sysml.lang.sysml.OccurrenceDefinition;
-import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 
@@ -35,20 +33,4 @@ public class EventOccurrenceUsageAdapter extends OccurrenceUsageAdapter {
 	public EventOccurrenceUsage getTarget() {
 		return (EventOccurrenceUsage)super.getTarget();
 	}
-	
-	/**
-	 * @satisfies checkEventOccurrenceUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return isSuboccurrence()? 
-				getDefaultSupertype("suboccurrence"):
-				super.getDefaultSupertype();
-	}
-	
-	public boolean isSuboccurrence() {		
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof OccurrenceDefinition || owningType instanceof OccurrenceUsage;
-	}
-	
 }

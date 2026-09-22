@@ -48,6 +48,7 @@ import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationCacheUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
@@ -579,13 +580,14 @@ public class ExpressionResultConsultationTest {
 		}
 	}
 
-	/** Removes model adapters to invalidate cached semantics without preparing or transforming the model. */
+	/** Invalidates model adapters and implicit-specialization caches without preparing or transforming the model. */
 	private void invalidateEditedModel(Resource resource) {
 		for (var contents = resource.getAllContents(); contents.hasNext();) {
 			if (contents.next() instanceof Element element) {
 				ElementUtil.clean(element);
 			}
 		}
+		ImplicitSpecializationCacheUtil.invalidate(resource);
 	}
 
 	/** Checks that edits do not require replacing the prepared result or its membership. */

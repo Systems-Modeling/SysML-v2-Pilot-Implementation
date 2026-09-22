@@ -1,6 +1,7 @@
 /**
  * SysML 2 Pilot Implementation
  * Copyright (C) 2025  Model Driven Solutions, Inc.
+ * Copyright (C) 2026 Obeo
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -31,6 +32,8 @@ import org.omg.kerml.xtext.naming.KerMLQualifiedNameConverter
 import org.omg.kerml.xtext.naming.KerMLQualifiedNameProvider
 import org.omg.sysml.logic.api.IModelLibraryProvider
 import org.omg.sysml.util.SysMLLibraryUtil
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationService
+import org.omg.kerml.xtext.XTextImplicitSpecializationService
 
 class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
 
@@ -44,6 +47,7 @@ class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
 	 * just as it does in the regular Xtext runtime modules.
 	 */
 	new() {
+		XTextImplicitSpecializationService.configureServiceFactory()
 		SysMLLibraryUtil.setProviderLookup([
 			resource |
 				try {
@@ -83,4 +87,9 @@ class KerMLxRuntimeModule extends AbstractGenericResourceRuntimeModule{
 	def Class<? extends IModelLibraryProvider> bindIModelLLibraryProvider() {
 		KerMLLibraryProvider
 	}
+	/** The Pilot explicitly opts into automatic caching through its injectable service. */
+	def Class<? extends IImplicitSpecializationService> bindIImplicitSpecializationService() {
+		XTextImplicitSpecializationService
+	}
+
 }

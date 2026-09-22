@@ -38,6 +38,12 @@ validation succeeds belong in the accepted results below. Failed runs and their
 investigation belong in a separate document and must not be used as accepted
 performance comparisons.
 
+The extracted service is installed with caching enabled for every type, matching
+`XTextImplicitSpecializationService`. Outside the timed phases, the command reports
+`CACHES,<checkpoint>,types=...,cached=...,complete=...,uncached=...` after loading,
+resolution and transformation. `complete` counts caches whose raw and reduced
+results are both complete; reading these counters does not calculate candidates.
+
 ## Accepted results
 
 ### Before the implicit-specialization extraction
@@ -55,3 +61,10 @@ status 0**. Resource-error counts at the loaded / resolved / transformed
 checkpoints were 0 / 5 / 4.
 
 This is the initial validated baseline for subsequent specialization changes.
+
+## Refactoring evaluation
+
+No validated result is available for the extracted service yet. Its latest run
+failed semantic validation and is excluded from accepted performance comparisons.
+Diagnostics and investigation notes are recorded in the
+[validation investigation](../../org.omg.sysml.logic/doc/implicit-specialization-validation-investigation.md).

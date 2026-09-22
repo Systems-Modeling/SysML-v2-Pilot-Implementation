@@ -21,39 +21,29 @@ package org.omg.sysml.interactive.tests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the shared "ownedPerformance"/
- * "subperformance"/"enclosedPerformance" defaults (KerML Table 10,
- * &sect;8.4.4.1, &sect;8.4.4.7 "Behaviors Semantics") applied to Step-like
- * features, exercised here through {@link ConstraintUsage} (whose call site
- * always passes {@code independent = true}).
- *
- * <p>Each test checks the raw implicit-general-type candidates through
- * {@link TypeUtil#getImplicitGeneralTypesFor(Type)} before transformation,
- * then transforms and checks the same expectation against the materialized
- * {@link Type#getOwnedSpecialization()} — a plain EMF read, independent of
- * whichever engine computed the candidates. Both {@code TypeUtil} and
- * {@code getOwnedSpecialization()} are public, stable contracts, so this
- * test stays valid across internal reorganizations of the rule engine.</p>
+ * Tests the owned, sub- and enclosed performance defaults of Step-like features (KerML
+ * Table 10, &sect;8.4.4.7), through {@link ConstraintUsage}.
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@link Type#getOwnedSpecialization()} after it.
+ * <p>
+ * Not covered: the "incomingTransfer" default key of a plain {@code Step}; every textual
+ * Step-like construct has a more specific metaclass.
  */
 public class PerformanceImplicitSpecializationTest extends AbstractImplicitSpecializationTest {
 
 	/**
-	 * A {@link ConstraintUsage} composite directly under a {@code part def}
-	 * (an {@code ItemDefinition}, which is a KerML {@code Structure} —
-	 * confirmed via {@code ItemDefinition extends OccurrenceDefinition,
-	 * Structure}) gets {@code checkStepOwnedPerformanceSpecialization}
-	 * (KerML Table 10, &sect;8.4.4.1): it must subset
-	 * {@code Objects::Object::ownedPerformances}.
+	 * A composite {@link ConstraintUsage} under a {@code part def}, which is a KerML
+	 * {@code Structure}, subsets {@code Objects::Object::ownedPerformances}
+	 * ({@code checkStepOwnedPerformanceSpecialization}, KerML Table 10).
 	 */
 	@Test
 	public void structureOwnedConstraintGetsOwnedPerformance() throws Exception {
@@ -64,9 +54,9 @@ public class PerformanceImplicitSpecializationTest extends AbstractImplicitSpeci
 				part def P {
 					constraint c1;
 				}
-				""");
+				""", true);
 		ConstraintUsage c1 = findByName(resource, "c1", ConstraintUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(c1), "Objects::Object::ownedPerformances");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(c1), "Objects::Object::ownedPerformances");
 
 		// checkStepOwnedPerformanceSpecialization's candidate ("ownedPerformances")
 		// stays raw here: ConstraintUsage's own checkedConstraint default (P is
@@ -79,14 +69,6 @@ public class PerformanceImplicitSpecializationTest extends AbstractImplicitSpeci
 		assertOwnedSpecializationContains(c1, "Items::Item::checkedConstraints");
 	}
 
-	/**
-	 * A {@link ConstraintUsage} composite directly under an {@code action def}
-	 * (a Behavior) gets {@code checkStepSubperformanceSpecialization} (KerML
-	 * Table 10, &sect;8.4.4.1): it must subset
-	 * {@code Performances::Performance::subperformances}. Its owner
-	 * (ActionDefinition) is not itself a Structure, so the sibling
-	 * "ownedPerformance" default must not also apply here.
-	 */
 	@Test
 	public void behaviorOwnedCompositeConstraintGetsSubperformance() throws Exception {
 		// action def A {
@@ -96,10 +78,10 @@ public class PerformanceImplicitSpecializationTest extends AbstractImplicitSpeci
 				action def A {
 					constraint c1;
 				}
-				""");
+				""", true);
 		ConstraintUsage c1 = findByName(resource, "c1", ConstraintUsage.class);
 		assertTrue("Expected a composite constraint for this case", c1.isComposite());
-		List<Type> candidates = TypeUtil.getImplicitGeneralTypesFor(c1);
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(c1);
 		assertContains(candidates, "Performances::Performance::subperformances");
 		assertNotContains(candidates, "Objects::Object::ownedPerformances");
 
@@ -108,13 +90,6 @@ public class PerformanceImplicitSpecializationTest extends AbstractImplicitSpeci
 		assertOwnedSpecializationDoesNotContain(c1, "Objects::Object::ownedPerformances");
 	}
 
-	/**
-	 * A {@link ConstraintUsage} non-composite ({@code ref}) directly under an
-	 * {@code action def} gets {@code checkStepEnclosedPerformanceSpecialization}
-	 * (KerML Table 10, &sect;8.4.4.1): it must subset
-	 * {@code Performances::Performance::enclosedPerformances} instead of
-	 * "subperformance", since it is behavior-owned but not composite.
-	 */
 	@Test
 	public void behaviorOwnedNonCompositeConstraintGetsEnclosedPerformance() throws Exception {
 		// action def A {
@@ -124,10 +99,10 @@ public class PerformanceImplicitSpecializationTest extends AbstractImplicitSpeci
 				action def A {
 					ref constraint c1;
 				}
-				""");
+				""", true);
 		ConstraintUsage c1 = findByName(resource, "c1", ConstraintUsage.class);
 		assertFalse("Expected a non-composite (ref) constraint for this case", c1.isComposite());
-		List<Type> candidates = TypeUtil.getImplicitGeneralTypesFor(c1);
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(c1);
 		assertContains(candidates, "Performances::Performance::enclosedPerformances");
 		assertNotContains(candidates, "Performances::Performance::subperformances");
 

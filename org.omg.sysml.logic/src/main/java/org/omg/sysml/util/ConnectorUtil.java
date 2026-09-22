@@ -31,12 +31,11 @@ import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.SysMLFactory;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationServices;
 
 public class ConnectorUtil {
 	
@@ -54,8 +53,7 @@ public class ConnectorUtil {
 	}
 
 	public static void transformBindingConnector(BindingConnector connector) {
-		TypeUtil.addImplicitGeneralTypeTo(connector, SysMLPackage.eINSTANCE.getSubsetting(), 
-				SysMLLibraryUtil.getLibraryType(connector, ImplicitGeneralizationMap.getDefaultSupertypeFor(connector.getClass(), "binary")));
+		ImplicitSpecializationServices.get(connector).getImplicitSpecializationCandidates(connector);
 		for (Feature end: TypeUtil.getEndFeatureOf(connector)) {
 			ElementUtil.transform(end);
 		}
@@ -80,21 +78,6 @@ public class ConnectorUtil {
 		return endFeature;
 	}
 	
-	public static void transformConnectorEndsOf(Flow flow) {
-		Namespace owner = flow.getOwningNamespace();
-		if (owner instanceof Feature) {
-			EList<Feature> ends = TypeUtil.getEndFeatureOf(flow);
-			if (ends.size() >= 2) {
-				EList<Feature> endFeatures = ends.get(1).getOwnedFeature();
-				if (!endFeatures.isEmpty()) {
-					Feature flowEndFeature = endFeatures.get(0);
-					if (flowEndFeature.getOwnedRedefinition().isEmpty()) {
-						TypeUtil.addImplicitGeneralTypeTo(flowEndFeature, SysMLPackage.eINSTANCE.getRedefinition(), (Feature)owner);
-					}
-				}
-			}
-		}
-	}
 
 	// Related Features
 

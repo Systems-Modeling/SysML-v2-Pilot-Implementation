@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -32,20 +33,4 @@ public class ConnectionDefinitionAdapter extends PartDefinitionAdapter {
 	public ConnectionDefinition getTarget() {
 		return (ConnectionDefinition)super.getTarget();
 	}
-	
-	/**
-	 * @satisfies checkConnectionDefinitionSpecializations
-	 * @satisfies checkInterfaceDefinitionSpecialization
-	 * @satisfies checkAllocationDefinitionSpecialization
-	 * @satisfies checkConnectionDefinitionBinarySpecialization
-	 * @satisfies checkInterfaceDefinitionBinarySpecialization
-	 * @satisfies checkAllocationDefinitionSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return getTarget().getOwnedEndFeature().size() != 2 ?
-				getDefaultSupertype("base") :
-				getDefaultSupertype("binary");
-	}
-
 }

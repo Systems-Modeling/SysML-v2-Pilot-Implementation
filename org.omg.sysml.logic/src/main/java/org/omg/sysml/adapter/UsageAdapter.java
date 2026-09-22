@@ -23,7 +23,6 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
-import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
@@ -32,7 +31,6 @@ import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.StateSubactionKind;
 import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.Subsetting;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.FeatureUtil;
@@ -104,41 +102,6 @@ public class UsageAdapter extends FeatureAdapter {
 		}
 	}
 		
-	// Implicit Generalization
-	
-	protected void addSubsetting(String subsettedFeatureName) {
-		Feature feature = (Feature)getLibraryType(subsettedFeatureName);
-		if (feature != null) {
-			addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), feature);
-		}
-	}
-	
-	/**
-	 * @satisfies checkUsageVariationDefinitionSpecialization
-	 * @satisfies checkUsageVariationUsageSpecialization
-	 */
-	protected void addVariationTyping() {
-		Usage usage = getTarget();
-		if (UsageUtil.isVariant(usage)) {
-			Definition variationDefinition = UsageUtil.getOwningVariationDefinitionFor(usage);
-			if (variationDefinition != null) {
-				addImplicitGeneralType(SysMLPackage.eINSTANCE.getFeatureTyping(), variationDefinition);
-			} else {
-				Usage variationUsage = UsageUtil.getOwningVariationUsageFor(usage);
-				if (variationUsage != null) {
-					addImplicitGeneralType(SysMLPackage.eINSTANCE.getSubsetting(), variationUsage);
-				}
-			}
-		}
-	}
-	
-	@Override
-	public void addDefaultGeneralType() {
-		addVariationTyping();
-		
-		super.addDefaultGeneralType();
-	}
-	
 	// Transformation
 	
 	/**

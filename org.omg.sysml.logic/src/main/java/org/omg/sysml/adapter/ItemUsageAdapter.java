@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
  * Copyright (c) 2026 Obeo
  *    
@@ -21,9 +22,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.ItemDefinition;
 import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 	
@@ -33,37 +32,5 @@ public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 	
 	public ItemUsage getTarget() {
 		return (ItemUsage)super.getTarget();
-	}
-
-	// Implicit Generalization
-	
-	/**
-	 * @satisfies checkItemUsageSubitemSpecialization
-	 * @satisfies checkItemUsageSpecialization
-	 * @satisfies checkPartUsageSubpartSpecialization
-	 * @satisfies checkPartUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return isSubitem()?
-					getDefaultSupertype("subitem"):
-					getDefaultSupertype("base");
-	}
-	
-	@Override
-	protected boolean isSuboccurrence() {
-		return super.isSuboccurrence() && !isSubitem();
-	}
-	
-	@Override
-	protected boolean isSubobject() {
-		return super.isSubobject() && !isSubitem();
-	}
-	
-	public boolean isSubitem() {
-		ItemUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() && 
-			   (owningType instanceof ItemDefinition || owningType instanceof ItemUsage);
 	}
 }

@@ -26,31 +26,25 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.SuccessionAsUsage;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
+import org.omg.sysml.logic.implicit.specialization.api.ImplicitSpecialization;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the {@code SuccessionAsUsage}
- * chained specialization through a {@code DecisionNode}/{@code MergeNode}
- * ({@code checkDecisionNodeOutgoingSuccessionSpecialization}/
- * {@code checkMergeNodeIncomingSuccessionSpecialization}, SysML Table 32
- * &sect;8.4.1, narrated &sect;8.4.13 "Actions Semantics"). Checks the raw
- * candidate through {@link TypeUtil#getImplicitGeneralTypesFor(Type)} before
- * transformation, then transforms and checks the same expectation against
- * the materialized {@code getOwnedSpecialization()} — a plain EMF read,
- * independent of whichever engine computed the candidate.
+ * Tests the succession defaults: decision and merge successions of a
+ * {@code SuccessionAsUsage}, and the reference subsettings of its first two ends.
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@code getOwnedSpecialization()} after it.
  */
 public class ReferenceAndSuccessionImplicitSpecializationTest extends AbstractImplicitSpecializationTest {
 
 	/**
-	 * A {@code SuccessionAsUsage} whose source is a {@code DecisionNode} gets an
-	 * additional chained specialization through the standard
-	 * {@code ControlPerformances::DecisionPerformance::outgoingHBLink} feature.
-	 * The target is a synthesized feature chain (decision node -&gt;
-	 * outgoingHBLink), not a directly named library type, so this asserts the
-	 * presence of a chained specialization rather than comparing qualified
-	 * names.
+	 * A {@code SuccessionAsUsage} whose source is a {@code DecisionNode} subsets the chain of
+	 * the decision node and {@code ControlPerformances::DecisionPerformance::outgoingHBLink}
+	 * ({@code checkDecisionNodeOutgoingSuccessionSpecialization}, SysML &sect;8.4.13). The general
+	 * is a synthesized chain, so the test checks for a chained general rather than a qualified
+	 * name.
 	 */
 	@Test
 	public void successionFromADecisionNodeGetsTheDecisionChain() throws Exception {
@@ -69,11 +63,11 @@ public class ReferenceAndSuccessionImplicitSpecializationTest extends AbstractIm
 					if true then A1;
 					else A2;
 				}
-				""");
+				""", true);
 		SuccessionAsUsage succession = findSuccessionFrom(resource, "D");
-		List<Type> candidates = TypeUtil.getImplicitGeneralTypesFor(succession);
-		assertTrue("Expected a chained specialization among " + candidates,
-				hasChainedGeneral(candidates.stream()));
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(succession);
+		assertTrue("Expected a chained specialization among " + describe(candidates),
+				hasChainedGeneral(candidates.stream().map(ImplicitSpecialization::generalType)));
 
 		ElementUtil.transformAll(resource, true);
 		assertTrue("Expected a chained materialized specialization", hasChainedGeneral(
@@ -83,7 +77,9 @@ public class ReferenceAndSuccessionImplicitSpecializationTest extends AbstractIm
 	/**
 	 * A {@code SuccessionAsUsage} whose target is a {@code MergeNode} gets an
 	 * additional chained specialization through the standard
-	 * {@code ControlPerformances::MergePerformance::incomingHBLink} feature.
+	 * {@code ControlPerformances::MergePerformance::incomingHBLink} feature
+	 * ({@code checkMergeNodeIncomingSuccessionSpecialization}, SysML Table 32
+	 * &sect;8.4.1, narrated &sect;8.4.13 "Actions Semantics").
 	 */
 	@Test
 	public void successionToAMergeNodeGetsTheMergeChain() throws Exception {
@@ -102,17 +98,16 @@ public class ReferenceAndSuccessionImplicitSpecializationTest extends AbstractIm
 					then M;
 					merge M;
 				}
-				""");
+				""", true);
 		SuccessionAsUsage succession = findSuccessionTo(resource, "M");
-		List<Type> candidates = TypeUtil.getImplicitGeneralTypesFor(succession);
-		assertTrue("Expected a chained specialization among " + candidates,
-				hasChainedGeneral(candidates.stream()));
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(succession);
+		assertTrue("Expected a chained specialization among " + describe(candidates),
+				hasChainedGeneral(candidates.stream().map(ImplicitSpecialization::generalType)));
 
 		ElementUtil.transformAll(resource, true);
 		assertTrue("Expected a chained materialized specialization", hasChainedGeneral(
 				succession.getOwnedSpecialization().stream().map(org.omg.sysml.lang.sysml.Specialization::getGeneral)));
 	}
-
 
 	private static SuccessionAsUsage findSuccessionFrom(Resource resource, String sourceName) {
 		for (var contents = resource.getAllContents(); contents.hasNext();) {
@@ -138,8 +133,14 @@ public class ReferenceAndSuccessionImplicitSpecializationTest extends AbstractIm
 		throw new AssertionError("Missing succession to " + targetName);
 	}
 
-	private static boolean hasChainedGeneral(java.util.stream.Stream<Type> generals) {
+	private static boolean hasChainedGeneral(java.util.stream.Stream<org.omg.sysml.lang.sysml.Type> generals) {
 		return generals.anyMatch(general -> general instanceof Feature feature
 				&& !feature.getOwnedFeatureChaining().isEmpty());
+	}
+
+	private static String describe(List<ImplicitSpecialization> candidates) {
+		return candidates.stream()
+				.map(candidate -> candidate.specializationKind().getName() + " -> " + candidate.generalType())
+				.toList().toString();
 	}
 }

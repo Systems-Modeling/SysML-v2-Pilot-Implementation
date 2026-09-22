@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021, 2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,10 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.ActionDefinition;
-import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.AssertConstraintUsage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 
@@ -33,22 +31,6 @@ public class AssertConstraintUsageAdapter extends ConstraintUsageAdapter {
 	
 	public AssertConstraintUsage getTarget() {
 		return (AssertConstraintUsage)super.getTarget();
-	}
-	
-	/**
-	 * @satisfies checkAssertConstraintUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return getTarget().isNegated()?
-				getDefaultSupertype("negated"):
-				getDefaultSupertype("base");						
-	}
-	
-	@Override
-	public boolean isBehaviorOwned() {
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof ActionDefinition || owningType instanceof ActionUsage;
 	}
 	
 }

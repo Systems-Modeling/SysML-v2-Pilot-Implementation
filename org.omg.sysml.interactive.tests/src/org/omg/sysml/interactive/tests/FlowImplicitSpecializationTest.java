@@ -21,35 +21,25 @@ package org.omg.sysml.interactive.tests;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.FlowUsage;
-import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression tests for the implicit-specialization defaults
- * applied to {@link FlowUsage} (SysML Table 32 &sect;8.4.1, per-branch
- * citations in &sect;8.4.12 "Flows Semantics"), plus the {@code defaultKey}
- * switch's {@code caseFlowUsage} (message vs. base). Checks the raw candidate
- * through {@link TypeUtil#getImplicitGeneralTypesFor(Type)} before
- * transformation, then transforms and checks the same expectation against
- * the materialized {@code getOwnedSpecialization()}.
- *
- * <p>Not covered here: the {@code defaultKey} switch's {@code caseFlow} case
- * (a plain KerML {@code Flow}, distinct from {@code FlowUsage}) — no textual
- * SysML construct was found that produces a bare {@code Flow} rather than a
- * {@code FlowUsage} (which, since {@code FlowUsage extends ... Flow}, always
- * dispatches to the more specific {@code caseFlowUsage} case first); skipped
- * rather than force a synthetic, non-representative model.</p>
+ * Tests the implicit-specialization defaults of {@link FlowUsage} (SysML Table 32,
+ * &sect;8.4.12).
+ * <p>
+ * Each test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@code getOwnedSpecialization()} after it.
+ * <p>
+ * Not covered: the default key of a plain KerML {@code Flow}; every textual SysML flow is a
+ * {@code FlowUsage}.
  */
 public class FlowImplicitSpecializationTest extends AbstractImplicitSpecializationTest {
 
 	/**
-	 * A {@code flow} nested directly inside an {@link org.omg.sysml.lang.sysml.ActionUsage}
-	 * (an {@code OccurrenceUsage} subtype, not a {@code Definition}) gets both
-	 * the "suboccurrence" default (owner is an {@code OccurrenceUsage}) and the
-	 * generic "subaction" fallback (owner is also an {@code ActionUsage}) as
-	 * raw candidates — these are independent, cumulative rules, not an
-	 * else-if chain.
+	 * A {@code flow} nested in an {@link org.omg.sysml.lang.sysml.ActionUsage} gets both the
+	 * "suboccurrence" default and the {@code checkActionUsageSubactionSpecialization} default:
+	 * these rules are cumulative.
 	 */
 	@Test
 	public void flowOwnedByAnActionUsageGetsBothSuboccurrenceAndSubaction() throws Exception {
@@ -70,9 +60,9 @@ public class FlowImplicitSpecializationTest extends AbstractImplicitSpecializati
 				action a : A {
 					flow from focus.image to shoot.image;
 				}
-				""");
+				""", true);
 		FlowUsage flow = findSingle(resource, FlowUsage.class);
-		var candidates = TypeUtil.getImplicitGeneralTypesFor(flow);
+		var candidates =  getImplicitSpecializationService().getImplicitSpecializationCandidates(flow);
 		assertContains(candidates, "Occurrences::Occurrence::suboccurrences");
 		assertContains(candidates, "Actions::Action::subactions");
 
@@ -82,22 +72,15 @@ public class FlowImplicitSpecializationTest extends AbstractImplicitSpecializati
 		// (via "intersects", Performances.kerml) Occurrences::Occurrence::
 		// suboccurrences, so the more specific subactions edge alone is
 		// inserted (KerML &sect;8.4.2 — a more specific implied relationship
-		// subsumes a less specific one, which is then not inserted). This
-		// reduction is identical on the pre-refactoring adapter mechanism,
-		// since it is driven entirely by the standard library's own
-		// subsetting/intersecting chain, not by which engine computes the
-		// candidates.
+		// subsumes a less specific one, which is then not inserted).
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(flow, "Actions::Action::subactions");
 	}
 
 	/**
-	 * A {@code flow} nested directly inside a {@code part def} (a
-	 * {@code PartDefinition}, satisfying {@code isPartOwnedComposite} but not
-	 * {@code isActionOwnedComposite} since a {@code Definition} is not an
-	 * {@code OccurrenceUsage}/{@code ActionUsage}) gets the "owned action"
-	 * fallback (SysML Table 32, &sect;8.4.13), subsetting
-	 * {@code Parts::Part::ownedActions}.
+	 * A {@code flow} nested in a {@code part def} gets the
+	 * {@code checkActionUsageOwnedActionSpecialization} default (SysML Table 32, &sect;8.4.13),
+	 * subsetting {@code Parts::Part::ownedActions}.
 	 */
 	@Test
 	public void flowOwnedByAPartDefinitionGetsTheOwnedActionDefault() throws Exception {
@@ -118,9 +101,9 @@ public class FlowImplicitSpecializationTest extends AbstractImplicitSpecializati
 					action shoot : Shoot;
 					flow from focus.image to shoot.image;
 				}
-				""");
+				""", true);
 		FlowUsage flow = findSingle(resource, FlowUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(flow), "Parts::Part::ownedActions");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(flow), "Parts::Part::ownedActions");
 
 		ElementUtil.transformAll(resource, true);
 		assertOwnedSpecializationContains(flow, "Parts::Part::ownedActions");
@@ -128,10 +111,11 @@ public class FlowImplicitSpecializationTest extends AbstractImplicitSpecializati
 
 	/**
 	 * A {@code message} declaration is a {@link FlowUsage} for which
-	 * {@code UsageUtil.isMessageConnection} holds, giving it the "message"
-	 * key (SysML Table 32 &sect;8.4.1), subsetting {@code Flows::messages} —
-	 * as opposed to a plain {@code flow} declaration between two ports, which
-	 * stays on the "base" key, subsetting {@code Flows::flows}.
+	 * {@code UsageUtil.isMessageConnection} holds, giving it
+	 * {@code checkFlowUsageSpecialization}'s "message" key (SysML Table 32
+	 * &sect;8.4.1), subsetting {@code Flows::messages} — as opposed to a plain
+	 * {@code flow} declaration between two ports, which stays on the "base"
+	 * key, subsetting {@code Flows::flows}.
 	 */
 	@Test
 	public void messageDeclarationGetsTheMessageDefaultAndPlainFlowGetsBase() throws Exception {
@@ -154,9 +138,9 @@ public class FlowImplicitSpecializationTest extends AbstractImplicitSpecializati
 					port p2;
 					flow p1 to p2;
 				}
-				""");
+				""", true);
 		FlowUsage flow = findSingle(plainFlow, FlowUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(flow), "Flows::flows");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(flow), "Flows::flows");
 		ElementUtil.transformAll(plainFlow, true);
 		assertOwnedSpecializationContains(flow, "Flows::flows");
 
@@ -167,9 +151,9 @@ public class FlowImplicitSpecializationTest extends AbstractImplicitSpecializati
 					action b { in i : Signal; }
 					message m of Signal from a.o to b.i;
 				}
-				""");
+				""", true);
 		FlowUsage message = findByName(messageFlow, "m", FlowUsage.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(message), "Flows::messages");
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(message), "Flows::messages");
 		ElementUtil.transformAll(messageFlow, true);
 		assertOwnedSpecializationContains(message, "Flows::messages");
 	}

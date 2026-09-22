@@ -22,7 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
-import org.omg.sysml.lang.sysml.PortionKind;
 
 public class OccurrenceUsageAdapter extends UsageAdapter {
 
@@ -33,51 +32,5 @@ public class OccurrenceUsageAdapter extends UsageAdapter {
 	@Override
 	public OccurrenceUsage getTarget() {
 		return (OccurrenceUsage)super.getTarget();
-	}
-	
-	// Implicit Generalization
-	
-	/**
-	 * @satisfies checkFeatureObjectSpecialization
-	 * @satisfies checkFeatureSubobjectSpecialization
-	 * @satisfies checkFeatureDataValueSpecialization
-	 * @satisfies checkOccurrenceUsageSnapshotSpecialization
-	 * @satisfies checkOccurrenceUsageSuboccurrenceSpecialization
-	 * @satisfies checkOccurrenceUsageTimeSliceSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (hasDataType()) {
-			addDefaultGeneralType("dataValue");
-		}
-		if (hasStructureType()) {
-			addDefaultGeneralType(isSubobject()? "subobject": "object");
-		}
-		else if (isSuboccurrence()) {
-			addDefaultGeneralType("suboccurrence");
-		}
-		PortionKind portionKind = getTarget().getPortionKind();
-		if (portionKind  == PortionKind.SNAPSHOT) {
-			addDefaultGeneralType("snapshot");
-		} else if (portionKind == PortionKind.TIMESLICE) {
-			addDefaultGeneralType("timeslice");
-		}
-	}
-	
-	@Override
-	protected boolean isSuboccurrence() {
-		OccurrenceUsage target = getTarget();
-		return super.isSuboccurrence() ||
-				target.isComposite() && 
-			   	target.getOwningType() instanceof OccurrenceUsage;
-	}
-	
-	/**
-	 * @satisfies checkOccurrenceUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
 	}
 }

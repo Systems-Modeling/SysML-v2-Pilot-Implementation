@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
+ * Copyright (C) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -33,7 +34,6 @@ import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.ActorMembership;
 import org.omg.sysml.lang.sysml.CaseDefinition;
 import org.omg.sysml.lang.sysml.CaseUsage;
-import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.ConcernUsage;
 import org.omg.sysml.lang.sysml.ConnectionDefinition;
 import org.omg.sysml.lang.sysml.Connector;
@@ -47,6 +47,7 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureValue;
 import org.omg.sysml.lang.sysml.FlowUsage;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
 import org.omg.sysml.lang.sysml.InterfaceDefinition;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -461,7 +462,9 @@ public class UsageUtil {
 	}
 	
 	public static Feature getPayloadParameterOf(TransitionUsage transition) {
-		return TypeUtil.getFeaturesByMembershipIn(transition, ParameterMembership.class).skip(1).findFirst().orElse(null);
+		// The payload is the second owned parameter. Asking for inherited memberships
+		// here would require its own implicit redefinitions to identify that parameter.
+		return TypeUtil.getOwnedFeaturesByMembershipIn(transition, ParameterMembership.class).skip(1).findFirst().orElse(null);
 	}
 	
 	public static Feature getAccepterPayloadParameterOf(TransitionUsage transition) {

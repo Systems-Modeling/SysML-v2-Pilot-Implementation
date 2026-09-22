@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,9 +22,6 @@
 package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConstructorExpression;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 
 public class ConstructorExpressionAdapter extends InstantiationExpressionAdapter {
@@ -37,30 +35,9 @@ public class ConstructorExpressionAdapter extends InstantiationExpressionAdapter
 		return (ConstructorExpression)super.getTarget();
 	}
 		
-	// Transformation
-	
-	/**
-	 * @satisifies checkConstructorExpressionResultSpecialization
-	 */
-	protected void addResultTyping() {
-		ConstructorExpression target = getTarget();
-		Type instantiatedType = target.getInstantiatedType();
-		if (instantiatedType != null) {
-			Feature result = TypeUtil.getOwnedResultParameterOf(target);
-			if (result != null) {
-				if (instantiatedType instanceof Feature) {
-					TypeUtil.addImplicitGeneralTypeTo(result, SysMLPackage.eINSTANCE.getSubsetting(), instantiatedType);
-				} else {
-					TypeUtil.addImplicitGeneralTypeTo(result, SysMLPackage.eINSTANCE.getFeatureTyping(), instantiatedType);
-				}
-			}
-		}
-	}
-		
 	@Override
 	public void addAdditionalMembers() {
 		TypeUtil.addResultParameterTo(getTarget());
-		addResultTyping();
 	}
 	
 }

@@ -22,36 +22,30 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.TypeUtil;
 
 /**
- * Behavior-contract regression test for {@code checkMetadataFeatureSemanticSpecialization}
- * (KerML &sect;8.4.4.13.2-8.4.4.13.3 "Semantic Metadata"; concrete syntax KerML
- * &sect;7.4.13 "Metadata", SysML &sect;7.27.3 "Semantic Metadata"). Checks the
- * raw candidate through {@link TypeUtil#getImplicitGeneralTypesFor(Type)}
- * before transformation, then transforms and checks the same expectation
- * against the materialized {@link Type#getOwnedSpecialization()} — a plain
- * EMF read, independent of whichever engine computed the candidate, so it
- * keeps passing across any internal reorganization of the rule engine.
+ * Tests the semantic-metadata specializations
+ * ({@code checkMetadataFeatureSemanticSpecialization}, KerML &sect;8.4.4.13).
+ * <p>
+ * The test checks the raw candidates of the public {@link ImplicitSpecializationService}
+ * before transformation, then the materialized {@link Type#getOwnedSpecialization()} after it.
  */
 public class SemanticMetadataImplicitSpecializationTest extends AbstractImplicitSpecializationTest {
 
 	/**
-	 * A feature annotated with a standard-library semantic-metadata metadata
-	 * usage (here {@code #moe}, from {@code ParametersOfInterestMetadata}, whose
-	 * {@code baseType} value expression evaluates to
-	 * {@code ParametersOfInterestMetadata::measuresOfEffectiveness}) must get
-	 * that evaluated base as an implicit specialization candidate, without
-	 * requiring the Pilot transformation to run first.
+	 * A feature annotated with {@code #moe} from {@code ParametersOfInterestMetadata} gets the
+	 * evaluated base type {@code ParametersOfInterestMetadata::measuresOfEffectiveness} as a
+	 * candidate, without requiring the Pilot transformation.
 	 */
 	@Test
 	public void metadataAnnotatedFeatureGetsTheEvaluatedBaseType() throws Exception {
 		// private import ParametersOfInterestMetadata::*; #moe attribute score;
 		Resource resource = parse("metadata.sysml",
-				"private import ParametersOfInterestMetadata::*; #moe attribute score;");
+				"private import ParametersOfInterestMetadata::*; #moe attribute score;", false);
 		Feature score = findByName(resource, "score", Feature.class);
-		assertContains(TypeUtil.getImplicitGeneralTypesFor(score),
+		assertContains( getImplicitSpecializationService().getImplicitSpecializationCandidates(score),
 				"ParametersOfInterestMetadata::measuresOfEffectiveness");
 
 		ElementUtil.transformAll(resource, true);

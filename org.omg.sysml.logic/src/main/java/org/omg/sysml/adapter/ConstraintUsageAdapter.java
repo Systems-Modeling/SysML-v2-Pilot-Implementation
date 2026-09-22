@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -22,11 +23,6 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.ConstraintUsage;
-import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.ItemUsage;
-import org.omg.sysml.lang.sysml.RequirementConstraintKind;
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.util.UsageUtil;
 
 public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 
@@ -39,55 +35,6 @@ public class ConstraintUsageAdapter extends OccurrenceUsageAdapter {
 	@Override
 	public ConstraintUsage getTarget() {
 		return (ConstraintUsage)super.getTarget();
-	}
-	
-	// Implicit Generalization
-	
-	/**
-	 * @satisfies checkConstraintUsageRequirementConstraintSpecialization
-	 * @satisfies checkConstraintUsageCheckedConstraintSpecialization
-	 * @satisfies checkStepEnclosedPerformanceSpecialization
-	 * @satisfies checkStepOwnedPerformanceSpecialization
-	 * @satisfies checkStepSubperformanceSpecialization
-	 */
-	@Override
-	public void computeImplicitGeneralTypes() {
-		addRequirementConstraintSubsetting();
-		super.computeImplicitGeneralTypes();
-		if (isCheckedConstraint()) {
-			addDefaultGeneralType("checkedConstraint");
-		}
-		if (isStructureOwnedComposite()) {
-			addDefaultGeneralType("ownedPerformance");
-		} 
-		if (isBehaviorOwnedComposite()) {
-			addDefaultGeneralType("subperformance");
-		}
-		if (isBehaviorOwned()) {
-			addDefaultGeneralType("enclosedPerformance");
-		}
-	}
-	
-	public void addRequirementConstraintSubsetting() {
-		RequirementConstraintKind kind = UsageUtil.getRequirementConstraintKindOf(getTarget());
-		if (kind != null) {
-			addDefaultGeneralType(kind.toString());
-		}
-	}
-	
-	/**
-	 * @satisfies checkConstraintUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return getDefaultSupertype("base");
-	}
-	
-	protected boolean isCheckedConstraint() {
-		ConstraintUsage target = getTarget();
-		Type owningType = target.getOwningType();
-		return target.isComposite() &&
-				(owningType instanceof ItemDefinition || owningType instanceof ItemUsage);				
 	}
 	
 	@Override

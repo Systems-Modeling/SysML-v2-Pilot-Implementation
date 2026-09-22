@@ -45,7 +45,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChaining;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
-import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Namespace;
@@ -55,11 +54,17 @@ import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationCacheUtil;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationServices;
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationService;
+import org.omg.sysml.logic.implicit.specialization.api.ImplicitSpecialization;
 
 public class TypeUtil {
+
 	
 	private TypeUtil() {
 	}
@@ -241,7 +246,7 @@ public class TypeUtil {
 	public static List<Feature> getAllEndFeaturesOf(Type type) {
 		return type == null? Collections.emptyList(): getEndFeatureOf(type);
 	}
-	
+
 	public static List<Feature> getOwnedEndFeaturesOf(Type type) {
 		return type == null? Collections.emptyList(): type.getOwnedEndFeature();
 	}
@@ -254,8 +259,10 @@ public class TypeUtil {
 		if (type instanceof Feature) {
 			type = FeatureUtil.getBasicFeatureOf((Feature)type);
 		}
-		return type == null? Collections.emptyList():
-			    type.getOwnedFeature().stream().
+		if (type == null) {
+			return Collections.emptyList();
+		}
+		return type.getOwnedFeature().stream().
 					filter(FeatureUtil::isParameter).
 					collect(Collectors.toList());
 	}
@@ -308,7 +315,7 @@ public class TypeUtil {
 		} else {
 			Feature parameter = parameters.get(index);
 			return kind.isInstance(parameter)? (T)parameter: null;
-		}		
+		}
 	}
 	
 	public static Collection<ResultExpressionMembership> getOwnedResultExpressionMembershipsOf(Type type) {
@@ -423,68 +430,84 @@ public class TypeUtil {
 	
 	// Implicit general types
 	
-	public static void setIsAddImplicitGeneralTypesFor(Type type, boolean isAddImplicitGeneralTypes) {
-		getTypeAdapter(type).setIsAddImplicitGeneralTypes(isAddImplicitGeneralTypes);
+	/** Invalidates only this type's specialization candidates and reduced view. */
+	public static void invalidateImplicitSpecializations(Type type) {
+		ImplicitSpecializationCacheUtil.invalidate(type);
 	}
-	
-	public static boolean isImplicitSpecializationDeclaredFor(Type type, EClass eClass) {
-		return getTypeAdapter(type).isImplicitSpecializationDeclaredFor(eClass);
+
+	public static boolean isImplicitSpecializationDeclaredFor(Type type, EClass kind) {
+		return !ImplicitSpecializationServices.get(type).getCandidatesOfKind(type, kind).isEmpty();
 	}
-	
+
 	public static boolean isImplicitGeneralTypesEmpty(Type type) {
-		return getTypeAdapter(type).isImplicitGeneralTypesEmpty();
-	}
-	
-	public static List<Type> getImplicitGeneralTypesFor(Type type) {
-		return getTypeAdapter(type).getImplicitGeneralTypes();
-	}
-	
-	public static List<Type> getImplicitGeneralTypesFor(Type type, EClass kind) {
-		return getTypeAdapter(type).getImplicitGeneralTypes(kind);
-	}
-	
-	public static List<Type> getImplicitGeneralTypesOnly(Type type, EClass kind) {
-		return getTypeAdapter(type).getImplicitGeneralTypesOnly(kind);
-	}
-	
-	public static void addDefaultGeneralTypeTo(Type type) {
-		getTypeAdapter(type).addDefaultGeneralType();
-	}
-	
-	public static void addDefaultGeneralTypeTo(Type type, EClass generalizationEClass, String... superTypeNames) {
-		getTypeAdapter(type).addDefaultGeneralType(generalizationEClass, superTypeNames);
-	}
-	
-	public static void addImplicitGeneralTypeTo(Type type, EClass kind, Type generalType) {
-		getTypeAdapter(type).addImplicitGeneralType(kind, generalType);
-	}
-	
-	public static void removeImplicitGeneralTypeFrom(Type type, EClass kind) {
-		getTypeAdapter(type).removeImplicitGeneralType(SysMLPackage.eINSTANCE.getRedefinition());
-	}
-	
-	public static void forEachImplicitGeneralTypeOf(Type type, BiConsumer<EClass, Type> action) {
-		getTypeAdapter(type).forEachImplicitGeneralType(action);
+		return ImplicitSpecializationServices.get(type).getImplicitSpecializationCandidates(type).isEmpty();
 	}
 
 	/**
-	 * Physically insert implicit specializations into the model.
+	 * Returns the implicit general types used by the Pilot to resolve the supertypes of a type.
+	 * <p>
+	 * A transformed type uses the reduced view: the Pilot transformation is the point where
+	 * redundant implicit generals are dropped, and name scopes involving cyclic inheritance rely
+	 * on that boundary. An untransformed type uses the raw candidates. A reentrant call, made
+	 * while the specializations of another type are being computed or reduced, also uses the raw
+	 * candidates so that no reduction is started inside that computation.
+	 *
+	 * @param type the type whose implicit general types are requested
+	 * @return the general types of the selected view, in candidate order
+	 */
+	public static List<Type> getImplicitGeneralTypesFor(Type type) {
+		if (type == null) {
+			return List.of();
+		}
+		IImplicitSpecializationService service = ImplicitSpecializationServices.get(type);
+		List<ImplicitSpecialization> specializations;
+		if (service.isEvaluationInProgress(type) || !ElementUtil.isTransformed(type)) {
+			specializations = service.getImplicitSpecializationCandidates(type);
+		} else {
+			specializations = service.getImplicitSpecializations(type);
+		}
+		return specializations.stream().map(ImplicitSpecialization::generalType).toList();
+	}
+
+	public static List<Type> getImplicitGeneralTypesFor(Type type, EClass kind) {
+		return ImplicitSpecializationServices.get(type).getImplicitSpecializationCandidates(type).stream()
+				.filter(candidate -> kind.isSuperTypeOf(candidate.specializationKind()))
+				.map(ImplicitSpecialization::generalType).toList();
+	}
+
+	public static List<Type> getImplicitGeneralTypesOnly(Type type, EClass kind) {
+		return ImplicitSpecializationServices.get(type).getCandidatesOfKind(type, kind).stream()
+				.map(ImplicitSpecialization::generalType).toList();
+	}
+
+	public static void forEachImplicitGeneralTypeOf(Type type, BiConsumer<EClass, Type> action) {
+		ImplicitSpecializationServices.get(type).getImplicitSpecializations(type).forEach(candidate ->
+				action.accept(candidate.specializationKind(), candidate.generalType()));
+	}
+
+	/**
+	 * Inserts the reduced implicit relationships. Repeated insertion skips relationships
+	 * already present. Does not remove obsolete relationships or clear unrelated caches.
 	 */
 	public static void insertImplicitSpecializations(Type type) {
-		TypeAdapter adapter = getTypeAdapter(type);
-		adapter.forEachImplicitGeneralType((eClass, general)->{
-			Specialization newSpecialization = (Specialization)SysMLFactory.eINSTANCE.create(eClass);
-			newSpecialization.setIsImplied(true);
-			newSpecialization.setGeneral(general);
-			newSpecialization.setSpecific(type);
-			// Only a detached general, such as a feature chain, is adopted; a root Type of its
-			// resource stays where it is (see FeatureUtil.insertImplicitTypeFeaturings).
-			if (general.getOwningRelationship() == null && general.eResource() == null) {
-				newSpecialization.getOwnedRelatedElement().add(general);
+		List<ImplicitSpecialization> candidates =
+				ImplicitSpecializationServices.get(type).getImplicitSpecializations(type);
+		try {
+			for (var candidate : candidates) {
+				Specialization specialization = (Specialization)SysMLFactory.eINSTANCE.create(candidate.specializationKind());
+				specialization.setIsImplied(true);
+				specialization.setGeneral(candidate.generalType());
+				specialization.setSpecific(type);
+				// Only a detached general, such as a feature chain, is adopted; a root Type of its
+				// resource stays where it is (see FeatureUtil.insertImplicitTypeFeaturings).
+				if (candidate.generalType().getOwningRelationship() == null && candidate.generalType().eResource() == null) {
+					specialization.getOwnedRelatedElement().add(candidate.generalType());
+				}
+				type.getOwnedRelationship().add(specialization);
 			}
-			type.getOwnedRelationship().add(newSpecialization);			
-		});
-		adapter.cleanImplicitGeneralTypes();
+		} finally {
+			ImplicitSpecializationCacheUtil.invalidate(type);
+		}
 	}
 
 	// Implicit binding connectors

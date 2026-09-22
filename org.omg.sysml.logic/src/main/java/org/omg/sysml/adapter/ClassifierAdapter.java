@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,15 +21,7 @@
 
 package org.omg.sysml.adapter;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import org.eclipse.emf.ecore.EClass;
 import org.omg.sysml.lang.sysml.Classifier;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 
 public class ClassifierAdapter extends TypeAdapter {
 	
@@ -41,19 +34,4 @@ public class ClassifierAdapter extends TypeAdapter {
 		return (Classifier)super.getTarget();
 	}
 
-	@Override
-	protected EClass getSpecializationEClass() {
-		return SysMLPackage.eINSTANCE.getSubclassification();
-	}
-	
-	@Override
-	protected List<Type> getBaseTypes() {
-		return super.getBaseTypes().stream().
-				flatMap(type->type instanceof Feature? 
-						((Feature)type).getType().stream(): 
-						Stream.of(type)).
-				filter(Classifier.class::isInstance).
-				collect(Collectors.toList());
-	}
-	
 }

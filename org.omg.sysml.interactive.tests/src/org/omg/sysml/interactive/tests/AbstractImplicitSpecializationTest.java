@@ -25,29 +25,40 @@ import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationServices;
+import org.omg.sysml.logic.implicit.specialization.api.ImplicitSpecialization;
 
 /**
- * Abstract test class for impicit specialization tests.
+ * Base class for implicit-specialization tests: shares the resolved standard library and
+ * installs a service that caches library types and models parsed as cached.
  */
 public class AbstractImplicitSpecializationTest {
 
 
+	private static final Set<Resource> immutableResources = Collections.newSetFromMap(new IdentityHashMap<>());
 	private static ResourceSet resourceSet;
 	private final List<Resource> models = new ArrayList<>();
+	private ImplicitSpecializationService implicitSpecializationService;
 
-	/** Loads and resolves libraries once. */
+
+	/** Loads and resolves libraries once; test model resources are uncached unless selected explicitly. */
 	@BeforeClass
 	public static void loadLibraries() {
 		SysMLInteractive interactive = SysMLInteractive.createInstance();
@@ -55,18 +66,28 @@ public class AbstractImplicitSpecializationTest {
 		interactive.getLibraryIndexCache().setIndexDisabled(true);
 		interactive.loadLibrary(Path.of(System.getProperty("libraryPath")).toAbsolutePath().toString());
 		resourceSet = interactive.getResourceSet();
+		immutableResources.addAll(resourceSet.getResources());
 		for (int i = 0; i < resourceSet.getResources().size(); i++) {
 			EcoreUtil2.resolveLazyCrossReferences(resourceSet.getResources().get(i), null);
 		}
 	}
+	
+	@Before
+	public void setUp() {
+		implicitSpecializationService = new ImplicitSpecializationService(type -> immutableResources.contains(type.eResource()));
+		ImplicitSpecializationServices.install(resourceSet, implicitSpecializationService);
 
-	/** Removes each scenario without altering the shared library contents. */
+	}
+
+	/** Removes each scenario without altering the shared library contents or cache policy. */
 	@After
 	public void removeModels() {
 		for (Resource resource : models) {
+			immutableResources.remove(resource);
 			resource.unload();
 			resourceSet.getResources().remove(resource);
 		}
+		resourceSet.eAdapters().removeIf(ImplicitSpecializationServices.class::isInstance);
 	}
 
 	/** Creates an empty in-memory resource in the library resource set, removed after the test. */
@@ -76,11 +97,22 @@ public class AbstractImplicitSpecializationTest {
 		return resource;
 	}
 
-	protected Resource parse(String name, String text) throws Exception {
+	protected ImplicitSpecializationService getImplicitSpecializationService() {
+		return implicitSpecializationService;
+	}
+
+	protected Resource parse(String name, String text, boolean cached) throws Exception {
 		Resource resource = createResource(name);
+		if (cached) {
+			immutableResources.add(resource);
+		}
 		resource.load(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)), Map.of());
 		assertTrue(resource.getErrors().toString(), resource.getErrors().isEmpty());
 		return resource;
+	}
+
+	protected Resource parse(String name, String text) throws Exception {
+		return parse(name, text, false);
 	}
 
 	protected static <T extends Type> T findByName(Resource resource, String name, Class<T> kind) {
@@ -93,13 +125,25 @@ public class AbstractImplicitSpecializationTest {
 		throw new AssertionError("Missing " + name);
 	}
 
-	protected static void assertContainsGeneral(List<Type> candidates, Type expected) {
-		assertTrue("Expected " + expected + " in " + candidates, candidates.contains(expected));
+	protected static void assertContainsGeneral(List<ImplicitSpecialization> candidates, Type expected) {
+		assertTrue("Expected a specialization to " + expected + " in " + candidates,
+				candidates.stream().anyMatch(c -> c.generalType() == expected));
 	}
 
 	protected static void assertOwnedSpecializationContainsGeneral(Type type, Type expected) {
 		assertTrue("Expected a materialized specialization to " + expected,
 				type.getOwnedSpecialization().stream().anyMatch(s -> s.getGeneral() == expected));
+	}
+	
+	protected static void assertContainsQualifiedName(List<ImplicitSpecialization> candidates, String qualifiedName) {
+		List<String> generals = candidates.stream()
+				.map(candidate -> candidate.generalType() == null ? null : candidate.generalType().getQualifiedName()).toList();
+		assertTrue("Expected " + qualifiedName + " in " + generals, generals.contains(qualifiedName));
+	}
+
+	protected static void assertContainsGeneral(List<ImplicitSpecialization> candidates, Feature expected) {
+		assertTrue("Expected a redefinition to " + expected + " in " + candidates,
+				candidates.stream().anyMatch(c -> c.generalType() == expected));
 	}
 	
 	
@@ -121,9 +165,9 @@ public class AbstractImplicitSpecializationTest {
 		return found;
 	}
 
-	protected static void assertContains(List<Type> candidates, String qualifiedName) {
-		List<String> names = candidates.stream().map(Type::getQualifiedName).toList();
-		assertTrue("Expected " + qualifiedName + " in " + names, names.contains(qualifiedName));
+	protected static void assertContains(List<ImplicitSpecialization> candidates, String qualifiedName) {
+		List<String> generals = candidates.stream().map(candidate -> candidate.generalType().getQualifiedName()).toList();
+		assertTrue("Expected " + qualifiedName + " in " + generals, generals.contains(qualifiedName));
 	}
 
 	protected static void assertOwnedSpecializationContains(Type type, String qualifiedName) {
@@ -133,9 +177,9 @@ public class AbstractImplicitSpecializationTest {
 				names.contains(qualifiedName));
 	}
 	
-	protected void assertNotContains(List<Type> candidates, String qualifiedName) {
-		List<String> names = candidates.stream().map(Type::getQualifiedName).toList();
-		assertFalse("Did not expect " + qualifiedName + " in " + names, names.contains(qualifiedName));
+	protected static void assertNotContains(List<ImplicitSpecialization> candidates, String qualifiedName) {
+		List<String> generals = candidates.stream().map(candidate -> candidate.generalType().getQualifiedName()).toList();
+		assertFalse("Did not expect " + qualifiedName + " in " + generals, generals.contains(qualifiedName));
 	}
 
 

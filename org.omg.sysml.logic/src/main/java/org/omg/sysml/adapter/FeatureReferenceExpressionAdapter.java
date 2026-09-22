@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2022, 2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,12 +21,10 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ElementFilterMembership;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.TypeUtil;
 
@@ -70,20 +69,6 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 		}
 	}
 	
-	/**
-	 * @satisfies checkFeatureFeatureReferenceResultSpecialization
-	 */
-	protected void addResultSubsetting() {
-		FeatureReferenceExpression expression = getTarget();
-		Feature result = expression.getResult();
-		// Note: Use getReferentFor here to avoid "self reference" default.
-		Element referent = ExpressionUtil.getReferentFor(expression);
-		if (result != null && referent instanceof Feature) {
-			TypeUtil.addImplicitGeneralTypeTo(result,
-					SysMLPackage.eINSTANCE.getSubsetting(), (Feature)referent);
-		}
-	}
-	
 	@Override
 	public void addAdditionalMembers() {
 		TypeUtil.addResultParameterTo(getTarget());
@@ -94,8 +79,6 @@ public class FeatureReferenceExpressionAdapter extends ExpressionAdapter {
 		super.doTransform();
 		//checkFeatureReferenceExpressionBindingConnector
 		addReferenceConnector();
-		// Add subsetting in order to inherit typing of referent.
-		addResultSubsetting();
 	}
 	
 }

@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
@@ -34,6 +35,10 @@ import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.Issue;
 import org.omg.sysml.interactive.SysMLInteractive;
+import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationServices;
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationCache;
 import org.omg.sysml.util.ElementUtil;
 
 /**
@@ -73,6 +78,10 @@ public final class SysMLInteractiveModelBenchmark {
 		long initialization = System.nanoTime();
 		SysMLInteractive instance = SysMLInteractive.getInstance();
 		instance.getLibraryIndexCache().setIndexDisabled(true);
+		// Caching is opt-in: mirror XTextImplicitSpecializationService's production policy of
+		// caching every type, so the measured phases reflect the real, cached code path.
+		ImplicitSpecializationServices.install(instance.getResourceSet(),
+				new ImplicitSpecializationService(type -> true));
 		System.out.printf(Locale.ROOT, "Initialization: %.3f s%n", secondsSince(initialization));
 		measure("load_libraries", () -> instance.loadLibrary(libraries.toString()));
 		measure("load_models", () -> {
@@ -82,6 +91,7 @@ public final class SysMLInteractiveModelBenchmark {
 		});
 		ResourceSet resources = instance.getResourceSet();
 		reportErrors(resources);
+		reportCaches(resources, "loaded");
 		measure("resolution", () -> {
 			// Resolution may load further referenced resources; include them in this phase.
 			for (int i = 0; i < resources.getResources().size(); i++) {
@@ -89,8 +99,10 @@ public final class SysMLInteractiveModelBenchmark {
 			}
 		});
 		reportErrors(resources);
+		reportCaches(resources, "resolved");
 		measure("transformation", () -> ElementUtil.transformAll(resources, false));
 		reportErrors(resources);
+		reportCaches(resources, "transformed");
 		List<Issue> issues = new ArrayList<>();
 		measure("validation", () -> issues.addAll(validateResources(resources)));
 		System.out.println("Completed resources: " + resources.getResources().size());
@@ -142,6 +154,25 @@ public final class SysMLInteractiveModelBenchmark {
 	private static void reportErrors(ResourceSet resources) {
 		long errors = resources.getResources().stream().mapToLong(resource -> resource.getErrors().size()).sum();
 		System.out.println("Resource diagnostics: " + errors + " errors (no additional validation performed)");
+	}
+
+	/** Audits the caches installed on public consultation, without calculating. */
+	private static void reportCaches(ResourceSet resources, String phase) {
+		int types = 0, cached = 0, complete = 0;
+		for (var contents = EcoreUtil.getAllContents(resources, false); contents.hasNext();) {
+			if (contents.next() instanceof Type type) {
+				types++;
+				IImplicitSpecializationCache cache = IImplicitSpecializationCache.find(type);
+				if (cache != null) {
+					cached++;
+					if (cache.isComplete() && cache.isReducedComplete()) {
+						complete++;
+					}
+				}
+			}
+		}
+		System.out.printf(Locale.ROOT, "CACHES,%s,types=%d,cached=%d,complete=%d,uncached=%d%n",
+				phase, types, cached, complete, types - cached);
 	}
 
 	private static void measure(String phase, Runnable action) {

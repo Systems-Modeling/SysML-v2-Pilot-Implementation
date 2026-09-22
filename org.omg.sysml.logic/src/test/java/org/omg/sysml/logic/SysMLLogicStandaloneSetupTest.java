@@ -38,6 +38,7 @@ import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
 import org.omg.sysml.util.NamespaceUtil;
 import org.omg.sysml.util.SysMLLibraryUtil;
 
@@ -55,7 +56,7 @@ public class SysMLLogicStandaloneSetupTest {
 	public void repeatedSetupRetainsDelegatesAndUpdatesLibraryProvider() {
 		Type[] libraryElements = new Type[2];
 
-		SysMLLogicStandaloneSetup.doSetup((element, name) -> libraryElements[0]);
+		SysMLLogicStandaloneSetup.doSetup((element, name) -> libraryElements[0], new ImplicitSpecializationService(type -> true));
 		SysMLPackage.eINSTANCE.eClass();
 		libraryElements[0] = SysMLFactory.eINSTANCE.createType();
 		libraryElements[1] = SysMLFactory.eINSTANCE.createType();
@@ -68,7 +69,7 @@ public class SysMLLogicStandaloneSetupTest {
 		assertTrue(settingDelegateFactory instanceof DerivedPropertySettingDelegateFactory);
 		assertTrue(invocationDelegateFactory instanceof OperationInvocationDelegateFactory);
 
-		SysMLLogicStandaloneSetup.doSetup((element, name) -> libraryElements[1]);
+		SysMLLogicStandaloneSetup.doSetup((element, name) -> libraryElements[1], new ImplicitSpecializationService(type -> true));
 
 		assertSame(settingDelegateFactory, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE
 				.get(DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION));

@@ -21,6 +21,7 @@ package org.omg.sysml.interactive.tests;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -40,6 +41,11 @@ import org.omg.sysml.lang.sysml.SuccessionAsUsage;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationCacheUtil;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationService;
+import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationServices;
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationCache;
+import org.omg.sysml.logic.implicit.specialization.api.ImplicitSpecialization;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.SysMLLibraryUtil;
@@ -398,6 +404,87 @@ public class VirtualContainerTest extends AbstractImplicitSpecializationTest {
 	}
 
 	/**
+	 * A detached chain reaches the model through its virtual container: the service returned for it
+	 * is the one installed on the ResourceSet of its model, not a new service created for the chain
+	 * alone.
+	 */
+	@Test
+	public void detachedChainUsesTheServiceOfItsModel() throws Exception {
+		// package Service {
+		//     feature x;
+		//     feature y = x;
+		// }
+		Resource resource = parse("service.kerml", """
+				package Service {
+					feature x;
+					feature y = x;
+				}
+				""");
+		Feature y = findByName(resource, "y", Feature.class);
+		Feature chain = findDetachedChain(generalTypesOf(y));
+
+		// The chain has no resource: its model scope is found through y, whose ResourceSet holds the
+		// service installed by the test.
+		assertSame(getImplicitSpecializationService(), ImplicitSpecializationServices.get(chain));
+	}
+
+	/**
+	 * A detached chain linked to the model accepts a cache like an attached Type, whereas a Feature
+	 * created outside the model and linked to nothing is refused.
+	 */
+	@Test
+	public void cacheIsInstalledOnlyOnTypesThatReachTheModel() throws Exception {
+		// package Installed {
+		//     feature x;
+		//     feature y = x;
+		// }
+		Resource resource = parse("installed.kerml", """
+				package Installed {
+					feature x;
+					feature y = x;
+				}
+				""");
+		Feature y = findByName(resource, "y", Feature.class);
+		Feature chain = findDetachedChain(generalTypesOf(y));
+
+		// The chain reaches the model through y.
+		assertNotNull(ImplicitSpecializationCacheUtil.installCache(chain));
+
+		// A Feature created outside the model, without virtual container, does not reach it.
+		Feature unlinked = SysMLFactory.eINSTANCE.createFeature();
+		assertThrows(IllegalArgumentException.class, () -> ImplicitSpecializationCacheUtil.installCache(unlinked));
+	}
+
+	/**
+	 * With a policy accepting every Type, the raw candidates of a detached chain are cached on the
+	 * chain: a second request returns the stored snapshot instead of computing a new one.
+	 */
+	@Test
+	public void linkedDetachedTypeIsCachedByAnAcceptingPolicy() throws Exception {
+		// package Cached {
+		//     feature x;
+		//     feature y = x;
+		// }
+		Resource resource = parse("cached.kerml", """
+				package Cached {
+					feature x;
+					feature y = x;
+				}
+				""");
+		// Replaces the service of the test by one that caches every Type; removed after the test.
+		ImplicitSpecializationService accepting = new ImplicitSpecializationService(type -> true);
+		ImplicitSpecializationServices.install(resource.getResourceSet(), accepting);
+		Feature y = findByName(resource, "y", Feature.class);
+		Feature chain = findDetachedChain(accepting.getImplicitSpecializationCandidates(y).stream()
+				.map(ImplicitSpecialization::generalType).toList());
+
+		// The first request on the chain fills its cache; the second one is a cache hit.
+		List<ImplicitSpecialization> first = accepting.getImplicitSpecializationCandidates(chain);
+		assertNotNull(IImplicitSpecializationCache.find(chain));
+		assertSame(first, accepting.getImplicitSpecializationCandidates(chain));
+	}
+
+	/**
 	 * An element parsed from text is created in the model: it has no virtual container and its
 	 * effective container is its real container.
 	 */
@@ -415,6 +502,11 @@ public class VirtualContainerTest extends AbstractImplicitSpecializationTest {
 
 		assertNull(VirtualContainer.getVirtualContainer(x));
 		assertSame(x.eContainer(), ElementUtil.getEffectiveContainer(x));
+	}
+
+	private List<Type> generalTypesOf(Type type) {
+		return getImplicitSpecializationService().getImplicitSpecializationCandidates(type).stream()
+				.map(ImplicitSpecialization::generalType).toList();
 	}
 
 	private static Feature findDetachedChain(List<Type> generals) {

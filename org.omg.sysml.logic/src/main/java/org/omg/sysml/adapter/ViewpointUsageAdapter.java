@@ -1,5 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
+ * Copyright (c) 2026 Obeo
  * Copyright (c) 2021 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
@@ -20,9 +21,6 @@
 
 package org.omg.sysml.adapter;
 
-import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.ViewDefinition;
-import org.omg.sysml.lang.sysml.ViewUsage;
 import org.omg.sysml.lang.sysml.ViewpointUsage;
 
 public class ViewpointUsageAdapter extends RequirementUsageAdapter {
@@ -36,20 +34,4 @@ public class ViewpointUsageAdapter extends RequirementUsageAdapter {
 		return (ViewpointUsage)super.getTarget();
 	}
 	
-	/**
-	 * @satisfies checkViewpointUsageViewpointSatisfactionSpecialization
-	 * @satisfies checkViewpointUsageSpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		return isSatisfiedViewpoint()?
-					getDefaultSupertype("satisfied"):
-					getDefaultSupertype("base");
-	}
-	
-	public boolean isSatisfiedViewpoint() {
-		Type owningType = getTarget().getOwningType();
-		return owningType instanceof ViewDefinition | owningType instanceof ViewUsage;
-	}
-
 }

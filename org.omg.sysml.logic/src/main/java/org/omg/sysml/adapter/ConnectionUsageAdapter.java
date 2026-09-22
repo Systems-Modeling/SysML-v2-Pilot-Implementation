@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -22,7 +23,6 @@ package org.omg.sysml.adapter;
 
 import org.omg.sysml.lang.sysml.ConnectionUsage;
 import org.omg.sysml.util.ConnectorUtil;
-import org.omg.sysml.util.TypeUtil;
 
 public class ConnectionUsageAdapter extends PartUsageAdapter {
 
@@ -35,33 +35,6 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 		return (ConnectionUsage)super.getTarget();
 	}
 	
-	/**
-	 * @satisfies checkPartUsageSubpartSpecialization
-	 */
-	@Override
-	public void addDefaultGeneralType() {
-		super.addDefaultGeneralType();
-		if (isSubitem()) {
-			addDefaultGeneralType("subpart");
-		}
-	}
-	
-	/**
-	 * @satisfies checkConnectionUsageSpecialization
-	 * @satisfies checkAllocationUsageSpecialization
-	 * @satisfies checkInterfaceDefinitionSpecialization
-	 * @satisfies checkConnectionUsageBinarySpecialization
-	 * @satisfies checkAllocationUsageSpecialization
-	 * @satisfies checkInterfaceDefinitionBinarySpecialization
-	 */
-	@Override
-	protected String getDefaultSupertype() {
-		int numEnds = TypeUtil.getOwnedEndFeaturesOf(getTarget()).size();
-		return numEnds != 2?
-				getDefaultSupertype("base"):
-				getDefaultSupertype("binary");
-	}
-	
 	@Override
 	protected boolean isAddMultiplicity() {
 		return getTarget().isEnd();
@@ -72,7 +45,6 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 		ConnectionUsage target = getTarget();
 		super.doTransform();
 		addFeaturingTypeIfNecessary(ConnectorUtil.getContextTypeFor(target));
-		ConnectorAdapter.addEndSubsetting(target);
 	}
 	
 }

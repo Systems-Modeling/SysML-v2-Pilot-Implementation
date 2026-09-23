@@ -1,6 +1,9 @@
 package org.omg.kerml.validation.checker;
 
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
+import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -16,8 +19,8 @@ import org.omg.sysml.util.FeatureUtil;
 public class SubsettingValidationChecker extends SpecializationValidationChecker {
 	
 	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
+	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		super.validate(element, messageAccepter, visited);
 		validateSubsettingConstantConformance(element, messageAccepter);
 		validateSubsettingFeaturingTypes(element, messageAccepter);
 		validateSubsettingUniquenessConformance(element, messageAccepter);

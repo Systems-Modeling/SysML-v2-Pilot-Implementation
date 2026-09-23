@@ -1,17 +1,21 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+
+import java.util.Set;
+
+import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
-import org.omg.kerml.validation.checker.MetadataFeatureValidationChecker;
 
 public class MetadataUsageValidationChecker extends ItemUsageValidationChecker {
 	
-	MetadataFeatureValidationChecker metadatafeature = new MetadataFeatureValidationChecker();
+	private final ValidationChecker metadatafeature = factory.getValidationChecker(SysMLPackage.eINSTANCE.getMetadataFeature());
 	
 	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
-		metadatafeature.validate(element, messageAccepter);
+	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		super.validate(element, messageAccepter, visited);
+		metadatafeature.validate(element, messageAccepter, visited);
 	}
 						
 }

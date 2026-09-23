@@ -1,16 +1,20 @@
 package org.omg.kerml.validation.checker;
 
+import java.util.Set;
+
+import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class SuccessionFlowValidationChecker extends SuccessionValidationChecker {
 	
-	FlowValidationChecker flow = new FlowValidationChecker();
+	private final ValidationChecker flow = factory.getValidationChecker(SysMLPackage.eINSTANCE.getFlow());
 	
 	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
-		flow.validate(element, messageAccepter);
+	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		super.validate(element, messageAccepter, visited);
+		flow.validate(element, messageAccepter, visited);
 	}
 						
 }

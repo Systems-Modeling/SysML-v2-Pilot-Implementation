@@ -1,17 +1,21 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+
+import java.util.Set;
+
+import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
-import org.omg.kerml.validation.checker.StructureValidationChecker;
 
 public class PortDefinitionValidationChecker extends OccurrenceDefinitionValidationChecker {
 	
-	StructureValidationChecker structure = new StructureValidationChecker();
+	private final ValidationChecker structure = factory.getValidationChecker(SysMLPackage.eINSTANCE.getStructure());
 	
 	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
-		structure.validate(element, messageAccepter);
+	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		super.validate(element, messageAccepter, visited);
+		structure.validate(element, messageAccepter, visited);
 		validatePortDefinitionConjugatedPortDefinition(element, messageAccepter);
 		validatePortDefinitionOwnedUsagesNotComposite(element, messageAccepter);
 	}

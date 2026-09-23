@@ -21,13 +21,13 @@
 
 package org.omg.kerml.validation;
 
-import org.omg.sysml.lang.sysml.Element;
+import org.eclipse.emf.ecore.EClass;
 
 public class KerMLValidationCheckerFactory extends ValidationCheckerFactory {
 	
 	@Override
-	public ValidationChecker createValidationChecker(Element element) {
-		return createValidationChecker(element, "kerml");
+	public ValidationChecker createValidationChecker(EClass eClass) {
+		return createValidationChecker(eClass, "kerml");
 	}
 
 }

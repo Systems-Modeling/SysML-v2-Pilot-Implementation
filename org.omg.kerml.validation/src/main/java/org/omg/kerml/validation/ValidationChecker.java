@@ -21,6 +21,9 @@
 
 package org.omg.kerml.validation;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.omg.sysml.lang.sysml.Element;
 
 /**
@@ -32,6 +35,23 @@ import org.omg.sysml.lang.sysml.Element;
  */
 public abstract class ValidationChecker {
 	
-	public abstract void validate(Element element, ValidationMessageAccepter messageAccepter);
+	protected ValidationCheckerFactory factory = null;
+	
+	public void setFactory(ValidationCheckerFactory factory) {
+		this.factory = factory;
+	}
+	
+	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
+		validate(element, messageAccepter, new HashSet<>());
+	}
+	
+	public void validate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		if (!visited.contains(this)) {
+			visited.add(this);
+			doValidate(element, messageAccepter, visited);
+		}
+	}
+	
+	protected abstract void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited);
 
 }

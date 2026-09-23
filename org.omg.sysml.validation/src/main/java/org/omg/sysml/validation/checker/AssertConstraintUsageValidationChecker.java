@@ -1,17 +1,21 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SysMLPackage;
+
+import java.util.Set;
+
+import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
-import org.omg.kerml.validation.checker.InvariantValidationChecker;
 
 public class AssertConstraintUsageValidationChecker extends ConstraintUsageValidationChecker {
 	
-	InvariantValidationChecker invariant = new InvariantValidationChecker();
+	private final ValidationChecker invariant = factory.getValidationChecker(SysMLPackage.eINSTANCE.getInvariant());;
 	
 	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
-		invariant.validate(element, messageAccepter);
+	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		super.validate(element, messageAccepter, visited);
+		invariant.validate(element, messageAccepter, visited);
 		validateAssertConstraintUsageReference(element, messageAccepter);
 	}
 						

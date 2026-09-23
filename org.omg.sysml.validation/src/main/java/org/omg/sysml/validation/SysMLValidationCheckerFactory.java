@@ -21,16 +21,16 @@
 
 package org.omg.sysml.validation;
 
+import org.eclipse.emf.ecore.EClass;
 import org.omg.kerml.validation.KerMLValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationChecker;
-import org.omg.sysml.lang.sysml.Element;
 
 public class SysMLValidationCheckerFactory extends KerMLValidationCheckerFactory {
 	
 	@Override
-	public ValidationChecker createValidationChecker(Element element) {
-		ValidationChecker kermlValidationChecker = super.getValidationChecker(element);
-		return kermlValidationChecker != null? kermlValidationChecker: createValidationChecker(element, "sysml");
+	public ValidationChecker createValidationChecker(EClass eClass) {
+		ValidationChecker kermlValidationChecker = super.createValidationChecker(eClass);
+		return kermlValidationChecker != null? kermlValidationChecker: createValidationChecker(eClass, "sysml");
 	}
 
 }

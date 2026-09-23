@@ -6,9 +6,11 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.omg.kerml.util.ValidationUtil;
+import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
@@ -25,8 +27,8 @@ import org.omg.sysml.util.TypeUtil;
 public class TypeValidationChecker extends NamespaceValidationChecker {
 	
 	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
+	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		super.validate(element, messageAccepter, visited);
 		validateTypeAtMostOneConjugator(element, messageAccepter);
 		validateTypeDifferencingTypesNotSelf(element, messageAccepter);
 		validateTypeIntersectingTypesNotSelf(element, messageAccepter);

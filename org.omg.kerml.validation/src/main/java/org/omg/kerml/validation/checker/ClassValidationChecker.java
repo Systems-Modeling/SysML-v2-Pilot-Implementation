@@ -6,7 +6,9 @@ import org.omg.sysml.lang.sysml.Specialization;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 import java.util.List;
+import java.util.Set;
 
+import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Association;
 import org.omg.sysml.lang.sysml.Type;
@@ -14,8 +16,8 @@ import org.omg.sysml.lang.sysml.Type;
 public class ClassValidationChecker extends ClassifierValidationChecker {
 	
 	@Override
-	public void validate(Element element, ValidationMessageAccepter messageAccepter) {
-		super.validate(element, messageAccepter);
+	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
+		super.validate(element, messageAccepter, visited);
 		validateClassSpecialization(element, messageAccepter);
 	}
 						

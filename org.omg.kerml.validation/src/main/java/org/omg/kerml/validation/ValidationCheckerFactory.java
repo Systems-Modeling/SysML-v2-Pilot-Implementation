@@ -40,10 +40,13 @@ public abstract class ValidationCheckerFactory {
 	private Map<EClass, ValidationChecker> validationCheckerCache = new HashMap<>();
 	
 	public ValidationChecker getValidationChecker(Element element) {
-		EClass eClass = element.eClass();
+		return getValidationChecker(element.eClass());
+	}
+	
+	public ValidationChecker getValidationChecker(EClass eClass) {
 		ValidationChecker checker = validationCheckerCache.get(eClass);
 		if (checker == null) {
-			checker = createValidationChecker(element);
+			checker = createValidationChecker(eClass);
 			if (checker != null) {
 				validationCheckerCache.put(eClass, checker);
 			}
@@ -51,14 +54,15 @@ public abstract class ValidationCheckerFactory {
 		return checker;
 	}
 	
-	public abstract ValidationChecker createValidationChecker(Element element);
+	public abstract ValidationChecker createValidationChecker(EClass eClass);
 	
-	protected ValidationChecker createValidationChecker(Element element, String packageSuffix) {
-		EClass eClass = element.eClass();
+	protected ValidationChecker createValidationChecker(EClass eClass, String packageSuffix) {
 		try {
 			Class<?> validationChecker = Class.forName(VALIDATION_CHECKER_PACKAGE +"." + packageSuffix + "." + eClass.getName() + "ValidationChecker");
 			Constructor<?> constructor = validationChecker.getConstructor();
-			return (ValidationChecker)constructor.newInstance();
+			ValidationChecker checker = (ValidationChecker)constructor.newInstance();
+			checker.setFactory(this);
+			return checker;
 		} catch (ClassNotFoundException e) {
 			return null;
 		} catch (Exception e) {

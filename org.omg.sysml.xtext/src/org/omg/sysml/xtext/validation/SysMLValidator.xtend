@@ -133,6 +133,7 @@ import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.util.TypeUtil
+import org.omg.sysml.lang.sysml.ConnectionDefinition
 
 /**
  * This class contains custom validation rules. 
@@ -234,14 +235,19 @@ class SysMLValidator extends KerMLValidator {
 	public static val INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE = "validatePortUsageNestedUsagesNotComposite"
 	public static val INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE_MSG = "Nested usages in a port usage (other than ports) must be referential."
 	
+	public static val INVALID_CONNECTION_DEFINITION_ENDS_ARE_USAGES = "validateConnectionDefinitionEndsAreUsages_"
+	public static val INVALID_CONNECTION_DEFINITION_ENDS_ARE_USAGES_MSG = "A connection definition end must be a usage."
+	
 	public static val INVALID_CONNECTION_USAGE_TYPE = "validateConnectionUsageType_"
 	public static val INVALID_CONNECTION_USAGE_TYPE_MSG = "A connection must be typed by connection definitions."
 	
+	public static val INVALID_FLOW_DEFINITION_ENDS_ARE_USAGES = "validateFlowDefinitionEndsAreUsages_"
+	public static val INVALID_FLOW_DEFINITION_ENDS_ARE_USAGES_MSG = "A flow definition end must be a usage."
 	public static val INVALID_FLOW_DEFINITION_END = "validateFlowDefinitionConnectionEnds"
-	public static val INVALID_FLOW_DEFINITION_END_MSG = "A flow connection definition can have at most two ends."
+	public static val INVALID_FLOW_DEFINITION_END_MSG = "A flow definition can have at most two ends."
 	
 	public static val INVALID_FLOW_USAGE_TYPE = "validateFlowUsageType_"
-	public static val INVALID_FLOW_USAGE_TYPE_MSG = "A flow connection must be typed by flow connection definitions."
+	public static val INVALID_FLOW_USAGE_TYPE_MSG = "A flow usage must be typed by flow definitions."
 
 	public static val INVALID_INTERFACE_DEFINITION_END = "validateInterfaceDefinitionEnd_"
 	public static val INVALID_INTERFACE_DEFINITION_END_MSG = "An interface definition end must be a port."
@@ -700,6 +706,12 @@ class SysMLValidator extends KerMLValidator {
 		val usages = usg.nestedUsage.filter[u | !(u instanceof PortUsage)]
 		checkAllNotComposite(usages, INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE_MSG, INVALID_PORT_USAGE_NESTED_USAGES_NOT_COMPOSITE)
 	}
+	
+	@Check
+	def checkConnectionDefinition(ConnectionDefinition cdef) {
+		// validateConnectionDefinitionEndsAreUsages_
+		checkEndsAreUsages(cdef, INVALID_CONNECTION_DEFINITION_ENDS_ARE_USAGES_MSG, INVALID_CONNECTION_DEFINITION_ENDS_ARE_USAGES)
+	}
 
 	@Check
 	def checkConnectionUsage(ConnectionUsage usg) {
@@ -710,8 +722,10 @@ class SysMLValidator extends KerMLValidator {
 	
 	@Check
 	def checkFlowDefinition(FlowDefinition cdef) {
-		// validateConnectionDefinitionConnectionEnds
-		val ends = cdef.endFeature
+		// validateFlowDefinitionEndsAreUsages_
+		val ends = checkEndsAreUsages(cdef, INVALID_FLOW_DEFINITION_ENDS_ARE_USAGES_MSG, INVALID_FLOW_DEFINITION_ENDS_ARE_USAGES)
+		
+		// validateFlowDefinitionEnds
 		if (ends.size > 2) {
 			val ownedEnds = cdef.ownedEndFeature
 			if (ownedEnds.size <= 2) {
@@ -957,7 +971,7 @@ class SysMLValidator extends KerMLValidator {
 		// validateStateDefinitionParallelSubactions is checked by checkTransitionUsage and checkSuccession
 		
 		// validateStateDefinitionStateSubactionKind
-		checkStateSubactions(defn);
+		checkStateSubactions(defn,INVALID_STATE_DEFINITION_SUBACTION_KIND)
 	}
 	
 	@Check
@@ -977,14 +991,7 @@ class SysMLValidator extends KerMLValidator {
 		// validateStateUsageParallelSubactions is checked by checkTransitionUsage and checkSuccession
 
 		// validateStateUsageStateSubactionKind
-		checkStateSubactions(usg)
-	}
-	
-	protected def checkStateSubactions(Type type) {
-		val errorId = type instanceof Definition? INVALID_STATE_DEFINITION_SUBACTION_KIND: INVALID_STATE_USAGE_SUBACTION_KIND
-		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_KIND_ENTRY_MSG, errorId);
-		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_KIND_DO_MSG, errorId);
-		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_KIND_EXIT_MSG, errorId);
+		checkStateSubactions(usg, INVALID_STATE_USAGE_SUBACTION_KIND)
 	}
 	
 	@Check
@@ -1364,6 +1371,28 @@ class SysMLValidator extends KerMLValidator {
 	}
 	
 	/* Utility Methods */
+	
+	protected def checkStateSubactions(Type type, String errorId) {
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.ENTRY), INVALID_STATE_SUBACTION_KIND_ENTRY_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.DO), INVALID_STATE_SUBACTION_KIND_DO_MSG, errorId);
+		checkAtMostOneRelationship(type, UsageUtil.getStateSubactionMembershipsOf(type, StateSubactionKind.EXIT), INVALID_STATE_SUBACTION_KIND_EXIT_MSG, errorId);
+	}
+	
+	protected def checkEndsAreUsages(Type type, String msg, String errorId) {
+		val ends = TypeUtil.getAllEndFeaturesOf(type)
+		val nonUsageEnds = ends.filter[end | !(end instanceof Usage)]
+		val ownedNonUsageEnds = nonUsageEnds.filter[end | end.owner === type]
+		if (!nonUsageEnds.isEmpty) {
+			if (ownedNonUsageEnds.isEmpty()) {
+				error(msg, type, null, errorId)
+			} else {
+				for (end: ownedNonUsageEnds) {
+					error(msg, end, null, errorId)
+				}
+			}
+		}
+		return ends;
+	}
 	
 	protected def boolean checkNotAny(Iterable<? extends EObject> list, String msg, EStructuralFeature eFeature, String eId) {
 		var check = true

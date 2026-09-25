@@ -477,7 +477,9 @@ public class TypeUtil {
 			newSpecialization.setIsImplied(true);
 			newSpecialization.setGeneral(general);
 			newSpecialization.setSpecific(type);
-			if (general.getOwningRelationship() == null) {
+			// Only a detached general, such as a feature chain, is adopted; a root Type of its
+			// resource stays where it is (see FeatureUtil.insertImplicitTypeFeaturings).
+			if (general.getOwningRelationship() == null && general.eResource() == null) {
 				newSpecialization.getOwnedRelatedElement().add(general);
 			}
 			type.getOwnedRelationship().add(newSpecialization);			

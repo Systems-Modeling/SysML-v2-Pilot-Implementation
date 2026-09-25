@@ -3,9 +3,9 @@
 // not isAbstract implies relatedFeature->size() >= 2
 package validateConnectorRelatedFeatures_invalid2 {
 	// Two ends, but an end without a reference subsetting contributes no related feature.
-	part a;
+	part p;
 	connection c {
-		end ::> a;
-		end;
+		end a ::> p;
+		end b;
 	}
 }

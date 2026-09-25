@@ -4,7 +4,7 @@
 // reject(oclIsKindOf(PortUsage))->
 // forAll(not isComposite)
 package validatePortDefinitionOwnedUsagesNotComposite_valid2 {
-	doc /* An attribute usage is always referential, so it is allowed in a port definition. */
+	// An attribute usage is always referential, so it is allowed in a port definition.
 	port def PortDef {
 		attribute a;
 	}

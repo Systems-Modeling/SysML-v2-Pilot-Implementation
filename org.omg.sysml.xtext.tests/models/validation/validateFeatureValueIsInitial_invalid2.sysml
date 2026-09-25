@@ -4,6 +4,6 @@
 package validateFeatureValueIsInitial_invalid2 {
 	// A portion is not time-varying, so it cannot have an initial value.
 	part def A {
-		snapshot s := 1;
+		snapshot s := start;
 	}
 }

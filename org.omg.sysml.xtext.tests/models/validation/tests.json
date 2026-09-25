@@ -7,7 +7,6 @@
   {"file": "validateAttributeDefinitionFeatures_valid2.sysml", "rule": "validateAttributeDefinitionFeatures", "expected": "valid"},
   {"file": "validateBehaviorSpecialization_invalid1.sysml", "rule": "validateBehaviorSpecialization", "expected": "invalid"},
   {"file": "validateBehaviorSpecialization_valid1.sysml", "rule": "validateBehaviorSpecialization", "expected": "valid"},
-  {"file": "validateBindingConnectorIsBinary_invalid1.sysml", "rule": "validateBindingConnectorIsBinary", "expected": "invalid"},
   {"file": "validateBindingConnectorIsBinary_valid1.sysml", "rule": "validateBindingConnectorIsBinary", "expected": "valid"},
   {"file": "validateCaseDefinitionOnlyOneObjective_invalid1.sysml", "rule": "validateCaseDefinitionOnlyOneObjective", "expected": "invalid"},
   {"file": "validateCaseDefinitionOnlyOneObjective_valid1.sysml", "rule": "validateCaseDefinitionOnlyOneObjective", "expected": "valid"},

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -349,7 +350,18 @@ public class FeatureUtil {
 				featuring.setIsImplied(true);
 				featuring.setFeaturingType(type);
 				featuring.setFeatureOfType(feature);
-				if (type.getOwningRelationship() == null) {
+				// A featuring type created for this implied TypeFeaturing, such as an <Owner>_snapshots
+				// feature or a feature chain, is detached: it becomes an owned related element of the
+				// inserted relationship. Having no owning relationship does not prove that a type is
+				// detached: the root namespace of a model has no owner either. A parsed model cannot cause
+				// a confusion, since its root namespace is an unnamed Namespace, which cannot be a featuring
+				// type. A model built by other means, such as a test building elements programmatically,
+				// can however have a Type as the root of its resource and as the featuring type of one of its
+				// own members. Adopting that root would move it out of its resource into its own member, a
+				// containment cycle that ElementUtil.getClosestElementInResource could not leave. Only a type
+				// that is neither owned nor in a resource is therefore adopted; the root of a model built
+				// without any resource still cannot be told apart from a detached type.
+				if (type.getOwningRelationship() == null && type.eResource() == null) {
 					featuring.getOwnedRelatedElement().add(type);
 				}
 				feature.getOwnedRelationship().add(featuring);

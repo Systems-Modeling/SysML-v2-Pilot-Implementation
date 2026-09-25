@@ -158,9 +158,12 @@ public class SysMLLibraryUtil {
 	 * Resolves a library element by qualified name relative to the given context
 	 * element.
 	 *
-	 * <p>The context element is used to locate the originating resource and obtain
-	 * the appropriate {@link IModelLibraryProvider}. If no provider is available
-	 * or the provider cannot resolve the name, this method returns {@code null}.
+	 * <p>The lookup starts from the closest element in a resource: the context itself, or, for an
+	 * element created outside the model, the closest of its effective containers that belongs to
+	 * a resource (see {@link ElementUtil#getClosestElementInResource}). That element locates the
+	 * originating resource, obtains the appropriate {@link IModelLibraryProvider} and is passed to
+	 * it. If no provider is available or the provider cannot resolve the name, this method returns
+	 * {@code null}.
 	 *
 	 * @param context the lookup context
 	 * @param name the qualified library name to resolve
@@ -168,9 +171,17 @@ public class SysMLLibraryUtil {
 	 *         resolved
 	 */
 	public static Element getLibraryElement(Element context, String name) {
-		Resource resource = context == null ? null : context.eResource();
+		Element lookupContext = context;
+		Resource resource = null;
+		if (ElementUtil.getClosestElementInResource(context) instanceof Element attached) {
+			lookupContext = attached;
+			resource = attached.eResource();
+		}
 		IModelLibraryProvider provider = getInstance(resource);
-		return provider == null ? null : provider.getElement(context, name);
+		if (provider == null) {
+			return null;
+		}
+		return provider.getElement(lookupContext, name);
 	}
 
 	/**

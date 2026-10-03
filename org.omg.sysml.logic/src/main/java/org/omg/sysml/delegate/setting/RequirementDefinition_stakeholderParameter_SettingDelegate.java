@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2022 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.PartUsage;
 import org.omg.sysml.lang.sysml.RequirementDefinition;
 import org.omg.sysml.lang.sysml.StakeholderMembership;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
 
@@ -38,8 +39,10 @@ public class RequirementDefinition_stakeholderParameter_SettingDelegate extends 
 
 	@Override
 	protected EList<?> basicGet(InternalEObject owner) {
+		RequirementDefinition self = (RequirementDefinition)owner;
+		ElementUtil.clearCachesOf(self);
 		EList<PartUsage> stakeholderParameters = new NonNotifyingEObjectEList<>(PartUsage.class, owner, eStructuralFeature.getFeatureID());
-		TypeUtil.addFeaturesByMembership((RequirementDefinition)owner, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
+		TypeUtil.addFeaturesByMembership(self, StakeholderMembership.class, PartUsage.class, stakeholderParameters);
 		return stakeholderParameters;
 	}
 

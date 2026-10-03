@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2025, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.CaseUsage;
+import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class CaseUsage_objectiveRequirement_SettingDelegate extends BasicDerivedObjectSettingDelegate {
@@ -35,7 +36,9 @@ public class CaseUsage_objectiveRequirement_SettingDelegate extends BasicDerived
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return UsageUtil.getObjectiveRequirementOf((CaseUsage)owner);
+		CaseUsage self = (CaseUsage)owner;
+		ElementUtil.clearCachesOf(self);
+		return UsageUtil.getObjectiveRequirementOf(self);
 	}
 
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
+ * Copyright (c) 2026 Model Driven Solutions, inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.ElementUtil;
 
 public class Connector_sourceFeature_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -34,7 +36,9 @@ public class Connector_sourceFeature_SettingDelegate extends BasicDerivedObjectS
 
 	@Override
 	protected EObject basicGet(InternalEObject owner) {
-		return ConnectorUtil.getSourceFeatureOf((Connector)owner);
+		Connector self = (Connector)owner;
+		ElementUtil.clearCachesOf(self);
+		return ConnectorUtil.getSourceFeatureOf(self);
 	}
 
 }

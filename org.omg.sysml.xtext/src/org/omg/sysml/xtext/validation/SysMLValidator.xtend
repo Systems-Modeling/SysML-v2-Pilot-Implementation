@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
+import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.xtext.validation.KerMLValidator
 import org.omg.sysml.lang.sysml.AcceptActionUsage
 import org.omg.sysml.lang.sysml.ActionDefinition
@@ -55,6 +56,7 @@ import org.omg.sysml.lang.sysml.ControlNode
 import org.omg.sysml.lang.sysml.DataType
 import org.omg.sysml.lang.sysml.DecisionNode
 import org.omg.sysml.lang.sysml.Definition
+import org.omg.sysml.lang.sysml.Element
 import org.omg.sysml.lang.sysml.EnumerationDefinition
 import org.omg.sysml.lang.sysml.EnumerationUsage
 import org.omg.sysml.lang.sysml.EventOccurrenceUsage
@@ -133,6 +135,10 @@ import org.omg.sysml.util.FeatureUtil
 import org.omg.sysml.util.UsageUtil
 import org.omg.sysml.lang.sysml.MetadataFeature
 import org.omg.sysml.util.TypeUtil
+import java.io.FileNotFoundException
+import java.io.IOException
+import org.omg.kerml.validation.ValidationCheckerFactory
+import org.omg.kerml.validation.ValidationMessageMap
 
 /**
  * This class contains custom validation rules. 
@@ -140,7 +146,15 @@ import org.omg.sysml.util.TypeUtil
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class SysMLValidator extends KerMLValidator {
+	
+	new() throws FileNotFoundException, IOException {
+		super()
+	}
 
+	new (ValidationCheckerFactory factory, ValidationMessageMap messageMap) {
+		super(factory, messageMap)
+	}
+	
 	public static val INVALID_DEFINITION_VARIATION_IS_ABSTRACT = "validateDefinitionVariationIsAbstract"
 	public static val INVALID_DEFINITION_VARIATION_IS_ABSTRACT_MSG = "A variation must be abstract."
 	public static val INVALID_DEFINITION_VARIATION_MEMBERSHIP = "validateDefinitionVariationMembership"
@@ -815,13 +829,13 @@ class SysMLValidator extends KerMLValidator {
 		}
 		
 		// validateTriggerInvocationExpressionWhenArgument
-		if (kind == TriggerKind.WHEN && !(argument !== null && isBooleanExpression(argument))) {
+		if (kind == TriggerKind.WHEN && !(argument !== null && ValidationUtil.isBooleanExpression(argument))) {
 			error(INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT_MSG, expr, null, INVALID_TRIGGER_INVOCATION_EXPRESSION_WHEN_ARGUMENT)
 		}
 	}
 	
 	def static boolean isTime(Expression expr) {
-		expr.result !== null && specializesFromLibrary(expr, expr.result, "Time::TimeInstantValue") ||
+		expr.result !== null && ValidationUtil.specializesFromLibrary(expr, expr.result, "Time::TimeInstantValue") ||
 		expr instanceof OperatorExpression &&
 			(expr as OperatorExpression).operator.isQuantityOperator &&
 			(expr as OperatorExpression).argument.forall[isDuration || isTime]
@@ -829,7 +843,7 @@ class SysMLValidator extends KerMLValidator {
 	
 	def static boolean isDuration(Expression expr) {
 		expr.isDurationLiteral ||
-		expr.result !== null && specializesFromLibrary(expr, expr.result, "ISQBase::DurationValue") ||
+		expr.result !== null && ValidationUtil.specializesFromLibrary(expr, expr.result, "ISQBase::DurationValue") ||
 		expr instanceof OperatorExpression &&
 			(expr as OperatorExpression).operator.isQuantityOperator &&
 			(expr as OperatorExpression).argument.forall[isDuration || isTime]
@@ -841,7 +855,7 @@ class SysMLValidator extends KerMLValidator {
 				val arguments = expr.argument
 				if (arguments.size >= 2) {
 					val result = arguments.get(1).result
-					return result !== null && specializesFromLibrary(expr, result, "ISQBase::DurationUnit")
+					return result !== null && ValidationUtil.specializesFromLibrary(expr, result, "ISQBase::DurationUnit")
 				}
 			}
 		}
@@ -1004,7 +1018,7 @@ class SysMLValidator extends KerMLValidator {
 		} else if (kind == TransitionFeatureKind.GUARD) {
 			// Check validateTransitionFeatureMembershipGuardExpression
 			val transitionFeature = mem.transitionFeature
-			if (!(transitionFeature instanceof Expression && (transitionFeature as Expression).isBoolean)) {
+			if (!(transitionFeature instanceof Expression && ValidationUtil.isBoolean(transitionFeature as Expression))) {
 				error(INVALID_TRANSITION_FEATURE_MEMBERSHIP_GUARD_EXPRESSION_MSG, mem, null, INVALID_TRANSITION_FEATURE_MEMBERSHIP_GUARD_EXPRESSION)
 			}
 		} if (kind == TransitionFeatureKind.TRIGGER) {
@@ -1313,39 +1327,41 @@ class SysMLValidator extends KerMLValidator {
 	
 	/* Overrides */
 	
-	@Check
-	override checkDataType(DataType d) {
-		// validateDataTypeSpecialization
-		// Overridden to tailor error message for SysML.
-		for (s: d.ownedSpecialization) {
-			if (s.general instanceof org.omg.sysml.lang.sysml.Class || s.general instanceof Association) {
-				error(INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION)
-			}
-		}
-	}
+//	@Check
+//	override checkDataType(DataType d) {
+//		// validateDataTypeSpecialization
+//		// Overridden to tailor error message for SysML.
+//		for (s: d.ownedSpecialization) {
+//			if (s.general instanceof org.omg.sysml.lang.sysml.Class || s.general instanceof Association) {
+//				error(INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_ATTRIBUTE_DEFINITION_SPECIALIZATION)
+//			}
+//		}
+//	}
+//	
+//	@Check
+//	override checkClass(org.omg.sysml.lang.sysml.Class c) {
+//		// validateClassSpecialization
+//		// Overridden to tailor error message for SysML.
+//		for (s: c.ownedSpecialization) {
+//			if (s.general instanceof DataType || s.general instanceof Association && !(c instanceof Association)) {
+//				error(INVALID_ITEM_DEFINITION_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_ITEM_DEFINITION_SPECIALIZATION)
+//			}
+//		}
+//	}
 	
 	@Check
-	override checkClass(org.omg.sysml.lang.sysml.Class c) {
-		// validateClassSpecialization
-		// Overridden to tailor error message for SysML.
-		for (s: c.ownedSpecialization) {
-			if (s.general instanceof DataType || s.general instanceof Association && !(c instanceof Association)) {
-				error(INVALID_ITEM_DEFINITION_SPECIALIZATION_MSG, s, SysMLPackage.eINSTANCE.specialization_General, INVALID_ITEM_DEFINITION_SPECIALIZATION)
-			}
-		}
-	}
-	
-	@Check
-	override checkOperatorExpression(OperatorExpression e) {
-		if (e.operator != '[') {
-			super.checkOperatorExpression(e)
-		} else {
-			val arguments = e.argument
-			if (arguments.size >= 2) {
-				val indexArg = arguments.get(1)
-				val mRefType = SysMLLibraryUtil.getLibraryElement(e, "MeasurementReferences::TensorMeasurementReference") as Type
-				if (!indexArg.resultConformsTo(mRefType)) {
-					warning(INVALID_OPERATOR_EXPRESSION_QUANTITY_MSG, indexArg, null, INVALID_OPERATOR_EXPRESSION_QUANTITY)	
+	override checkElement(Element elm) {
+		if (elm instanceof OperatorExpression) {
+			if (elm.operator != '[') {
+				super.checkElement(elm)
+			} else {
+				val arguments = elm.argument
+				if (arguments.size >= 2) {
+					val indexArg = arguments.get(1)
+					val mRefType = SysMLLibraryUtil.getLibraryElement(elm, "MeasurementReferences::TensorMeasurementReference") as Type
+					if (!indexArg.resultConformsTo(mRefType)) {
+						warning(INVALID_OPERATOR_EXPRESSION_QUANTITY_MSG, indexArg, null, INVALID_OPERATOR_EXPRESSION_QUANTITY)	
+					}
 				}
 			}
 		}
@@ -1360,10 +1376,10 @@ class SysMLValidator extends KerMLValidator {
 	 */
 	def boolean resultConformsTo(Expression expr, Type type) {
 		val result = expr.result;
-		if (result.conformsTo(type)) {
+		if (ValidationUtil.conformsTo(result, type)) {
 			true
 		} else if (expr instanceof OperatorExpression) {
-			result.type.exists[t | type.conformsTo(t)] && expr.argument.exists[resultConformsTo(type)]
+			result.type.exists[t | ValidationUtil.conformsTo(type, t)] && expr.argument.exists[resultConformsTo(type)]
 		} else {
 			false
 		}

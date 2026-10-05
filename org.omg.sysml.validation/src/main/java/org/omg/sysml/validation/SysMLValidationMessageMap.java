@@ -29,14 +29,15 @@ import org.omg.kerml.validation.PropertyFileValidationMessageMap;
 
 public class SysMLValidationMessageMap extends PropertyFileValidationMessageMap {
 	
-	public static final String SYSML_VALIDATION_MESSAGES_FILE_PATH = KerMLValidationMessageMap.RESOURCES_DIRECTORY + "SysMLValidationMessages.properties";
+	public static final String SYSML_RESOURCES_DIRECTORY = "../org.omg.sysml.validation/src/main/resources/";
+	public static final String SYSML_VALIDATION_MESSAGES_FILE_PATH = SYSML_RESOURCES_DIRECTORY + "SysMLValidationMessages.properties";
 
 	public SysMLValidationMessageMap() throws FileNotFoundException, IOException {
-		super(getPathOnPlatform(SYSML_VALIDATION_MESSAGES_FILE_PATH), new KerMLValidationMessageMap());
+		super(SYSML_VALIDATION_MESSAGES_FILE_PATH, new KerMLValidationMessageMap());
 	}
 	
-	public SysMLValidationMessageMap(String propertyFilePath) throws FileNotFoundException, IOException {
-		super(propertyFilePath);
+	public SysMLValidationMessageMap(String sysmlPropertyFilePath, String kermlPropertyFilePath) throws FileNotFoundException, IOException {
+		super(sysmlPropertyFilePath, new KerMLValidationMessageMap(kermlPropertyFilePath));
 	}
 
 }

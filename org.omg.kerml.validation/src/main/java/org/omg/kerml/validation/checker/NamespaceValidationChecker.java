@@ -29,6 +29,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Element;
@@ -44,6 +45,10 @@ import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
 
 public class NamespaceValidationChecker extends ElementValidationChecker {
+
+	public NamespaceValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+	}
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {

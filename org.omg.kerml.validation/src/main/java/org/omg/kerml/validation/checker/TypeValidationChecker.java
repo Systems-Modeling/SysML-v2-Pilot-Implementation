@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
@@ -26,6 +27,10 @@ import org.omg.sysml.util.TypeUtil;
 
 public class TypeValidationChecker extends NamespaceValidationChecker {
 	
+	public TypeValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
 		super.validate(element, messageAccepter, visited);

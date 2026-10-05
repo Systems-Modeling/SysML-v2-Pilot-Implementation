@@ -3,13 +3,19 @@ package org.omg.kerml.validation.checker;
 import java.util.Set;
 
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class SuccessionFlowValidationChecker extends SuccessionValidationChecker {
 	
-	private final ValidationChecker flow = factory.getValidationChecker(SysMLPackage.eINSTANCE.getFlow());
+	private final ValidationChecker flow;
+	
+	public SuccessionFlowValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+		flow = factory.getValidationChecker(SysMLPackage.eINSTANCE.getFlow());
+	}
 	
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {

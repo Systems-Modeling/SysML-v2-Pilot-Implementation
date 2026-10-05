@@ -34,16 +34,19 @@ public interface ValidationMessageMap {
 	/**
 	 * Get the message with the indicated message code, and then substitute data
 	 * values for template parameters in the message of the form "$n", sequentially
-	 * from n starting at 0.
+	 * from n starting at 0. If there is no message in the message map for the
+	 * given message code, return the message code.
 	 */
 	default String getMessage(String messageCode, String... data) {
 		String msg = getMessage(messageCode);
-		if (msg != null) {
+		if (msg == null) {
+			return messageCode;
+		} else {
 			for (int i = 0; i < data.length; i++) {
-				msg.replace("$" + i, data[i]);
+				msg = msg.replace("$" + i, data[i]);
 			}
+			return msg;
 		}
-		return msg;
 	}
 	
 }

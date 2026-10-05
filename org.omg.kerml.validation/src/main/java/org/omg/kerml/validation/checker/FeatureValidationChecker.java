@@ -7,6 +7,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.CrossSubsetting;
 import org.omg.sysml.lang.sysml.Element;
@@ -22,6 +23,10 @@ import org.omg.sysml.util.TypeUtil;
 
 public class FeatureValidationChecker extends TypeValidationChecker {
 	
+	public FeatureValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
 		super.validate(element, messageAccepter, visited);
@@ -182,8 +187,8 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 	
 	public void validateFeatureIsVariable(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
-			if (f.isVariable() && (f.getOwningType() == null) || 
-				!TypeUtil.specializes(f.getOwningType(), SysMLLibraryUtil.getLibraryType(f, "Occurrences::Occurrence"))) {
+			if (f.isVariable() && (f.getOwningType() == null || 
+				!TypeUtil.specializes(f.getOwningType(), SysMLLibraryUtil.getLibraryType(f, "Occurrences::Occurrence")))) {
 				messageAccepter.error(f, null, "validateFeatureIsVariable");
 			}
 		}

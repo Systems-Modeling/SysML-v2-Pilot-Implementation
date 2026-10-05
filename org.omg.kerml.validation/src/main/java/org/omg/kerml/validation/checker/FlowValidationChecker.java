@@ -6,6 +6,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Flow;
@@ -14,9 +15,13 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 
 public class FlowValidationChecker extends ConnectorValidationChecker {
 	
-	private final ValidationChecker step = factory.getValidationChecker(SysMLPackage.eINSTANCE.getStep());
-;
+	private final ValidationChecker step;
 	
+	public FlowValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+		step = factory.getValidationChecker(SysMLPackage.eINSTANCE.getStep());
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
 		super.validate(element, messageAccepter, visited);

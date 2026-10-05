@@ -27,7 +27,7 @@ public class KerMLValidationCheckerFactory extends ValidationCheckerFactory {
 	
 	@Override
 	public ValidationChecker createValidationChecker(EClass eClass) {
-		return createValidationChecker(eClass, "kerml");
+		return createValidationChecker(eClass, "org.omg.kerml.validation.checker");
 	}
 
 }

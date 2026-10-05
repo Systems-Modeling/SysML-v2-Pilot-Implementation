@@ -44,7 +44,7 @@ public interface ValidationMessageAccepter {
 	}
 
 	void acceptInfo(String message, EObject source, EStructuralFeature feature, String messageCode, String... data);
-	void acceptWarning(String message, EObject source, EStructuralFeature feature, String issueode, String... data);
+	void acceptWarning(String message, EObject source, EStructuralFeature feature, String messageCode, String... data);
 	void acceptError(String message, EObject source, EStructuralFeature feature, String messageCode, String... data);
 	
 }

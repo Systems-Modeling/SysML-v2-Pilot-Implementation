@@ -35,10 +35,7 @@ import org.omg.sysml.lang.sysml.Element;
  */
 public abstract class ValidationChecker {
 	
-	protected ValidationCheckerFactory factory = null;
-	
-	public void setFactory(ValidationCheckerFactory factory) {
-		this.factory = factory;
+	public ValidationChecker(ValidationCheckerFactory factory) {
 	}
 	
 	public void validate(Element element, ValidationMessageAccepter messageAccepter) {

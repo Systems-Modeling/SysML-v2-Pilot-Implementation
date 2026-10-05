@@ -35,8 +35,6 @@ import org.omg.sysml.lang.sysml.Element;
  */
 public abstract class ValidationCheckerFactory {
 	
-	public static final String VALIDATION_CHECKER_PACKAGE = ValidationCheckerFactory.class.getPackageName();
-
 	private Map<EClass, ValidationChecker> validationCheckerCache = new HashMap<>();
 	
 	public ValidationChecker getValidationChecker(Element element) {
@@ -56,12 +54,11 @@ public abstract class ValidationCheckerFactory {
 	
 	public abstract ValidationChecker createValidationChecker(EClass eClass);
 	
-	protected ValidationChecker createValidationChecker(EClass eClass, String packageSuffix) {
+	protected ValidationChecker createValidationChecker(EClass eClass, String packageName) {
 		try {
-			Class<?> validationChecker = Class.forName(VALIDATION_CHECKER_PACKAGE +"." + packageSuffix + "." + eClass.getName() + "ValidationChecker");
-			Constructor<?> constructor = validationChecker.getConstructor();
-			ValidationChecker checker = (ValidationChecker)constructor.newInstance();
-			checker.setFactory(this);
+			Class<?> validationChecker = Class.forName(packageName + "." + eClass.getName() + "ValidationChecker");
+			Constructor<?> constructor = validationChecker.getConstructor(ValidationCheckerFactory.class);
+			ValidationChecker checker = (ValidationChecker)constructor.newInstance(this);
 			return checker;
 		} catch (ClassNotFoundException e) {
 			return null;

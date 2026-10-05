@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Behavior;
 import org.omg.sysml.lang.sysml.Element;
@@ -16,6 +17,10 @@ import org.omg.sysml.util.TypeUtil;
 
 public class InvocationExpressionValidationChecker extends InstantiationExpressionValidationChecker {
 	
+	public InvocationExpressionValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
 		super.validate(element, messageAccepter, visited);

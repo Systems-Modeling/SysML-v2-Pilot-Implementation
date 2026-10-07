@@ -18,9 +18,12 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.omg.kerml.xtext.postprocessing.FeatureParserPostProcessor;
 import org.omg.sysml.lang.sysml.AttributeDefinition;
 import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.FeatureUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class UsageParserPostProcessor extends FeatureParserPostProcessor {
@@ -57,6 +60,9 @@ public class UsageParserPostProcessor extends FeatureParserPostProcessor {
                 featuringType instanceof AttributeDefinition || featuringType instanceof AttributeUsage) {
 			target.setIsComposite(false);
 		}
+		if (isAddMultiplicity()) {
+			TypeUtil.addMultiplicityTo(getTarget());
+		}
 	}
 
     private void setIsCompositeIfUnset(Usage target) {
@@ -75,5 +81,25 @@ public class UsageParserPostProcessor extends FeatureParserPostProcessor {
 
 	@Override
 	protected void setIsVariableIfConstant() {
+	}
+
+	// Used to check for default multiplicity for AttributeUsages, ItemUsages and PortUsages.
+	protected boolean isAddDefaultMultiplicity() {
+		Usage target = getTarget();
+		return target.isEnd() ||
+			   target.getOwningType() != null &&
+			   target.getOwnedSubsetting().stream().
+					// the filter prevents proxy resolution
+					filter(s -> !NodeModelUtils.findNodesForFeature(
+						s, SysMLPackage.Literals.SUBSETTING__SUBSETTED_FEATURE).isEmpty()).
+					map(Subsetting::getSubsettedFeature).
+					filter(f->f != null).
+					map(FeatureUtil::getBasicFeatureOf).
+					noneMatch(f->f != null && f.getOwningType() != null);
+	}
+
+	// Multiplicity of 1..1 is always the default for an end usage.
+	protected boolean isAddMultiplicity() {
+		return getTarget().isEnd();
 	}
 }

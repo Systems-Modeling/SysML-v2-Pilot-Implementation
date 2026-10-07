@@ -22,4 +22,9 @@ public class ConnectionUsageParserPostProcessor extends PartUsageParserPostProce
 	public ConnectionUsage getTarget() {
 		return (ConnectionUsage)super.getTarget();
 	}
+
+	@Override
+	protected boolean isAddMultiplicity() {
+		return getTarget().isEnd();
+	}
 }

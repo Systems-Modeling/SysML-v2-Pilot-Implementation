@@ -8,19 +8,21 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
+
 package org.omg.sysml.xtext.postprocessing;
 
-import org.omg.sysml.lang.sysml.ItemUsage;
+import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.Usage;
 
-public class ItemUsageParserPostProcessor extends OccurrenceUsageParserPostProcessor {
+public class AttributeUsageParserPostProcessor extends UsageParserPostProcessor {
 
-	public ItemUsageParserPostProcessor(ItemUsage element) {
+	public AttributeUsageParserPostProcessor(Usage element) {
 		super(element);
 	}
 
 	@Override
-	public ItemUsage getTarget() {
-		return (ItemUsage)super.getTarget();
+	public AttributeUsage getTarget() {
+		return (AttributeUsage)super.getTarget();
 	}
 
 	@Override

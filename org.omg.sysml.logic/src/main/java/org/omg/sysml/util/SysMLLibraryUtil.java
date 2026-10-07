@@ -208,7 +208,18 @@ public class SysMLLibraryUtil {
 	private static IModelLibraryProvider getInstance(Resource resource) {
 		try {
 			ProviderLookup lookup = providerLookup;
-			return lookup == null ? null : lookup.get(resource);
+			if (lookup == null) {
+				System.err.println("[SysMLLibraryUtil] No ProvideLookup.");
+				return null;
+			} else {
+				IModelLibraryProvider provider = lookup.get(resource);
+				if (provider == null) {
+					System.err.println("[SysMLLibraryUtil] Cannot get library provider.");
+					return null;
+				} else {
+					return provider;
+				}
+			}
 		} catch (Exception e) {
 			System.out.println("[SysMLLibraryUtil] Cannot get library provider: " + e);
 			return null;

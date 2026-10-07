@@ -25,7 +25,7 @@ public class SubsettingValidationChecker extends SpecializationValidationChecker
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateSubsettingConstantConformance(element, messageAccepter);
 		validateSubsettingFeaturingTypes(element, messageAccepter);
 		validateSubsettingUniquenessConformance(element, messageAccepter);

@@ -19,7 +19,7 @@ public class InteractionValidationChecker extends AssociationValidationChecker {
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		behavior.validate(element, messageAccepter, visited);
 	}
 						

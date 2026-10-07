@@ -17,7 +17,7 @@ public class MetadataAccessExpressionValidationChecker extends ExpressionValidat
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateMetadataAccessExpressionReferencedElement(element, messageAccepter);
 	}
 						

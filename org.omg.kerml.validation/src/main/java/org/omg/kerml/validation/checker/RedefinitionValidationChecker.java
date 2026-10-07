@@ -7,6 +7,8 @@ import java.util.Set;
 import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
+import org.omg.sysml.lang.sysml.Association;
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
@@ -24,7 +26,7 @@ public class RedefinitionValidationChecker extends SubsettingValidationChecker {
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateRedefinitionDirectionConformance(element, messageAccepter);
 		validateRedefinitionEndConformance(element, messageAccepter);
 		validateRedefinitionFeaturingTypes(element, messageAccepter);
@@ -46,7 +48,10 @@ public class RedefinitionValidationChecker extends SubsettingValidationChecker {
 			var redefinedFeature = redef.getRedefinedFeature(); 
 			if (redefinedFeature != null && redefinedFeature.isEnd() && 
 				redefiningFeature != null && !redefiningFeature.isEnd()) {
-			    messageAccepter.error(redef, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validatRedefinitionEndConformance");
+				Type redefiningOwner = redefiningFeature.getOwningType();
+				if (redefiningOwner instanceof Association || redefiningOwner instanceof Connector) {			
+					messageAccepter.error(redef, SysMLPackage.eINSTANCE.getRedefinition_RedefinedFeature(), "validateRedefinitionEndConformance");
+				}
 			}
 		}
 	}

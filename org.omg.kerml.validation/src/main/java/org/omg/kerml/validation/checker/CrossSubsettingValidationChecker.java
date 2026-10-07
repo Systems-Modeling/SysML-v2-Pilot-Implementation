@@ -19,7 +19,7 @@ public class CrossSubsettingValidationChecker extends SubsettingValidationChecke
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateCrossSubsettingCrossedFeature(element, messageAccepter);
 		validateCrossSubsettingCrossingFeature(element, messageAccepter);
 	}

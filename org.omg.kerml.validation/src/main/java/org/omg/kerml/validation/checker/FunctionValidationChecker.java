@@ -21,7 +21,7 @@ public class FunctionValidationChecker extends BehaviorValidationChecker {
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateFunctionResultExpressionMembership(element, messageAccepter);
 		validateFunctionResultParameterMembership(element, messageAccepter);
 	}

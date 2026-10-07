@@ -15,7 +15,7 @@ public class ConjugationValidationChecker extends RelationshipValidationChecker 
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 	}
 						
 }

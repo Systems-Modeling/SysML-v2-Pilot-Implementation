@@ -52,7 +52,7 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateNamespaceDistinguishability(element, messageAccepter);
 	}
 	
@@ -62,24 +62,24 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 			if (!(namesp instanceof InvocationExpression || namesp instanceof FeatureReferenceExpression || namesp instanceof LiteralExpression || 
 					namesp instanceof NullExpression || namesp instanceof BindingConnector)) {
 				// NOTE: Does not check distinguishibility for imported Memberships.
-				var ownedMemberships = namesp.getOwnedMembership();
-				var owningMemberships = ownedMemberships.stream().filter(OwningMembership.class::isInstance).toList();
-				var aliasMemberships = ownedMemberships.stream().filter(m->!(m instanceof OwningMembership)).toList();
+				List<Membership> ownedMemberships = namesp.getOwnedMembership();
+				List<Membership> owningMemberships = ownedMemberships.stream().filter(OwningMembership.class::isInstance).toList();
+				List<Membership> aliasMemberships = ownedMemberships.stream().filter(m->!(m instanceof OwningMembership)).toList();
 				
-				var owningMembershipMap = createNameMap(owningMemberships);
-				for (var mem: owningMemberships) {
+				Map<String, Set<Membership>> owningMembershipMap = createNameMap(owningMemberships);
+				for (Membership mem: owningMemberships) {
 					checkDistinguishibility(namesp, mem, owningMembershipMap, "validateNamespaceDistinguishablity_1", messageAccepter);		
 				}
 				
-				var aliasMembershipMap = createNameMap(aliasMemberships);
-				for (var mem: aliasMemberships) {
+				Map<String, Set<Membership>> aliasMembershipMap = createNameMap(aliasMemberships);
+				for (Membership mem: aliasMemberships) {
 					checkDistinguishibility(namesp, mem, owningMembershipMap, "validateNamespaceDistinguishablity_2", messageAccepter);
 					checkDistinguishibility(namesp, mem, aliasMembershipMap, "validateNamespaceDistinguishablity_3", messageAccepter);
 				}
 				if (namesp instanceof Type type) {
-					var inheritedMemberships = type.getInheritedMembership();
-					var inheritedMembershipMap = createNameMap(inheritedMemberships);
-					for (var mem: ownedMemberships) {
+					List<Membership> inheritedMemberships = type.getInheritedMembership();
+					Map<String, Set<Membership>> inheritedMembershipMap = createNameMap(inheritedMemberships);
+					for (Membership mem: ownedMemberships) {
 						checkDistinguishibility(namesp, mem, inheritedMembershipMap, "validateNamespaceDistinguishablity_4", messageAccepter);
 					}
 					checkDistinguishibility(namesp, inheritedMembershipMap, "validateNamespaceDistinguishablity_4", messageAccepter);
@@ -89,12 +89,12 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 	}
 
 	protected static Map<String, Set<Membership>> createNameMap(List<Membership> memberships) {
-		var nameMap = new HashMap<String, Set<Membership>>();
-		for (var mem: memberships) {
-			var shortName = mem.getMemberShortName();
-			var name = mem.getMemberName();
+		Map<String, Set<Membership>> nameMap = new HashMap<String, Set<Membership>>();
+		for (Membership mem: memberships) {
+			String shortName = mem.getMemberShortName();
+			String name = mem.getMemberName();
 			if (shortName != null) {
-				var mems = nameMap.get(shortName);
+				Set<Membership> mems = nameMap.get(shortName);
 				if (mems == null) {
 					mems = new HashSet<>();
 					nameMap.put(shortName, mems);
@@ -102,7 +102,7 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 				mems.add(mem);
 			}
 			if (name != null) {
-				var mems = nameMap.get(name);
+				Set<Membership> mems = nameMap.get(name);
 				if (mems == null) {
 					mems = new HashSet<>();
 					nameMap.put(name, mems);
@@ -114,35 +114,35 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 	}
 	
 	protected static void checkDistinguishibility(Namespace namesp, Membership mem, Map<String, Set<Membership>> nameMap, String msg, ValidationMessageAccepter messageAccepter) {
-		var memShortName = mem.getMemberShortName();
-		var memName = mem.getMemberName();
-		var memElement = mem.getMemberElement();
+		String memShortName = mem.getMemberShortName();
+		String memName = mem.getMemberName();
+		Element memElement = mem.getMemberElement();
 		
 		if (memShortName != null) {
-			var dups = nameMap.get(memShortName);
+			Set<Membership> dups = nameMap.get(memShortName);
 			if (dups != null) {
-				dups.removeIf(m->m.getMemberElement() == memElement);
-			}			
-			if (dups != null && !dups.isEmpty()) {
-				var msgDups = identifyDuplicates(msg, namesp, memShortName, dups);
-				if (mem instanceof OwningMembership owning) {
-					messageAccepter.warning(owning.getOwnedMemberElement(), SysMLPackage.eINSTANCE.getElement_DeclaredShortName(), msg, msgDups);
-				} else {
-					messageAccepter.warning(mem, SysMLPackage.eINSTANCE.getMembership_MemberShortName(), msg, msgDups);
+				dups = dups.stream().filter(m->m.getMemberElement() != memElement).collect(Collectors.toSet());			
+				if (!dups.isEmpty()) {
+					String msgDups = identifyDuplicates(msg, namesp, memShortName, dups);
+					if (mem instanceof OwningMembership owning) {
+						messageAccepter.warning(owning.getOwnedMemberElement(), SysMLPackage.eINSTANCE.getElement_DeclaredShortName(), msg, msgDups);
+					} else {
+						messageAccepter.warning(mem, SysMLPackage.eINSTANCE.getMembership_MemberShortName(), msg, msgDups);
+					}
 				}
 			}
 		}
 		if (memName != null) {
-			var dups = nameMap.get(memName);
+			Set<Membership> dups = nameMap.get(memName);
 			if (dups != null) {
-				dups.removeIf(m->m.getMemberElement() == memElement);
-			}			
-			if (dups != null && !dups.isEmpty()) {
-				var msgDups = identifyDuplicates(msg, namesp, memName, dups)	;		
-				if (mem instanceof OwningMembership owning) {
-					messageAccepter.warning(owning.getOwnedMemberElement(), SysMLPackage.eINSTANCE.getElement_DeclaredName(), msg, msgDups);
-				} else {
-					messageAccepter.warning(mem, SysMLPackage.eINSTANCE.getMembership_MemberName(), msg, msgDups);
+				dups = dups.stream().filter(m->m.getMemberElement() != memElement).collect(Collectors.toSet());			
+				if (!dups.isEmpty()) {
+					String msgDups = identifyDuplicates(msg, namesp, memName, dups)	;		
+					if (mem instanceof OwningMembership owning) {
+						messageAccepter.warning(owning.getOwnedMemberElement(), SysMLPackage.eINSTANCE.getElement_DeclaredName(), msg, msgDups);
+					} else {
+						messageAccepter.warning(mem, SysMLPackage.eINSTANCE.getMembership_MemberName(), msg, msgDups);
+					}
 				}
 			}
 		}
@@ -158,10 +158,10 @@ public class NamespaceValidationChecker extends ElementValidationChecker {
 	}
 	
 	protected static String identifyDuplicates(String msg, Namespace memNs, String name, Set<Membership> dups) {
-		var nsNames = dups.stream().
-						map(Membership::getMembershipOwningNamespace).filter(ns->ns != memNs).
-						map(Namespace::getName).map(n->n == null? "": n).sorted().
-						map(n->ElementUtil.escapeName(n)).toList();
+		List<String> nsNames = dups.stream().
+			map(Membership::getMembershipOwningNamespace).filter(ns->ns != memNs).
+			map(Namespace::getName).map(n->n == null? "": n).sorted().
+			map(n->ElementUtil.escapeName(n)).toList();
 		return nsNames.isEmpty()? "":" '" + ElementUtil.escapeString(name) + "' from " + String.join(",", nsNames);
 	}
 	

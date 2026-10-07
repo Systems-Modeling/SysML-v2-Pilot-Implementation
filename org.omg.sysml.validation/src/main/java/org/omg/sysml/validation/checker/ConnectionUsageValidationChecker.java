@@ -6,12 +6,18 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import java.util.Set;
 
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 
 public class ConnectionUsageValidationChecker extends ConnectorAsUsageValidationChecker {
 	
-	private final ValidationChecker partUsage = factory.getValidationChecker(SysMLPackage.eINSTANCE.getPartUsage());
+	private final ValidationChecker partUsage;
 	
+	public ConnectionUsageValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+		partUsage = factory.getValidationChecker(SysMLPackage.eINSTANCE.getPartUsage());
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
 		super.validate(element, messageAccepter, visited);

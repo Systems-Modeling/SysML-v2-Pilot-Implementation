@@ -6,12 +6,18 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import java.util.Set;
 
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 
 public class PortDefinitionValidationChecker extends OccurrenceDefinitionValidationChecker {
 	
-	private final ValidationChecker structure = factory.getValidationChecker(SysMLPackage.eINSTANCE.getStructure());
+	private final ValidationChecker structure;
 	
+	public PortDefinitionValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+		structure = factory.getValidationChecker(SysMLPackage.eINSTANCE.getStructure());
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
 		super.validate(element, messageAccepter, visited);

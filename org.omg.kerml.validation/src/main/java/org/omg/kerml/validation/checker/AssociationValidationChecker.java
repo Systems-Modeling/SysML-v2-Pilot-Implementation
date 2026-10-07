@@ -26,7 +26,7 @@ public class AssociationValidationChecker extends ClassifierValidationChecker {
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		relationship.validate(element, messageAccepter, visited);
 		validateAssociationBinarySpecialization(element, messageAccepter);
 		validateAssociationEndTypes(element, messageAccepter);
@@ -39,7 +39,7 @@ public class AssociationValidationChecker extends ClassifierValidationChecker {
 			// NOTE: It is sufficient to check owned ends, since they will redefine ends from any supertypes.
 			var ownedEndFeatures = TypeUtil.getOwnedEndFeaturesOf(a);
 			if (ownedEndFeatures.size() > 2) {
-				Type binaryLinkType = (Type) SysMLLibraryUtil.getLibraryElement(a, "Link::BinaryLink");
+				Type binaryLinkType = (Type) SysMLLibraryUtil.getLibraryElement(a, "Links::BinaryLink");
 				if (ValidationUtil.conformsTo(a, binaryLinkType)) {
 					for (int i = 2; i < ownedEndFeatures.size(); i++) {
 						messageAccepter.error(ownedEndFeatures.get(i), null, "validateAssociationBinarySpecialization");
@@ -50,12 +50,12 @@ public class AssociationValidationChecker extends ClassifierValidationChecker {
 	}
 	
 	public void validateAssociationEndTypes(Element element, ValidationMessageAccepter messageAccepter) {
-		if (element instanceof Feature f) {
-			var ownedEndFeatures = f.getOwnedEndFeature();
+		if (element instanceof Association a) {
+			List<Feature> ownedEndFeatures = TypeUtil.getOwnedEndFeaturesOf(a);
 			for (Feature end : ownedEndFeatures) {
 				List<Type> types = end.getType();
 				if (types == null || types.size() != 1) {
-					messageAccepter.error(end,  null, "validateAssociationEndType");
+					messageAccepter.error(end,  null, "validateAssociationEndTypes");
 				}
 			}
 		}

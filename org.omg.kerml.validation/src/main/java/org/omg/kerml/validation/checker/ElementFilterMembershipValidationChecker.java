@@ -19,27 +19,30 @@ public class ElementFilterMembershipValidationChecker extends OwningMembershipVa
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
-		validateElementFilterMembershipConditionIsBoolean(element, messageAccepter);
-		validateElementFilterMembershipConditionIsModelLevelEvaluable(element, messageAccepter);
+		super.doValidate(element, messageAccepter, visited);
+		if (validateElementFilterMembershipConditionIsModelLevelEvaluable(element, messageAccepter)) {
+			validateElementFilterMembershipConditionIsBoolean(element, messageAccepter);
+		}
 	}
 						
 	public void validateElementFilterMembershipConditionIsBoolean(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof ElementFilterMembership efm) {
 			Expression condition = efm.getCondition();
 			if (!ValidationUtil.isBoolean(condition)) {
-				messageAccepter.error(efm, SysMLPackage.eINSTANCE.getElementFilterMembership_Condition(), "validateElementFilterMembershipIsBooolean");
+				messageAccepter.error(efm, SysMLPackage.eINSTANCE.getElementFilterMembership_Condition(), "validateElementFilterMembershipConditionIsBoolean");
 			}
 		}
 	}
 	
-	public void validateElementFilterMembershipConditionIsModelLevelEvaluable(Element element, ValidationMessageAccepter messageAccepter) {
+	public boolean validateElementFilterMembershipConditionIsModelLevelEvaluable(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof ElementFilterMembership efm) {
 			Expression condition = efm.getCondition();
 			if (!condition.isModelLevelEvaluable()) {
-				messageAccepter.error(efm, SysMLPackage.eINSTANCE.getElementFilterMembership_Condition(), "validateElementFilterMembershipIsModelLevelEvaluable");
+				messageAccepter.error(efm, SysMLPackage.eINSTANCE.getElementFilterMembership_Condition(), "validateElementFilterMembershipConditionIsModelLevelEvaluable");
+				return false;
 			}
 		}
+		return true;
 	}
 	
 }

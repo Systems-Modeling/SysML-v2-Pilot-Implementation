@@ -23,7 +23,7 @@ public class ParameterMembershipValidationChecker extends FeatureMembershipValid
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateParameterMembershipOwningType(element, messageAccepter);
 		validateParameterMembershipParameterDirection(element, messageAccepter);
 	}

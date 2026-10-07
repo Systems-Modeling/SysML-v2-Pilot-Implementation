@@ -26,10 +26,12 @@ public class ConnectorValidationChecker extends FeatureValidationChecker {
 	
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		relationship.validate(element, messageAccepter, visited);
 		validateConnectorBinarySpecialization(element, messageAccepter);
 		validateConnectorRelatedFeatures(element, messageAccepter);
+		
+		checkConnectorTypeFeaturing(element, messageAccepter);
 	}
 						
 	public void validateConnectorBinarySpecialization(Element element, ValidationMessageAccepter messageAccepter) {
@@ -51,8 +53,6 @@ public class ConnectorValidationChecker extends FeatureValidationChecker {
 			        }
 			    }
 			}
-			
-			doCheckConnector(c, c, null, messageAccepter);
 		}		
 	}
 	
@@ -64,6 +64,12 @@ public class ConnectorValidationChecker extends FeatureValidationChecker {
 		            messageAccepter.error(c, SysMLPackage.eINSTANCE.getConnector_RelatedFeature(), "validateConnectorRelatedFeatures");
 		        }
 		    }
+		}
+	}
+	
+	public void checkConnectorTypeFeaturing(Element element, ValidationMessageAccepter messageAccepter) {
+		if (element instanceof Connector c) {
+			doCheckConnector(c, c, null, messageAccepter);
 		}
 	}
 }

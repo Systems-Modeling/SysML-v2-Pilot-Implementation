@@ -1,10 +1,5 @@
 package org.omg.kerml.validation.checker;
 
-import org.omg.sysml.lang.sysml.Element;
-import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureChainExpression;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +11,11 @@ import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.BindingConnector;
 import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Connector;
+import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
+import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
+import org.omg.sysml.lang.sysml.Flow;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -33,7 +33,7 @@ public class TypeValidationChecker extends NamespaceValidationChecker {
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateTypeAtMostOneConjugator(element, messageAccepter);
 		validateTypeDifferencingTypesNotSelf(element, messageAccepter);
 		validateTypeIntersectingTypesNotSelf(element, messageAccepter);
@@ -81,7 +81,7 @@ public class TypeValidationChecker extends NamespaceValidationChecker {
 	
 	public void validateTypeOwnedMultiplicity(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Type t) {
-			List<Membership> multiplicityMemberships = t.getOwnedMembership().stream().filter(Multiplicity.class::isInstance).toList();
+			List<Membership> multiplicityMemberships = t.getOwnedMembership().stream().filter(mem->mem.getMemberElement() instanceof Multiplicity).toList();
 			ValidationUtil.checkAtMostOne(multiplicityMemberships, messageAccepter, SysMLPackage.eINSTANCE.getMembership_MemberElement(), "validateTypeOwnedMultiplicity");
 		}
 	}
@@ -126,11 +126,12 @@ public class TypeValidationChecker extends NamespaceValidationChecker {
 		for (var i = 0; i < relatedFeatures.size(); i++) {
 			Feature relatedFeature = relatedFeatures.get(i);
 			if (!((cFeaturingTypes.isEmpty()? relatedFeature.isFeaturedWithin(null):
-				  cFeaturingTypes.stream().allMatch(relatedFeature::isFeaturedWithin) ||
+				  cFeaturingTypes.stream().allMatch(relatedFeature::isFeaturedWithin)) ||
 				  
 				// TODO: Be able to remove these special cases
 				(location instanceof FeatureReferenceExpression || location instanceof FeatureChainExpression) && 
-					relatedFeature.getOwningType() == location))) {
+					relatedFeature.getOwningType() == location  ||
+				c instanceof Flow && c.getOwningNamespace() instanceof Feature && c.getOwningType() == null)) {
 				
 				Feature connectorEnd = connectorEnds.get(i);
 				// Do not repeat error message if error will already be caught by validateSubsettingFeaturingTypes.

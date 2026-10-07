@@ -22,7 +22,7 @@ public class FeatureChainExpressionValidationChecker extends OperatorExpressionV
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateFeatureChainExpressionConformance(element, messageAccepter);
 		validateFeatureChainExpressionOperator(element, messageAccepter);
 	}

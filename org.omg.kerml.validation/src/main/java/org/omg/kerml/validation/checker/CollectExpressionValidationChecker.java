@@ -16,7 +16,7 @@ public class CollectExpressionValidationChecker extends OperatorExpressionValida
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateCollectExpressionOperator(element, messageAccepter);
 	}
 						

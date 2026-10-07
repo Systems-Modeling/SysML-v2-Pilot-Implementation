@@ -17,7 +17,7 @@ public class EndFeatureMembershipValidationChecker extends FeatureMembershipVali
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateEndFeatureMembershipIsEnd(element, messageAccepter);
 	}
 						

@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: KerML Validation
 Bundle-SymbolicName: org.omg.kerml.validation
 Bundle-Version: 0.62.0.qualifier
-Export-Package: org.omg.kerml.validation,
+Export-Package: org.omg.kerml.util,
+ org.omg.kerml.validation,
  org.omg.kerml.validation.checker
 Bundle-Vendor: OMG Systems Modeling Community
 Automatic-Module-Name: org.omg.kerml.validation

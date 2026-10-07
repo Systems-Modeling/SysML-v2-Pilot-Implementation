@@ -17,7 +17,7 @@ import org.omg.sysml.lang.sysml.ReferenceSubsetting;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil; 
 
@@ -29,7 +29,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateFeatureHasType_(element, messageAccepter);
 		
 		validateFeatureChainingFeatureConformance(element, messageAccepter);
@@ -69,7 +69,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 				Feature prev = chainingFeatures.get(0);				
 				for (int i = 1; i < n; i++) {
 					Feature cf = chainingFeatures.get(i);
-					if (cf.isFeaturedWithin(prev)) {
+					if (!cf.isFeaturedWithin(prev)) {
 						messageAccepter.error(f.getOwnedFeatureChaining().get(i), SysMLPackage.eINSTANCE.getFeatureChaining_ChainingFeature(), "validateFeatureChainingFeatureConformance");
 					}
 					prev = cf;
@@ -86,7 +86,7 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 	
 	public void validateFeatureChainingFeaturesNotSelf(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Feature f) {
-			ValidationUtil.checkTargetNotObject(f, f.getOwnedFeatureChaining(), messageAccepter, "validateFeatureChainingFeatureNotSelf");
+			ValidationUtil.checkTargetNotObject(f, f.getOwnedFeatureChaining(), messageAccepter, "validateFeatureChainingFeaturesNotSelf");
 		}
 	}
 	
@@ -107,9 +107,9 @@ public class FeatureValidationChecker extends TypeValidationChecker {
 				boolean hasInvalidSpecialization = redefinedFeatures.stream().map(FeatureUtil::getCrossFeatureOf).anyMatch(cf -> cf != null && !TypeUtil.specializes(crossFeature, cf));
 				if (hasInvalidSpecialization) {
 					   if (f.getOwnedCrossSubsetting() == null) {
-						   messageAccepter.error(ownedCrossFeature, null, "validateFeatureCrossSpecialization");
+						   messageAccepter.error(ownedCrossFeature, null, "validateFeatureCrossFeatureSpecialization");
 					   } else {
-						   messageAccepter.error(f.getOwnedCrossSubsetting(), SysMLPackage.eINSTANCE.getCrossSubsetting_CrossedFeature(), "validateFeatureCrossSpecialization");
+						   messageAccepter.error(f.getOwnedCrossSubsetting(), SysMLPackage.eINSTANCE.getCrossSubsetting_CrossedFeature(), "validateFeatureCrossFeatureSpecialization");
 					   }
 				}
 			}

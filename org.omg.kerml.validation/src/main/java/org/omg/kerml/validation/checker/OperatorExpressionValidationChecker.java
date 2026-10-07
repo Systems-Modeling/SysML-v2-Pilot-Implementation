@@ -23,7 +23,7 @@ public class OperatorExpressionValidationChecker extends InvocationExpressionVal
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateOperatorExpressionCastConformance_(element, messageAccepter);
 		validateOperatorExpressionBracketOperator_(element, messageAccepter);
 	}

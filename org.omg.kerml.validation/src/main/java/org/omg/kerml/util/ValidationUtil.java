@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
+import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.LiteralInfinity;
@@ -15,8 +16,8 @@ import org.omg.sysml.lang.sysml.LiteralInteger;
 import org.omg.sysml.lang.sysml.OperatorExpression;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Type;
-import org.omg.sysml.lang.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ExpressionUtil;
+import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.TypeUtil;
 
 public class ValidationUtil {
@@ -31,18 +32,15 @@ public class ValidationUtil {
 	}
 	
 	public static boolean isBoolean(Expression condition) {
-		if (condition.specializesFromLibrary("ScalarValues::Boolean")) {
-			return true;
-		}
-		if (condition instanceof LiteralBoolean) {
-			return true;
-		}
-		if (condition instanceof OperatorExpression) {
-			OperatorExpression opExpression = (OperatorExpression) condition; 
-
-			return ValidationUtil.isBooleanOperator(opExpression.getOperator()) && opExpression.getArgument().stream().allMatch(ValidationUtil::isBoolean);
-		}
-		return false; 
+		return
+			specializesFromLibrary(condition, condition.getResult(), "ScalarValues::Boolean") ||
+			// LiteralBooleans currently don't have an inferred Boolean result type.
+			condition instanceof LiteralBoolean ||
+			// Non-conditional "Boolean" operations in DataFunctions actually have result DataValue.
+			// This infers that they are actually BooleanFunctions if their arguments are Boolean.
+			condition instanceof OperatorExpression && 
+				isBooleanOperator(((OperatorExpression)condition).getOperator()) && 
+				((OperatorExpression)condition).getArgument().stream().allMatch(ValidationUtil::isBoolean);
 	}
 	
 	static private List<String> BOOLEAN_OPERATORS = Arrays.asList("not", "xor", "&", "|");
@@ -50,46 +48,35 @@ public class ValidationUtil {
 		return BOOLEAN_OPERATORS.contains(operator);
 	}
 	
-	public static boolean isBooleanExpression(Type expr) {
-		    if (expr instanceof Expression) {
-		        Expression expression = (Expression) expr;
-		        var result = expression.getResult();
-
-		        if (result != null && specializesFromLibrary(expression, result, "Performances::BooleanEvaluation")) {
-		            return true;
-		        } else if (expression instanceof FeatureReferenceExpression) {
-		            FeatureReferenceExpression fRefEx = (FeatureReferenceExpression) expression;
-		            var referent = fRefEx.getReferent();
-
-		            if (referent instanceof Expression) {
-		                Expression referentExpr = (Expression) referent;
-		                if (ValidationUtil.isBoolean(referentExpr)) {
-		                    return true;
-		                } else {
-		                    Expression resultExpr = ExpressionUtil.getResultExpressionOf(referentExpr);
-		                    return resultExpr != null && ValidationUtil.isBoolean(resultExpr);
-		                }
-		            }
-		        }
-		    }
-		    return false;
+	public static boolean isBooleanExpression(Type type) {
+	    if (type instanceof Expression expr) {
+	        Feature result = expr.getResult();
+	        if (result != null && specializesFromLibrary(expr, result, "Performances::BooleanEvaluation")) {
+	            return true;
+	        } else if (expr instanceof FeatureReferenceExpression refExpr) {
+	            Feature referent = refExpr.getReferent();
+	            if (referent instanceof Expression referentExpr) {
+	                if (isBoolean(referentExpr)) {
+	                    return true;
+	                } else {
+	                    Expression resultExpr = ExpressionUtil.getResultExpressionOf(referentExpr);
+	                    return resultExpr != null && isBoolean(resultExpr);
+	                }
+	            }
+	        }
+	    }
+	    return false;
 	 }
 	
 	public static boolean isInteger(Expression expr) {
-		if (expr instanceof LiteralInteger || expr instanceof LiteralInfinity) {
-			return true;
-		}
-
-		if (specializesFromLibrary(expr, expr.getResult(), "ScalarValues::Integer")) {
-			return true;
-		}
-
-		if (expr instanceof OperatorExpression) {
-			OperatorExpression opExpr = (OperatorExpression) expr;
-			return isIntegerOperator(opExpr.getOperator()) && 
-					opExpr.getArgument().stream().allMatch(arg -> isInteger(arg));
-		}
-		return false;
+		return
+			expr instanceof LiteralInteger || expr instanceof LiteralInfinity ||
+			specializesFromLibrary(expr, expr.getResult(), "ScalarValues::Integer") ||
+			// Arithmetic operations in DataFunctions actually have result DataValue.
+			// This infers that operations other than division are actually at least IntegerFunctions if their arguments are Integer.
+			expr instanceof OperatorExpression && 
+				isIntegerOperator(((OperatorExpression)expr).getOperator()) && 
+				((OperatorExpression)expr).getArgument().stream().allMatch(ValidationUtil::isInteger);
 	}
 	
 	public static boolean specializesFromLibrary(Element context, Type type, String qualifiedName) {
@@ -143,9 +130,9 @@ public class ValidationUtil {
 
 	public static boolean conformsTo(Type subtype, Type supertype) {
 		return supertype == null || TypeUtil.specializes(subtype, supertype) ||
-        (subtype instanceof Expression && 
-         isBooleanExpression((Expression) subtype) && 
-         specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression"));
+			subtype instanceof Expression && 
+	        isBooleanExpression((Expression) subtype) && 
+	        specializesFromLibrary(subtype, supertype, "Performances::BooleanExpression");
 	}
 	
 }

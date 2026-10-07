@@ -6,16 +6,22 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import java.util.Set;
 
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 import org.omg.kerml.validation.checker.BehaviorValidationChecker;
 
 public class ActionDefinitionValidationChecker extends BehaviorValidationChecker {
 	
-	private final ValidationChecker occurrenceDefinition = factory.getValidationChecker(SysMLPackage.eINSTANCE.getOccurrenceDefinition());;
+	private final ValidationChecker occurrenceDefinition;
 	
+	public ActionDefinitionValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+		occurrenceDefinition = factory.getValidationChecker(SysMLPackage.eINSTANCE.getOccurrenceDefinition());
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		occurrenceDefinition.validate(element, messageAccepter, visited);
 	}
 						

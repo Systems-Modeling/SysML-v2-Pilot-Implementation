@@ -6,12 +6,19 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import java.util.Set;
 
 import org.omg.kerml.validation.ValidationChecker;
+import org.omg.kerml.validation.ValidationCheckerFactory;
 import org.omg.kerml.validation.ValidationMessageAccepter;
 
 public class SatisfyRequirementUsageValidationChecker extends RequirementUsageValidationChecker {
 	
-	private final ValidationChecker assertConstraintUsage = factory.getValidationChecker(SysMLPackage.eINSTANCE.getAssertConstraintUsage());
+	private final ValidationChecker assertConstraintUsage;
 	
+	public SatisfyRequirementUsageValidationChecker(ValidationCheckerFactory factory) {
+		super(factory);
+		assertConstraintUsage = factory.getValidationChecker(SysMLPackage.eINSTANCE.getAssertConstraintUsage());
+		
+	}
+
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
 		super.validate(element, messageAccepter, visited);

@@ -18,7 +18,7 @@ public class MultiplicityRangeValidationChecker extends MultiplicityValidationCh
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		validateMultiplicityRangeBoundResultTypes(element, messageAccepter);
 		validateMultiplicityRangeBounds(element, messageAccepter);
 	}
@@ -27,12 +27,9 @@ public class MultiplicityRangeValidationChecker extends MultiplicityValidationCh
 		// TODO: Correct validateMultiplicityBoundResults OCL from KERML-199.
 		if (element instanceof MultiplicityRange mult) {
 			for (Expression b : mult.getBound()) {
-			    boolean isInvalid;
-				if (b.isModelLevelEvaluable())
-					isInvalid = mult.valueOf(b) == -2;
-				else
-					isInvalid = !ValidationUtil.isInteger(b);
-
+			    boolean isInvalid = b.isModelLevelEvaluable()?
+			    		mult.valueOf(b) == -2:
+			    		!ValidationUtil.isInteger(b);
 			    if (isInvalid) {
 			        messageAccepter.error(b, null, "validationMultiplicityRangeBoundResultTypes");
 			    }

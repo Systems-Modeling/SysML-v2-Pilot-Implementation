@@ -31,7 +31,7 @@ public class MetadataFeatureValidationChecker extends AnnotatingElementValidatio
 
 	@Override
 	protected void doValidate(Element element, ValidationMessageAccepter messageAccepter, Set<ValidationChecker> visited) {
-		super.validate(element, messageAccepter, visited);
+		super.doValidate(element, messageAccepter, visited);
 		feature.validate(element, messageAccepter, visited);
 		validateMetadataFeatureAnnotatedElement(element, messageAccepter);
 		validateMetadataFeatureBody(element, messageAccepter);
@@ -83,7 +83,7 @@ public class MetadataFeatureValidationChecker extends AnnotatingElementValidatio
 	            .anyMatch(t -> t != null && TypeUtil.specializes(f.getOwningType(), t));
 
 	    if (!hasValidRedefinition) {
-	        messageAccepter.error(f, null, "validateMetadataFeatureBody");
+	        messageAccepter.error(f, null, "validateMetadataFeatureBody_1");
 	    }
     
 	    // Feature value, if any, must be model-level evaluable.
@@ -91,7 +91,7 @@ public class MetadataFeatureValidationChecker extends AnnotatingElementValidatio
 	    Expression value = fv != null ? fv.getValue() : null;
     
 	    if (value != null && !value.isModelLevelEvaluable()) {
-	        messageAccepter.error(fv, SysMLPackage.eINSTANCE.getFeatureValue_Value(), "validateMetadataFeatureBody");
+	        messageAccepter.error(fv, SysMLPackage.eINSTANCE.getFeatureValue_Value(), "validateMetadataFeatureBody_2");
 	    }
 	    
 	    //Must have a valid metadata body.
@@ -110,7 +110,7 @@ public class MetadataFeatureValidationChecker extends AnnotatingElementValidatio
 	public void validateMetadataFeatureMetaclassNotAbstract(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof MetadataFeature mf) {
 			if (mf.getType().stream().anyMatch(Type::isAbstract)) {
-				messageAccepter.error(mf, null, "validateMetadataFeatureMetaclass");
+				messageAccepter.error(mf, null, "validateMetadataFeatureMetaclassNotAbstract");
 			}
 		}
 	}

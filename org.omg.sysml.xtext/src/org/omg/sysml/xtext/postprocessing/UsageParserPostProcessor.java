@@ -21,6 +21,7 @@ import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class UsageParserPostProcessor extends FeatureParserPostProcessor {
@@ -57,6 +58,9 @@ public class UsageParserPostProcessor extends FeatureParserPostProcessor {
                 featuringType instanceof AttributeDefinition || featuringType instanceof AttributeUsage) {
 			target.setIsComposite(false);
 		}
+		if (isAddMultiplicity()) {
+			TypeUtil.addMultiplicityTo(getTarget());
+		}
 	}
 
     private void setIsCompositeIfUnset(Usage target) {
@@ -75,5 +79,20 @@ public class UsageParserPostProcessor extends FeatureParserPostProcessor {
 
 	@Override
 	protected void setIsVariableIfConstant() {
+	}
+
+	/**
+	 * Checks the owning type for eligible attribute, item and port usages.
+	 * Subsettings and redefinitions do not restrict this default (ST6RI-774);
+	 * their targets are not consulted. End usages always receive the default.
+	 */
+	protected boolean isAddDefaultMultiplicity() {
+		Usage target = getTarget();
+		return target.isEnd() || target.getOwningType() != null;
+	}
+
+	// Multiplicity of 1..1 is always the default for an end usage.
+	protected boolean isAddMultiplicity() {
+		return getTarget().isEnd();
 	}
 }

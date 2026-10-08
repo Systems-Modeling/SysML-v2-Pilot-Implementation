@@ -48,7 +48,7 @@ package DefaultMultiplicity {
 	port t1;
 	
 	part def P {
-		// These kinds of usages have default multiplicity of [1..1].
+		// ST6RI-774: explicit subsettings do not exclude the default [1..1].
 		attribute a2 :> a1;
 		item i2 :> i1;
 		part p2 :> p1;
@@ -63,6 +63,7 @@ package DefaultMultiplicity {
 		// XPECT warnings ---> "Subsetting/redefining feature should not have larger multiplicity upper bound" at "t2"
 		port t3[*] :> t2;
 		
+		// Without explicit subsettings, the default [1..1] still applies.
 		attribute a4;
 		item i4;
 		part p4;

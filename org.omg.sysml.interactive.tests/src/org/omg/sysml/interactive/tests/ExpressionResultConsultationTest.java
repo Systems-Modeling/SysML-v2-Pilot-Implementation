@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -46,10 +47,12 @@ import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.xtext.postprocessing.SysMLParserPostProcessorFactory;
 
 /** Tests the semantic contract of expression results across consultation and explicit transformation. */
 public class ExpressionResultConsultationTest {
@@ -248,15 +251,18 @@ public class ExpressionResultConsultationTest {
 	}
 
 	/**
-	 * Programmatically created expressions without parser preparation expose an
-	 * output result and return the same object on subsequent reads.
+	 * Programmatically created expressions explicitly prepare an output result
+	 * once and return the same object on subsequent reads.
 	 */
 	@Test
-	public void programmaticExpressionsProvideStableResults() {
+	public void explicitlyPreparedProgrammaticExpressionsProvideStableResults() {
 		// Incomplete editor states have no textual equivalent: no referent or instantiated type yet.
 		List<Expression> expressions = List.of(SysMLFactory.eINSTANCE.createFeatureReferenceExpression(),
 				SysMLFactory.eINSTANCE.createInvocationExpression(), SysMLFactory.eINSTANCE.createConstructorExpression());
 		for (Expression expression : expressions) {
+			assertNull(expression.getResult());
+			assertTrue(expression.getOwnedRelationship().isEmpty());
+			TypeUtil.addResultParameterTo(expression);
 			Feature result = expression.getResult();
 			assertNotNull(result);
 			assertEquals(FeatureDirectionKind.OUT, result.getDirection());
@@ -281,7 +287,9 @@ public class ExpressionResultConsultationTest {
 			ReturnParameterMembership membership = SysMLFactory.eINSTANCE.createReturnParameterMembership();
 			membership.setOwnedMemberParameter(explicit);
 			expression.getOwnedRelationship().add(membership);
-			// Both reads must select the supplied identity, and retain its single membership.
+			// Repeated preparation and reads must retain the supplied identity and membership.
+			TypeUtil.addResultParameterTo(expression);
+			SysMLParserPostProcessorFactory.getPostProcessor(expression).postProcess();
 			assertSame(explicit, expression.getResult());
 			assertSame(explicit, expression.getResult());
 			assertEquals(List.of(membership), expression.getOwnedRelationship());
@@ -289,11 +297,11 @@ public class ExpressionResultConsultationTest {
 	}
 
 	/**
-	 * An XMI-loaded constructor without an owned result still exposes a correctly
-	 * typed result; materialization remains idempotent without parser callbacks.
+	 * An XMI-loaded constructor receives a correctly typed result after explicit
+	 * preparation; materialization remains idempotent without parser callbacks.
 	 */
 	@Test
-	public void xmiConstructorProvidesResultWithoutParserPreparation() throws Exception {
+	public void xmiConstructorProvidesResultAfterExplicitPreparation() throws Exception {
 		Resource parsed = parse("xmiResult.kerml", """
 				package Construction {
 					classifier Product;
@@ -302,7 +310,7 @@ public class ExpressionResultConsultationTest {
 				""");
 		EcoreUtil2.resolveLazyCrossReferences(parsed, null);
 		ConstructorExpression source = findSingle(parsed, ConstructorExpression.class);
-		// Remove any result prepared during linking to serialize an unprepared abstract-syntax model.
+		// Remove the result prepared by parser post-processing to serialize an unprepared abstract-syntax model.
 		source.getOwnedRelationship().removeIf(ReturnParameterMembership.class::isInstance);
 		Resource serialized = new XMIResourceImpl(URI.createURI("memory:/serialized.xmi"));
 		serialized.getContents().addAll(parsed.getContents());
@@ -315,6 +323,10 @@ public class ExpressionResultConsultationTest {
 			ConstructorExpression expression = findSingle(loaded, ConstructorExpression.class);
 			Type product = findByName(loaded, "Product", Type.class);
 			// XMI loading does not run the textual parser's post-processors.
+			assertFalse(expression.getOwnedRelationship().stream().anyMatch(ReturnParameterMembership.class::isInstance));
+			expression.getResult();
+			assertFalse(expression.getOwnedRelationship().stream().anyMatch(ReturnParameterMembership.class::isInstance));
+			TypeUtil.addResultParameterTo(expression);
 			Feature result = expression.getResult();
 			assertNotNull(result);
 			assertTrue(result.getType().contains(product));
@@ -322,6 +334,81 @@ public class ExpressionResultConsultationTest {
 		} finally {
 			loaded.unload();
 			parsed.getResourceSet().getResources().remove(loaded);
+		}
+	}
+
+	/**
+	 * Parser preparation creates results before resolving reference and instantiation
+	 * targets, remains idempotent, and leaves literal results inherited.
+	 */
+	@Test
+	public void parserPreparesResultsWithoutResolvingTargets() throws Exception {
+		Resource resource = parse("preparedResults.kerml", """
+				package Prepared {
+					classifier Product;
+					feature original : Product;
+					feature copy = original;
+					feature product = new Product();
+					function choose { return selected : Product; }
+					feature chosen = choose();
+					feature literal = 1;
+				}
+				""");
+		for (Expression expression : List.of(findSingle(resource, FeatureReferenceExpression.class),
+				findSingle(resource, ConstructorExpression.class), findSingle(resource, InvocationExpression.class))) {
+			// Inspect stored relationships only: no getResult or semantic lookup may prepare the result.
+			ReturnParameterMembership resultMembership = expression.getOwnedRelationship().stream()
+					.filter(ReturnParameterMembership.class::isInstance).map(ReturnParameterMembership.class::cast)
+					.findFirst().orElseThrow();
+			Feature result = resultMembership.getOwnedMemberParameter();
+			assertEquals(FeatureDirectionKind.OUT, result.getDirection());
+			Membership reference = expression.getOwnedRelationship().stream()
+					.filter(relationship -> relationship.eClass() == SysMLPackage.Literals.MEMBERSHIP)
+					.map(Membership.class::cast).findFirst().orElseThrow();
+			EObject target = (EObject) reference.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false);
+			assertTrue(target.eIsProxy());
+			List<Relationship> relationships = List.copyOf(expression.getOwnedRelationship());
+
+			// Re-entering parser preparation must neither resolve the target nor replace the result.
+			SysMLParserPostProcessorFactory.getPostProcessor(expression).postProcess();
+			assertSame(target, reference.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
+			assertTrue(target.eIsProxy());
+			assertEquals(relationships, expression.getOwnedRelationship());
+			assertSame(result, resultMembership.getOwnedMemberParameter());
+		}
+		Expression literal = findSingle(resource, org.omg.sysml.lang.sysml.LiteralInteger.class);
+		assertFalse(literal.getOwnedRelationship().stream().anyMatch(ReturnParameterMembership.class::isInstance));
+		assertNotNull(literal.getResult());
+	}
+
+	/**
+	 * Removing a prepared result models an incomplete edit. Result and membership
+	 * queries must not recreate it, including after clearing derived caches.
+	 */
+	@Test
+	public void consultationDoesNotRecreateRemovedResults() throws Exception {
+		Resource resource = parse("removedResults.kerml", """
+				package Removed {
+					classifier Product;
+					feature original : Product;
+					feature copy = original;
+					feature product = new Product();
+					function choose { return selected : Product; }
+					feature chosen = choose();
+				}
+				""");
+		for (Expression expression : List.of(findSingle(resource, FeatureReferenceExpression.class),
+				findSingle(resource, ConstructorExpression.class), findSingle(resource, InvocationExpression.class))) {
+			assertTrue(expression.getOwnedRelationship().removeIf(ReturnParameterMembership.class::isInstance));
+			invalidateEditedModel(resource);
+			List<Relationship> relationships = List.copyOf(expression.getOwnedRelationship());
+
+			// Inherited results may still be available; no owned result may be synthesized by a read.
+			expression.getResult();
+			expression.getFeature();
+			expression.getFeatureMembership();
+			assertEquals(relationships, expression.getOwnedRelationship());
+			assertFalse(expression.getOwnedRelationship().stream().anyMatch(ReturnParameterMembership.class::isInstance));
 		}
 	}
 

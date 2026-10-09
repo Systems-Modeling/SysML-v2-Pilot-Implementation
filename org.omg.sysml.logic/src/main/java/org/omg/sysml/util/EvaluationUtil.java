@@ -109,6 +109,7 @@ public class EvaluationUtil {
 				Type listOp = SysMLLibraryUtil.getLibraryType(context, ExpressionUtil.getOperatorQualifiedNames(","));
 				for (int i = 1; i < results.size(); i++) {
 					InvocationExpression listExpr = SysMLFactory.eINSTANCE.createInvocationExpression();
+					TypeUtil.addResultParameterTo(listExpr);
 					TypeUtil.addOwnedParameterTo(listExpr, expression);
 					TypeUtil.addOwnedParameterTo(listExpr, expressionFor(results.get(i)));					
 					NamespaceUtil.addMemberTo(listExpr, listOp);
@@ -132,6 +133,7 @@ public class EvaluationUtil {
 			return value == null? literalInfinity(): (Expression)elementFor(value);
 		} else if (result instanceof Feature) {
 			FeatureReferenceExpression featureRef = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
+			TypeUtil.addResultParameterTo(featureRef);
 			NamespaceUtil.addMemberTo(featureRef, result);
 			return featureRef;
 		} else {
@@ -335,6 +337,7 @@ public class EvaluationUtil {
 					valueExpr = (Expression)argument;
 				} else {
 					valueExpr = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
+					TypeUtil.addResultParameterTo(valueExpr);
 					NamespaceUtil.addMemberTo(valueExpr, argument);
 				}
 				
@@ -352,6 +355,7 @@ public class EvaluationUtil {
 	
 	public static InvocationExpression createInvocationOf(Type type, Element... arguments) {
 		InvocationExpression invocation = SysMLFactory.eINSTANCE.createInvocationExpression();
+		TypeUtil.addResultParameterTo(invocation);
 		NamespaceUtil.addMemberTo(invocation, type);
 		
 		Specialization specialization = SysMLFactory.eINSTANCE.createSpecialization();

@@ -1,11 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
-<<<<<<< HEAD
- * Copyright (c) 2021-2025, 2026 Model Driven Solutions, Inc.
- * Copyright (c) 2026 Obeo
-=======
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
->>>>>>> refs/remotes/origin/HEAD
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -144,30 +140,6 @@ public class UsageAdapter extends FeatureAdapter {
 	}
 	
 	// Transformation
-	
-	// Used to check for default multiplicity for AttributeUsages, ItemUsages and PortUsages.
-	protected boolean isAddDefaultMultiplicity() {
-		Usage target = getTarget();
-		return target.isEnd() ||
-			   target.getOwningType() != null &&
-			   target.getOwnedSubsetting().stream().
-					map(Subsetting::getSubsettedFeature).
-					filter(f->f != null).
-					map(FeatureUtil::getBasicFeatureOf).
-					noneMatch(f->f != null && f.getOwningType() != null);
-	}
-	
-	// Multiplicity of 1..1 is always the default for an end usage.
-	protected boolean isAddMultiplicity() {
-		return getTarget().isEnd();
-	}
-	
-	@Override
-	public void addAdditionalMembers() {
-		if (isAddMultiplicity()) {
-			TypeUtil.addMultiplicityTo(getTarget());
-		}
-	}
 	
 	/**
 	 * Return the relevant subject parameter to which a Usage should be bound.

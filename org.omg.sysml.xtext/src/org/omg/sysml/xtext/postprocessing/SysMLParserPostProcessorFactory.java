@@ -84,7 +84,9 @@ public class SysMLParserPostProcessorFactory {
 			return new UsageParserPostProcessor(element);
 		}
 
+		@Override
+		public ElementParserPostProcessor caseAttributeUsage(AttributeUsage element) {
+			return new AttributeUsageParserPostProcessor(element);
+		}
 	}
-
-
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -65,12 +66,4 @@ public class ItemUsageAdapter extends OccurrenceUsageAdapter {
 		return target.isComposite() && 
 			   (owningType instanceof ItemDefinition || owningType instanceof ItemUsage);
 	}
-	
-	// Transformation
-	
-	@Override
-	protected boolean isAddMultiplicity() {
-		return isAddDefaultMultiplicity();
-	}
-	
 }

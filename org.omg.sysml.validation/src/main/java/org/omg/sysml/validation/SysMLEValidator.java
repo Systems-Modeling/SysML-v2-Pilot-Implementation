@@ -64,7 +64,7 @@ public class SysMLEValidator implements EValidator {
 			if (checker != null) {
 				DiagnosticMessageAccepter messageAccepter = new DiagnosticMessageAccepter(diagnostics, messageMap);
 				checker.validate(element, messageAccepter);
-				return messageAccepter.isError();
+				return !messageAccepter.isError();
 			}
 		}
 		return true;

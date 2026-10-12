@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -40,13 +41,17 @@ import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.SysMLFactory;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.xtext.postprocessing.SysMLParserPostProcessorFactory;
 
 /** Characterizes feature-chain structure and semantics across consultation and editing. */
 public class FeatureChainConsultationTest {
@@ -126,7 +131,7 @@ public class FeatureChainConsultationTest {
 				""");
 		FeatureChainExpression chain = findSingle(resource, FeatureChainExpression.class);
 		Feature target = findByName(resource, "n", Feature.class);
-		// Resolution and result lookup can create the nested source target in the current implementation.
+		// The parser has prepared the source target before semantic resolution.
 		EcoreUtil2.resolveLazyCrossReferences(resource, null);
 		// Pilot computes feature-chain specializations through explicit transformation.
 		ElementUtil.transformAll(resource, false);
@@ -247,12 +252,13 @@ public class FeatureChainConsultationTest {
 
 	/**
 	 * An incomplete programmatic chain tolerates an absent parameter; once an input
-	 * exists, repeated feature consultation supplies exactly one nested source target.
+	 * exists, explicit preparation supplies exactly one nested source target.
 	 */
 	@Test
 	public void programmaticChainSupportsDeferredSourceCreation() {
 		// No textual equivalent for this intermediate construction state: neither input nor output exists yet.
 		FeatureChainExpression chain = SysMLFactory.eINSTANCE.createFeatureChainExpression();
+		ExpressionUtil.prepareSourceTargetFeature(chain);
 		assertNull(chain.sourceTargetFeature());
 		chain.getFeature();
 		assertTrue(chain.getOwnedRelationship().isEmpty());
@@ -260,8 +266,14 @@ public class FeatureChainConsultationTest {
 				.getOwnedMemberParameter();
 		TypeUtil.addResultParameterTo(chain);
 		ElementUtil.clearCachesOf(chain);
-		// Match the parser's completed parameter order before consulting the chain.
+		// Reads must retain the operand's FeatureValue without adding a nested source target.
+		List<Relationship> relationships = List.copyOf(source.getOwnedRelationship());
 		chain.getFeature();
+		chain.getResult();
+		assertEquals(relationships, source.getOwnedRelationship());
+		assertTrue(source.getOwnedFeature().isEmpty());
+		ExpressionUtil.prepareSourceTargetFeature(chain);
+		ExpressionUtil.prepareSourceTargetFeature(chain);
 		Feature sourceTarget = chain.sourceTargetFeature();
 		assertNotNull(sourceTarget);
 		assertEquals("", sourceTarget.getDeclaredName());
@@ -284,6 +296,8 @@ public class FeatureChainConsultationTest {
 		explicit.setDeclaredName("explicitTarget");
 		TypeUtil.addOwnedFeatureTo(source, explicit);
 		TypeUtil.addResultParameterTo(chain);
+		ExpressionUtil.prepareSourceTargetFeature(chain);
+		ExpressionUtil.prepareSourceTargetFeature(chain);
 		chain.getFeature();
 		chain.getResult();
 		assertSame(explicit, chain.sourceTargetFeature());
@@ -292,8 +306,8 @@ public class FeatureChainConsultationTest {
 	}
 
 	/**
-	 * An XMI chain lacking the nested feature acquires a source target through the
-	 * current consultation path and retains its target identity and inferred type.
+	 * An XMI chain lacking the nested feature requires explicit preparation and
+	 * then retains its target identity and inferred type.
 	 */
 	@Test
 	public void xmiChainProvidesSourceTargetWithoutParserCallback() throws Exception {
@@ -321,6 +335,8 @@ public class FeatureChainConsultationTest {
 			FeatureChainExpression chain = findSingle(loaded, FeatureChainExpression.class);
 			assertNull(chain.sourceTargetFeature());
 			Feature result = chain.getResult();
+			assertNull(chain.sourceTargetFeature());
+			ExpressionUtil.prepareSourceTargetFeature(chain);
 			ElementUtil.transformAll(loaded, false);
 			Feature restored = chain.sourceTargetFeature();
 			assertNotNull(restored);
@@ -333,6 +349,127 @@ public class FeatureChainConsultationTest {
 			loaded.unload();
 			parsed.getResourceSet().getResources().remove(loaded);
 		}
+	}
+
+	/**
+	 * Parser preparation supplies the nested feature before resolution and remains
+	 * idempotent without resolving the target or source expression references.
+	 */
+	@Test
+	public void parserPreparesSourceTargetWithoutResolvingReferences() throws Exception {
+		Resource resource = parse("preparedChain.kerml", """
+				package Prepared {
+					struct V { feature n : ScalarValues::Integer; }
+					feature v : V;
+					feature selected = v.n;
+				}
+				""");
+		FeatureChainExpression chain = findSingle(resource, FeatureChainExpression.class);
+		// Snapshot unresolved references before invoking any semantic query.
+		List<Membership> references = new ArrayList<>();
+		List<EObject> proxies = new ArrayList<>();
+		for (var contents = chain.eAllContents(); contents.hasNext();) {
+			if (contents.next() instanceof Membership membership
+					&& membership.eClass() == SysMLPackage.Literals.MEMBERSHIP) {
+				EObject proxy = (EObject) membership.eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false);
+				assertTrue(proxy.eIsProxy());
+				references.add(membership);
+				proxies.add(proxy);
+			}
+		}
+		assertEquals(2, references.size());
+		Feature source = sourceParameter(chain);
+		assertEquals(1, source.getOwnedFeature().size());
+		Feature prepared = source.getOwnedFeature().get(0);
+		List<Relationship> relationships = List.copyOf(source.getOwnedRelationship());
+
+		// A repeated parser callback must preserve both containment and unresolved proxies.
+		SysMLParserPostProcessorFactory.getPostProcessor(chain).postProcess();
+		assertEquals(relationships, source.getOwnedRelationship());
+		assertSame(prepared, chain.sourceTargetFeature());
+		for (int i = 0; i < references.size(); i++) {
+			assertSame(proxies.get(i), references.get(i).eGet(SysMLPackage.Literals.MEMBERSHIP__MEMBER_ELEMENT, false));
+			assertTrue(proxies.get(i).eIsProxy());
+		}
+	}
+
+	/**
+	 * Deleting a prepared target models an incomplete edit. Cold semantic reads
+	 * must not recreate it; only explicit preparation may restore the structure.
+	 */
+	@Test
+	public void consultationDoesNotRecreateRemovedSourceTarget() throws Exception {
+		Resource resource = parse("removedChain.kerml", """
+				package Removed {
+					struct V { feature n : ScalarValues::Integer; }
+					feature v : V;
+					feature selected = v.n;
+				}
+				""");
+		FeatureChainExpression chain = findSingle(resource, FeatureChainExpression.class);
+		EcoreUtil2.resolveLazyCrossReferences(resource, null);
+		Feature source = sourceParameter(chain);
+		Feature removed = chain.sourceTargetFeature();
+		assertNotNull(removed);
+		source.getOwnedRelationship().remove(removed.getOwningRelationship());
+		List<Relationship> relationships = List.copyOf(source.getOwnedRelationship());
+		// In particular getResult and feature membership used to trigger structural creation.
+		for (int i = 0; i < 2; i++) {
+			clearDerivedCaches(resource);
+			chain.getFeature();
+			chain.getFeatureMembership();
+			chain.getResult().getType();
+			assertNull(chain.sourceTargetFeature());
+			assertEquals(relationships, source.getOwnedRelationship());
+		}
+		// Pilot transformation must also tolerate the missing prepared feature without recreating it.
+		ElementUtil.clean(chain);
+		ElementUtil.transform(chain);
+		assertNull(chain.sourceTargetFeature());
+		assertEquals(relationships, source.getOwnedRelationship());
+		ExpressionUtil.prepareSourceTargetFeature(chain);
+		assertNotNull(chain.sourceTargetFeature());
+		assertNotSame(removed, chain.sourceTargetFeature());
+	}
+
+	/**
+	 * Preparation selects the first input even when the output precedes it and a
+	 * later input already owns a feature. Replacing the source requires preparation
+	 * of the replacement without modifying the detached old source.
+	 */
+	@Test
+	public void preparationFollowsSourceInputOwnership() {
+		// Deliberately construct an intermediate model with output before input.
+		FeatureChainExpression chain = SysMLFactory.eINSTANCE.createFeatureChainExpression();
+		TypeUtil.addResultParameterTo(chain);
+		Feature result = chain.getResult();
+		Feature source = TypeUtil.addOwnedParameterTo(chain, SysMLFactory.eINSTANCE.createLiteralInteger())
+				.getOwnedMemberParameter();
+		Feature later = TypeUtil.addOwnedParameterTo(chain, SysMLFactory.eINSTANCE.createLiteralInteger())
+				.getOwnedMemberParameter();
+		Feature laterTarget = SysMLFactory.eINSTANCE.createFeature();
+		TypeUtil.addOwnedFeatureTo(later, laterTarget);
+		ExpressionUtil.prepareSourceTargetFeature(chain);
+		Feature prepared = chain.sourceTargetFeature();
+		assertSame(source, prepared.getOwningType());
+		assertTrue(result.getOwnedFeature().isEmpty());
+		assertEquals(List.of(laterTarget), later.getOwnedFeature());
+
+		// Replace the source in the same membership; semantic reads must not repair it.
+		FeatureMembership membership = source.getOwningFeatureMembership();
+		membership.getOwnedRelatedElement().clear();
+		Feature replacement = SysMLFactory.eINSTANCE.createFeature();
+		replacement.setDirection(FeatureDirectionKind.IN);
+		membership.setOwnedMemberFeature(replacement);
+		ElementUtil.clearCachesOf(chain);
+		chain.getFeatureMembership();
+		assertTrue(replacement.getOwnedRelationship().isEmpty());
+		ExpressionUtil.prepareSourceTargetFeature(chain);
+		ExpressionUtil.prepareSourceTargetFeature(chain);
+		assertSame(replacement, chain.sourceTargetFeature().getOwningType());
+		assertEquals(1, replacement.getOwnedFeature().size());
+		assertEquals(List.of(prepared), source.getOwnedFeature());
+		assertEquals(List.of(laterTarget), later.getOwnedFeature());
 	}
 
 	private Feature sourceParameter(FeatureChainExpression chain) {

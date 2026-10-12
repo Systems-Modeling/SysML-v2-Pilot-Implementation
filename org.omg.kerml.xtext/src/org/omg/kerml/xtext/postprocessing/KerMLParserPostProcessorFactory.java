@@ -89,6 +89,11 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseFeatureChainExpression(FeatureChainExpression element) {
+			return new FeatureChainExpressionParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseFeatureMembership(FeatureMembership element) {
 			return new FeatureMembershipParserPostProcessor(element);
 		}

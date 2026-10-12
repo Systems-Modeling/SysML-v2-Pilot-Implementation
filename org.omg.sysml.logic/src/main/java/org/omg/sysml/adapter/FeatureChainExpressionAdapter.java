@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2022, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -23,7 +24,6 @@ package org.omg.sysml.adapter;
 import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureDirectionKind;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
@@ -60,21 +60,6 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 		}
 	}
 	
-	@Override
-	public void addAdditionalMembers() {
-		super.addAdditionalMembers();
-		
-		// Add sourceTarget feature.
-		FeatureChainExpression target = getTarget();
-		Feature sourceParameter = TypeUtil.getOwnedParameterOf(target, 0, Feature.class);
-		if (sourceParameter != null) {
-			if (sourceParameter.getOwnedFeature().isEmpty()) {
-				Feature sourceTarget = SysMLFactory.eINSTANCE.createFeature();
-				sourceTarget.setDeclaredName(""); // To avoid effective naming.
-				TypeUtil.addOwnedFeatureTo(sourceParameter, sourceTarget);
-			}
-		}
-	}
 	
 	/**
 	 * @satisfies checkFeatureChainExpressionTargetRedefinition
@@ -85,6 +70,9 @@ public class FeatureChainExpressionAdapter extends OperatorExpressionAdapter {
 		Feature sourceParameter = TypeUtil.getOwnedParameterOf(target, 0, Feature.class);
 		if (sourceParameter != null) {
 			Feature sourceTarget = target.sourceTargetFeature();
+			if (sourceTarget == null) {
+				return;
+			}
 			TypeUtil.addImplicitGeneralTypeTo(sourceTarget,
 					SysMLPackage.eINSTANCE.getRedefinition(),
 					//checkFeatureChainExpressionTargetRedefinition

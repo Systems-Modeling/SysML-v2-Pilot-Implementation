@@ -1,144 +1,127 @@
 # Feature-chain source-target preparation
 
-## Purpose and status
+## Purpose
 
-This note covers the lot 0 sublot following expression result preparation
-(ST6RI-979). It separates observations about the current implementation from the
-proposed next change. Only regression tests are added at this stage; production
-behavior is unchanged.
+ST6RI-981 separates structural preparation of feature-chain expressions from
+semantic consultation, following expression result preparation in ST6RI-979.
+Derived queries and cache computation do not create the owned source-target
+feature. Typing and redefinitions remain computed from the current expression
+and its target. On this Pilot branch, semantic queries use adapter caches and
+explicit transformation.
+The Obeo variant additionally supports uncached implicit-specialization computation.
 
-The objective is to stop semantic consultation and cache computation from creating
-an owned source-target feature. Typing, redefinitions, argument order and existing
-model element identities must be preserved. Pilot caching and SysON's use of
-uncached editable models must both remain supported.
+## Preparation and consultation
 
-## Current behavior
-
-For a textual expression such as `v.n`, the parser creates a
+For a textual expression such as `v.n`, the parser constructs a
 `FeatureChainExpression` with an input parameter whose value refers to `v`, a
 membership referring to `n`, and an output result prepared by ST6RI-979.
+`ExpressionParserPostProcessor` then calls
+`ExpressionUtil.prepareSourceTargetFeature(FeatureChainExpression)`.
 
-`FeatureChainExpressionAdapter.addAdditionalMembers()` selects the first owned
-parameter using `TypeUtil.getOwnedParameterOf(expression, 0, Feature.class)`.
-If that parameter has no owned feature, it creates a nested Feature and its
-FeatureMembership. Its declared name is the empty string to suppress effective
-naming. Existing nested features are retained, including their names.
+The helper inspects the expression's owned feature memberships in order and
+selects the first feature with stored direction `IN`. It inspects that feature's
+owned feature memberships, preserving existing nested features and their names.
+If none exists, it creates one nested Feature and its FeatureMembership. The
+nested feature has the empty declared name to suppress effective naming.
 
-`sourceTargetFeature()` does not itself prepare anything: its invocation delegate
-returns the first owned feature found beneath an owned input feature. Preparation
-can instead be triggered by result lookup, feature membership consultation,
-linking or transformation through `addAdditionalMembers()`.
+These operations inspect only local containment and stored direction. They do
+not follow the source value, target membership, inferred types or specialization
+targets. The owned-member accessor used by the helper reads the membership's
+contained elements. Repeated preparation preserves element identities. An
+expression without an input is left unchanged and can be prepared after the
+input is installed. Preparation does not install or invalidate caches.
 
-The specialization rules use that nested feature to redefine the expression's
+`FeatureChainExpressionAdapter` has no structural preparation override.
+`sourceTargetFeature()` returns the first owned feature found beneath an owned
+input feature. Other semantic queries use the prepared structure and do not
+recreate a removed source target.
+
+The specialization rules use the nested feature to redefine the expression's
 `targetFeature` and `ControlFunctions::'.'::source::target`. The result specializes
 the chain of the source parameter and the source-target feature. These rules are
-implemented by `featureChainExpressionTargetRedefinition` and
-`featureChainExpressionResultSpecialization` in `KerMLExpressionRules`; their
-Javadoc cites KerML section 8.3.4.8.4 and section 8.4.4.1, Table 11, note 5.
+implemented here by `FeatureChainExpressionAdapter.addTargetRedefinition` and
+`addResultTyping`, invoked by explicit transformation. Those methods are retained
+when removing the structural preparation override. `addTargetRedefinition` skips
+an absent source target: incomplete models must not fail or be repaired by
+transformation. The separate implicit-specialization service of ST6RI-969 is not
+present on this branch.
 
 Two different structures must not be confused: `a.next.next` may represent a
 single expression whose target is a feature chain, whereas `(a.next).next`
 explicitly nests two FeatureChainExpressions.
 
-## Proposed preparation boundary — not implemented
-
-Reuse the parser post-processing boundary introduced by ST6RI-979. Introduce one
-small, explicit mutation helper for preparing a FeatureChainExpression's nested
-source target, callable by parser post-processing and by programmatic/XMI
-producers. A separate service or persistent dependency registry is unnecessary.
-
-The helper should:
-
-- Inspect stored containment and direction without resolving the source value,
-  target membership, inferred types or specialization targets.
-- Retain an existing nested feature and create at most one anonymous nested
-  feature when the source input exists and has none.
-- Tolerate an incomplete expression with no source input; its producer calls
-  preparation again when it installs the input.
-- Leave result typing and redefinitions to the semantic queries.
-
-Parser-created operands already receive direction IN through
-`TypeUtil.addOwnedParameterTo`, before expression post-processing. The preparation
-must therefore run after operand construction; inserting the output result must
-not influence source selection.
-
-Once this preparation is validated, remove source-target creation from
-`FeatureChainExpressionAdapter.addAdditionalMembers()`. Queries must not recreate
-a deleted source target. Non-textual producers must invoke preparation explicitly;
-loading XMI alone does not invoke the parser post-processors.
-
 ```mermaid
 flowchart LR
     Parser[Parser: operand construction] --> Post[Expression post-processing]
-    Post --> Prepare[Explicit source-target preparation]
-    Editor[Editor creation or XMI import] --> Prepare
+    Post --> Prepare[ExpressionUtil.prepareSourceTargetFeature]
+    Editor[Editor creation or XMI import caller] --> Prepare
     Prepare --> Structure[Input parameter owns source-target Feature]
-    Structure --> Query[Typing and specialization queries]
-    Edit[Change target membership] --> Query
+    Structure --> Transform[Explicit semantic transformation]
+    Transform --> Query[Typing and specialization queries]
+    Edit[Change target membership] --> Clean[Invalidate model adapters]
+    Clean --> Transform
 ```
 
-## Incremental editing and risks
+## Producer and editor responsibilities
 
-Changing the target membership does not change ownership of the source-target
-feature. Tests exercise a missing target followed by Boolean and Integer targets,
-without transformation or a second explicit preparation. The structure remains
-stable and semantic results follow the edits. Model specialization caching is
-disabled by the existing test fixture; legacy derived caches are explicitly
-cleared. This is not a claim of automatic dependency invalidation.
+Programmatic builders and XMI consumers must call the helper after constructing
+or loading a chain lacking its nested source target, before semantic consultation.
+Loading XMI alone does not invoke parser post-processors. No automatic preparation
+is added to the generic XMI loader or generated EMF editing commands. A serialized
+chain that already contains its source target needs no repair.
 
-Replacing or removing the source input is a different lifecycle event: the nested
-feature belongs to that input. A replacement input must be prepared explicitly.
-This scenario needs additional acceptance tests in the implementation step.
+Changing the target membership preserves ownership and identity of the prepared
+feature. The regression tests exercise a missing target followed by Boolean and
+Integer targets without another preparation call. On Pilot, tests remove model
+adapters with `ElementUtil.clean` and explicitly transform the resource with
+materialization disabled to refresh the semantic results. This is not a claim
+of automatic dependency invalidation or pre-transformation semantic computation.
 
-Source selection needs review before implementation. The current creator selects
-the first **parameter**, regardless of direction, whereas the reader selects
-features below **inputs**. In a programmatic model with the output inserted before
-the input, the creator can consequently attach the nested feature to the output.
-The proposed helper should select the first input using local stored structure;
-this changes that ordering behavior and must be covered
-explicitly rather than silently copied. Multiple inputs with an empty first input
-also require care: the current reader can return a nested feature of a later input.
-No production correction of these cases is included in the baseline commit.
+Replacing the source input requires preparing the replacement explicitly. The
+old nested feature remains owned by the old input. Removing the source target
+also requires explicit preparation to restore it; queries do not repair incomplete
+editor states. Callers remain responsible for their existing cache invalidation
+policy when modifying cached models.
 
-Earlier creation changes containment traversal order and may expose the nested
-feature to linking sooner. Test unresolved targets, repeated post-processing and
-nested consultations before accepting the parser move. Terminating a traversal
-does not prove that its inferred results are complete; preserve the service's
-recursion handling and avoid caching incomplete results as complete.
+## Ordering and limitations
 
-## Regression coverage and delivery boundary
+Preparation selects the first input even if an output parameter was inserted
+before it. The earlier consultation-time creator selected the first parameter
+regardless of direction and could incorrectly attach the nested feature to an
+output in programmatically constructed models. This ordering difference is
+intentional and covered by a regression test.
 
-`FeatureChainConsultationTest` adds six scenarios:
+For an incomplete model with several inputs, preparation handles the first input
+and leaves subsequent inputs unchanged, including their nested features. The
+existing reader still searches across inputs: before explicit preparation, it
+can return a nested feature of a later input if the first input has none. No
+change to that query's semantics is included here.
+
+Parser preparation introduces the nested feature before linking. Tests cover
+unresolved references, repeated parser callbacks, nested chains and cyclic source
+subsettings. They do not establish performance equivalence; benchmark execution
+remains deferred at the user's request.
+
+## Regression coverage
+
+`FeatureChainConsultationTest` covers:
 
 - Cached textual chain: source-target and result identity, target and library
   redefinitions, synthesized result chain, typing, argument order and repeated
   materialization.
-- Uncached target edits: missing target, replacement and restoration, with stable
-  containment and no semantic transformation.
+- Target edits with adapter invalidation: missing target, replacement and restoration, with stable
+  containment through explicit semantic transformation.
 - Nested expressions with cyclic source subsettings and recursive structure typing.
-- Incomplete programmatic construction followed by source input construction.
+- Incomplete programmatic construction followed by explicit preparation.
 - Preservation of an explicitly supplied nested feature.
-- XMI loading without a source-target feature, followed by consultation.
+- XMI loading without a source-target feature, then explicit preparation.
+- Parser preparation before reference resolution and idempotent callbacks.
+- Removal of the nested feature followed by cold semantic queries that do not
+  recreate it.
+- Output-before-input construction, multiple inputs and replacement of the source.
 
-Existing `VirtualContainerTest` and
-`ContextualFeatureChainConnectorFlowLoopImplicitSpecializationTest` complement
-these tests for detached result chains and implicit redefinitions.
-
-The baseline deliberately permits current consultation-time creation. The next
-commit must adapt the programmatic and XMI scenarios to explicit preparation and
-add assertions that reads do not create or recreate the nested feature, including
-with cold caches. Parser preparation must be idempotent and leave proxies
-unresolved. Broader source-replacement and input-order coverage belongs in that
-same implementation step.
-
-Each code step requires a full root `mvn clean verify` and its rebuilt bundled
-JARs. Benchmark execution is deferred at the user's request; performance
-equivalence is not established by these tests. Review this baseline before
-implementing the proposed preparation boundary.
-
-Baseline validation on 2026-10-12: root `mvn clean verify` succeeded in 10 min
-12 s (1669 tests reported, no failures or errors, 22 skipped). The six focused
-feature-chain scenarios also passed independently. No benchmark was run.
+Existing `ExpressionResultConsultationTest` complements these tests for result
+preparation and the Pilot transformation lifecycle.
 
 ## Pilot branch adaptation
 
@@ -156,9 +139,9 @@ Service-specific cache policy assertions do not apply to this branch. The
 stronger pre-transformation semantic coverage remains on the Obeo branch.
 
 The existing `FeatureChainExpressionAdapter.addResultTyping`,
-`addTargetRedefinition` and `doTransform` methods must be preserved when moving
-structural preparation. The references above to `KerMLExpressionRules` describe
-the Obeo implementation; Pilot computes these relations in the adapter.
+`addTargetRedefinition` and `doTransform` methods are preserved. Only the structural
+creation override is removed;
+a null guard also allows transformation of an incomplete, unprepared chain.
 
 History comparison also found ST6RI-947, ST6RI-972, ST6RI-977 and ST6RI-969 on the
 Obeo side, together with deployment and formatting changes. None is imported as
@@ -166,9 +149,10 @@ an additional prerequisite for this structural refactoring. Pilot already has
 its own ST6RI-954 fix, newer ST6RI-974 changes and the explicit model/logic Eclipse
 classpath references. These existing Pilot changes are retained.
 
-The Obeo baseline validation figures above are historical; Pilot validation is
-recorded separately after rebuilding this commit.
-
 Pilot baseline validation on 2026-10-13: root `mvn clean verify` succeeded in
 5 min 28 s (1548 tests reported, no failures or errors, 22 skipped), including
 the six feature-chain scenarios. Both bundled JARs were rebuilt. No benchmark ran.
+
+Pilot implementation validation on 2026-10-13: root `mvn clean verify` succeeded
+in 5 min 07 s (1551 tests reported, no failures or errors, 22 skipped), including
+the nine feature-chain scenarios. Both bundled JARs were rebuilt. No benchmark ran.

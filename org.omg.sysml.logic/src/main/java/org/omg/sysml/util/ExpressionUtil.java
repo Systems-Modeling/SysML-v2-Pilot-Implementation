@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2023, 2025-2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -35,6 +36,8 @@ import org.omg.sysml.lang.sysml.DataType;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureChainExpression;
+import org.omg.sysml.lang.sysml.FeatureDirectionKind;
 import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.InstantiationExpression;
@@ -42,8 +45,10 @@ import org.omg.sysml.lang.sysml.InvocationExpression;
 import org.omg.sysml.lang.sysml.LiteralBoolean;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.ParameterMembership;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.ReturnParameterMembership;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -102,6 +107,39 @@ public class ExpressionUtil {
 				findFirst().orElse(null);
 	}
 	
+	/**
+	 * Prepares the nested source-target feature of the first owned input feature.
+	 * Existing nested features, including their names, are preserved. If there is
+	 * no input, this operation does nothing and may be called again after one is added.
+	 * Only local containment and stored direction are inspected; no expression
+	 * references, types or specialization targets are resolved.
+	 * <p>
+	 * Model producers must call this operation after constructing or replacing the
+	 * source input, before semantic consultation. It mutates containment but does
+	 * not install or invalidate caches. Repeated calls preserve element identities.
+	 *
+	 * @param expression the non-null expression to prepare
+	 */
+	public static void prepareSourceTargetFeature(FeatureChainExpression expression) {
+		for (Relationship relationship : expression.getOwnedRelationship()) {
+			if (relationship instanceof FeatureMembership membership) {
+				Feature source = membership.getOwnedMemberFeature();
+				if (source != null && source.getDirection() == FeatureDirectionKind.IN) {
+					for (Relationship nested : source.getOwnedRelationship()) {
+						if (nested instanceof FeatureMembership nestedMembership
+								&& nestedMembership.getOwnedMemberFeature() != null) {
+							return;
+						}
+					}
+					Feature sourceTarget = SysMLFactory.eINSTANCE.createFeature();
+					sourceTarget.setDeclaredName(""); // Suppress effective naming.
+					TypeUtil.addOwnedFeatureTo(source, sourceTarget);
+					return;
+				}
+			}
+		}
+	}
+
 	public static Element getTargetFeatureFor(Expression expression) {
 		List<Membership> memberships = expression.getOwnedMembership();
 		return memberships.size() < 2? null: memberships.get(1).getMemberElement();

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -14,22 +15,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.EcoreUtil2;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.omg.sysml.interactive.SysMLInteractive;
+import org.omg.sysml.interactive.SysMLInteractiveResult;
+import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.OwningMembership;
@@ -39,35 +36,26 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.ElementUtil;
-import org.omg.sysml.util.NamespaceUtil;
+import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.xtext.postprocessing.SysMLParserPostProcessorFactory;
 
 /** Tests the boundary between parser preparation of multiplicities and derived consultation. */
 public class MultiplicityPreparationTest {
 
-	private static ResourceSet resourceSet;
-	private final List<Resource> models = new ArrayList<>();
+	protected static SysMLInteractive interactive;
 
 	/** Loads and resolves the standard library once for the textual test scenarios. */
 	@BeforeClass
 	public static void loadLibraries() {
-		SysMLInteractive interactive = SysMLInteractive.createInstance();
+		interactive = SysMLInteractive.createInstance();
 		interactive.setVerbose(false);
-		interactive.getLibraryIndexCache().setIndexDisabled(true);
 		interactive.loadLibrary(Path.of(System.getProperty("libraryPath")).toAbsolutePath().toString());
-		resourceSet = interactive.getResourceSet();
-		for (int i = 0; i < resourceSet.getResources().size(); i++) {
-			EcoreUtil2.resolveLazyCrossReferences(resourceSet.getResources().get(i), null);
-		}
 	}
-
+	
 	/** Removes each test model while retaining the shared resolved libraries. */
 	@After
-	public void removeModels() {
-		for (Resource resource : models) {
-			resource.unload();
-			resourceSet.getResources().remove(resource);
-		}
+	public void removeResource() {
+		interactive.removeResource();
 	}
 
 	/**
@@ -88,14 +76,14 @@ public class MultiplicityPreparationTest {
 				""");
 		for (String name : List.of("attributeEnd", "itemEnd", "portEnd", "referenceEnd", "connectionEnd")) {
 			Usage usage = findByName(resource, name, Usage.class);
-			List<Multiplicity> multiplicities = ownedMultiplicities(usage);
+			List<Multiplicity> multiplicities = TypeUtil.getOwnedMultiplicitiesOf(usage);
 			assertEquals(name, 1, multiplicities.size());
 			List<Relationship> relationships = new ArrayList<>(usage.getOwnedRelationship());
 
 			usage.getFeature();
 			usage.getFeature();
 			assertEquals(name, relationships, usage.getOwnedRelationship());
-			assertSame(name, multiplicities.get(0), ownedMultiplicities(usage).get(0));
+			assertSame(name, multiplicities.get(0), TypeUtil.getOwnedMultiplicitiesOf(usage).get(0));
 		}
 	}
 
@@ -110,8 +98,8 @@ public class MultiplicityPreparationTest {
 				part def Holder { end item endpoint[2..4]; }
 				""");
 		Usage usage = findByName(resource, "endpoint", Usage.class);
-		assertEquals(1, ownedMultiplicities(usage).size());
-		Multiplicity multiplicity = ownedMultiplicities(usage).get(0);
+		assertEquals(1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
+		Multiplicity multiplicity = TypeUtil.getOwnedMultiplicitiesOf(usage).get(0);
 		assertTrue(multiplicity instanceof MultiplicityRange);
 		List<Relationship> relationships = new ArrayList<>(usage.getOwnedRelationship());
 
@@ -119,8 +107,8 @@ public class MultiplicityPreparationTest {
 		SysMLParserPostProcessorFactory.getPostProcessor(usage).postProcess();
 		SysMLParserPostProcessorFactory.getPostProcessor(usage).postProcess();
 		assertEquals(relationships, usage.getOwnedRelationship());
-		assertEquals(1, ownedMultiplicities(usage).size());
-		assertSame(multiplicity, ownedMultiplicities(usage).get(0));
+		assertEquals(1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
+		assertSame(multiplicity, TypeUtil.getOwnedMultiplicitiesOf(usage).get(0));
 	}
 
 	/**
@@ -133,7 +121,7 @@ public class MultiplicityPreparationTest {
 				part def Holder { end item endpoint; }
 				""");
 		Usage usage = findByName(resource, "endpoint", Usage.class);
-		assertEquals(1, ownedMultiplicities(usage).size());
+		assertEquals(1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
 
 		// This intermediate edited state cannot be obtained by parsing alone: remove
 		// the multiplicity created by the parser, while retaining the end usage.
@@ -145,7 +133,7 @@ public class MultiplicityPreparationTest {
 		// A cold feature query must leave zero owned multiplicities, not materialize one.
 		usage.getFeature();
 		usage.getFeatureMembership();
-		assertTrue(ownedMultiplicities(usage).isEmpty());
+		assertTrue(TypeUtil.getOwnedMultiplicitiesOf(usage).isEmpty());
 		assertEquals(relationships, usage.getOwnedRelationship());
 	}
 
@@ -170,19 +158,19 @@ public class MultiplicityPreparationTest {
 		for (String name : List.of("redefinedValues", "subsetValues", "chainValues", "packageValues")) {
 			Usage usage = findByName(resource, name, Usage.class);
 			// ST6RI-774 allows the default even when the target has [0..*].
-			assertEquals(name, 1, ownedMultiplicities(usage).size());
-			Multiplicity multiplicity = ownedMultiplicities(usage).get(0);
+			assertEquals(name, 1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
+			Multiplicity multiplicity = TypeUtil.getOwnedMultiplicitiesOf(usage).get(0);
 			assertEquals(SysMLPackage.Literals.MULTIPLICITY, multiplicity.eClass());
 			usage.getFeature();
 			SysMLParserPostProcessorFactory.getPostProcessor(usage).postProcess();
-			assertEquals(name, 1, ownedMultiplicities(usage).size());
+			assertEquals(name, 1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
 		}
-		assertEquals(1, ownedMultiplicities(findByName(resource, "plainValues", Usage.class)).size());
+		assertEquals(1, TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, "plainValues", Usage.class)).size());
 
 		// Explicit transformation must retain the same multiplicity choices.
 		ElementUtil.transformAll(resource, true);
 		for (String name : List.of("redefinedValues", "subsetValues", "chainValues", "packageValues")) {
-			assertEquals(name, 1, ownedMultiplicities(findByName(resource, name, Usage.class)).size());
+			assertEquals(name, 1, TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, name, Usage.class)).size());
 		}
 	}
 
@@ -209,7 +197,7 @@ public class MultiplicityPreparationTest {
 			SysMLParserPostProcessorFactory.getPostProcessor(usage).postProcess();
 			assertSame(target, subsetting.eGet(SysMLPackage.Literals.SUBSETTING__SUBSETTED_FEATURE, false));
 			assertTrue(((EObject) target).eIsProxy());
-			assertEquals(name, 1, ownedMultiplicities(usage).size());
+			assertEquals(name, 1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
 		}
 	}
 
@@ -235,22 +223,23 @@ public class MultiplicityPreparationTest {
 				""");
 		// Eligible usages receive Multiplicity, never a synthetic MultiplicityRange.
 		for (String name : List.of("ownedAttribute", "ownedItem", "ownedPart", "ownedPort")) {
-			List<Multiplicity> multiplicities = ownedMultiplicities(findByName(resource, name, Usage.class));
+			List<Multiplicity> multiplicities = TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, name, Usage.class));
 			assertEquals(name, 1, multiplicities.size());
 			assertEquals(name, SysMLPackage.Literals.MULTIPLICITY, multiplicities.get(0).eClass());
 		}
 		// Neither package ownership nor an ineligible kind may introduce a default.
 		for (String name : List.of("packageAttribute", "packageItem", "packagePart", "packagePort", "reference", "link")) {
-			assertTrue(name, ownedMultiplicities(findByName(resource, name, Usage.class)).isEmpty());
+			assertTrue(name, TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, name, Usage.class)).isEmpty());
 		}
 	}
 
 	private Resource parse(String name, String text) throws Exception {
-		Resource resource = resourceSet.createResource(URI.createURI("memory:/" + name));
-		models.add(resource);
-		resource.load(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)), Map.of());
-		assertTrue(resource.getErrors().toString(), resource.getErrors().isEmpty());
-		return resource;
+		interactive.setResource(name);
+		interactive.parse(text);
+		Element rootElement = interactive.getRootElement();
+		SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, Collections.emptyList());
+		assertTrue("'" + text + "':\n" + result.formatIssues(), result.getIssues().isEmpty());
+		return interactive.getResource();
 	}
 
 	private static <T extends Type> T findByName(Resource resource, String name, Class<T> kind) {
@@ -263,8 +252,4 @@ public class MultiplicityPreparationTest {
 		throw new AssertionError("Missing " + name);
 	}
 
-	private static List<Multiplicity> ownedMultiplicities(Usage usage) {
-		return NamespaceUtil.getOwnedMembersOf(usage).filter(Multiplicity.class::isInstance)
-				.map(Multiplicity.class::cast).toList();
-	}
 }

@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -31,10 +32,4 @@ public class AttributeUsageAdapter extends UsageAdapter {
 	public AttributeUsage getTarget() {
 		return (AttributeUsage)super.getTarget();
 	}
-
-	@Override
-	protected boolean isAddMultiplicity() {
-		return isAddDefaultMultiplicity();
-	}
-	
 }

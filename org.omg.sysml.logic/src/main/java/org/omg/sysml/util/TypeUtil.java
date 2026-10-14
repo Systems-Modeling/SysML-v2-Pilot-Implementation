@@ -540,6 +540,12 @@ public class TypeUtil {
 		}
 	}
 	
+	public static List<Multiplicity> getOwnedMultiplicitiesOf(Type type) {
+		return NamespaceUtil.getOwnedMembersOf(type).
+				filter(Multiplicity.class::isInstance).
+				map(Multiplicity.class::cast).toList();
+	}
+	
 	public static Multiplicity getMultiplicityOf(Type type) {
 		List<Multiplicity> multiplicities = getMultiplicitiesOf(type, new HashSet<>());
 		return multiplicities.isEmpty()? null: multiplicities.get(0);

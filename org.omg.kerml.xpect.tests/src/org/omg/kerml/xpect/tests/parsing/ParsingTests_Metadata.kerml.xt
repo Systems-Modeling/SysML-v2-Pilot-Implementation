@@ -74,4 +74,8 @@ package Metadata {
     #M struct T {
         feature :>> cc;
     }
+    
+    metaclass M1 {
+    	metadata M1;
+    }
 }

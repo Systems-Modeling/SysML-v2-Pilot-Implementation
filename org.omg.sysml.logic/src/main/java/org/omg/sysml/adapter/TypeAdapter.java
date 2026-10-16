@@ -482,11 +482,13 @@ public class TypeAdapter extends NamespaceAdapter {
 	protected List<Type> getBaseTypes() {
 		List<Type> baseTypes = new ArrayList<>();
 		if (isGetBaseTypes) {
+			Set<Feature> visited = new HashSet<>();
 			Type target = getTarget();
 			for (MetadataFeature metadataFeature : ElementUtil.getAllMetadataFeaturesOf(target)) {
 				// Resolve metaclass proxy before getting base type, to avoid problems
-				// with name resolution when applying semantic metadata.
-				metadataFeature.getMetaclass();
+				// with name resolution when applying semantic metadata. (ST6RI-923)
+				// Call getTypesOf rather than getMetaclass to avoid possible stack overflow. (ST6RI-976)
+				FeatureUtil.getTypesOf(metadataFeature, new ArrayList<>(), visited);
 				isGetBaseTypes = false;
 				TypeUtil.getFeatureOf(metadataFeature).stream().
 						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).

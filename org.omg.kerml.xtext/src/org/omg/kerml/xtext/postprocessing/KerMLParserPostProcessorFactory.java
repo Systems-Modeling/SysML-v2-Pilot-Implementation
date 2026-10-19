@@ -99,8 +99,18 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseFeatureReferenceExpression(FeatureReferenceExpression element) {
+			return new FeatureReferenceExpressionParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseFeatureTyping(FeatureTyping element) {
 			return new FeatureTypingParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseInstantiationExpression(InstantiationExpression element) {
+			return new InstantiationExpressionParserPostProcessor(element);
 		}
 
 		@Override

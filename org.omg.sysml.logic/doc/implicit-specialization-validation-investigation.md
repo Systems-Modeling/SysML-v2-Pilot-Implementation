@@ -146,3 +146,48 @@ comparisons:
 The results confirm that the benchmark now detects the reported regression.
 No cache lifecycle correction was applied during this history rewrite; detailed
 cache analysis remains the next review step.
+
+
+## Common conservative predicate experiment (2026-10-20)
+
+This experiment starts from `283a8ca6f`, on branch
+`experiment/ST6RI-969-conservative-cache-20261020`. The main checkout is on a
+separate ST6RI-971 revision with independent user changes, so the experiment is
+isolated in a worktree. Its inputs under `sysml.library` and `sysml/src` are
+unchanged from the validated refined-predicate experiment `633d3820f`.
+
+All three TypeAdapter collections use the same `canCacheDerivedViews()` predicate:
+no active service evaluation in the model, a complete raw owner result, a complete
+reduced owner result after transformation, and a persistent cache with stable redefinitions for every
+owned Feature. Computation and return remain unconditional;
+only retention is conditional. The service recursion guard and rule ordering are
+unchanged. No per-collection dependency traversal or validation-specific clear is
+included. This is the first conservative prototype promoted to a reviewable change,
+not a relaxation of the refined implementation.
+
+Six integration tests cover metadata connectors, an uncached model, cyclic
+inheritance, private library redefinition filtering and membership reuse after
+an outermost evaluation. The full root `mvn clean verify` succeeded in 11:01
+minutes: 1,648 tests, zero failures/errors, 22 skipped. All six new tests passed.
+
+The full benchmark succeeded: 349 resources, zero errors, warnings or infos.
+The validated measurements and deltas are recorded in
+[benchmark results](../../org.omg.sysml.interactive/doc/benchmark-results.md).
+The benchmark jar comes from this worktree, while the textual inputs come from
+the original checkout to retain its filesystem library reading order. SHA-256
+checks confirmed that all 349 textual inputs match the worktree before and after
+the run. No user Java changes from the separate ST6RI-971 checkout enter this jar.
+
+On this single run, the simple predicate preserves the successful validation of
+the refined predicates. The raw/reduced service cache counters are identical at
+all checkpoints; those counters do not measure TypeAdapter collection reuse.
+The total measured time is 1.2% higher than the refined variant: resolution is
+5.7% slower, transformation 12.3% faster and validation 21.5% faster. Those timing
+differences do not establish a repeatable performance advantage. Transformation
+remains 110.7% slower than before extraction.
+
+This supports keeping the common predicate as the simpler candidate for review.
+It does not prove correctness for every inheritance graph or replace an Eclipse
+clean/build reproduction. No Eclipse runtime clean/build was performed during
+this experiment, and retained collections still rely on normal invalidation
+after semantic edits.

@@ -62,9 +62,67 @@ checkpoints were 0 / 5 / 4.
 
 This is the initial validated baseline for subsequent specialization changes.
 
-## Refactoring evaluation
+### Extracted service with per-collection retention predicates
 
-No validated result is available for the extracted service yet. Its latest run
-failed semantic validation and is excluded from accepted performance comparisons.
-Diagnostics and investigation notes are recorded in the
+Measured on 2026-10-19 in the same environment, with Temurin 21+35,
+`-Xms2g -Xmx4g` and the fixed inputs above. This is the working tree based on
+`283a8ca6f`, with the TypeAdapter collection-retention correction; it does not
+include the dedicated redefinition-path experiment. The full root
+`mvn clean verify` succeeded: **1,652 tests, zero failures/errors, 22 skipped**.
+No build or diagnostic JVM ran concurrently with this fresh-JVM benchmark.
+
+| Run | load_libraries | load_models | resolution | transformation | validation |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2 | 1.443 s (7 GC, 33 ms) | 0.891 s (3 GC, 20 ms) | 170.764 s (158 GC, 429 ms) | 16.369 s (17 GC, 142 ms) | 25.235 s (22 GC, 261 ms) |
+
+Final validation: **349 resources, zero errors, zero warnings, zero infos; exit
+status 0**. Resource-error counts at the loaded / resolved / transformed
+checkpoints were 0 / 0 / 0.
+
+| Checkpoint | Types | Cached | Complete raw and reduced | Uncached |
+| --- | ---: | ---: | ---: | ---: |
+| loaded | 55283 | 0 | 0 | 55283 |
+| resolved | 60450 | 28402 | 2786 | 32048 |
+| transformed | 70357 | 70330 | 70083 | 27 |
+
+Compared with the preceding validated baseline, resolution decreased by 171.476 s (50.1%), transformation increased by 9.556 s (140.3%), and validation increased by 4.797 s (23.5%). The sum of the five timed phases decreased from 372.087 s to 214.701 s (42.3%). These are individual fresh-JVM observations, not a statistical estimate.
+
+### Extracted service with one conservative retention predicate
+
+Measured on 2026-10-20, Temurin 21+35, `-Xms2g -Xmx4g`, on
+`experiment/ST6RI-969-conservative-cache-20261020`, based on `283a8ca6f`.
+All three derived TypeAdapter collections use `canCacheDerivedViews()`; the
+service recursion guard is unchanged. The full root `mvn clean verify` succeeded:
+**1,648 tests, zero failures/errors, 22 skipped**, in 11:01 minutes. This includes
+six integration regressions for this variant.
+
+The benchmark uses the shaded jar built in the isolated worktree and reads
+`sysml.library` and `sysml/src` from the original checkout. All 349 textual files
+were checked byte-for-byte against the worktree inputs. This preserves the
+original library reading order, which depends on filesystem enumeration. No build
+ran concurrently with the fresh-JVM benchmark.
+
+| Run | load_libraries | load_models | resolution | transformation | validation |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 3 | 1.576 s (7 GC, 37 ms) | 0.978 s (2 GC, 10 ms) | 180.507 s (158 GC, 448 ms) | 14.354 s (16 GC, 131 ms) | 19.811 s (20 GC, 252 ms) |
+
+Final validation: **349 resources, zero errors, zero warnings, zero infos; exit
+status 0**. Resource-error counts at the loaded / resolved / transformed
+checkpoints were 0 / 0 / 0.
+
+| Checkpoint | Types | Cached | Complete raw and reduced | Uncached |
+| --- | ---: | ---: | ---: | ---: |
+| loaded | 55283 | 0 | 0 | 55283 |
+| resolved | 60450 | 28402 | 2786 | 32048 |
+| transformed | 70357 | 70330 | 70083 | 27 |
+
+Compared with the preceding validated run (2), resolution increased by 9.743 s
+(5.7%), transformation decreased by 2.015 s (12.3%), and validation decreased by
+5.425 s (21.5%). The sum of the five timed phases increased from 214.701 s to
+217.225 s (1.2%). Compared with the pre-extraction baseline (1), resolution is
+47.3% lower, transformation is 110.7% higher, and the five-phase total is 41.6%
+lower. These are individual fresh-JVM observations, not a statistical estimate.
+
+Intermediate failed evaluations and diagnostic optimization experiments remain
+excluded from accepted performance comparisons; see the
 [validation investigation](../../org.omg.sysml.logic/doc/implicit-specialization-validation-investigation.md).

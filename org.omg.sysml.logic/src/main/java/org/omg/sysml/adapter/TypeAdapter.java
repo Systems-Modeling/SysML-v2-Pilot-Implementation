@@ -46,6 +46,7 @@ import org.omg.sysml.lang.sysml.ResultExpressionMembership;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.logic.implicit.specialization.ImplicitSpecializationServices;
+import org.omg.sysml.logic.implicit.specialization.api.IImplicitSpecializationCache;
 import org.omg.sysml.lang.sysml.VisibilityKind;
 import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ConnectorUtil;
@@ -178,25 +179,37 @@ public class TypeAdapter extends NamespaceAdapter {
 	}
 	
 	/**
-	 * Compute all inheritedMemberships of the target Type and cache the result.
+	 * Returns all inherited memberships, retaining the result only when
+	 * {@link #canCacheDerivedViews()} permits reuse.
 	 */
 	public EList<Membership> getInheritedMembership() {
-		inheritedMembership = getInheritedMemberships(new HashSet<>(), new HashSet<>(), false);
-		return inheritedMembership;
+		EList<Membership> result = getInheritedMemberships(new HashSet<>(), new HashSet<>(), false);
+		if (canCacheDerivedViews()) {
+			inheritedMembership = result;
+		}
+		return result;
 	}
 	
 	/**
-	 * If redefinedFeatures have been cached, then return them. Otherwise, compute all the Features directly redefined by the owned
-	 * Features of the target Type and cache the result.
+	 * Returns the Features directly redefined by owned Features, retaining the union only when
+	 * {@link #canCacheDerivedViews()} permits reuse.
 	 */
 	protected Collection<Feature> getFeaturesRedefinedByType() {
 		if (redefinedFeatures == null) {
 			addAdditionalMembers();
-			redefinedFeatures = TypeUtil.getFeaturesRedefinedBy(getTarget(), null);
+			Collection<Feature> result = TypeUtil.getFeaturesRedefinedBy(getTarget(), null);
+			if (canCacheDerivedViews()) {
+				redefinedFeatures = result;
+			}
+			return result;
 		}
 		return redefinedFeatures;		
 	}
 	
+	/**
+	 * Returns owned and inherited feature memberships. Provisional results are returned without
+	 * retaining the projection, under the same condition as the other derived views.
+	 */
 	public EList<FeatureMembership> getFeatureMembership() {
 		if (featureMembership == null) {
 			Type target = getTarget();
@@ -210,9 +223,39 @@ public class TypeAdapter extends NamespaceAdapter {
 					featureMemberships.add((FeatureMembership)membership);
 				}
 			}
-			featureMembership = featureMemberships;
+			if (canCacheDerivedViews()) {
+				featureMembership = featureMemberships;
+			}
+			return featureMemberships;
 		}
 		return featureMembership;
+	}
+
+
+	/**
+	 * Conservatively permits retaining derived collections outside service evaluation, when the
+	 * owner's applicable specialization views and its owned Features' redefinitions are complete.
+	 * Missing caches provide no stability guarantee; this check does not compute candidates.
+	 */
+	private boolean canCacheDerivedViews() {
+		Type type = getTarget();
+		if (ImplicitSpecializationServices.get(type).isEvaluationInProgress(type)) {
+			return false;
+		}
+		IImplicitSpecializationCache cache = IImplicitSpecializationCache.find(type);
+		if (cache == null || !cache.isComplete()) {
+			return false;
+		}
+		if (ElementUtil.isTransformed(type) && !cache.isReducedComplete()) {
+			return false;
+		}
+		for (Feature feature : type.getOwnedFeature()) {
+			IImplicitSpecializationCache featureCache = IImplicitSpecializationCache.find(feature);
+			if (featureCache == null || !featureCache.areRedefinitionsStable()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	// Caching

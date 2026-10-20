@@ -678,14 +678,49 @@ affected: its computation only starts when its cache holds no candidates, so the
 still empty. A complete cache remains until explicit invalidation. Ordinary ElementAdapter.clearCaches() continues to
 manage its own derived values separately.
 
-Known limitation: adapter-derived views can retain provisional information after
-the service's candidates have evolved. For example, a `#causation` connection
-between two occurrences can retain an incomplete `TypeAdapter.redefinedFeatures`
-snapshot and expose the inherited `Causation::theEffect` as a third effective end,
-even though its owned ends' candidates include the corresponding redefinition.
-`TypeUtil.getEndFeatureOf` reads the cached member view and validation then reports
-`validateConnectorBinarySpecialization`. TODO: keep these derived views consistent
-with evolving specialization results; no automatic correction is currently installed.
+### Conservative retention of derived member views
+
+`TypeAdapter` uses one common predicate, `canCacheDerivedViews()`, before retaining
+`redefinedFeatures`, `inheritedMembership` or `featureMembership`. A computed
+collection is always returned to its caller. If the predicate refuses retention,
+the field remains unset and the next query recomputes the collection.
+
+All four conditions must hold:
+
+| Condition | Purpose |
+| --- | --- |
+| No service computation or reduction is active in the model scope | Nested queries can observe provisional derived members, even when some candidate results are complete |
+| The owner has a persistent complete raw specialization result | Missing caches or incomplete candidates provide no reusable stability guarantee |
+| After transformation, the owner's reduced specialization result is also complete | Transformed properties use the reduced view of implicit generals |
+| Every owned Feature has a persistent cache with stable redefinitions | Filtering inherited members depends on those redefinitions |
+
+```mermaid
+flowchart TD
+    Q[Derived member query] --> C[Compute or read the available collection]
+    C --> G{Common conservative predicate satisfied?}
+    G -- Yes --> S[Retain collection in its adapter field]
+    S --> R[Return collection]
+    G -- No --> R
+    R --> N[An unretained collection is recomputed on the next query]
+```
+
+The predicate inspects existing state; it does not install caches, compute missing
+candidates, traverse the general-type graph or change the service recursion guard.
+It deliberately applies the same conservative condition to all three collections.
+It can therefore refuse caching when the unavailable dependency is irrelevant to
+a particular collection, increasing repeated work during linking and transformation.
+It is a retention policy, not a complete dependency-tracking mechanism.
+
+For a metadata-annotated binary connector, parent transformation can request its
+members before its owned ends are transformed. Their provisional redefinitions
+prevent retaining an incomplete owner view. Later queries can recompute the
+filtering after the children refresh their specialization results; no extra
+whole-model clear or validation-specific invalidation is added.
+
+Other adapter caches retain their existing lifecycle. Once a collection is
+retained, semantic edits still require the application to clear affected adapters
+and service caches. This predicate does not provide automatic edit tracking or
+a guarantee for every possible dependency graph.
 
 ## Reduction and materialization
 

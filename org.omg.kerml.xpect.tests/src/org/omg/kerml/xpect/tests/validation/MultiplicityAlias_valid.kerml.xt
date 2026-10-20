@@ -1,0 +1,40 @@
+//* XPECT_SETUP org.omg.kerml.xpect.tests.validation.KerMLValidationTest
+        ResourceSet {
+                ThisFile {}
+                File {from ="/library/Base.kerml"}
+                File {from ="/library/Links.kerml"}
+                File {from ="/library/Occurrences.kerml"}
+                File {from ="/library/Objects.kerml"}
+				File {from ="/library/Performances.kerml"}
+				File {from ="/library/ScalarValues.kerml"}
+				File {from ="/library/BaseFunctions.kerml"}
+				File {from ="/library/DataFunctions.kerml"}
+        }
+        Workspace {
+                JavaProject {
+                        SrcFolder {
+                                ThisFile {}
+                                File {from ="/library/Base.kerml"}
+                                File {from ="/library/Occurrences.kerml"}
+                 				File {from ="/library/Objects.kerml"}
+								File {from ="/library/Performances.kerml"}
+								File {from ="/library/ScalarValues.kerml"}
+								File {from ="/library/BaseFunctions.kerml"}
+								File {from ="/library/DataFunctions.kerml"}
+                        }
+                }
+        }
+END_SETUP
+*/
+// XPECT noErrors --->
+package MultiplicityAlias_valid {
+    private import ScalarValues::*;
+    class T;
+    class K { feature f : T { multiplicity m [1..2]; } }
+    class C { alias m for K::f::m; }
+    class E {
+        multiplicity em [1..4];
+        feature k : Integer { alias a for em; }
+        feature v : Natural = em;
+    }
+}

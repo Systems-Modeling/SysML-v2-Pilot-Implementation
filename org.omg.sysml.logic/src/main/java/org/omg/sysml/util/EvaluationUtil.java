@@ -130,7 +130,7 @@ public class EvaluationUtil {
 	public static Expression expressionFor(Element result) {
 		if (result instanceof LiteralExpression) {
 			Object value = valueOf(result);
-			return value == null? literalInfinity(): (Expression)elementFor(value);
+			return value == null? literalInfinity(): (Expression)elementFor(null, value);
 		} else if (result instanceof Feature) {
 			FeatureReferenceExpression featureRef = SysMLFactory.eINSTANCE.createFeatureReferenceExpression();
 			TypeUtil.addResultParameterTo(featureRef);
@@ -142,29 +142,29 @@ public class EvaluationUtil {
 			   
 	}
 
-	public static EList<Element> results(Object object) {
+	public static EList<Element> results(Element context, Object object) {
 		EList<Element> results = new BasicEList<>();
-		if (object instanceof List) {
-			((List<?>)object).stream().
-				map(EvaluationUtil::elementFor).
+		if (object instanceof List<?> list) {
+			list.stream().
+				map(obj->elementFor(context, obj)).
 				filter(e->e != null).
 				forEachOrdered(results::add);
 		} else if (object != null) {
-			Element element = elementFor(object);
-			if (object != null) {
+			Element element = elementFor(context, object);
+			if (element != null) {
 				results.add(element);
 			}
 		}
 		return results;
 	}
 	
-	public static Element elementFor(Object object) {
+	public static Element elementFor(Element context, Object object) {
 		return object instanceof Boolean? literalBoolean((Boolean)object):
 			   object instanceof String? literalString((String)object):
 			   object instanceof Integer? literalInteger((Integer)object):
 			   object instanceof Double? literalRational((Double)object):
 			   object instanceof Element? ElementUtil.getMetaclassFeatureFor((Element)object):
-			   null;
+			   enumUsage(context, object);
 	}
 	
 	public static LiteralBoolean literalBoolean(boolean value) {
@@ -193,6 +193,22 @@ public class EvaluationUtil {
 	
 	public static LiteralInfinity literalInfinity() {
 		return SysMLFactory.eINSTANCE.createLiteralInfinity();
+	}
+	
+	public static Feature enumUsage(Element context, Object object) {
+		if (object != null) {
+			Class<?> class_ = object.getClass();
+			if (class_ != null) {
+				String name = class_.getSimpleName() + "::" + object;
+				Type type = SysMLLibraryUtil.getLibraryType(context, 
+						"KerML::Root::" + name,  "KerML::Core::" + name, "KerML::Kernel::" + name, 
+						"SysML::Systems::" + name);
+				if (type instanceof Feature feature) {
+					return feature;
+				}
+			}
+		}
+		return null;
 	}
 	
 	public static EList<Element> booleanResult(boolean value) {

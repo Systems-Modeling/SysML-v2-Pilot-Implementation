@@ -37,4 +37,8 @@ package MultiplicityAlias_valid {
         feature k : Integer { alias a for em; }
         feature v : Natural = em;
     }
+
+	class M [0..1] {
+	    alias for Base::exactlyOne;
+	}
 }

@@ -559,8 +559,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 		checkTargetNotObject(t, t.ownedUnioning, INVALID_TYPE_UNIONING_TYPES_NOT_SELF_MSG, INVALID_TYPE_UNIONING_TYPES_NOT_SELF)
 		
 		// validateTypeOwnedMultiplicity
-		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
-		checkAtMostOne(multiplicityMemberships, INVALID_TYPE_OWNED_MULTIPLICITY_MSG, SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_TYPE_OWNED_MULTIPLICITY)
+		var multiplicities = t.ownedMember.filter(Multiplicity);
+		checkAtMostOne(multiplicities, INVALID_TYPE_OWNED_MULTIPLICITY_MSG, null, INVALID_TYPE_OWNED_MULTIPLICITY)
 	}
 	
 	

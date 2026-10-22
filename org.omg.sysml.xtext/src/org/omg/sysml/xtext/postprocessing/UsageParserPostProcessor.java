@@ -18,6 +18,7 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.omg.kerml.xtext.postprocessing.FeatureParserPostProcessor;
 import org.omg.sysml.lang.sysml.AttributeDefinition;
 import org.omg.sysml.lang.sysml.AttributeUsage;
+import org.omg.sysml.lang.sysml.Redefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
@@ -82,16 +83,28 @@ public class UsageParserPostProcessor extends FeatureParserPostProcessor {
 	}
 
 	/**
-	 * Checks the owning type for eligible attribute, item and port usages.
-	 * Subsettings and redefinitions do not restrict this default (ST6RI-774);
-	 * their targets are not consulted. End usages always receive the default.
+	 * Check whether a default multiplicity should be added.
+	 * For use by attribute, item and port post-processor subclasses.
+	 * Usages with explicit owned redefinitions do not get a default,
+	 * except that end usages always receive the default.
+	 * 
+	 * TODO: Update as necessary after final resolution of SYSML21-185.
 	 */
 	protected boolean isAddDefaultMultiplicity() {
 		Usage target = getTarget();
-		return target.isEnd() || target.getOwningType() != null;
+		return target.isEnd() || 
+			   target.getOwningType() != null &&
+			   target.getOwnedRelationship().stream().
+			   		filter(rel->!rel.isImplied()).
+			   		noneMatch(Redefinition.class::isInstance);
 	}
 
-	// Multiplicity of 1..1 is always the default for an end usage.
+	/**
+	 * Check if a default multiplicity must be added to the usage.
+	 * Multiplicity of 1..1 is always the default for an end usage.
+	 * This method is overridden to call isAddDefaultMultiplicity in
+	 * the post-processors for kinds of usages that have defaults.
+	 */
 	protected boolean isAddMultiplicity() {
 		return getTarget().isEnd();
 	}

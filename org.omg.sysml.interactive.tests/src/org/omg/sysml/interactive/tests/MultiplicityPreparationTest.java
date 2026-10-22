@@ -155,9 +155,10 @@ public class MultiplicityPreparationTest {
 					attribute plainValues;
 				}
 				""");
-		for (String name : List.of("redefinedValues", "subsetValues", "chainValues", "packageValues")) {
+		for (String name : List.of("plainValues", "subsetValues", "chainValues", "packageValues")) {
 			Usage usage = findByName(resource, name, Usage.class);
-			// ST6RI-774 allows the default even when the target has [0..*].
+			// Allows the default even when the target has [0..*].
+			// TODO: Update as necessary after final resolution of SYSML21-185.
 			assertEquals(name, 1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
 			Multiplicity multiplicity = TypeUtil.getOwnedMultiplicitiesOf(usage).get(0);
 			assertEquals(SysMLPackage.Literals.MULTIPLICITY, multiplicity.eClass());
@@ -165,13 +166,14 @@ public class MultiplicityPreparationTest {
 			SysMLParserPostProcessorFactory.getPostProcessor(usage).postProcess();
 			assertEquals(name, 1, TypeUtil.getOwnedMultiplicitiesOf(usage).size());
 		}
-		assertEquals(1, TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, "plainValues", Usage.class)).size());
+		assertTrue("redefinedValues", TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, "redefinedValues", Usage.class)).isEmpty());
 
 		// Explicit transformation must retain the same multiplicity choices.
 		ElementUtil.transformAll(resource, true);
-		for (String name : List.of("redefinedValues", "subsetValues", "chainValues", "packageValues")) {
+		for (String name : List.of("plainValues", "subsetValues", "chainValues", "packageValues")) {
 			assertEquals(name, 1, TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, name, Usage.class)).size());
 		}
+		assertTrue("redefinedValues", TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, "redefinedValues", Usage.class)).isEmpty());
 	}
 
 	/**

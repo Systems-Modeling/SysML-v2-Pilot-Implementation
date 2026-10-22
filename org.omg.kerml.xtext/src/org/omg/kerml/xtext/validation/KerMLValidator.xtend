@@ -438,14 +438,48 @@ class KerMLValidator extends AbstractKerMLValidator {
 				checkDistinguishibility(namesp, mem, aliasMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_1)
 			}
 			if (namesp instanceof Type) {
-				val inheritedMemberships = namesp.inheritedMembership
-				val inheritedMembershipMap = inheritedMemberships.nameMap
+				var inheritedMemberships = namesp.inheritedMembership
+				var inheritedMembershipMap = inheritedMemberships.nameMap
+				if (hasInheritedNameConflict(ownedMemberships, inheritedMembershipMap)) {
+					clearCachesOfGeneralTypes(namesp, newHashSet)
+					inheritedMemberships = namesp.inheritedMembership
+					inheritedMembershipMap = inheritedMemberships.nameMap
+				}
 				for (mem: ownedMemberships) {
 					checkDistinguishibility(namesp, mem, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 				}
 				checkDistinguishibility(namesp, inheritedMembershipMap, INVALID_NAMESPACE_DISTINGUISHABILITY_MSG_2)
 			}
 		}		
+	}
+
+	def void clearCachesOfGeneralTypes(Type type, Set<Type> visited) {
+		if (type === null || type.eIsProxy || !visited.add(type)) {
+			return
+		}
+		ElementUtil.clearCachesOf(type)
+		for (generalType : TypeUtil.getGeneralTypesOf(type)) {
+			clearCachesOfGeneralTypes(generalType, visited)
+		}
+	}
+	
+	def hasInheritedNameConflict(Iterable<Membership> ownedMemberships, Map<String, Set<Membership>> inheritedMembershipMap) {
+		for (mem: ownedMemberships) {
+			if (hasDifferentMember(inheritedMembershipMap.get(mem.memberShortName), mem.memberElement) ||
+					hasDifferentMember(inheritedMembershipMap.get(mem.memberName), mem.memberElement)) {
+				return true
+			}
+		}
+		for (members: inheritedMembershipMap.values) {
+			if (members.map[memberElement].toSet.size > 1) {
+				return true
+			}
+		}
+		return false
+	}
+	
+	def hasDifferentMember(Set<Membership> memberships, Element memberElement) {
+		return memberships !== null && memberships.exists[m | m.memberElement != memberElement]
 	}
 	
 	def nameMap(Iterable<Membership> memberships) {
@@ -987,16 +1021,20 @@ class KerMLValidator extends AbstractKerMLValidator {
 		if (connectorEnds.size() > 2) {
 			val binaryLinkType = SysMLLibraryUtil.getLibraryElement(c, "Links::BinaryLink") as Type
 			if (c.conformsTo(binaryLinkType)) {
-				val ownedConnectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
-				if (ownedConnectorEnds.size() <= 2) {
-					error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, c, null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
-				} else {
-					for (var i = 2; i < connectorEnds.size(); i++) {
-						error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, connectorEnds.get(i), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+				ElementUtil.clearCachesOf(c)
+				val retriedConnectorEnds = TypeUtil.getEndFeatureOf(c)
+				if (retriedConnectorEnds.size() > 2 && c.conformsTo(binaryLinkType)) {
+					val ownedConnectorEnds = TypeUtil.getOwnedEndFeaturesOf(c)
+					if (ownedConnectorEnds.size() <= 2) {
+						error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, c, null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+					} else {
+						for (var i = 2; i < retriedConnectorEnds.size(); i++) {
+							error(INVALID_CONNECTOR_BINARY_SPECIALIZATION_MSG, retriedConnectorEnds.get(i), null, INVALID_CONNECTOR_BINARY_SPECIALIZATION)
+						}
+					}
 					}
 				}
 			}
-		}
 
 		doCheckConnector(c, c, null)
 	}

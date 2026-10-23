@@ -89,7 +89,7 @@ standard library package Flows {
     abstract flow def SuccessionFlow :> Flow, FlowTransferBefore {
         doc
         /*
-         * SuccessionFlow is a subclass of flowss that appen after their source and 
+         * SuccessionFlow is a subclass of flows that happen after their source and 
          * before their target. It is the base type for all SuccessionFlowUsages.
          */
          

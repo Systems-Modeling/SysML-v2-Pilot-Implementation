@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.omg.kerml.util.ValidationUtil;
 import org.omg.kerml.validation.ValidationChecker;
 import org.omg.kerml.validation.ValidationCheckerFactory;
@@ -16,7 +17,6 @@ import org.omg.sysml.lang.sysml.Feature;
 import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
 import org.omg.sysml.lang.sysml.Flow;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
@@ -81,8 +81,8 @@ public class TypeValidationChecker extends NamespaceValidationChecker {
 	
 	public void validateTypeOwnedMultiplicity(Element element, ValidationMessageAccepter messageAccepter) {
 		if (element instanceof Type t) {
-			List<Membership> multiplicityMemberships = t.getOwnedMembership().stream().filter(mem->mem.getMemberElement() instanceof Multiplicity).toList();
-			ValidationUtil.checkAtMostOne(multiplicityMemberships, messageAccepter, SysMLPackage.eINSTANCE.getMembership_MemberElement(), "validateTypeOwnedMultiplicity");
+			List<Element> multiplicities = t.getOwnedMember().stream().filter(Multiplicity.class::isInstance).toList();
+			ValidationUtil.checkAtMostOne(multiplicities, messageAccepter, null, "validateTypeOwnedMultiplicity");
 		}
 	}
 	
@@ -148,8 +148,10 @@ public class TypeValidationChecker extends NamespaceValidationChecker {
 		List<Feature> rf = bc.getRelatedFeature();
 		
 		// TODO: Add validateBindingConnectorTypeConformance
-		List<Type> f1types = rf.get(0).getType();
-		List<Type> f2types = rf.get(1).getType();
+		Feature rf1 = (Feature)EcoreUtil.resolve(rf.get(0), location);
+		Feature rf2 = (Feature)EcoreUtil.resolve(rf.get(1), location);
+		List<Type> f1types = rf1.getType();
+		List<Type> f2types = rf2.getType();
 		Type boolType = SysMLLibraryUtil.getLibraryType(location, "Performances::BooleanEvaluation");
 					 
 		if (!(ValidationUtil.typesConform(f1types, f2types) ||

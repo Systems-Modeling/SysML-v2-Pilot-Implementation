@@ -214,7 +214,7 @@ public class SysMLLibraryUtil {
 			} else {
 				IModelLibraryProvider provider = lookup.get(resource);
 				if (provider == null) {
-					System.err.println("[SysMLLibraryUtil] Cannot get library provider.");
+//					System.err.println("[SysMLLibraryUtil] Cannot get library provider.");
 					return null;
 				} else {
 					return provider;

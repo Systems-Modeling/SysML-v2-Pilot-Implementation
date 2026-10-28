@@ -108,6 +108,7 @@ import org.omg.sysml.lang.sysml.EndFeatureMembership
 import org.omg.sysml.lang.sysml.CollectExpression
 import org.omg.sysml.lang.sysml.SelectExpression
 import org.omg.sysml.lang.sysml.IndexExpression
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * This class contains custom validation rules. 
@@ -957,8 +958,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 //		} else { 
 			// TODO: Add validateBindingConnectorTypeConformance
 			//Binding type conformance
-			val f1types = rf.get(0).type
-			val f2types = rf.get(1).type
+			val rf1 = EcoreUtil.resolve(rf.get(0), location) as Feature
+			val rf2 = EcoreUtil.resolve(rf.get(1), location) as Feature
+			val f1types = rf1.type
+			val f2types = rf2.type
 			val boolType = SysMLLibraryUtil.getLibraryType(location, "Performances::BooleanEvaluation")
 						 
 			if (!(typesConform(f1types, f2types) ||

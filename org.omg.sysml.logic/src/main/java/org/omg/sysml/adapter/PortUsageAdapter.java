@@ -76,12 +76,4 @@ public class PortUsageAdapter extends OccurrenceUsageAdapter {
 		Type owningType = target.getOwningType();
 		return target.isComposite() && (owningType instanceof PortDefinition || owningType instanceof PortUsage);
 	}
-	
-	// Transformation
-	
-	@Override
-	protected boolean isAddMultiplicity() {
-		return isAddDefaultMultiplicity();
-	}
-	
 }

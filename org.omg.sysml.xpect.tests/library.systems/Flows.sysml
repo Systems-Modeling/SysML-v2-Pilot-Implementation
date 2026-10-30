@@ -45,6 +45,9 @@ standard library package Flows {
         
         ref payload :>> MessageAction::payload, Transfer::payload;
         
+        end occurrence source: Occurrence :>> Transfer::source;
+        end occurrence target: Occurrence :>> Transfer::target;
+
         private ref action thisConnection = self;
         
         in event occurrence sourceEvent [1] default thisConnection.start {
@@ -101,6 +104,8 @@ standard library package Flows {
         /*
          * messages is the base feature of all FlowUsages.
          */
+        end occurrence source: Occurrence :>> Message::source, transfers::source;
+        end occurrence target: Occurrence :>> Message::target, transfers::target;
     }
     
     abstract flow flows: Flow[0..*] nonunique :> messages, flowTransfers {

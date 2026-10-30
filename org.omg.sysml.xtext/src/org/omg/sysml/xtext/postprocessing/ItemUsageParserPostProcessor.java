@@ -22,4 +22,9 @@ public class ItemUsageParserPostProcessor extends OccurrenceUsageParserPostProce
 	public ItemUsage getTarget() {
 		return (ItemUsage)super.getTarget();
 	}
+
+	@Override
+	protected boolean isAddMultiplicity() {
+		return isAddDefaultMultiplicity();
+	}
 }

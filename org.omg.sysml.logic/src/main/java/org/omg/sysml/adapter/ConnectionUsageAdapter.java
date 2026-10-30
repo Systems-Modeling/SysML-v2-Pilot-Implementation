@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -61,12 +62,7 @@ public class ConnectionUsageAdapter extends PartUsageAdapter {
 				getDefaultSupertype("base"):
 				getDefaultSupertype("binary");
 	}
-	
-	@Override
-	protected boolean isAddMultiplicity() {
-		return getTarget().isEnd();
-	}
-	
+
 	@Override
 	public void doTransform() {
 		ConnectionUsage target = getTarget();

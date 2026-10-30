@@ -120,11 +120,6 @@ public class InvocationExpressionAdapter extends InstantiationExpressionAdapter 
 	}
 	
 	@Override
-	public void addAdditionalMembers() {
-		TypeUtil.addResultParameterTo(getTarget());
-	}
-	
-	@Override
 	public void doTransform() {
 		super.doTransform();
 		createSelfResultConnector();

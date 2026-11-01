@@ -361,7 +361,7 @@ public class FeatureUtil {
 				// containment cycle that ElementUtil.getClosestElementInResource could not leave. Only a type
 				// that is neither owned nor in a resource is therefore adopted; the root of a model built
 				// without any resource still cannot be told apart from a detached type.
-				if (type.getOwningRelationship() == null && type.eResource() == null) {
+				if (!type.eIsProxy() && type.getOwningRelationship() == null && type.eResource() == null) {
 					featuring.getOwnedRelatedElement().add(type);
 				}
 				feature.getOwnedRelationship().add(featuring);

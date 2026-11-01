@@ -67,7 +67,7 @@ public class ConnectorUtil {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
 		if (relatedFeature != null) {
 			ReferenceSubsetting subsetting = SysMLFactory.eINSTANCE.createReferenceSubsetting();
-			if (relatedFeature.getOwner() == null) {
+			if (relatedFeature.getOwner() == null && !relatedFeature.eIsProxy()) {
 				subsetting.getOwnedRelatedElement().add(relatedFeature);
 			}
 			subsetting.setReferencedFeature(relatedFeature);

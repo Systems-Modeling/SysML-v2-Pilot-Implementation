@@ -16,7 +16,7 @@ import org.omg.sysml.lang.sysml.FeatureChainExpression;
 import org.omg.sysml.util.ExpressionUtil;
 
 /** Prepares the owned source-target feature of a feature-chain expression. */
-public class FeatureChainExpressionParserPostProcessor extends ExpressionParserPostProcessor {
+public class FeatureChainExpressionParserPostProcessor extends InvocationExpressionParserPostProcessor {
 
 	public FeatureChainExpressionParserPostProcessor(FeatureChainExpression element) {
 		super(element);

@@ -129,6 +129,11 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseInvocationExpression(InvocationExpression element) {
+			return new InvocationExpressionParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseLiteralExpression(LiteralExpression element) {
 			return new LiteralExpressionParserPostProcessor(element);
 		}

@@ -1,7 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Model Driven Solutions, Inc.
- * Copyright (c) 2026 Obeo
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -12,11 +11,7 @@
 
 package org.omg.kerml.xtext.postprocessing;
 
-import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.Expression;
-import org.omg.sysml.lang.sysml.FeatureReferenceExpression;
-import org.omg.sysml.lang.sysml.InvocationExpression;
-import org.omg.sysml.util.TypeUtil;
 
 public class ExpressionParserPostProcessor extends StepParserPostProcessor {
 
@@ -27,16 +22,6 @@ public class ExpressionParserPostProcessor extends StepParserPostProcessor {
 	@Override
 	public Expression getTarget() {
 		return (Expression)super.getTarget();
-	}
-
-	@Override
-	public void postProcess() {
-		super.postProcess();
-		Expression target = getTarget();
-		if (target instanceof FeatureReferenceExpression || target instanceof ConstructorExpression
-				|| target instanceof InvocationExpression) {
-			TypeUtil.addResultParameterTo(target);
-		}
 	}
 
 }

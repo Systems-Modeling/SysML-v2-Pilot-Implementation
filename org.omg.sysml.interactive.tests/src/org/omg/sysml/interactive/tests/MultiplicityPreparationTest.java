@@ -15,48 +15,24 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.omg.sysml.interactive.SysMLInteractive;
-import org.omg.sysml.interactive.SysMLInteractiveResult;
-import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.MultiplicityRange;
 import org.omg.sysml.lang.sysml.OwningMembership;
 import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.Subsetting;
 import org.omg.sysml.lang.sysml.SysMLPackage;
-import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.xtext.postprocessing.SysMLParserPostProcessorFactory;
 
 /** Tests the boundary between parser preparation of multiplicities and derived consultation. */
-public class MultiplicityPreparationTest {
-
-	protected static SysMLInteractive interactive;
-
-	/** Loads and resolves the standard library once for the textual test scenarios. */
-	@BeforeClass
-	public static void loadLibraries() {
-		interactive = SysMLInteractive.createInstance();
-		interactive.setVerbose(false);
-		interactive.loadLibrary(Path.of(System.getProperty("libraryPath")).toAbsolutePath().toString());
-	}
-	
-	/** Removes each test model while retaining the shared resolved libraries. */
-	@After
-	public void removeResource() {
-		interactive.removeResource();
-	}
+public class MultiplicityPreparationTest extends SysMLInteractiveTest {
 
 	/**
 	 * Parsing end usages prepares one multiplicity before any feature consultation;
@@ -233,25 +209,6 @@ public class MultiplicityPreparationTest {
 		for (String name : List.of("packageAttribute", "packageItem", "packagePart", "packagePort", "reference", "link")) {
 			assertTrue(name, TypeUtil.getOwnedMultiplicitiesOf(findByName(resource, name, Usage.class)).isEmpty());
 		}
-	}
-
-	private Resource parse(String name, String text) throws Exception {
-		interactive.setResource(name);
-		interactive.parse(text);
-		Element rootElement = interactive.getRootElement();
-		SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, Collections.emptyList());
-		assertTrue("'" + text + "':\n" + result.formatIssues(), result.getIssues().isEmpty());
-		return interactive.getResource();
-	}
-
-	private static <T extends Type> T findByName(Resource resource, String name, Class<T> kind) {
-		for (var contents = resource.getAllContents(); contents.hasNext();) {
-			EObject object = contents.next();
-			if (kind.isInstance(object) && name.equals(kind.cast(object).getDeclaredName())) {
-				return kind.cast(object);
-			}
-		}
-		throw new AssertionError("Missing " + name);
 	}
 
 }

@@ -27,18 +27,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.common.util.URI;
-
 import java.util.Properties;
 
 public class PropertyFileValidationMessageMap implements ValidationMessageMap {
 		
 	private final Properties messageMap;
 	
-	protected static String getPathOnPlatform(String platformPath) {
-		return URI.createPlatformResourceURI(platformPath, false).toPlatformString(false);
-	}
-
 	public PropertyFileValidationMessageMap(String propertyFilePath) throws FileNotFoundException, IOException {
 		this(propertyFilePath, null);
 	}

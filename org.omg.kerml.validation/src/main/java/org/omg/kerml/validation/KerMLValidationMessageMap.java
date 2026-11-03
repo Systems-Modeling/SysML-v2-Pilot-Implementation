@@ -26,11 +26,11 @@ import java.io.IOException;
 
 public class KerMLValidationMessageMap extends PropertyFileValidationMessageMap implements ValidationMessageMap {
 	
-	public static final String RESOURCES_DIRECTORY = "/Users/seidewitz/Documents/Work/git/SysML-v2-Pilot-Implementation/org.omg.kerml.validation/src/main/resources/";
+	public static final String RESOURCES_DIRECTORY = "../org.omg.kerml.validation/src/main/resources/";
 	public static final String KERML_VALIDATION_MESSAGES_FILE_PATH = RESOURCES_DIRECTORY + "KerMLValidationMessages.properties";
 	
 	public KerMLValidationMessageMap() throws FileNotFoundException, IOException {
-		super(getPathOnPlatform(KERML_VALIDATION_MESSAGES_FILE_PATH));
+		super(KERML_VALIDATION_MESSAGES_FILE_PATH);
 	}
 	
 	public KerMLValidationMessageMap(String propertyFilePath) throws FileNotFoundException, IOException {

@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2023 Mgnite Inc.
+ * Copyright (c) 2026 Budapest University of Technology and Economics
  * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify

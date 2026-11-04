@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Model Driven Solutions, Inc.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
@@ -19,8 +20,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.nio.file.Path;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -29,11 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.xtext.EcoreUtil2;
-import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.omg.sysml.interactive.SysMLInteractive;
-import org.omg.sysml.interactive.SysMLInteractiveResult;
 import org.omg.sysml.lang.sysml.ConstructorExpression;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Expression;
@@ -54,42 +49,7 @@ import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.xtext.postprocessing.SysMLParserPostProcessorFactory;
 
 /** Tests the semantic contract of expression results across consultation and explicit transformation. */
-public class ExpressionResultConsultationTest {
-
-	protected static SysMLInteractive interactive;
-
-	/** Loads and resolves the standard library once for the textual scenarios. */
-	@BeforeClass
-	public static void loadLibraries() {
-		interactive = SysMLInteractive.createInstance();
-		interactive.setVerbose(false);
-		interactive.loadLibrary(Path.of(System.getProperty("libraryPath")).toAbsolutePath().toString());
-	}
-
-	/** Removes each test model while retaining the shared resolved libraries. */
-	@After
-	public void removeModels() {
-		interactive.removeResource();
-	}
-
-	private Resource parse(String name, String text) throws Exception {
-		interactive.setResource(name);
-		interactive.parse(text);
-		Element rootElement = interactive.getRootElement();
-		SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, Collections.emptyList());
-		assertTrue("'" + text + "':\n" + result.formatIssues(), result.getIssues().isEmpty());
-		return interactive.getResource();
-	}
-
-	private static <T extends Type> T findByName(Resource resource, String name, Class<T> kind) {
-		for (var contents = resource.getAllContents(); contents.hasNext();) {
-			var object = contents.next();
-			if (kind.isInstance(object) && name.equals(kind.cast(object).getDeclaredName())) {
-				return kind.cast(object);
-			}
-		}
-		throw new AssertionError("Missing " + name);
-	}
+public class ExpressionResultConsultationTest extends SysMLInteractiveTest {
 
 	private static <T> T findSingle(Resource resource, Class<T> kind) {
 		T found = null;

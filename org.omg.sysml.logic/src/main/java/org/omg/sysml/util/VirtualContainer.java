@@ -52,8 +52,8 @@ public final class VirtualContainer extends AdapterImpl {
 
 	/**
 	 * Records {@code container} as the virtual container of an element that is the root of a
-	 * detached tree: it has no container and is not in a resource. Any other element is left
-	 * unchanged, as is an element that already has a virtual container.
+	 * detached tree: it is not a proxy, has no container and is not in a resource. Any other element
+	 * is left unchanged, as is an element that already has a virtual container.
 	 * <p>
 	 * A model built without a resource has roots that are not in a resource either, and one of them
 	 * can be stored as the target of an implied relationship owned by one of its own members, such
@@ -75,7 +75,7 @@ public final class VirtualContainer extends AdapterImpl {
 	}
 
 	private static boolean isDetachedRoot(EObject element) {
-		return element != null && element.eContainer() == null && element.eResource() == null;
+		return element != null && !element.eIsProxy() && element.eContainer() == null && element.eResource() == null;
 	}
 
 	private static boolean isEffectiveContainerOf(EObject ancestor, EObject element) {

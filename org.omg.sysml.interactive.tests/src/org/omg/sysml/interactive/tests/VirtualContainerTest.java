@@ -32,6 +32,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.EcoreUtil2;
@@ -411,6 +412,32 @@ public class VirtualContainerTest {
 		assertSame(connector, VirtualContainer.getVirtualContainer(chain));
 		assertSame(y, VirtualContainer.getVirtualContainer(connector));
 		assertSame(y, ElementUtil.getClosestElementInResource(chain));
+	}
+
+	/**
+	 * An unresolved proxy has no container or resource but is not a detached inferred element.
+	 * Attaching it must leave it without a virtual container or access to the model's library,
+	 * so its placeholder metaclass cannot acquire library specializations.
+	 */
+	@Test
+	public void unresolvedProxyHasNoVirtualContainer() throws Exception {
+		Resource resource = parse("proxyContext.kerml", """
+				package Context {
+					feature x;
+				}
+				""");
+		Feature x = findByName(resource, "x", Feature.class);
+
+		// A proxy's concrete class is a placeholder, not the type of the unresolved referent.
+		Feature proxy = SysMLFactory.eINSTANCE.createAcceptActionUsage();
+		((InternalEObject)proxy).eSetProxyURI(URI.createURI("memory:/unresolved.sysml#referent"));
+		VirtualContainer.attach(proxy, x);
+
+		// The proxy must not reach x's resource and infer Actions::acceptActions from its class.
+		assertTrue(proxy.eIsProxy());
+		assertNull(VirtualContainer.getVirtualContainer(proxy));
+		assertNull(ElementUtil.getClosestElementInResource(proxy));
+		assertNull(SysMLLibraryUtil.getLibraryType(proxy, "Actions::acceptActions"));
 	}
 
 	/**

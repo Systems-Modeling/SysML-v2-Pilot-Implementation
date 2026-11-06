@@ -74,7 +74,6 @@ public class VirtualContainerTest {
 	public static void loadLibraries() {
 		SysMLInteractive interactive = SysMLInteractive.createInstance();
 		interactive.setVerbose(false);
-		interactive.getLibraryIndexCache().setIndexDisabled(true);
 		interactive.loadLibrary(Path.of(System.getProperty("libraryPath")).toAbsolutePath().toString());
 		resourceSet = interactive.getResourceSet();
 		for (int i = 0; i < resourceSet.getResources().size(); i++) {

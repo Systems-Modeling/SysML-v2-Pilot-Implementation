@@ -50,7 +50,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	protected AbstractElementAlias match_SatisfyRequirementUsage_AssertKeyword_1_q;
 	protected AbstractElementAlias match_SequenceExpression_CommaKeyword_1_0_q;
 	protected AbstractElementAlias match_SuccessionAsUsage_SuccessionKeywordParserRuleCall_1_0_q;
-	protected AbstractElementAlias match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q;
+	protected AbstractElementAlias match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_2_0_0_q;
 	protected AbstractElementAlias match_TextualRepresentation_RepKeyword_0_0_q;
 	protected AbstractElementAlias match_TransitionUsage_FirstKeyword_1_1_q;
 	protected AbstractElementAlias match_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__;
@@ -87,7 +87,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 		match_SatisfyRequirementUsage_AssertKeyword_1_q = new TokenAlias(false, true, grammarAccess.getSatisfyRequirementUsageAccess().getAssertKeyword_1());
 		match_SequenceExpression_CommaKeyword_1_0_q = new TokenAlias(false, true, grammarAccess.getSequenceExpressionAccess().getCommaKeyword_1_0());
 		match_SuccessionAsUsage_SuccessionKeywordParserRuleCall_1_0_q = new TokenAlias(false, true, grammarAccess.getSuccessionAsUsageAccess().getSuccessionKeywordParserRuleCall_1_0());
-		match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q = new TokenAlias(false, true, grammarAccess.getTargetTransitionUsageAccess().getTransitionUsageKeywordParserRuleCall_1_0_0());
+		match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_2_0_0_q = new TokenAlias(false, true, grammarAccess.getTargetTransitionUsageAccess().getTransitionUsageKeywordParserRuleCall_2_0_0());
 		match_TextualRepresentation_RepKeyword_0_0_q = new TokenAlias(false, true, grammarAccess.getTextualRepresentationAccess().getRepKeyword_0_0());
 		match_TransitionUsage_FirstKeyword_1_1_q = new TokenAlias(false, true, grammarAccess.getTransitionUsageAccess().getFirstKeyword_1_1());
 		match_ViewBody_SemicolonKeyword_0_or___LeftCurlyBracketKeyword_1_0_RightCurlyBracketKeyword_1_2__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getViewBodyAccess().getLeftCurlyBracketKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getViewBodyAccess().getRightCurlyBracketKeyword_1_2())), new TokenAlias(false, false, grammarAccess.getViewBodyAccess().getSemicolonKeyword_0()));
@@ -967,8 +967,8 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 				emit_SequenceExpression_CommaKeyword_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SuccessionAsUsage_SuccessionKeywordParserRuleCall_1_0_q.equals(syntax))
 				emit_SuccessionAsUsage_SuccessionKeywordParserRuleCall_1_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q.equals(syntax))
-				emit_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_2_0_0_q.equals(syntax))
+				emit_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_2_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TextualRepresentation_RepKeyword_0_0_q.equals(syntax))
 				emit_TextualRepresentation_RepKeyword_0_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_TransitionUsage_FirstKeyword_1_1_q.equals(syntax))
@@ -1099,7 +1099,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember 'terminate' (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ActionDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember ActionUsageKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=TransitionSuccessionMember (ambiguity) (rule end)
+	 *     ownedRelationship+=TransitionLinkMember (ambiguity) (rule end)
 	 *     portionKind=PortionKind 'perform' ActionUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind 'send' (ambiguity) (rule end)
 	 *     portionKind=PortionKind 'terminate' (ambiguity) (rule end)
@@ -1619,7 +1619,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 *     ownedRelationship+=PrefixMetadataMember RenderingDefKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember RenderingUsageKeyword (ambiguity) (rule end)
 	 *     ownedRelationship+=PrefixMetadataMember SuccessionFlowKeyword (ambiguity) (rule end)
-	 *     ownedRelationship+=TransitionSuccessionMember (ambiguity) (rule end)
+	 *     ownedRelationship+=TransitionLinkMember (ambiguity) (rule end)
 	 *     portionKind=PortionKind 'event' OccurrenceUsageKeyword (ambiguity) (rule end)
 	 *     portionKind=PortionKind (ambiguity) (rule end)
 	 *     portionKind=PortionKind AllocationUsageKeyword (ambiguity) (rule end)
@@ -2474,7 +2474,7 @@ public abstract class AbstractSysMLSyntacticSequencer extends AbstractSyntacticS
 	 
 	 * </pre>
 	 */
-	protected void emit_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_1_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_TargetTransitionUsage_TransitionUsageKeywordParserRuleCall_2_0_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -799,6 +799,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 					sequence_TargetFeatureMember(context, (FeatureMembership) semanticObject); 
 					return; 
 				}
+				else if (rule == grammarAccess.getTransitionLinkMemberRule()) {
+					sequence_TransitionLinkMember(context, (FeatureMembership) semanticObject); 
+					return; 
+				}
 				else if (rule == grammarAccess.getXorExpressionMemberRule()) {
 					sequence_XorExpressionMember(context, (FeatureMembership) semanticObject); 
 					return; 
@@ -1101,6 +1105,10 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 				}
 				else if (rule == grammarAccess.getElementReferenceMemberRule()) {
 					sequence_ElementReferenceMember(context, (Membership) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getEmptyTransitionSourceMemberRule()) {
+					sequence_EmptyTransitionSourceMember(context, (Membership) semanticObject); 
 					return; 
 				}
 				else if (rule == grammarAccess.getFeatureChainMemberRule()) {
@@ -4863,6 +4871,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ownedRelationship+=GuardExpressionMember? 
 	 *         ownedRelationship+=EffectBehaviorMember? 
 	 *         ownedRelationship+=TransitionSuccessionMember 
+	 *         ownedRelationship+=TransitionLinkMember 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=Import | 
@@ -4895,6 +4904,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *
 	 * Constraint:
 	 *     (
+	 *         ownedRelationship+=EmptyTransitionSourceMember 
 	 *         ownedRelationship+=EmptyParameterMember 
 	 *         (
 	 *             (
@@ -4911,6 +4921,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *             (ownedRelationship+=GuardExpressionMember ownedRelationship+=EffectBehaviorMember?)
 	 *         ) 
 	 *         ownedRelationship+=TransitionSuccessionMember 
+	 *         ownedRelationship+=TransitionLinkMember 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=Import | 
@@ -8773,6 +8784,7 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *         ownedRelationship+=EmptyParameterMember 
 	 *         ownedRelationship+=GuardExpressionMember 
 	 *         ownedRelationship+=TransitionSuccessionMember 
+	 *         ownedRelationship+=TransitionLinkMember 
 	 *         (
 	 *             (
 	 *                 ownedRelationship+=DefinitionMember | 
@@ -9379,8 +9391,19 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * Constraint:
 	 *     (
 	 *         (
-	 *             (ownedRelationship+=EmptyParameterMember ownedRelationship+=GuardExpressionMember ownedRelationship+=TransitionSuccessionMember) | 
-	 *             (ownedRelationship+=EmptyParameterMember ownedRelationship+=TransitionSuccessionMember)
+	 *             (
+	 *                 ownedRelationship+=EmptyTransitionSourceMember 
+	 *                 ownedRelationship+=EmptyParameterMember 
+	 *                 ownedRelationship+=GuardExpressionMember 
+	 *                 ownedRelationship+=TransitionSuccessionMember 
+	 *                 ownedRelationship+=TransitionLinkMember
+	 *             ) | 
+	 *             (
+	 *                 ownedRelationship+=EmptyTransitionSourceMember 
+	 *                 ownedRelationship+=EmptyParameterMember 
+	 *                 ownedRelationship+=TransitionSuccessionMember 
+	 *                 ownedRelationship+=TransitionLinkMember
+	 *             )
 	 *         ) 
 	 *         (
 	 *             (
@@ -9406,7 +9429,12 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     DefaultTargetSuccession returns TransitionUsage
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=EmptyParameterMember ownedRelationship+=TransitionSuccessionMember)
+	 *     (
+	 *         ownedRelationship+=EmptyTransitionSourceMember 
+	 *         ownedRelationship+=EmptyParameterMember 
+	 *         ownedRelationship+=TransitionSuccessionMember 
+	 *         ownedRelationship+=TransitionLinkMember
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_DefaultTargetSuccession(ISerializationContext context, TransitionUsage semanticObject) {
@@ -9712,6 +9740,20 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_EmptyTargetEndMember(ISerializationContext context, EndFeatureMembership semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     EmptyTransitionSourceMember returns Membership
+	 *
+	 * Constraint:
+	 *     {Membership}
+	 * </pre>
+	 */
+	protected void sequence_EmptyTransitionSourceMember(ISerializationContext context, Membership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -10068,7 +10110,13 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 *     GuardedTargetSuccession returns TransitionUsage
 	 *
 	 * Constraint:
-	 *     (ownedRelationship+=EmptyParameterMember ownedRelationship+=GuardExpressionMember ownedRelationship+=TransitionSuccessionMember)
+	 *     (
+	 *         ownedRelationship+=EmptyTransitionSourceMember 
+	 *         ownedRelationship+=EmptyParameterMember 
+	 *         ownedRelationship+=GuardExpressionMember 
+	 *         ownedRelationship+=TransitionSuccessionMember 
+	 *         ownedRelationship+=TransitionLinkMember
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_GuardedTargetSuccession(ISerializationContext context, TransitionUsage semanticObject) {
@@ -11168,6 +11216,20 @@ public abstract class AbstractSysMLSemanticSequencer extends KerMLExpressionsSem
 	 * </pre>
 	 */
 	protected void sequence_TargetSuccession(ISerializationContext context, SuccessionAsUsage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     TransitionLinkMember returns FeatureMembership
+	 *
+	 * Constraint:
+	 *     ownedRelatedElement+=EmptyUsage
+	 * </pre>
+	 */
+	protected void sequence_TransitionLinkMember(ISerializationContext context, FeatureMembership semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

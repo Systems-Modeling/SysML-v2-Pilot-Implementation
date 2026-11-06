@@ -50,6 +50,7 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 	
 	/**
 	 * @satisfies checkTransitionUsagePayloadSpecialization
+	 * @satisfies checkTransitionUsageSuccessionSourceSpecialization
 	 */
 	@Override
 	public void addDefaultGeneralType() {
@@ -67,6 +68,7 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 				}
 			}
 		} else if (type instanceof SuccessionAsUsage) {
+			// checkTransitionUsageSuccessionSourceSpecialization (it type is the succession of a Transition)
 			EList<Feature> ends = ((SuccessionAsUsage)type).getOwnedEndFeature();
 			int i = ends.indexOf(target);
 			if (i < 2 && target.getOwnedReferenceSubsetting() == null && 

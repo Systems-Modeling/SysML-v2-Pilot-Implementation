@@ -1706,14 +1706,18 @@ TargetSuccession returns SysML::SuccessionAsUsage :
 ;
 
 GuardedTargetSuccession returns SysML::TransitionUsage :
+	ownedRelationship += EmptyTransitionSourceMember
 	ownedRelationship += EmptyParameterMember
 	ownedRelationship += GuardExpressionMember
 	'then' ownedRelationship += TransitionSuccessionMember
+	ownedRelationship += TransitionLinkMember
 ;
 
 DefaultTargetSuccession returns SysML::TransitionUsage :
+	ownedRelationship += EmptyTransitionSourceMember
 	ownedRelationship += EmptyParameterMember
 	'else' ownedRelationship += TransitionSuccessionMember
+	ownedRelationship += TransitionLinkMember
 ;
 
 GuardedSuccession returns SysML::TransitionUsage :
@@ -1722,6 +1726,7 @@ GuardedSuccession returns SysML::TransitionUsage :
 	ownedRelationship += EmptyParameterMember
 	ownedRelationship += GuardExpressionMember
 	'then' ownedRelationship += TransitionSuccessionMember
+	ownedRelationship += TransitionLinkMember
 	UsageBody
 ;
 
@@ -1860,10 +1865,12 @@ TransitionUsage returns SysML::TransitionUsage :
 	( ownedRelationship += GuardExpressionMember )?
 	( ownedRelationship += EffectBehaviorMember )?
 	'then' ownedRelationship += TransitionSuccessionMember
+	ownedRelationship += TransitionLinkMember
 	ActionBody
 ;
 
 TargetTransitionUsage returns SysML::TransitionUsage :
+	ownedRelationship += EmptyTransitionSourceMember
 	ownedRelationship += EmptyParameterMember
 	( TransitionUsageKeyword
 	  ( ownedRelationship += EmptyParameterMember 
@@ -1878,12 +1885,17 @@ TargetTransitionUsage returns SysML::TransitionUsage :
 	  ( ownedRelationship += EffectBehaviorMember )?
 	)?
 	'then' ownedRelationship += TransitionSuccessionMember
+	ownedRelationship += TransitionLinkMember
 	ActionBody
 ;
 
 TransitionSourceMember returns SysML::Membership :
 	  memberElement = [SysML::Feature|QualifiedName]
 	| {SysML::OwningMembership} ownedRelatedElement += OwnedFeatureChain 
+;
+
+EmptyTransitionSourceMember returns SysML::Membership :
+	{SysML::Membership}
 ;
 
 TriggerActionMember returns SysML::TransitionFeatureMembership :
@@ -1925,6 +1937,10 @@ TransitionSuccessionMember returns SysML::OwningMembership :
 TransitionSuccession returns SysML::SuccessionAsUsage :
 	ownedRelationship += EmptySourceEndMember 
 	ownedRelationship += ConnectorEndMember
+;
+
+TransitionLinkMember returns SysML::FeatureMembership :
+	ownedRelatedElement += EmptyUsage
 ;
 
 /* CALCULATIONS */

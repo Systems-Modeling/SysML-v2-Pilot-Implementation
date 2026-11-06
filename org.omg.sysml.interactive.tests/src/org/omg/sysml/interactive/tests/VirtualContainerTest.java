@@ -74,7 +74,6 @@ public class VirtualContainerTest {
 	public static void loadLibraries() {
 		SysMLInteractive interactive = SysMLInteractive.createInstance();
 		interactive.setVerbose(false);
-		interactive.getLibraryIndexCache().setIndexDisabled(true);
 		interactive.loadLibrary(Path.of(System.getProperty("libraryPath")).toAbsolutePath().toString());
 		resourceSet = interactive.getResourceSet();
 		for (int i = 0; i < resourceSet.getResources().size(); i++) {
@@ -179,6 +178,7 @@ public class VirtualContainerTest {
 					merge M;
 				}
 				""");
+		ElementUtil.transformAll(resource, false);
 
 		// Outgoing succession of D: its chained general is "D.outgoingHBLink".
 		SuccessionAsUsage fromDecision = findSuccession(resource, "D", true);

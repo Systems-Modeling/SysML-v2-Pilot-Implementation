@@ -25,20 +25,17 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
-import org.omg.sysml.lang.sysml.ParameterMembership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.Succession;
-import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.util.TypeUtil;
 import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsageAdapter extends ActionUsageAdapter {
-
-	private boolean isComputingTransitionLinkConnectors = false;
 
 	public TransitionUsageAdapter(TransitionUsage element) {
 		super(element);
@@ -84,19 +81,17 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	/**
 	 * @satisfies checkTransitionUsageSuccessionSourceSpecialization
 	 */
-	protected void computeSource() {
-		TransitionUsage target = getTarget();
-		List<Membership> ownedMemberships = target.getOwnedMembership();
-		if (ownedMemberships.isEmpty() || 
-				ownedMemberships.get(0) instanceof ParameterMembership) {
-			Feature source = UsageUtil.getPreviousFeature(target);
-			Membership membership = SysMLFactory.eINSTANCE.createMembership();
-			membership.setMemberElement(source);
-			target.getOwnedRelationship().add(0, membership);
-		} else if (ownedMemberships.get(0).getMemberElement() == null) {
-			Feature source = UsageUtil.getPreviousFeature(target);
-			ownedMemberships.get(0).setMemberElement(source);
+	public Membership computeSource() {
+		TransitionUsage transition = getTarget();
+		Membership sourceFeatureMembership = transition.getOwnedMembership().stream().
+				filter(mem->!(mem instanceof FeatureMembership) && 
+						(mem.getMemberElement() == null || mem.getMemberElement() instanceof Feature)).
+				findFirst().orElse(null);
+		if (sourceFeatureMembership != null && sourceFeatureMembership.getMemberElement() == null) {
+			Feature source = UsageUtil.getPreviousFeature(transition);
+			sourceFeatureMembership.setMemberElement(source);
 		}
+		return sourceFeatureMembership;
 	}
 	
 	/**
@@ -105,42 +100,32 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	 */
 	protected Feature computeTransitionLinkConnectors() {
 		TransitionUsage transition = getTarget();
-		if (this.isComputingTransitionLinkConnectors) {
-			return UsageUtil.getTransitionLinkFeatureOf(transition);
-		}
-		this.isComputingTransitionLinkConnectors = true;
-		try {
-			Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
-			if (transitionLinkFeature == null) {
-				Succession succession = transition.getSuccession();
-				if (succession != null) {
-					transitionLinkFeature = SysMLFactory.eINSTANCE.createReferenceUsage();
-					TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
-					addBindingConnector(succession, transitionLinkFeature);
-				}
-				
-				List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
-				if (!parameters.isEmpty()) {
-					Feature source = transition.getSource();
-					if (source != null) {
-						addBindingConnector(source, parameters.get(0));
-					}
-				}
+		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
+		if (transitionLinkFeature != null) {
+			Succession succession = transition.getSuccession();
+			if (succession != null) {
+				addBindingConnector(succession, transitionLinkFeature);
 			}
-			return transitionLinkFeature;
-		} finally {
-			this.isComputingTransitionLinkConnectors = false;
 		}
+		List<Feature> parameters = TypeUtil.getOwnedParametersOf(transition);
+		if (!parameters.isEmpty()) {
+			Feature source = transition.getSource();
+			if (source != null) {
+				addBindingConnector(source, parameters.get(0));
+			}
+		}
+		return transitionLinkFeature;
 	}
 	
 	@Override
-	public void addAdditionalMembers() {
+	public void doTransform() {
 		// Note: Needs to come before computeTransitionLinkConnectors.
-		//checkTransitionUsageSuccessionSourceSpecialization
 		computeSource();
+		
 		// Note: Needs to come before clearing and recomputation of inheritance cache.
-		//checkTransitionUsageSuccessionBindingConnector
 		computeTransitionLinkConnectors();
+		
+		super.doTransform();
 	}
 	
 }

@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.omg.sysml.adapter.TransitionUsageAdapter;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -427,19 +428,23 @@ public class UsageUtil {
 	
 	// Transitions
 	
+	public static Membership computeSourceFeatureMembershipOf(TransitionUsage transition) {
+		return ((TransitionUsageAdapter)ElementUtil.getElementAdapter(transition)).computeSource();
+	}
+	
 	public static Feature getSourceFeatureOf(TransitionUsage transition) {
-		NamespaceUtil.addAdditionalMembersTo(transition);
-		return transition.getOwnedMembership().stream().
-				filter(mem->!(mem instanceof FeatureMembership)).
-				map(Membership::getMemberElement).
-				filter(Feature.class::isInstance).
-				map(Feature.class::cast).
-				filter(f->FeatureUtil.getBasicFeatureOf(f) instanceof ActionUsage).
-				findFirst().orElse(null);
+		Membership sourceFeatureMembership = computeSourceFeatureMembershipOf(transition);
+		if (sourceFeatureMembership != null) {
+			Feature sourceFeature = FeatureUtil.getBasicFeatureOf((Feature)sourceFeatureMembership.getMemberElement());
+			if (sourceFeature instanceof ActionUsage) {
+				return sourceFeature;
+			}
+		}
+		return null;
 	}
 	
 	public static Feature getTransitionSourceOf(Feature transition) {
-		Feature source= transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
+		Feature source = transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
 			   transition instanceof Succession? ((Succession)transition).getSourceFeature():
 			   null;
 		return FeatureUtil.getBasicFeatureOf(source);

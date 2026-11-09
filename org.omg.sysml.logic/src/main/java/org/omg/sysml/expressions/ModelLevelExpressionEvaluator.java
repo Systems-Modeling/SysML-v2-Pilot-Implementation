@@ -156,14 +156,14 @@ public class ModelLevelExpressionEvaluator implements ExpressionEvaluator {
 				Type t = types.get(i);
 				if (t instanceof MetadataFeature && TypeUtil.specializes(feature, EvaluationUtil.getAnnotatedElementFeature((MetadataFeature)t))) {
 					// Evaluate "Metaobject::annotatedElement" feature.
-					return EvaluationUtil.results(((MetadataFeature)t).getAnnotatedElement());
+					return EvaluationUtil.results(feature, ((MetadataFeature)t).getAnnotatedElement());
 				} else if (EvaluationUtil.isMetaclassFeature(t)) {
 					if (!(feature instanceof Expression)) {
 						// Evaluate the feature as a reflective metaclass attribute.
 						Element element = ((AnnotatingElement)t).getAnnotatedElement().get(0);
 						EStructuralFeature eFeature = element.eClass().getEStructuralFeature(feature.getDeclaredName());
 						if (eFeature != null) {
-							return EvaluationUtil.results(element.eGet(eFeature, true));
+							return EvaluationUtil.results(feature, element.eGet(eFeature, true));
 						}
 					}
 				} else {

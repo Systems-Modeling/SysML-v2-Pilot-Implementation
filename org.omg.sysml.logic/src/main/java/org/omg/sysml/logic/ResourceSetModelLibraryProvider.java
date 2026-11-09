@@ -38,15 +38,16 @@ import org.omg.sysml.util.SysMLLibraryUtil;
 /**
  * Plain-EMF library lookup for standalone applications.
  *
- * <p>This provider resolves qualified names using the containment hierarchy and
+ * <p>
+ * This provider resolves qualified names using the containment hierarchy and
  * membership names already loaded in a {@link ResourceSet}. It intentionally
  * does not depend on Xtext indexing or alias-based lookup.
  */
 public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 
 	/**
-	 * Resolves a qualified library name against the resources already loaded in
-	 * the context element's resource set.
+	 * Resolves a qualified library name against the resources already loaded in the
+	 * context element's resource set.
 	 */
 	@Override
 	public Element getElement(Element context, String name) {
@@ -101,8 +102,10 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 	 */
 	private Element getElement(Resource resource, String[] segments) {
 		for (EObject object : resource.getContents()) {
-			// Element not contained in a Namespace can not be access using their qualified names
-			// Section 8.3.2.1.2 Element: "If this Element does not have an owningNamespace, then its qualifiedName is null.”
+			// Element not contained in a Namespace can not be access using their qualified
+			// names
+			// Section 8.3.2.1.2 Element: "If this Element does not have an owningNamespace,
+			// then its qualifiedName is null.”
 			if (object instanceof Namespace namespace) {
 				Element match = resolveElement(namespace, segments, 0);
 				if (match != null) {
@@ -114,8 +117,8 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 	}
 
 	/**
-	 * Resolves one qualified-name segment at a time by matching the current
-	 * element and then descending through namespace memberships.
+	 * Resolves one qualified-name segment at a time by matching the current element
+	 * and then descending through namespace memberships.
 	 */
 	private Element resolveElement(Namespace namespace, String[] segments, int index) {
 		if (namespace == null || index >= segments.length) {
@@ -154,7 +157,11 @@ public class ResourceSetModelLibraryProvider implements IModelLibraryProvider {
 	 * falls back to the member element's declared names.
 	 */
 	private boolean matchesMembershipName(Membership membership, Element member, String segment) {
-		if (matches(segment, membership.getMemberName()) || matches(segment, membership.getMemberShortName())) {
+		// OwningMembership derives these properties from the owned element's
+		// effective name. Computing that name may request a default library type
+		// and recursively enter this provider, so use declared names below.
+		if (!(membership instanceof OwningMembership) && (matches(segment, membership.getMemberName())
+				|| matches(segment, membership.getMemberShortName()))) {
 			return true;
 		}
 

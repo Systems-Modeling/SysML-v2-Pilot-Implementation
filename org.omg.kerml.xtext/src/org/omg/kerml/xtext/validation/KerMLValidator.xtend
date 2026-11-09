@@ -108,6 +108,7 @@ import org.omg.sysml.lang.sysml.EndFeatureMembership
 import org.omg.sysml.lang.sysml.CollectExpression
 import org.omg.sysml.lang.sysml.SelectExpression
 import org.omg.sysml.lang.sysml.IndexExpression
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * This class contains custom validation rules. 
@@ -559,8 +560,8 @@ class KerMLValidator extends AbstractKerMLValidator {
 		checkTargetNotObject(t, t.ownedUnioning, INVALID_TYPE_UNIONING_TYPES_NOT_SELF_MSG, INVALID_TYPE_UNIONING_TYPES_NOT_SELF)
 		
 		// validateTypeOwnedMultiplicity
-		var multiplicityMemberships = t.ownedMembership.filter[memberElement instanceof Multiplicity];
-		checkAtMostOne(multiplicityMemberships, INVALID_TYPE_OWNED_MULTIPLICITY_MSG, SysMLPackage.eINSTANCE.membership_MemberElement, INVALID_TYPE_OWNED_MULTIPLICITY)
+		var multiplicities = t.ownedMember.filter(Multiplicity);
+		checkAtMostOne(multiplicities, INVALID_TYPE_OWNED_MULTIPLICITY_MSG, null, INVALID_TYPE_OWNED_MULTIPLICITY)
 	}
 	
 	
@@ -957,8 +958,10 @@ class KerMLValidator extends AbstractKerMLValidator {
 //		} else { 
 			// TODO: Add validateBindingConnectorTypeConformance
 			//Binding type conformance
-			val f1types = rf.get(0).type
-			val f2types = rf.get(1).type
+			val rf1 = EcoreUtil.resolve(rf.get(0), location) as Feature
+			val rf2 = EcoreUtil.resolve(rf.get(1), location) as Feature
+			val f1types = rf1.type
+			val f2types = rf2.type
 			val boolType = SysMLLibraryUtil.getLibraryType(location, "Performances::BooleanEvaluation")
 						 
 			if (!(typesConform(f1types, f2types) ||

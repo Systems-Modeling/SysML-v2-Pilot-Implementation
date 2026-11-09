@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Budapest University of Technology and Economics
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -477,6 +478,13 @@ public class FeatureAdapter extends TypeAdapter {
 			forceComputeRedefinitions();
 			
 			addAllRedefinedFeaturesTo(allRedefinedFeatures);
+			
+			// Do not cache the result while a redefined feature is unresolved.
+			if (allRedefinedFeatures.stream().anyMatch(Feature::eIsProxy)) {
+				Set<Feature> redefinedFeatures = allRedefinedFeatures;
+				allRedefinedFeatures = null;
+				return redefinedFeatures;
+			}
 		}
 		return allRedefinedFeatures;
 	}

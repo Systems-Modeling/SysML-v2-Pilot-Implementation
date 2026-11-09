@@ -24,11 +24,16 @@ package org.omg.sysml.logic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
+import org.omg.sysml.delegate.invocation.OperationInvocationDelegateFactory;
+import org.omg.sysml.delegate.setting.DerivedPropertySettingDelegateFactory;
 import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
@@ -41,6 +46,36 @@ import org.omg.sysml.util.SysMLLibraryUtil;
  * {@link SysMLLogicStandaloneSetup}.
  */
 public class SysMLLogicStandaloneSetupTest {
+
+	/**
+	 * Checks that repeated setup calls retain the globally registered delegates
+	 * while replacing the provider used for library lookup.
+	 */
+	@Test
+	public void repeatedSetupRetainsDelegatesAndUpdatesLibraryProvider() {
+		Type[] libraryElements = new Type[2];
+
+		SysMLLogicStandaloneSetup.doSetup((element, name) -> libraryElements[0]);
+		SysMLPackage.eINSTANCE.eClass();
+		libraryElements[0] = SysMLFactory.eINSTANCE.createType();
+		libraryElements[1] = SysMLFactory.eINSTANCE.createType();
+		Namespace context = SysMLFactory.eINSTANCE.createNamespace();
+		Object settingDelegateFactory = EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE
+				.get(DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION);
+		Object invocationDelegateFactory = EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE
+				.get(OperationInvocationDelegateFactory.SYSML_ANNOTATION);
+
+		assertTrue(settingDelegateFactory instanceof DerivedPropertySettingDelegateFactory);
+		assertTrue(invocationDelegateFactory instanceof OperationInvocationDelegateFactory);
+
+		SysMLLogicStandaloneSetup.doSetup((element, name) -> libraryElements[1]);
+
+		assertSame(settingDelegateFactory, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE
+				.get(DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION));
+		assertSame(invocationDelegateFactory, EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE
+				.get(OperationInvocationDelegateFactory.SYSML_ANNOTATION));
+		assertSame(libraryElements[1], SysMLLibraryUtil.getLibraryElement(context, "libraryElements[1]"));
+	}
 
 	/**
 	 * Checks that the standalone setup installs library lookup and delegate support

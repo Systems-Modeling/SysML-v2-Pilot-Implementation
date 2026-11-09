@@ -39,6 +39,8 @@ public final class SysMLLogicStandaloneSetup {
 
 	private static final IModelLibraryProvider DEFAULT_LIBRARY_PROVIDER = new ResourceSetModelLibraryProvider();
 
+	private static boolean delegatesInstalled = false;
+
 	/**
 	 * Utility class; not meant to be instantiated.
 	 */
@@ -60,19 +62,23 @@ public final class SysMLLogicStandaloneSetup {
 	 * Installs the standalone logic bootstrap using the given library provider.
 	 *
 	 * <p>This registers the SysML derived-property setting delegate factory and
-	 * operation invocation delegate factory in the global EMF registries, then
-	 * installs the supplied provider for library element lookup.
+	 * operation invocation delegate factory in the global EMF registries once,
+	 * then installs the supplied provider for library element lookup on every
+	 * call.
 	 *
 	 * @param libraryProvider the provider used to resolve SysML/KerML library
 	 *        elements in standalone mode
 	 */
-	public static void doSetup(IModelLibraryProvider libraryProvider) {
-		EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(
-				DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION,
-				new DerivedPropertySettingDelegateFactory());
-		EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(
-				OperationInvocationDelegateFactory.SYSML_ANNOTATION,
-				new OperationInvocationDelegateFactory());
+	public static synchronized void doSetup(IModelLibraryProvider libraryProvider) {
+		if (!delegatesInstalled) {
+			EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(
+					DerivedPropertySettingDelegateFactory.SYSML_ANNOTATION,
+					new DerivedPropertySettingDelegateFactory());
+			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(
+					OperationInvocationDelegateFactory.SYSML_ANNOTATION,
+					new OperationInvocationDelegateFactory());
+			delegatesInstalled = true;
+		}
 		SysMLLibraryUtil.setProviderLookup(resource -> libraryProvider);
 	}
 }

@@ -164,9 +164,13 @@ public class SysMLInteractive extends SysMLUtil {
 	}
 	
 	public int next(String extension) {
-		this.resource = this.createResource(counter + extension);
+		this.setResource(counter + extension);
 		this.addInputResource(this.resource);
 		return this.counter++;
+	}
+	
+	public void setResource(String path) {
+		this.resource = this.createResource(path);
 	}
 	
 	public Resource getResource() {

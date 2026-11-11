@@ -465,6 +465,8 @@ public class ModelLevelEvaluationTest extends SysMLInteractiveTest {
 		assertTrue(evaluateBooleanValue(instance, null, "(P meta SysML::PartDefinition).isAbstract"));
 		assertEquals("x", evaluateStringValue(instance, null, "(P meta SysML::PartDefinition).ownedAttribute.name"));
 		assertEquals("PartDefinition", evaluateStringValue(instance, null, "(SysML::PartDefinition meta KerML::Element).name"));
+		
+		assertEquals("public", evaluateSingleValue(instance, null, "(P meta SysML::PartDefinition).owningMembership.visibility").getName());
 	}
 
 	@Test

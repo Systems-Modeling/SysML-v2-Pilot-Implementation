@@ -1,0 +1,35 @@
+//*
+XPECT_SETUP org.omg.sysml.xpect.tests.validation.invalid.SysMLTests
+	ResourceSet {
+		ThisFile {}
+		File {from ="/library.kernel/Base.kerml"}
+		File {from ="/library.kernel/Links.kerml"}
+		File {from ="/library.kernel/Occurrences.kerml"}
+       	File {from ="/library.kernel/Objects.kerml"}
+		File {from ="/library.systems/Items.sysml"}
+		File {from ="/library.systems/Parts.sysml"}
+		File {from ="/library.systems/Ports.sysml"}
+		File {from ="/library.systems/Flows.sysml"}
+	}
+	Workspace {
+		JavaProject {
+			SrcFolder {
+				ThisFile {}
+				File {from ="/library.kernel/Base.kerml"}
+				File {from ="/library.kernel/Links.kerml"}
+				File {from ="/library.kernel/Occurrences.kerml"}
+ 		      	File {from ="/library.kernel/Objects.kerml"}
+				File {from ="/library.systems/Items.sysml"}
+				File {from ="/library.systems/Parts.sysml"}
+				File {from ="/library.systems/Ports.sysml"}
+				File {from ="/library.systems/Flows.sysml"}
+			}
+		}
+	}
+END_SETUP 
+*/
+package Flow_End_Invalid {	
+    // XPECT errors --> "A flow definition end must be a usage." at "abstract flow def B :> Links::BinaryLink;"
+	abstract flow def B :> Links::BinaryLink;
+}
+

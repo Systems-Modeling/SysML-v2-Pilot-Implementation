@@ -59,7 +59,6 @@ public class ConstructorExpressionAdapter extends InstantiationExpressionAdapter
 		
 	@Override
 	public void addAdditionalMembers() {
-		TypeUtil.addResultParameterTo(getTarget());
 		addResultTyping();
 	}
 	

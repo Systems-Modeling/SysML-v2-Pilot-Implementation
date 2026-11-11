@@ -2,6 +2,8 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2022 Model Driven Solutions, Inc.
  * Copyright (c) 2023 Mgnite Inc.
+ * Copyright (c) 2026 Budapest University of Technology and Economics
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -52,9 +54,9 @@ public class ConnectorUtil {
 		return connector;
 	}
 
-	public static void transformBindingConnector(BindingConnector connector, Type owner) {
+	public static void transformBindingConnector(BindingConnector connector) {
 		TypeUtil.addImplicitGeneralTypeTo(connector, SysMLPackage.eINSTANCE.getSubsetting(), 
-				SysMLLibraryUtil.getLibraryType(owner, ImplicitGeneralizationMap.getDefaultSupertypeFor(connector.getClass(), "binary")));
+				SysMLLibraryUtil.getLibraryType(connector, ImplicitGeneralizationMap.getDefaultSupertypeFor(connector.getClass(), "binary")));
 		for (Feature end: TypeUtil.getEndFeatureOf(connector)) {
 			ElementUtil.transform(end);
 		}
@@ -66,7 +68,7 @@ public class ConnectorUtil {
 		Feature endFeature = SysMLFactory.eINSTANCE.createFeature();
 		if (relatedFeature != null) {
 			ReferenceSubsetting subsetting = SysMLFactory.eINSTANCE.createReferenceSubsetting();
-			if (relatedFeature.getOwner() == null) {
+			if (relatedFeature.getOwner() == null && !relatedFeature.eIsProxy()) {
 				subsetting.getOwnedRelatedElement().add(relatedFeature);
 			}
 			subsetting.setReferencedFeature(relatedFeature);

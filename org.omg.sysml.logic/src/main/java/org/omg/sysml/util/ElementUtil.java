@@ -120,7 +120,47 @@ public class ElementUtil {
 	public static boolean isIdentifier(String name) {
 		return name.matches("[a-zA-Z_]\\w*");
 	}
-	
+
+	// Containment
+
+	/**
+	 * Returns the container of an element: its real container when it has one, otherwise the
+	 * virtual container recorded for an element created outside the model (see
+	 * {@link VirtualContainer}).
+	 *
+	 * @param element the element whose container is requested
+	 * @return the real or virtual container, or {@code null} for a root or an unlinked element
+	 */
+	public static EObject getEffectiveContainer(EObject element) {
+		if (element == null) {
+			return null;
+		}
+		EObject container = element.eContainer();
+		if (container != null) {
+			return container;
+		}
+		return VirtualContainer.getVirtualContainer(element);
+	}
+
+	/**
+	 * Returns the element itself when it belongs to a resource, otherwise its closest effective
+	 * container (see {@link #getEffectiveContainer(EObject)}) that does. The walk terminates as
+	 * long as effective containers form no cycle: {@link VirtualContainer#attach} never records a
+	 * link that would close one, and no element must later be inserted into an element that
+	 * reaches it through effective containers.
+	 *
+	 * @param element the element from which the model is reached
+	 * @return the closest element that belongs to a resource, or {@code null} when neither the
+	 *         element nor any of its effective containers does
+	 */
+	public static EObject getClosestElementInResource(EObject element) {
+		EObject current = element;
+		while (current != null && current.eResource() == null) {
+			current = getEffectiveContainer(current);
+		}
+		return current;
+	}
+
 	// Qualified Names
 	
 	/**

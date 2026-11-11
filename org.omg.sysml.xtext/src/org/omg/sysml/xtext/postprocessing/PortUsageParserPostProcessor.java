@@ -36,4 +36,9 @@ public class PortUsageParserPostProcessor extends OccurrenceUsageParserPostProce
 			target.setIsComposite(false);
 		}
 	}
+
+	@Override
+	protected boolean isAddMultiplicity() {
+		return isAddDefaultMultiplicity();
+	}
 }

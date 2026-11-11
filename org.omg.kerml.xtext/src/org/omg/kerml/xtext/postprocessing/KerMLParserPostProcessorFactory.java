@@ -89,6 +89,11 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseFeatureChainExpression(FeatureChainExpression element) {
+			return new FeatureChainExpressionParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseFeatureMembership(FeatureMembership element) {
 			return new FeatureMembershipParserPostProcessor(element);
 		}
@@ -99,8 +104,18 @@ public final class KerMLParserPostProcessorFactory {
 		}
 
 		@Override
+		public ElementParserPostProcessor caseFeatureReferenceExpression(FeatureReferenceExpression element) {
+			return new FeatureReferenceExpressionParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseFeatureTyping(FeatureTyping element) {
 			return new FeatureTypingParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseInstantiationExpression(InstantiationExpression element) {
+			return new InstantiationExpressionParserPostProcessor(element);
 		}
 
 		@Override
@@ -111,6 +126,11 @@ public final class KerMLParserPostProcessorFactory {
 		@Override
 		public ElementParserPostProcessor caseIntersecting(Intersecting element) {
 			return new IntersectingParserPostProcessor(element);
+		}
+
+		@Override
+		public ElementParserPostProcessor caseInvocationExpression(InvocationExpression element) {
+			return new InvocationExpressionParserPostProcessor(element);
 		}
 
 		@Override

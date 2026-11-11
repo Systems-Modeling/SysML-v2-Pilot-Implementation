@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2022, 2024-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Budapest University of Technology and Economics
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -477,7 +478,9 @@ public class TypeUtil {
 			newSpecialization.setIsImplied(true);
 			newSpecialization.setGeneral(general);
 			newSpecialization.setSpecific(type);
-			if (general.getOwningRelationship() == null) {
+			// Only a detached general, such as a feature chain, is adopted; a root Type of its
+			// resource stays where it is (see FeatureUtil.insertImplicitTypeFeaturings).
+			if (!general.eIsProxy() && general.getOwningRelationship() == null && general.eResource() == null) {
 				newSpecialization.getOwnedRelatedElement().add(general);
 			}
 			type.getOwnedRelationship().add(newSpecialization);			
@@ -538,6 +541,12 @@ public class TypeUtil {
 			membership.setOwnedMemberElement(multiplicity);
 			type.getOwnedRelationship().add(membership);
 		}
+	}
+	
+	public static List<Multiplicity> getOwnedMultiplicitiesOf(Type type) {
+		return NamespaceUtil.getOwnedMembersOf(type).
+				filter(Multiplicity.class::isInstance).
+				map(Multiplicity.class::cast).toList();
 	}
 	
 	public static Multiplicity getMultiplicityOf(Type type) {

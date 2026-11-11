@@ -1,6 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
+ * Copyright (c) 2026 Obeo
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -60,6 +61,7 @@ import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.ImplicitGeneralizationMap;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.VirtualContainer;
 
 public class TypeAdapter extends NamespaceAdapter {
 
@@ -364,6 +366,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	public void addImplicitGeneralType(EClass eClass, Type general) {
 		if (isAddImplicitGeneralTypes && general != null && general != getTarget() && !isImplicitSpecializationFor(eClass, general)) {
 			implicitGeneralTypes.computeIfAbsent(eClass, e -> new ArrayList<>()).add(general);
+			VirtualContainer.attach(general, getTarget());
 		}
 	}
 	
@@ -482,11 +485,13 @@ public class TypeAdapter extends NamespaceAdapter {
 	protected List<Type> getBaseTypes() {
 		List<Type> baseTypes = new ArrayList<>();
 		if (isGetBaseTypes) {
+			Set<Feature> visited = new HashSet<>();
 			Type target = getTarget();
 			for (MetadataFeature metadataFeature : ElementUtil.getAllMetadataFeaturesOf(target)) {
 				// Resolve metaclass proxy before getting base type, to avoid problems
-				// with name resolution when applying semantic metadata.
-				metadataFeature.getMetaclass();
+				// with name resolution when applying semantic metadata. (ST6RI-923)
+				// Call getTypesOf rather than getMetaclass to avoid possible stack overflow. (ST6RI-976)
+				FeatureUtil.getTypesOf(metadataFeature, new ArrayList<>(), visited);
 				isGetBaseTypes = false;
 				TypeUtil.getFeatureOf(metadataFeature).stream().
 						filter(f->TypeUtil.specializes(f, getBaseTypeFeature(metadataFeature))).
@@ -512,10 +517,21 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	// Transformation
 	
+	/**
+	 * Creates and transforms a binding connector implied by a constraint on the target Type. The
+	 * implied relationship is the owning membership of the connector in the target, so the target
+	 * is its virtual container. It is recorded before the transformation, which looks up the
+	 * library general of the connector, and before any query on the connector.
+	 */
+	protected BindingConnector createImplicitBindingConnector(Feature source, Feature target) {
+		BindingConnector connector = VirtualContainer.attach(ConnectorUtil.createBindingConnector(source, target), getTarget());
+		ConnectorUtil.transformBindingConnector(connector);
+		return connector;
+	}
+
 	public BindingConnector addBindingConnector(Feature source, Feature target) {
 		Type type = getTarget();
-		BindingConnector connector = ConnectorUtil.createBindingConnector(source, target);
-		ConnectorUtil.transformBindingConnector(connector, getTarget());
+		BindingConnector connector = createImplicitBindingConnector(source, target);
 		Type contextType = ConnectorUtil.getContextTypeFor(connector);
 		if (contextType == type) {
 			addImplicitFeatureBindingConnector(connector);

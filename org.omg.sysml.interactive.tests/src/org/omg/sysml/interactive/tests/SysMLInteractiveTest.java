@@ -25,10 +25,17 @@ package org.omg.sysml.interactive.tests;
 
 import static org.junit.Assert.assertTrue;
 
+import java.nio.file.Path;
+import java.util.Collections;
 import java.util.List;
 
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Type;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.junit.After;
+import org.junit.BeforeClass;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.interactive.SysMLInteractiveResult;
 
@@ -36,18 +43,30 @@ public abstract class SysMLInteractiveTest {
 
 	private final static String SYSML_LIBRARY_PATH_KEY = "libraryPath";
 	
-	public String getLibraryPath() {
+	/** Loads and resolves the standard library once for the textual test scenarios. */
+	@BeforeClass
+	public static void loadLibraries() {
+		createSysMLInteractiveInstance();
+	}
+	
+	/** Removes each test model while retaining the shared resolved libraries. */
+	@After
+	public void removeResource() {
+		SysMLInteractive.getInstance().removeResource();
+	}
+
+	public static String getLibraryPath() {
 		return System.getProperty(SYSML_LIBRARY_PATH_KEY);
 	}
 	
-	public SysMLInteractive createSysMLInteractiveInstance() {
+	public static SysMLInteractive createSysMLInteractiveInstance() {
 		SysMLInteractive instance = SysMLInteractive.createInstance();
 		instance.setVerbose(false);
-		instance.loadLibrary(getLibraryPath());
+		instance.loadLibrary(Path.of(getLibraryPath()).toAbsolutePath().toString());
 		return instance;
 	}
 	
-	public SysMLInteractive getSysMLInteractiveInstance() {
+	public static SysMLInteractive getSysMLInteractiveInstance() {
 		SysMLInteractive instance = SysMLInteractive.getInstance();
 		instance.setVerbose(false);
 		instance.loadLibrary(getLibraryPath());
@@ -68,4 +87,25 @@ public abstract class SysMLInteractiveTest {
 	public List<Element> process(String input) {
 		return process(null, input);
 	}
+
+	protected Resource parse(String name, String text) throws Exception {
+		SysMLInteractive interactive = SysMLInteractive.getInstance();
+		interactive.setResource(name);
+		interactive.parse(text);
+		Element rootElement = interactive.getRootElement();
+		SysMLInteractiveResult result = new SysMLInteractiveResult(rootElement, Collections.emptyList());
+		assertTrue("'" + text + "':\n" + result.formatIssues(), result.getIssues().isEmpty());
+		return interactive.getResource();
+	}
+
+	protected static <T extends Type> T findByName(Resource resource, String name, Class<T> kind) {
+		for (var contents = resource.getAllContents(); contents.hasNext();) {
+			EObject object = contents.next();
+			if (kind.isInstance(object) && name.equals(kind.cast(object).getDeclaredName())) {
+				return kind.cast(object);
+			}
+		}
+		throw new AssertionError("Missing " + name);
+	}
+
 }

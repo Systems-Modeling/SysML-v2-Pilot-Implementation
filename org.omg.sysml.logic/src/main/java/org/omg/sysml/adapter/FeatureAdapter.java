@@ -2,6 +2,7 @@
  * SysML 2 Pilot Implementation
  * Copyright (c) 2021-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2026 Obeo
+ * Copyright (c) 2026 Budapest University of Technology and Economics
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -58,12 +59,12 @@ import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.Type;
 import org.omg.sysml.lang.sysml.TypeFeaturing;
 import org.omg.sysml.lang.sysml.VisibilityKind;
-import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.ExpressionUtil;
 import org.omg.sysml.util.FeatureUtil;
 import org.omg.sysml.util.NonNotifyingEObjectEList;
 import org.omg.sysml.util.TypeUtil;
+import org.omg.sysml.util.VirtualContainer;
 
 public class FeatureAdapter extends TypeAdapter {
 	
@@ -125,10 +126,13 @@ public class FeatureAdapter extends TypeAdapter {
 	
 	public void addFeaturingType(Type type) {
 		implicitFeaturingTypes.add(type);
+		VirtualContainer.attach(type, getTarget());
 	}
 	
 	public void addFeaturingTypes(Collection<Type> featuringTypes) {
-		implicitFeaturingTypes.addAll(featuringTypes);
+		for (Type featuringType : featuringTypes) {
+			addFeaturingType(featuringType);
+		}
 	}
 	
 	public void forEachImplicitFeaturingType(Consumer<Type> action) {
@@ -477,6 +481,13 @@ public class FeatureAdapter extends TypeAdapter {
 			forceComputeRedefinitions();
 			
 			addAllRedefinedFeaturesTo(allRedefinedFeatures);
+			
+			// Do not cache the result while a redefined feature is unresolved.
+			if (allRedefinedFeatures.stream().anyMatch(Feature::eIsProxy)) {
+				Set<Feature> redefinedFeatures = allRedefinedFeatures;
+				allRedefinedFeatures = null;
+				return redefinedFeatures;
+			}
 		}
 		return allRedefinedFeatures;
 	}
@@ -803,8 +814,7 @@ public class FeatureAdapter extends TypeAdapter {
 	}
 	
 	protected BindingConnector addBindingConnector(Collection<Type> featuringTypes, Feature source, Feature target) {
-		BindingConnector connector = ConnectorUtil.createBindingConnector(source, target);
-		ConnectorUtil.transformBindingConnector(connector, getTarget());
+		BindingConnector connector = createImplicitBindingConnector(source, target);
 		addImplicitMemberBindingConnector(connector);
 		FeatureUtil.addFeaturingTypesTo(connector, featuringTypes);
 		return connector;

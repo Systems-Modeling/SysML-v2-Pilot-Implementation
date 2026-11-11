@@ -72,6 +72,7 @@ public class ExpressionEvaluator extends ModelLevelExpressionEvaluator {
 	
 	protected InvocationExpression instantiateInvocation(InvocationExpression expression, Element target) {
 		InvocationExpression instantiation = SysMLFactory.eINSTANCE.createInvocationExpression();
+		TypeUtil.addResultParameterTo(instantiation);
 		
 		// Copy instantiatedType from original expression.
 		Type instantiatedType = expression.getInstantiatedType();

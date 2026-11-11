@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2022, 2023 Model Driven Solutions, Inc.
+ * Copyright (c) 2022, 2023, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -20,12 +20,8 @@
 
 package org.omg.sysml.delegate.setting;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Multiplicity;
 import org.omg.sysml.lang.sysml.Type;
 
@@ -37,12 +33,7 @@ public class Type_multiplicity_SettingDelegate extends BasicDerivedObjectSetting
 
 	@Override
 	protected Multiplicity basicGet(InternalEObject owner) {
-		return getMultiplicityOf((Type)owner, new HashSet<Type>());	
-	}
-	
-	protected static Multiplicity getMultiplicityOf(Type type, Set<Type> visited) {
-		return (Multiplicity)type.getOwnedMembership().stream().
-				map(Membership::getMemberElement).
+		return (Multiplicity)((Type)owner).getOwnedMember().stream().
 				filter(Multiplicity.class::isInstance).
 				findFirst().orElse(null);
 	}

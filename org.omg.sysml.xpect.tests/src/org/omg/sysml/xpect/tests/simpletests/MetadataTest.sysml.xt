@@ -72,6 +72,10 @@ package MetadataTest {
 	    #Security #Classified metadata Classified {
 	        classificationLevel = ClassificationLevel::secret;
 	    }
-	}	
+	}
+	
+	metadata def M {
+		metadata M;	
+	}
 	
 }

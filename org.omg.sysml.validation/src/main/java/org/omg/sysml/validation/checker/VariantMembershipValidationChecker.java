@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.VariantMembership;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -22,7 +24,10 @@ public class VariantMembershipValidationChecker extends OwningMembershipValidati
 	}
 						
 	public void validateVariantMembershipOwningNamespace(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof VariantMembership mem) {
+			if (!SysmlValidationUtil.isVariation(mem.getMembershipOwningNamespace())) {
+				messageAccepter.error(mem, null, "validateVariantMembershipOwningNamespace");
+			}
+		}
 	}
-	
 }

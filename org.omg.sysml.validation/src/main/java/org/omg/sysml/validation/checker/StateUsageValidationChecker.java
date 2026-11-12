@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -26,7 +28,8 @@ public class StateUsageValidationChecker extends ActionUsageValidationChecker {
 	}
 	
 	public void validateStateUsageStateSubactionKind(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof StateUsage usg) {
+			SysmlValidationUtil.checkStateSubactions(usg, messageAccepter);
+		}
 	}
-	
 }

@@ -1,6 +1,11 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
 
 import java.util.Set;
 
@@ -22,7 +27,11 @@ public class SubjectMembershipValidationChecker extends ParameterMembershipValid
 	}
 						
 	public void validateSubjectMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof SubjectMembership mem) {
+			var owningType = mem.getOwningType(); 
+			if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage || owningType instanceof CaseDefinition || owningType instanceof CaseUsage)) {
+				messageAccepter.error(mem, null, "validateSubjectMembershipOwningType");
+			}
+		}
+	}	
 }

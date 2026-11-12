@@ -1,6 +1,10 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -22,11 +26,14 @@ public class RequirementUsageValidationChecker extends ConstraintUsageValidation
 	}
 						
 	public void validateRequirementUsageOnlyOneSubject(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof RequirementUsage usg) {
+			SysmlValidationUtil.checkAtMostOneFeature(usg, SubjectMembership.class, messageAccepter, "validateRequirementUsageOnlyOneSubject");
+		}
 	}
 	
 	public void validateRequirementUsageSubjectParameterPosition(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof RequirementUsage usg) {
+			SysmlValidationUtil.checkSubjectParameter(usg, messageAccepter, "validateRequirementUsageSubjectParameterPosition");
+		}
 	}
-	
 }

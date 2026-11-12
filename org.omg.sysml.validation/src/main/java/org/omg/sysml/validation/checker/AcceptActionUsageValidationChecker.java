@@ -1,5 +1,6 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.Element;
 
 import java.util.Set;
@@ -21,6 +22,11 @@ public class AcceptActionUsageValidationChecker extends ActionUsageValidationChe
 	}
 						
 	public void validateAcceptActionUsageParameters(Element element, ValidationMessageAccepter messageAccepter) {
+		if (element instanceof AcceptActionUsage usg) {
+			if (usg.inputParameters().isEmpty()) {
+				messageAccepter.error(usg, null, "validateAcceptActionUsageParameters");
+			}
+		}
 		
 	}
 	

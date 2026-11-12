@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.SubjectMembership;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -22,11 +25,14 @@ public class RequirementDefinitionValidationChecker extends ConstraintDefinition
 	}
 						
 	public void validateRequirementDefinitionOnlyOneSubject(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof RequirementDefinition defn) {
+			SysmlValidationUtil.checkAtMostOneFeature(defn, SubjectMembership.class, messageAccepter, "validateRequirementDefinitionOnlyOneSubject");
+		}
 	}
 	
 	public void validateRequirementDefinitionSubjectParameterPosition(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof RequirementDefinition defn) {
+			SysmlValidationUtil.checkSubjectParameter(defn, messageAccepter, "validateRequirementDefinitionSubjectParameterPosition");
+		}
+	}	
 }

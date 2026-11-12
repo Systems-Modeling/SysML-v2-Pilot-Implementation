@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.lang.sysml.StateSubactionMembership;
+import org.omg.sysml.lang.sysml.StateUsage;
 
 import java.util.Set;
 
@@ -22,7 +25,11 @@ public class StateSubactionMembershipValidationChecker extends FeatureMembership
 	}
 						
 	public void validateStateSubactionMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof StateSubactionMembership mem) {
+			var owningType = mem.getOwningType();
+			if (!(owningType instanceof StateUsage || owningType instanceof StateDefinition)) {
+				messageAccepter.error(mem, null, "validateStateSubactionMembershipOwningType");
+			}
+		}
 	}
-	
 }

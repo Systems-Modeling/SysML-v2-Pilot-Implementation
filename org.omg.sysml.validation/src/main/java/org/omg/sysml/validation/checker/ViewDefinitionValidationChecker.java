@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewRenderingMembership;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -22,7 +25,8 @@ public class ViewDefinitionValidationChecker extends PartDefinitionValidationChe
 	}
 						
 	public void validateViewDefinitionOnlyOneViewRendering(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof ViewDefinition viewDef) {
+			SysmlValidationUtil.checkAtMostOneFeature(viewDef, ViewRenderingMembership.class, messageAccepter, "validateViewDefinitionOnlyOneViewRendering");
+		}
+	}	
 }

@@ -1,7 +1,11 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
+import org.omg.sysml.lang.sysml.PerformActionUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -26,7 +30,10 @@ public class PerformActionUsageValidationChecker extends ActionUsageValidationCh
 	}
 						
 	public void validatePerformActionUsageReference(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof PerformActionUsage usg) {
+			if (!(usg instanceof ExhibitStateUsage || usg instanceof IncludeUseCaseUsage)) {
+				SysmlValidationUtil.checkReferenceType(usg, PerformActionUsage.class, messageAccepter, "validatePerformActionUsageReference"); 
+			}
+		}	
 	}
-	
 }

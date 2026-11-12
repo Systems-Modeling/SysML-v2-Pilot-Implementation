@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.FlowDefinition;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 import java.util.Set;
@@ -27,7 +28,11 @@ public class FlowDefinitionValidationChecker extends InteractionValidationChecke
 	}
 						
 	public void validateFlowDefinitionFlowEnds(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		//no xtend code and the rule in the properties file didn't match the specification. Changed the name of the rule in properties file to match specification. 
+		if (element instanceof FlowDefinition fd) {
+			if (fd.getFlowEnd().size() > 2) {
+				messageAccepter.error(fd, null, "validateFlowDefinitionFlowEnds");
+			}
+		}
 	}
-	
 }

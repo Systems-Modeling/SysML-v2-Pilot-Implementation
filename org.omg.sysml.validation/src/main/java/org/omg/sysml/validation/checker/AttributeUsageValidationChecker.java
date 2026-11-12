@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.AttributeUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -22,11 +24,16 @@ public class AttributeUsageValidationChecker extends UsageValidationChecker {
 	}
 						
 	public void validateAttributeUsageFeatures(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof AttributeUsage usg) {
+			SysmlValidationUtil.checkAllNotComposite(usg.getOwnedFeature(), messageAccepter, "validateAttributeUsageFeatures");
+		}
 	}
 	
 	public void validateAttributeUsageIsReference(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof AttributeUsage usg) {
+			if (!usg.isReference()) {
+				messageAccepter.error(usg, null, "validateAttributeUsageIsReference");
+			}	
+		}
 	}
-	
 }

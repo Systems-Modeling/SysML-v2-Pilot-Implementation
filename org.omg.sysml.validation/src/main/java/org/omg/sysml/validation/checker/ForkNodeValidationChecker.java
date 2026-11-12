@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ForkNode;
 
 import java.util.Set;
 
@@ -21,7 +22,11 @@ public class ForkNodeValidationChecker extends ControlNodeValidationChecker {
 	}
 						
 	public void validateForkNodeIncomingSuccessions(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		/* * no xtend code */
+		if (element instanceof ForkNode fn) {
+			if (!( fn.getNestedConnection().size() <= 1 ) ) {
+				messageAccepter.error(fn, null, "validateForkNodeIncomingSuccessions");
+			}
+		}
 	}
-	
 }

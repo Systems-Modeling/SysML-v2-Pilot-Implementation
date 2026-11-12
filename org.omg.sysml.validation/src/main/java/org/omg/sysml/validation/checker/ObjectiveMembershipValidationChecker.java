@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.CaseDefinition;
+import org.omg.sysml.lang.sysml.CaseUsage;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ObjectiveMembership;
 
 import java.util.Set;
 
@@ -23,11 +26,20 @@ public class ObjectiveMembershipValidationChecker extends FeatureMembershipValid
 	}
 						
 	public void validateObjectiveMembershipIsComposite(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof ObjectiveMembership mem) {
+			var ownedObjectiveRequirement = mem.getOwnedObjectiveRequirement(); 
+			if (ownedObjectiveRequirement != null && !ownedObjectiveRequirement.isComposite()) {
+				messageAccepter.error(mem, null, "validateObjectiveMembershipIsComposite");
+			}
+		}
 	}
 	
 	public void validateObjectiveMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof ObjectiveMembership mem) {
+			var owningType = mem.getOwningType(); 
+			if (!(owningType instanceof CaseDefinition || owningType instanceof CaseUsage)) {
+				messageAccepter.error(mem, null, "validateObjectiveMembershipOwningType");
+			}
+		}
 	}
-	
 }

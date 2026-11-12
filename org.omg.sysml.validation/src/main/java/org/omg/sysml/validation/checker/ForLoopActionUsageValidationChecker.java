@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ForLoopActionUsage;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 
 import java.util.Set;
 
@@ -22,11 +24,19 @@ public class ForLoopActionUsageValidationChecker extends LoopActionUsageValidati
 	}
 						
 	public void validateForLoopActionUsageLoopVariable(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof ForLoopActionUsage usg) {
+			var ownedFeatures = usg.getOwnedFeature(); 
+				if (ownedFeatures.isEmpty() || !(ownedFeatures.get(0) instanceof ReferenceUsage)) {
+					messageAccepter.error(usg, null, "validateForLoopActionUsageLoopVariable");
+				}
+		}
 	}
 	
 	public void validateForLoopActionUsageParameters(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof ForLoopActionUsage usg) {
+			if (usg.inputParameters().size() != 2) {
+				messageAccepter.error(usg, null, "validateForLoopActionUsageParameters" );
+			}
+		}
 	}
-	
 }

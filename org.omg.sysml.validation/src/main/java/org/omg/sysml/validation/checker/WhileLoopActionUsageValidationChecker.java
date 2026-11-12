@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.WhileLoopActionUsage;
 
 import java.util.Set;
 
@@ -21,7 +22,10 @@ public class WhileLoopActionUsageValidationChecker extends LoopActionUsageValida
 	}
 						
 	public void validateWhileLoopActionUsage(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof WhileLoopActionUsage usg) {
+			if (usg.inputParameters().size() < 2 ) {
+				messageAccepter.error(usg, null, "validateWhileLoopActionUsageParameters");
+			}
+		}	
+	}	
 }

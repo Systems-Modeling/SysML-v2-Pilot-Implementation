@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.IfActionUsage;
 
 import java.util.Set;
 
@@ -21,7 +22,10 @@ public class IfActionUsageValidationChecker extends ActionUsageValidationChecker
 	}
 						
 	public void validateIfActionUsageParameters(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof IfActionUsage usg) {
+			if (usg.inputParameters().size() < 2) {
+				messageAccepter.error(usg, null, "validateIfActionUsageParameters");
+			}
+		}	
+	}	
 }

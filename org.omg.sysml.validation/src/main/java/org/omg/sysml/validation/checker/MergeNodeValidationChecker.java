@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.Connector;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.MergeNode;
+import org.w3c.dom.Node;
 
 import java.util.Set;
 
@@ -22,6 +25,20 @@ public class MergeNodeValidationChecker extends ControlNodeValidationChecker {
 	}
 						
 	public void validateMergeNodeIncomingSuccessions(Element element, ValidationMessageAccepter messageAccepter) {
+		/*
+		 * All incoming Successions to a MergeNode must have a source multiplicity of 0..1.
+			targetConnector->selectByKind(Succession)->collect(connectorEnd->at(1))->forAll(sourceMult |multiplicityHasBounds(sourceMult, 0, 1))
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * */
+		if (element instanceof MergeNode node) {
+			if (node != null) {
+				List<Connector> targetConnectors = node.getTargetConnector(); 
+			}
+		}
 		
 	}
 	

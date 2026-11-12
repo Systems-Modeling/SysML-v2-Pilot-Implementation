@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ViewDefinition;
+import org.omg.sysml.lang.sysml.ViewRenderingMembership;
+import org.omg.sysml.lang.sysml.ViewUsage;
 
 import java.util.Set;
 
@@ -22,7 +25,11 @@ public class ViewRenderingMembershipValidationChecker extends FeatureMembershipV
 	}
 						
 	public void validateViewRenderingMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof ViewRenderingMembership mem) {
+			var owningType = mem.getOwningType(); 
+			if (!(owningType instanceof ViewDefinition || owningType instanceof ViewUsage)) {
+				messageAccepter.error(mem, null, "validateViewRenderingMembershipOwningType");
+			}
+		}
+	}	
 }

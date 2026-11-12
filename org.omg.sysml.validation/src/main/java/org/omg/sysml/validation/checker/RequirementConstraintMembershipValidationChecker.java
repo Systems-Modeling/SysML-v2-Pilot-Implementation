@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.RequirementConstraintMembership;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
 
 import java.util.Set;
 
@@ -23,11 +26,21 @@ public class RequirementConstraintMembershipValidationChecker extends FeatureMem
 	}
 						
 	public void validateRequirementConstraintMembershipIsComposite(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof RequirementConstraintMembership mem) {
+			var ownedConstraint = mem.getOwnedConstraint();
+			if (ownedConstraint != null && !ownedConstraint.isComposite()) {
+				messageAccepter.error(mem, null, "validateRequirementConstraintMembershipIsComposite");
+			}
+		}
 	}
 	
 	public void validateRequirementConstraintMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof RequirementConstraintMembership mem) {
+			var owningType = mem.getOwningType(); 
+			if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage)) {
+				messageAccepter.error(mem, null, "validateRequirementConstraintMembershipOwningType");
+			}
+		}
 	}
-	
 }
+ 

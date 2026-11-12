@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.RequirementConstraintKind;
+import org.omg.sysml.lang.sysml.RequirementVerificationMembership;
+import org.omg.sysml.util.UsageUtil;
 
 import java.util.Set;
 
@@ -22,11 +25,18 @@ public class RequirementVerificationMembershipValidationChecker extends Requirem
 	}
 						
 	public void validateRequirementVerificationMembershipKind(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof RequirementVerificationMembership mem) {
+			if (mem.getKind() != RequirementConstraintKind.REQUIREMENT) {
+				messageAccepter.error(mem, null, "validateRequirementVerificationMembershipKind");
+			}
+		}
 	}
 	
 	public void validateRequirementVerificationMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof RequirementVerificationMembership mem) {
+			if (!UsageUtil.isLegalVerification(mem)) {
+				messageAccepter.error(mem, null, "validateRequirementVerificationMembershipOwningType");
+			}
+		}
+	}	
 }

@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.Definition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SysMLPackage;
 
 import java.util.Set;
 
@@ -24,15 +26,36 @@ public class DefinitionValidationChecker extends ClassifierValidationChecker {
 	}
 						
 	public void validateDefinitionVariationIsAbstract(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		//no xtend code but ...
+		if (element instanceof Definition definition) {
+			if (definition.isVariation() && !definition.isAbstract()) {
+				messageAccepter.error(definition, null, "validateDefinitionVariationIsAbstract");
+			}
+		}
 	}
 	
 	public void validateDefinitionVariationOwnedFeatureMembership(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof Definition definition) {
+			if (definition.isVariation()) {
+				for (var mem : definition.getOwnedFeatureMembership()) {
+					messageAccepter.error(mem, null, "validateDefinitionVariationOwnedFeatureMembership");
+				}	
+			}
+		}
 	}
 	
 	public void validateDefinitionVariationSpecialization(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof Definition definition) {
+			if (definition.isVariation()) {
+			    for (var ownedSpec : definition.getOwnedSpecialization()) {
+			        var specific = ownedSpec.getSpecific();
+			        if (specific instanceof Definition && ((Definition) specific).isVariation()) {
+			        	messageAccepter.error(ownedSpec, SysMLPackage.eINSTANCE.getSpecialization_Specific(), "validateDefinitionVariationSpecialization");
+			           
+			        }
+			    }
+			}
+			
+		}
 	}
-	
 }

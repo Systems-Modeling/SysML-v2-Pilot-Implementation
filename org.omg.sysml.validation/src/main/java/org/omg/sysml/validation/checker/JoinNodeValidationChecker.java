@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.JoinNode;
 
 import java.util.Set;
 
@@ -21,7 +22,11 @@ public class JoinNodeValidationChecker extends ControlNodeValidationChecker {
 	}
 						
 	public void validateJoinNodeOutgoingSuccessions(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		// no xtend code
+		if (element instanceof JoinNode node) {
+			if ((node.getNestedConnection().size() > 1)) {
+				messageAccepter.error(node, null, "validateJoinNodeOutgoingSuccessions");
+			}
+		}
 	}
-	
 }

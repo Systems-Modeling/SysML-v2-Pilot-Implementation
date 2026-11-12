@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.EnumerationDefinition;
 
 import java.util.Set;
 
@@ -21,7 +22,10 @@ public class EnumerationDefinitionValidationChecker extends AttributeDefinitionV
 	}
 						
 	public void validateEnumerationDefinitionIsVariation(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof EnumerationDefinition defn) {
+			if (!defn.isVariation()) {
+				messageAccepter.error(defn, null, "validateEnumerationDefinitionIsVariation");	
+			}
+		}
 	}
-	
 }

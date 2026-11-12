@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.AttributeDefinition;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 import java.util.Set;
@@ -27,7 +29,8 @@ public class AttributeDefinitionValidationChecker extends DataTypeValidationChec
 	}
 						
 	public void validateAttributeDefinitionFeatures(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof AttributeDefinition defn) {
+			SysmlValidationUtil.checkAllNotComposite(defn.getOwnedFeature(), messageAccepter, "validateAttributeDefinitionFeatures");
+		}
 	}
-	
 }

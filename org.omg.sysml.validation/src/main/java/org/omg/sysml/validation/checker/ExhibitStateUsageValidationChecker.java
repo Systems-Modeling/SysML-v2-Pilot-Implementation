@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ExhibitStateUsage;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 
 import java.util.Set;
@@ -26,7 +28,8 @@ public class ExhibitStateUsageValidationChecker extends StateUsageValidationChec
 	}
 						
 	public void validateExhibitStateUsageReference(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof ExhibitStateUsage usg) {
+			SysmlValidationUtil.checkReferenceType(usg, ExhibitStateUsage.class, messageAccepter, "validateExhibitStateUsageReference");
+		}
 	}
-	
 }

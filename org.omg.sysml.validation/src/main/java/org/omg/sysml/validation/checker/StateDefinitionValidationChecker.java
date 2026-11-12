@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.StateDefinition;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -22,11 +24,13 @@ public class StateDefinitionValidationChecker extends ActionDefinitionValidation
 	}
 						
 	public void validateStateDefinitionParallelSubactions(Element element, ValidationMessageAccepter messageAccepter) {
+		// validateStateDefinitionParallelSubactions is checked by checkTransitionUsage and checkSuccession
 		
 	}
 	
 	public void validateStateDefinitionStateSubactionKind(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof StateDefinition defn) {
+			SysmlValidationUtil.checkStateSubactions(defn, messageAccepter);
+		}
 	}
-	
 }

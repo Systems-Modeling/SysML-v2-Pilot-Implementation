@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.ReferenceUsage;
 
 import java.util.Set;
 
@@ -21,7 +22,11 @@ public class ReferenceUsageValidationChecker extends UsageValidationChecker {
 	}
 						
 	public void validateReferenceUsageIsReference(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		// no xtend code
+		if (element instanceof ReferenceUsage usg) {
+			if (!(usg.isReference())) {
+				messageAccepter.error(usg, null, "validateReferenceUsageIsReference");
+			}
+		}	
 	}
-	
 }

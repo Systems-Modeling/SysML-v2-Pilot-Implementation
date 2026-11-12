@@ -21,6 +21,7 @@ public class SendActionUsageValidationChecker extends ActionUsageValidationCheck
 	}
 						
 	public void validateSendActionParameters(Element element, ValidationMessageAccepter messageAccepter) {
+		//no xtend code and specification states validateSendActionParameters are incorrect
 		
 	}
 	

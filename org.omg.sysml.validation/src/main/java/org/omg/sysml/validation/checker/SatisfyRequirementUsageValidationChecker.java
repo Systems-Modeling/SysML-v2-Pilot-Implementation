@@ -1,7 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.SatisfyRequirementUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -27,7 +29,8 @@ public class SatisfyRequirementUsageValidationChecker extends RequirementUsageVa
 	}
 						
 	public void validateSatisfyRequirementUsageReference(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof SatisfyRequirementUsage usg) {
+			SysmlValidationUtil.checkReferenceType(usg, SatisfyRequirementUsage.class, messageAccepter, "validateSatisfyRequirementUsageReference");
+		}
 	}
-	
 }

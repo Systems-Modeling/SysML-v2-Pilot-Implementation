@@ -1,5 +1,7 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.ConjugatedPortDefinition;
+import org.omg.sysml.lang.sysml.Conjugation;
 import org.omg.sysml.lang.sysml.Element;
 
 import java.util.Set;
@@ -22,11 +24,15 @@ public class ConjugatedPortDefinitionValidationChecker extends PortDefinitionVal
 	}
 						
 	public void validateConjugatedPortDefinitionConjugatedPortDefinitionIsEmpty(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		//there is no "validateConjugatedPortDefinitionConjugatedPortDefinitionIsEmpty" rule in the properties file.  
 	}
 	
 	public void validateConjugatedPortDefinitionOriginalPortDefinition(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof ConjugatedPortDefinition cpd) {
+			 var portConjugator = cpd.getOwnedPortConjugator();
+			 if (portConjugator != null && portConjugator.getOriginalPortDefinition() != cpd.getOriginalPortDefinition()) {
+				 messageAccepter.error(cpd, null, "validateConjugatedPortDefinitionOriginalPortDefinition");
+			 }	
+		}
 	}
-	
 }

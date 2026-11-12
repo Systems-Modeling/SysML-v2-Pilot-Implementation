@@ -1,7 +1,9 @@
 package org.omg.sysml.validation.checker;
 
+import org.omg.sysml.lang.sysml.AssertConstraintUsage;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -26,7 +28,8 @@ public class AssertConstraintUsageValidationChecker extends ConstraintUsageValid
 	}
 						
 	public void validateAssertConstraintUsageReference(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		if (element instanceof AssertConstraintUsage usg ) {
+			SysmlValidationUtil.checkReferenceType(usg, AssertConstraintUsage.class, messageAccepter, "validateAssertContraintUsageReference");
+		}
 	}
-	
 }

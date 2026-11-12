@@ -1,6 +1,8 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.FramedConcernMembership;
+import org.omg.sysml.lang.sysml.RequirementConstraintKind;
 
 import java.util.Set;
 
@@ -21,7 +23,10 @@ public class FramedConcernMembershipValidationChecker extends RequirementConstra
 	}
 						
 	public void validateFramedConcernMembershipConstraintKind(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof FramedConcernMembership mem) {
+			if (mem.getKind() != RequirementConstraintKind.REQUIREMENT) {
+				messageAccepter.error(mem, null, " validateFramedConcernMembershipConstraintKind");
+			}
+		}
+	}	
 }

@@ -1,7 +1,10 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.IncludeUseCaseUsage;
 import org.omg.sysml.lang.sysml.SysMLPackage;
+import org.omg.sysml.lang.sysml.UseCaseUsage;
+import org.omg.sysml.validation.util.SysmlValidationUtil;
 
 import java.util.Set;
 
@@ -26,7 +29,8 @@ public class IncludeUseCaseUsageValidationChecker extends UseCaseUsageValidation
 	}
 						
 	public void validateIncludeUseCaseUsageReference(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof IncludeUseCaseUsage usg) {
+			SysmlValidationUtil.checkReferenceType(usg, UseCaseUsage.class, messageAccepter, "validateIncludeUseCaseUsageReference");
+		}
+	}	
 }

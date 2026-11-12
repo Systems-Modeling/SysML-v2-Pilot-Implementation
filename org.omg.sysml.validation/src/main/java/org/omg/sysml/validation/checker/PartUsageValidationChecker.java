@@ -1,6 +1,7 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.PartUsage;
 
 import java.util.Set;
 
@@ -21,7 +22,11 @@ public class PartUsageValidationChecker extends ItemUsageValidationChecker {
 	}
 						
 	public void validatePartUsagePartDefinition(Element element, ValidationMessageAccepter messageAccepter) {
-		
+		// no xtend code - rule only. 
+		if (element instanceof PartUsage usg) {
+			if (usg.getPartDefinition().isEmpty()) {
+				messageAccepter.error(usg, null, "validatePartUsagePartDefinition");
+			}
+		}	
 	}
-	
 }

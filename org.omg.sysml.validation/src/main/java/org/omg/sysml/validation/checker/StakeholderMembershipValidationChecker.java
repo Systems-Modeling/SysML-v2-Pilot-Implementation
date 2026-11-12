@@ -1,6 +1,9 @@
 package org.omg.sysml.validation.checker;
 
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.RequirementDefinition;
+import org.omg.sysml.lang.sysml.RequirementUsage;
+import org.omg.sysml.lang.sysml.StakeholderMembership;
 
 import java.util.Set;
 
@@ -22,7 +25,11 @@ public class StakeholderMembershipValidationChecker extends ParameterMembershipV
 	}
 						
 	public void validateStakeholderMembershipOwningType(Element element, ValidationMessageAccepter messageAccepter) {
-		
-	}
-	
+		if (element instanceof StakeholderMembership mem) {
+			var owningType = mem.getOwningType(); 
+			if (!(owningType instanceof RequirementDefinition || owningType instanceof RequirementUsage)) {
+				messageAccepter.error(mem, null, "validateStakeholderMembershipOwningType");
+			}
+		}
+	}	
 }

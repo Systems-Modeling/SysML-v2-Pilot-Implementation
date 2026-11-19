@@ -21,6 +21,7 @@
 
 package org.omg.sysml.interactive.tests;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertSame;
 
 import java.util.List;
@@ -34,9 +35,57 @@ import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.util.ElementUtil;
 
 public class TransitionUsageTest extends SysMLInteractiveTest {
-
 	
 	private static final String STATE_DEF_1 = """
+			state def StateDef_1 {
+			    state state1;
+			    transition state1 then state2;
+			    state state2;
+			}
+			""";
+	
+	@Test
+	public void testTransitionSource() throws Exception {
+		SysMLInteractive instance = createSysMLInteractiveInstance();
+		List<Element> elements = process(instance, STATE_DEF_1);
+		StateDefinition stateDef = (StateDefinition)elements.get(0);
+		List<Element> ownedMembers = stateDef.getOwnedMember();
+		StateUsage state1 = (StateUsage) ownedMembers.get(0);
+		TransitionUsage transition = (TransitionUsage) ownedMembers.get(1);
+		StateUsage state2 = (StateUsage) ownedMembers.get(2);
+		
+		assertSame("transition.source == state1", state1, transition.getSource());
+		assertSame("transition.target == state2", state2, transition.getTarget());
+	}
+	
+	private static final String STATE_DEF_2 = """
+			state def StateDef_2 {
+			    state state1 {
+			        state state1a;
+			    }
+			    transition state1.state1a then state2;
+			    state state2;
+			}
+			""";
+	
+	@Test
+	public void testTransitionSourceWithFeatureChain() throws Exception {
+		SysMLInteractive instance = createSysMLInteractiveInstance();
+		List<Element> elements = process(instance, STATE_DEF_2);
+		StateDefinition stateDef = (StateDefinition)elements.get(0);
+		List<Element> ownedMembers = stateDef.getOwnedMember();
+		StateUsage state1 = (StateUsage) ownedMembers.get(0);
+		StateUsage state1a = (StateUsage) state1.getOwnedMember().get(0);
+		TransitionUsage transition = (TransitionUsage) ownedMembers.get(1);
+		StateUsage state2 = (StateUsage) ownedMembers.get(2);
+		
+		assertArrayEquals("transition.sourceFeature == state1.state1a", 
+				new StateUsage[] {state1, state1a}, transition.sourceFeature().getChainingFeature().toArray());
+		assertSame("transition.source == state1a", state1a, transition.getSource());
+		assertSame("transition.target == state2", state2, transition.getTarget());
+	}
+
+	private static final String STATE_DEF_3a = """
 			state def StateDef {
 			    state state1;
 			    then state2;
@@ -44,7 +93,7 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 			}
 			""";
 	
-	private static final String STATE_DEF_2 = """
+	private static final String STATE_DEF_3b = """
 			state def StateDef {
 			    state state1;
 			    state state2;
@@ -59,37 +108,39 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 		// 1. After STATE_DEF_1 is processed, the shorthand transition source should be state1.
 		// (In this and all following cases, the transition target should stay state2.)
 		
-		List<Element> elements = process(instance, STATE_DEF_1);
+		List<Element> elements = process(instance, STATE_DEF_3a);
 		StateDefinition stateDef = (StateDefinition)elements.get(0);
 		List<Element> ownedMembers = stateDef.getOwnedMember();
 		StateUsage state1 = (StateUsage) ownedMembers.get(0);
 		TransitionUsage transition = (TransitionUsage) ownedMembers.get(1);
 		StateUsage state2 = (StateUsage) ownedMembers.get(2);
 		
-		assertSame("1. transition.source == state1", transition.getSource(), state1);
-		assertSame("1. transition.target == state2", transition.getTarget(), state2);
+		assertSame("1. transition.source == state1", state1, transition.getSource());
+		assertSame("1. transition.target == state2", state2, transition.getTarget());
 		
 		// 2. When the processed transition is moved to the end of StateDef, its source should not change,
 		// even if it is transformed again.
 		
 		ownedMembers.remove(transition);
 		ownedMembers.add(transition);
+		ElementUtil.clean(transition);
 		ElementUtil.transform(transition);
 		
-		assertSame("2. transition.source == state1", transition.getSource(), state1);
-		assertSame("2. transition.target == state2", transition.getTarget(), state2);
+		assertSame("2. transition.source == state1", state1, transition.getSource());
+		assertSame("2. transition.target == state2", state2, transition.getTarget());
 		
 		// 3. After STATE_DEF_2 is processed, moving the shorthand transition to the end of StateDef in the model text,
 		// the shorthand transition source should be state2.
 		
-		elements = process(instance, STATE_DEF_2);
+		elements = process(instance, STATE_DEF_3b);
 		stateDef = (StateDefinition)elements.get(0);
 		ownedMembers = stateDef.getOwnedMember();
 		state1 = (StateUsage) ownedMembers.get(0);
 		state2 = (StateUsage) ownedMembers.get(1);
 		transition = (TransitionUsage) ownedMembers.get(2);
 		
-		assertSame("3. transition.source == state2", transition.getSource(), state2);
-		assertSame("3. transition.target == state2", transition.getTarget(), state2);		
+		assertSame("3. transition.source == state2", state2, transition.getSource());
+		assertSame("3. transition.target == state2", state2, transition.getTarget());		
 	}
+
 }

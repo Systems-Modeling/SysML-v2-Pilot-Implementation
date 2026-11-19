@@ -435,8 +435,8 @@ public class UsageUtil {
 	public static Feature getSourceFeatureOf(TransitionUsage transition) {
 		Membership sourceFeatureMembership = computeSourceFeatureMembershipOf(transition);
 		if (sourceFeatureMembership != null) {
-			Feature sourceFeature = FeatureUtil.getBasicFeatureOf((Feature)sourceFeatureMembership.getMemberElement());
-			if (sourceFeature instanceof ActionUsage) {
+			Feature sourceFeature = (Feature)sourceFeatureMembership.getMemberElement();
+			if (FeatureUtil.getBasicFeatureOf(sourceFeature) instanceof ActionUsage) {
 				return sourceFeature;
 			}
 		}

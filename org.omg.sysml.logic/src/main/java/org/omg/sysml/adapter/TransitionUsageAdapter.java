@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2023-2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2023-2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -25,7 +25,6 @@ import java.util.List;
 import org.omg.sysml.lang.sysml.ActionDefinition;
 import org.omg.sysml.lang.sysml.ActionUsage;
 import org.omg.sysml.lang.sysml.Feature;
-import org.omg.sysml.lang.sysml.FeatureMembership;
 import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
@@ -83,10 +82,7 @@ public class TransitionUsageAdapter extends ActionUsageAdapter {
 	 */
 	public Membership computeSource() {
 		TransitionUsage transition = getTarget();
-		Membership sourceFeatureMembership = transition.getOwnedMembership().stream().
-				filter(mem->!(mem instanceof FeatureMembership) && 
-						(mem.getMemberElement() == null || mem.getMemberElement() instanceof Feature)).
-				findFirst().orElse(null);
+		Membership sourceFeatureMembership = UsageUtil.getSourceFeatureMembershipOf(transition);
 		if (sourceFeatureMembership != null && sourceFeatureMembership.getMemberElement() == null) {
 			Feature source = UsageUtil.getPreviousFeature(transition);
 			sourceFeatureMembership.setMemberElement(source);

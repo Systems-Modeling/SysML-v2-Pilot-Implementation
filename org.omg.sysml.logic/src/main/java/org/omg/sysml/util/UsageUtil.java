@@ -27,7 +27,6 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.omg.sysml.adapter.TransitionUsageAdapter;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -428,12 +427,15 @@ public class UsageUtil {
 	
 	// Transitions
 	
-	public static Membership computeSourceFeatureMembershipOf(TransitionUsage transition) {
-		return ((TransitionUsageAdapter)ElementUtil.getElementAdapter(transition)).computeSource();
+	public static Membership getSourceFeatureMembershipOf(TransitionUsage transition) {
+		return transition.getOwnedMembership().stream().
+				filter(mem->!(mem instanceof FeatureMembership) && 
+						(mem.getMemberElement() == null || mem.getMemberElement() instanceof Feature)).
+				findFirst().orElse(null);
 	}
 	
 	public static Feature getSourceFeatureOf(TransitionUsage transition) {
-		Membership sourceFeatureMembership = computeSourceFeatureMembershipOf(transition);
+		Membership sourceFeatureMembership = getSourceFeatureMembershipOf(transition);
 		if (sourceFeatureMembership != null) {
 			Feature sourceFeature = (Feature)sourceFeatureMembership.getMemberElement();
 			if (FeatureUtil.getBasicFeatureOf(sourceFeature) instanceof ActionUsage) {

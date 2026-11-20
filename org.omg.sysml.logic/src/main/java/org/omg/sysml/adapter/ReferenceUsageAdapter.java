@@ -1,6 +1,6 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2021, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2021, 2024, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -36,6 +36,12 @@ import org.omg.sysml.util.UsageUtil;
 public class ReferenceUsageAdapter extends UsageAdapter {
 
 	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
+	
+	/**
+	 * This flag records if the source or target of a SuccessionAsUsage that is the succession of a TransitionUsage
+	 * have been set correctly. If not, a recomputation of implicit general types later may resolve the problem.
+	 */
+	protected boolean isRecomputeImplicitGeneralTypes = false;
 
 	public ReferenceUsageAdapter(ReferenceUsage element) {
 		super(element);
@@ -48,12 +54,19 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 	
 	// Implicit Generalization
 	
+	@Override
+	public void computeImplicitGeneralTypes() {
+		super.computeImplicitGeneralTypes();
+		isComputeImplicitGeneralTypes = isRecomputeImplicitGeneralTypes;
+	}
+	
 	/**
 	 * @satisfies checkTransitionUsagePayloadSpecialization
 	 * @satisfies checkTransitionUsageSuccessionSourceSpecialization
 	 */
 	@Override
 	public void addDefaultGeneralType() {
+		isRecomputeImplicitGeneralTypes = false;
 		ReferenceUsage target = getTarget();
 		Type type = target.getOwningType();
 		if (type instanceof TransitionUsage) {
@@ -74,13 +87,23 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 			if (i < 2 && target.getOwnedReferenceSubsetting() == null && 
 					!TypeUtil.isImplicitSpecializationDeclaredFor(target, SysMLPackage.eINSTANCE.getReferenceSubsetting())) {
 				if (i == 0) {
-					TypeUtil.addImplicitGeneralTypeTo(target,
-							SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
-							UsageUtil.getSourceFeature((SuccessionAsUsage)type));
+					Feature sourceFeature = UsageUtil.getSourceFeature((SuccessionAsUsage)type);
+					if (sourceFeature == null) {
+						isRecomputeImplicitGeneralTypes = true;
+					} else {
+						TypeUtil.addImplicitGeneralTypeTo(target,
+								SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
+								sourceFeature);
+					}
 				} else if (i == 1) {
-					TypeUtil.addImplicitGeneralTypeTo(target,
-							SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
-							UsageUtil.getTargetFeature((SuccessionAsUsage)type));
+					Feature targetFeature = UsageUtil.getTargetFeature((SuccessionAsUsage)type);
+					if (targetFeature == null) {
+						isRecomputeImplicitGeneralTypes = true;
+					} else {
+						TypeUtil.addImplicitGeneralTypeTo(target,
+								SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
+								targetFeature);
+					}
 				}
 			}
 		}

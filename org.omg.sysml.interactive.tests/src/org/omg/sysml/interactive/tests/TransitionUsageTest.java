@@ -22,16 +22,21 @@
 package org.omg.sysml.interactive.tests;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.Element;
+import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Namespace;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
 
 public class TransitionUsageTest extends SysMLInteractiveTest {
@@ -46,8 +51,7 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testTransitionSource() throws Exception {
-		SysMLInteractive instance = createSysMLInteractiveInstance();
-		List<Element> elements = process(instance, STATE_DEF_1);
+		List<Element> elements = process(STATE_DEF_1);
 		StateDefinition stateDef = (StateDefinition)elements.get(0);
 		List<Element> ownedMembers = stateDef.getOwnedMember();
 		StateUsage state1 = (StateUsage) ownedMembers.get(0);
@@ -70,8 +74,7 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testTransitionSourceWithFeatureChain() throws Exception {
-		SysMLInteractive instance = createSysMLInteractiveInstance();
-		List<Element> elements = process(instance, STATE_DEF_2);
+		List<Element> elements = process(STATE_DEF_2);
 		StateDefinition stateDef = (StateDefinition)elements.get(0);
 		List<Element> ownedMembers = stateDef.getOwnedMember();
 		StateUsage state1 = (StateUsage) ownedMembers.get(0);
@@ -103,7 +106,7 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 	
 	@Test
 	public void testTransitionShorthandNotation() throws Exception {
-		SysMLInteractive instance = createSysMLInteractiveInstance();
+		SysMLInteractive instance = getSysMLInteractiveInstance();
 		
 		// 1. After STATE_DEF_1 is processed, the shorthand transition source should be state1.
 		// (In this and all following cases, the transition target should stay state2.)
@@ -141,6 +144,33 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 		
 		assertSame("3. transition.source == state2", state2, transition.getSource());
 		assertSame("3. transition.target == state2", state2, transition.getTarget());		
+	}
+	
+	private static final String STATE_DEF_4 = """
+			state def StateDef {
+			    state state1;
+			    then state2;
+			    state state2;
+			}
+			""";
+	
+	@Test
+	public void testSuccessionInTransitionUsage() throws Exception {
+		Resource resource = parse("TransitionUsageSuccession.sysml", STATE_DEF_4);
+		List<Element> elements = ((Namespace)resource.getContents().get(0)).getOwnedElement();
+		StateDefinition stateDef = (StateDefinition)elements.get(0);
+		List<Element> ownedMembers = stateDef.getOwnedMember();
+		StateUsage state1 = (StateUsage) ownedMembers.get(0);
+		TransitionUsage transition = (TransitionUsage) ownedMembers.get(1);
+		StateUsage state2 = (StateUsage) ownedMembers.get(2);
+		
+		List<Feature> ends = transition.getSuccession().getConnectorEnd();
+		assertNull("1. transition.succession.source == null", ConnectorUtil.getRelatedFeatureOfEnd(ends.get(0)));
+		assertSame("1. transition.succession.target == state2", state2, ConnectorUtil.getRelatedFeatureOfEnd(ends.get(1)));
+		
+		ElementUtil.transformAll(resource, false);
+		assertSame("2. transition.succession.source == state1", state1, ConnectorUtil.getRelatedFeatureOfEnd(ends.get(0)));
+		assertSame("2. transition.succession.target == state2", state2, ConnectorUtil.getRelatedFeatureOfEnd(ends.get(1)));		
 	}
 
 }

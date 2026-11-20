@@ -427,19 +427,26 @@ public class UsageUtil {
 	
 	// Transitions
 	
-	public static Feature getSourceFeatureOf(TransitionUsage transition) {
-		NamespaceUtil.addAdditionalMembersTo(transition);
+	public static Membership getSourceFeatureMembershipOf(TransitionUsage transition) {
 		return transition.getOwnedMembership().stream().
-				filter(mem->!(mem instanceof FeatureMembership)).
-				map(Membership::getMemberElement).
-				filter(Feature.class::isInstance).
-				map(Feature.class::cast).
-				filter(f->FeatureUtil.getBasicFeatureOf(f) instanceof ActionUsage).
+				filter(mem->!(mem instanceof FeatureMembership) && 
+						(mem.getMemberElement() == null || mem.getMemberElement() instanceof Feature)).
 				findFirst().orElse(null);
 	}
 	
+	public static Feature getSourceFeatureOf(TransitionUsage transition) {
+		Membership sourceFeatureMembership = getSourceFeatureMembershipOf(transition);
+		if (sourceFeatureMembership != null) {
+			Feature sourceFeature = (Feature)sourceFeatureMembership.getMemberElement();
+			if (FeatureUtil.getBasicFeatureOf(sourceFeature) instanceof ActionUsage) {
+				return sourceFeature;
+			}
+		}
+		return null;
+	}
+	
 	public static Feature getTransitionSourceOf(Feature transition) {
-		Feature source= transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
+		Feature source = transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
 			   transition instanceof Succession? ((Succession)transition).getSourceFeature():
 			   null;
 		return FeatureUtil.getBasicFeatureOf(source);

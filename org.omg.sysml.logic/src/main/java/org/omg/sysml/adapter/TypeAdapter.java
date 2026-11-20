@@ -435,7 +435,7 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	// Implicit Specialization Computation
 	
-	boolean isComputeImplicitGeneralTypes = true;
+	protected boolean isComputeImplicitGeneralTypes = true;
 	
 	public void computeImplicitGeneralTypes() {
 		if (isComputeImplicitGeneralTypes && !getTarget().isConjugated()) {

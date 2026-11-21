@@ -126,8 +126,8 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 		
 		ownedMembers.remove(transition);
 		ownedMembers.add(transition);
-		ElementUtil.clean(transition);
-		ElementUtil.transform(transition);
+		ElementUtil.cleanAll(stateDef);
+		ElementUtil.transformAll(stateDef, false);
 		
 		assertSame("2. transition.source == state1", state1, transition.getSource());
 		assertSame("2. transition.target == state2", state2, transition.getTarget());

@@ -30,7 +30,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.ItemDefinition;
-import org.omg.sysml.lang.sysml.OccurrenceDefinition;
 import org.omg.sysml.lang.sysml.OccurrenceUsage;
 import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;

@@ -37,12 +37,6 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 
 	public static final String TRANSITION_LINK_FEATURE = "TransitionPerformances::TransitionPerformance::transitionLink";
 	
-	/**
-	 * This flag records if the source or target of a SuccessionAsUsage that is the succession of a TransitionUsage
-	 * have been set correctly. If not, a recomputation of implicit general types later may resolve the problem.
-	 */
-	protected boolean isRecomputeImplicitGeneralTypes = false;
-
 	public ReferenceUsageAdapter(ReferenceUsage element) {
 		super(element);
 	}
@@ -54,19 +48,12 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 	
 	// Implicit Generalization
 	
-	@Override
-	public void computeImplicitGeneralTypes() {
-		super.computeImplicitGeneralTypes();
-		isComputeImplicitGeneralTypes = isRecomputeImplicitGeneralTypes;
-	}
-	
 	/**
 	 * @satisfies checkTransitionUsagePayloadSpecialization
 	 * @satisfies checkTransitionUsageSuccessionSourceSpecialization
 	 */
 	@Override
-	public void addDefaultGeneralType() {
-		isRecomputeImplicitGeneralTypes = false;
+	public void addImplicitGeneralTypes(boolean isComputeImplicitGeneralTypes) {		
 		ReferenceUsage target = getTarget();
 		Type type = target.getOwningType();
 		if (type instanceof TransitionUsage) {
@@ -89,7 +76,7 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 				if (i == 0) {
 					Feature sourceFeature = UsageUtil.getSourceFeature((SuccessionAsUsage)type);
 					if (sourceFeature == null) {
-						isRecomputeImplicitGeneralTypes = true;
+						isComputeImplicitGeneralTypes = true;
 					} else {
 						TypeUtil.addImplicitGeneralTypeTo(target,
 								SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
@@ -98,7 +85,7 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 				} else if (i == 1) {
 					Feature targetFeature = UsageUtil.getTargetFeature((SuccessionAsUsage)type);
 					if (targetFeature == null) {
-						isRecomputeImplicitGeneralTypes = true;
+						isComputeImplicitGeneralTypes = true;
 					} else {
 						TypeUtil.addImplicitGeneralTypeTo(target,
 								SysMLPackage.eINSTANCE.getReferenceSubsetting(), 
@@ -107,7 +94,7 @@ public class ReferenceUsageAdapter extends UsageAdapter {
 				}
 			}
 		}
-		super.addDefaultGeneralType();
+		super.addImplicitGeneralTypes(isComputeImplicitGeneralTypes);
 	}
 	
 	// Computed Redefinitions

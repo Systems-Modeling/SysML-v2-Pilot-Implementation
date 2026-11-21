@@ -439,9 +439,13 @@ public class TypeAdapter extends NamespaceAdapter {
 	
 	public void computeImplicitGeneralTypes() {
 		if (isComputeImplicitGeneralTypes && !getTarget().isConjugated()) {
-			addDefaultGeneralType();
-			isComputeImplicitGeneralTypes = false;
+			addImplicitGeneralTypes(false);
  		}
+	}
+	
+	protected void addImplicitGeneralTypes(boolean isComputeImplicitGeneralTypes) {
+		addDefaultGeneralType();
+		this.isComputeImplicitGeneralTypes = isComputeImplicitGeneralTypes;
 	}
 	
 	/**

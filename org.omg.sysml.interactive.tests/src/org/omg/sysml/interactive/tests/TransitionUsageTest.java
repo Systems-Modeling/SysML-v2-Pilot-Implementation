@@ -22,6 +22,7 @@
 package org.omg.sysml.interactive.tests;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
@@ -32,12 +33,15 @@ import org.junit.Test;
 import org.omg.sysml.interactive.SysMLInteractive;
 import org.omg.sysml.lang.sysml.Element;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Membership;
 import org.omg.sysml.lang.sysml.Namespace;
+import org.omg.sysml.lang.sysml.Relationship;
 import org.omg.sysml.lang.sysml.StateDefinition;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.util.ConnectorUtil;
 import org.omg.sysml.util.ElementUtil;
+import org.omg.sysml.util.UsageUtil;
 
 public class TransitionUsageTest extends SysMLInteractiveTest {
 	
@@ -171,6 +175,36 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 		ElementUtil.transformAll(resource, false);
 		assertSame("2. transition.succession.source == state1", state1, ConnectorUtil.getRelatedFeatureOfEnd(ends.get(0)));
 		assertSame("2. transition.succession.target == state2", state2, ConnectorUtil.getRelatedFeatureOfEnd(ends.get(1)));		
+	}
+	
+	@Test
+	public void testTransitionUsageFixupUtility() throws Exception {
+		Resource resource = parse("TransitionUsageFixup.sysml", STATE_DEF_4);
+		List<Element> elements = ((Namespace)resource.getContents().get(0)).getOwnedElement();
+		StateDefinition stateDef = (StateDefinition)elements.get(0);
+		List<Element> ownedMembers = stateDef.getOwnedMember();
+		StateUsage state1 = (StateUsage) ownedMembers.get(0);
+		TransitionUsage transition = (TransitionUsage) ownedMembers.get(1);
+		StateUsage state2 = (StateUsage) ownedMembers.get(2);
+		
+		Membership sourceFeatureMembership = UsageUtil.getSourceFeatureMembershipOf(transition);
+		Feature transitionLinkFeature = UsageUtil.getTransitionLinkFeatureOf(transition);
+		List<Relationship> relationships = transition.getOwnedRelationship();
+		relationships.remove(sourceFeatureMembership);
+		relationships.remove(transitionLinkFeature.getOwningRelationship());
+		
+		ElementUtil.transformAll(resource, false);
+		List<Feature> ends = transition.getSuccession().getConnectorEnd();
+		assertNull("1. transition.source == null", ConnectorUtil.getRelatedFeatureOfEnd(ends.get(0)));
+		assertSame("1. transition.target == state2", state2, ConnectorUtil.getRelatedFeatureOfEnd(ends.get(1)));
+		assertNull("1. transition.transitionLinkFeature == null", UsageUtil.getTransitionLinkFeatureOf(transition));
+		
+		ElementUtil.cleanAll(resource);
+		UsageUtil.fixTransitionAdditionalMembersIn(resource);
+		ElementUtil.transformAll(resource, false);
+		assertSame("2. transition.source == state1", state1, transition.getSource());
+		assertSame("2. transition.target == state2", state2, transition.getTarget());
+		assertNotNull("2. transition.transitionLinkFeature != null", UsageUtil.getTransitionLinkFeatureOf(transition));
 	}
 
 }

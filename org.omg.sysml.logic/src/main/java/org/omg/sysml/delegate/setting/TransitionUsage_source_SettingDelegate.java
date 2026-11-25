@@ -1,7 +1,7 @@
 /*******************************************************************************
  * SysML 2 Pilot Implementation
  * Copyright (c) 2022 Siemens AG
- * Copyright (c) 2023, 2024 Model Driven Solutions, Inc.
+ * Copyright (c) 2023, 2024, 2026 Model Driven Solutions, Inc.
  *    
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the Eclipse Public License as published by
@@ -21,10 +21,15 @@
 
 package org.omg.sysml.delegate.setting;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.omg.sysml.lang.sysml.Feature;
+import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.TransitionUsage;
+import org.omg.sysml.util.ConnectorUtil;
+import org.omg.sysml.util.FeatureUtil;
 
 public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSettingDelegate {
 
@@ -34,8 +39,15 @@ public class TransitionUsage_source_SettingDelegate extends BasicDerivedObjectSe
 
 	@Override
 	protected Feature basicGet(InternalEObject owner) {
-		Feature source = ((TransitionUsage)owner).sourceFeature();
-		return source == null? null: source.getFeatureTarget();
+		TransitionUsage self = (TransitionUsage)owner;
+		Succession succession = self.getSuccession();
+		if (succession != null) {
+			List<Feature> ends = succession.getConnectorEnd();
+			if (!ends.isEmpty()) {
+				return FeatureUtil.getBasicFeatureOf(ConnectorUtil.getRelatedFeatureOfEnd(ends.get(0)));
+			}
+		}
+		return null;
 	}
 
 }

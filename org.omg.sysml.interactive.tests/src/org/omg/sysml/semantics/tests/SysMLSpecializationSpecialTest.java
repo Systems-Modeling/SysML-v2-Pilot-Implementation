@@ -35,10 +35,12 @@ import org.omg.sysml.lang.sysml.PortDefinition;
 import org.omg.sysml.lang.sysml.PortUsage;
 import org.omg.sysml.lang.sysml.PortionKind;
 import org.omg.sysml.lang.sysml.StateUsage;
+import org.omg.sysml.lang.sysml.Succession;
 import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionUsage;
 import org.omg.sysml.lang.sysml.Type;
+import org.omg.sysml.lang.sysml.Usage;
 import org.omg.sysml.util.SysMLLibraryUtil;
 import org.omg.sysml.util.ElementUtil;
 import org.omg.sysml.util.FeatureUtil;
@@ -79,6 +81,16 @@ public class SysMLSpecializationSpecialTest extends SysMLSemanticTest {
 		
 		//add source state usage to transition usage
 		NamespaceUtil.addMemberTo(transition, state);
+		
+		//add succession to transition usage (because this ultimately holds the transition source)
+		Succession succession = SysMLFactory.eINSTANCE.createSuccessionAsUsage();
+		NamespaceUtil.addOwnedMemberTo(transition, succession);
+		Usage end = SysMLFactory.eINSTANCE.createReferenceUsage();
+		end.setIsEnd(true);
+		TypeUtil.addOwnedFeatureTo(succession, end);
+		end = SysMLFactory.eINSTANCE.createReferenceUsage();
+		end.setIsEnd(true);
+		TypeUtil.addOwnedFeatureTo(succession, end);
 		
 		//run transformation, add implicit elements
 		ElementUtil.transformAll(root, true);

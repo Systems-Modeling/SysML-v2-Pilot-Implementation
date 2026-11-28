@@ -112,7 +112,7 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 	public void testTransitionShorthandNotation() throws Exception {
 		SysMLInteractive instance = getSysMLInteractiveInstance();
 		
-		// 1. After STATE_DEF_1 is processed, the shorthand transition source should be state1.
+		// 1. After STATE_DEF_3a is processed, the shorthand transition source should be state1.
 		// (In this and all following cases, the transition target should stay state2.)
 		
 		List<Element> elements = process(instance, STATE_DEF_3a);
@@ -128,15 +128,17 @@ public class TransitionUsageTest extends SysMLInteractiveTest {
 		// 2. When the processed transition is moved to the end of StateDef, its source should not change,
 		// even if it is transformed again.
 		
-		ownedMembers.remove(transition);
-		ownedMembers.add(transition);
+		List<Relationship> ownedRelationships = stateDef.getOwnedRelationship();
+		Relationship transitionOwningRelationship = transition.getOwningRelationship();
+		ownedRelationships.remove(transitionOwningRelationship);
+		ownedRelationships.add(transitionOwningRelationship);
 		ElementUtil.cleanAll(stateDef);
 		ElementUtil.transformAll(stateDef, false);
 		
 		assertSame("2. transition.source == state1", state1, transition.getSource());
 		assertSame("2. transition.target == state2", state2, transition.getTarget());
 		
-		// 3. After STATE_DEF_2 is processed, moving the shorthand transition to the end of StateDef in the model text,
+		// 3. After STATE_DEF_3b is processed, moving the shorthand transition to the end of StateDef in the model text,
 		// the shorthand transition source should be state2.
 		
 		elements = process(instance, STATE_DEF_3b);

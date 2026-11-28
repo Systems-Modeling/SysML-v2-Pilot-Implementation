@@ -35,6 +35,11 @@ public class SysMLParserPostProcessorFactory {
 		}
 		
 		@Override
+		public ElementParserPostProcessor caseAttributeUsage(AttributeUsage element) {
+			return new AttributeUsageParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseCalculationUsage(CalculationUsage element) {
 			return new CalculationUsageParserPostProcessor(element);
 		}
@@ -80,13 +85,14 @@ public class SysMLParserPostProcessorFactory {
 		}
 		
 		@Override
+		public ElementParserPostProcessor caseTransitionUsage(TransitionUsage element) {
+			return new TransitionUsageParserPostProcessor(element);
+		}
+
+		@Override
 		public ElementParserPostProcessor caseUsage(Usage element) {
 			return new UsageParserPostProcessor(element);
 		}
 
-		@Override
-		public ElementParserPostProcessor caseAttributeUsage(AttributeUsage element) {
-			return new AttributeUsageParserPostProcessor(element);
-		}
 	}
 }

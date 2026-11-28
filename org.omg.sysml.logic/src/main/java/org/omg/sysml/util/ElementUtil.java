@@ -1,6 +1,6 @@
 /*****************************************************************************
  * SysML 2 Pilot Implementation
- * Copyright (c) 2019, 2020, 2022, 2024, 2025 Model Driven Solutions, Inc.
+ * Copyright (c) 2019, 2020, 2022, 2024-2026 Model Driven Solutions, Inc.
  * Copyright (c) 2023 Mgnite Inc.
  * Copyright (c) 2026 Obeo
  *    
@@ -328,6 +328,30 @@ public class ElementUtil {
 	
 	public static ElementAdapter getElementAdapter(Element target) {
 		return ElementAdapterFactory.getAdapter(target);
+	}
+	
+	public static void cleanAll(ResourceSet resourceSet) {
+		for (Resource resource: resourceSet.getResources()) {
+			cleanAll(resource);
+		}
+	}
+
+	public static void cleanAll(Resource resource) {
+		for (EObject object: resource.getContents()) {
+			if (object instanceof Element) {
+				cleanAll((Element)object);
+			}
+		}
+	}
+	
+	public static void cleanAll(Element root) {
+		clean(root);
+		for (Relationship relationship: root.getOwnedRelationship()) {
+			clean(relationship);
+			for (Element element: relationship.getOwnedRelatedElement()) {
+				cleanAll(element);
+			}
+		}
 	}
 	
 	public static void clean(Element element) {

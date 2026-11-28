@@ -93,11 +93,11 @@ public class SysMLInteractiveResult {
 	}
 	
 	public String formatIssues() {
-		return SysMLInteractiveUtil.formatList(this.issues);
+		return SysMLInteractiveUtil.formatList(getIssues());
 	}
 	
 	public String formatException() {
-		return SysMLInteractiveUtil.formatException(this.exception);
+		return SysMLInteractiveUtil.formatException(getException());
 	}
 	
 	@Override

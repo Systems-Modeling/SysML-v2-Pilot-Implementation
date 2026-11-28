@@ -24,8 +24,12 @@ public abstract class InternalSysMLParser20 extends InternalSysMLParser19 {
     public InternalSysMLParser20(TokenStream input, RecognizerSharedState state) {
         super(input, state);
     }
-    static final String dfa_218s = "\1\0\1\1\1\2\30\uffff}>";
-    static final String[] dfa_219s = {
+    static final String dfa_218s = "\33\uffff";
+    static final String dfa_219s = "\1\4\2\0\30\uffff";
+    static final String dfa_220s = "\1\u00ad\2\0\30\uffff";
+    static final String dfa_221s = "\3\uffff\27\2\1\1";
+    static final String dfa_222s = "\1\0\1\1\1\2\30\uffff}>";
+    static final String[] dfa_223s = {
             "\1\14\1\uffff\1\15\1\17\1\22\1\23\5\uffff\1\1\1\2\15\uffff\1\27\14\uffff\1\7\2\uffff\1\20\40\uffff\1\5\6\uffff\1\11\7\uffff\1\16\13\uffff\1\31\25\uffff\1\6\34\uffff\1\25\1\26\1\uffff\1\30\3\uffff\1\3\1\4\3\uffff\1\24\1\10\1\12\1\13\1\21",
             "\1\uffff",
             "\1\uffff",
@@ -55,25 +59,25 @@ public abstract class InternalSysMLParser20 extends InternalSysMLParser19 {
             ""
     };
 
-    static final short[] dfa_214 = DFA.unpackEncodedString(dfa_214s);
-    static final char[] dfa_215 = DFA.unpackEncodedStringToUnsignedChars(dfa_215s);
-    static final char[] dfa_216 = DFA.unpackEncodedStringToUnsignedChars(dfa_216s);
-    static final short[] dfa_217 = DFA.unpackEncodedString(dfa_217s);
     static final short[] dfa_218 = DFA.unpackEncodedString(dfa_218s);
-    static final short[][] dfa_219 = unpackEncodedStringArray(dfa_219s);
+    static final char[] dfa_219 = DFA.unpackEncodedStringToUnsignedChars(dfa_219s);
+    static final char[] dfa_220 = DFA.unpackEncodedStringToUnsignedChars(dfa_220s);
+    static final short[] dfa_221 = DFA.unpackEncodedString(dfa_221s);
+    static final short[] dfa_222 = DFA.unpackEncodedString(dfa_222s);
+    static final short[][] dfa_223 = unpackEncodedStringArray(dfa_223s);
 
     class DFA238 extends DFA {
 
         public DFA238(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 238;
-            this.eot = dfa_214;
-            this.eof = dfa_214;
-            this.min = dfa_215;
-            this.max = dfa_216;
-            this.accept = dfa_217;
-            this.special = dfa_218;
-            this.transition = dfa_219;
+            this.eot = dfa_218;
+            this.eof = dfa_218;
+            this.min = dfa_219;
+            this.max = dfa_220;
+            this.accept = dfa_221;
+            this.special = dfa_222;
+            this.transition = dfa_223;
         }
         public String getDescription() {
             return "16055:3: (this_ActionBody_3= ruleActionBody[$current] | ( ( ( '+' | '-' | '~' | 'not' | 'all' | 'null' | '(' | 'true' | 'false' | '.' | '*' | '$' | 'new' | ';' | '{' | 'if' | RULE_STRING_VALUE | RULE_DECIMAL_VALUE | RULE_EXP_VALUE | RULE_ID | RULE_UNRESTRICTED_NAME )=> (lv_ownedRelationship_4_0= ruleNodeParameterMember ) ) this_ActionBody_5= ruleActionBody[$current] ) )";
@@ -181,12 +185,12 @@ public abstract class InternalSysMLParser20 extends InternalSysMLParser19 {
             throw nvae;
         }
     }
-    static final String dfa_220s = "\25\uffff";
-    static final String dfa_221s = "\5\37\6\40\1\10\4\uffff\1\54\2\40\2\10";
-    static final String dfa_222s = "\11\u00b4\2\164\1\u00ad\4\uffff\1\54\2\164\2\11";
-    static final String dfa_223s = "\14\uffff\1\1\1\2\1\3\1\4\5\uffff";
-    static final String dfa_224s = "\25\uffff}>";
-    static final String[] dfa_225s = {
+    static final String dfa_224s = "\25\uffff";
+    static final String dfa_225s = "\5\37\6\40\1\10\4\uffff\1\54\2\40\2\10";
+    static final String dfa_226s = "\11\u00b4\2\164\1\u00ad\4\uffff\1\54\2\164\2\11";
+    static final String dfa_227s = "\14\uffff\1\1\1\2\1\3\1\4\5\uffff";
+    static final String dfa_228s = "\25\uffff}>";
+    static final String[] dfa_229s = {
             "\1\5\1\13\35\uffff\1\6\1\uffff\1\4\1\7\7\uffff\1\10\45\uffff\1\1\1\uffff\1\14\1\15\1\16\1\17\74\uffff\1\2\1\3\1\11\1\12",
             "\1\5\1\13\35\uffff\1\6\1\uffff\1\4\1\7\7\uffff\1\10\47\uffff\1\14\1\15\1\16\1\17\76\uffff\1\11\1\12",
             "\1\5\1\13\35\uffff\1\6\1\uffff\1\4\1\7\7\uffff\1\10\47\uffff\1\14\1\15\1\16\1\17\76\uffff\1\11\1\12",
@@ -210,32 +214,28 @@ public abstract class InternalSysMLParser20 extends InternalSysMLParser19 {
             "\1\21\1\22"
     };
 
-    static final short[] dfa_220 = DFA.unpackEncodedString(dfa_220s);
-    static final char[] dfa_221 = DFA.unpackEncodedStringToUnsignedChars(dfa_221s);
-    static final char[] dfa_222 = DFA.unpackEncodedStringToUnsignedChars(dfa_222s);
-    static final short[] dfa_223 = DFA.unpackEncodedString(dfa_223s);
     static final short[] dfa_224 = DFA.unpackEncodedString(dfa_224s);
-    static final short[][] dfa_225 = unpackEncodedStringArray(dfa_225s);
+    static final char[] dfa_225 = DFA.unpackEncodedStringToUnsignedChars(dfa_225s);
+    static final char[] dfa_226 = DFA.unpackEncodedStringToUnsignedChars(dfa_226s);
+    static final short[] dfa_227 = DFA.unpackEncodedString(dfa_227s);
+    static final short[] dfa_228 = DFA.unpackEncodedString(dfa_228s);
+    static final short[][] dfa_229 = unpackEncodedStringArray(dfa_229s);
 
     class DFA239 extends DFA {
 
         public DFA239(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 239;
-            this.eot = dfa_220;
-            this.eof = dfa_220;
-            this.min = dfa_221;
-            this.max = dfa_222;
-            this.accept = dfa_223;
-            this.special = dfa_224;
-            this.transition = dfa_225;
+            this.eot = dfa_224;
+            this.eof = dfa_224;
+            this.min = dfa_225;
+            this.max = dfa_226;
+            this.accept = dfa_227;
+            this.special = dfa_228;
+            this.transition = dfa_229;
         }
         public String getDescription() {
             return "16120:2: (this_MergeNode_0= ruleMergeNode | this_DecisionNode_1= ruleDecisionNode | this_JoinNode_2= ruleJoinNode | this_ForkNode_3= ruleForkNode )";
         }
     }
-    static final String dfa_226s = "\132\uffff";
-    static final String dfa_227s = "\1\5\131\uffff";
-    static final String dfa_228s = "\1\u00b4\131\uffff";
-    static final String dfa_229s = "\1\uffff\1\2\130\1";
 }

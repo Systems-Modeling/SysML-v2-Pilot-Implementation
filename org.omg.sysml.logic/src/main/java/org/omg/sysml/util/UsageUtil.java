@@ -20,6 +20,7 @@
 
 package org.omg.sysml.util;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,6 +28,7 @@ import java.util.stream.Stream;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.omg.sysml.adapter.UsageAdapter;
 import org.omg.sysml.lang.sysml.AcceptActionUsage;
 import org.omg.sysml.lang.sysml.ActionUsage;
@@ -68,6 +70,7 @@ import org.omg.sysml.lang.sysml.StateSubactionMembership;
 import org.omg.sysml.lang.sysml.StateUsage;
 import org.omg.sysml.lang.sysml.SubjectMembership;
 import org.omg.sysml.lang.sysml.Succession;
+import org.omg.sysml.lang.sysml.SysMLFactory;
 import org.omg.sysml.lang.sysml.SysMLPackage;
 import org.omg.sysml.lang.sysml.TransitionFeatureKind;
 import org.omg.sysml.lang.sysml.TransitionFeatureMembership;
@@ -427,19 +430,26 @@ public class UsageUtil {
 	
 	// Transitions
 	
-	public static Feature getSourceFeatureOf(TransitionUsage transition) {
-		NamespaceUtil.addAdditionalMembersTo(transition);
+	public static Membership getSourceFeatureMembershipOf(TransitionUsage transition) {
 		return transition.getOwnedMembership().stream().
-				filter(mem->!(mem instanceof FeatureMembership)).
-				map(Membership::getMemberElement).
-				filter(Feature.class::isInstance).
-				map(Feature.class::cast).
-				filter(f->FeatureUtil.getBasicFeatureOf(f) instanceof ActionUsage).
+				filter(mem->!(mem instanceof FeatureMembership) && 
+						(mem.getMemberElement() == null || mem.getMemberElement() instanceof Feature)).
 				findFirst().orElse(null);
 	}
 	
+	public static Feature getSourceFeatureOf(TransitionUsage transition) {
+		Membership sourceFeatureMembership = getSourceFeatureMembershipOf(transition);
+		if (sourceFeatureMembership != null) {
+			Feature sourceFeature = (Feature)sourceFeatureMembership.getMemberElement();
+			if (FeatureUtil.getBasicFeatureOf(sourceFeature) instanceof ActionUsage) {
+				return sourceFeature;
+			}
+		}
+		return null;
+	}
+	
 	public static Feature getTransitionSourceOf(Feature transition) {
-		Feature source= transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
+		Feature source = transition instanceof TransitionUsage? ((TransitionUsage)transition).getSource():
 			   transition instanceof Succession? ((Succession)transition).getSourceFeature():
 			   null;
 		return FeatureUtil.getBasicFeatureOf(source);
@@ -479,6 +489,51 @@ public class UsageUtil {
 				filter(m->!(m instanceof TransitionFeatureMembership || m instanceof ParameterMembership)).
 				map(FeatureMembership::getOwnedMemberFeature).
 				findFirst().orElse(null);
+	}
+	
+	/**
+	 * Prior to v0.64.0 (2026-10), method TransitionUsageAdapter.addAdditionalMembers
+	 * added a Transition source Membership for a TransitionUsage parsed from the
+	 * shorthand textual notation, and a transitionLinkFeature for all TransitionUsages.
+	 * This method was removed in v0.64.0, with the two relationships being added by the
+	 * grammar instead and then completed during transformation.
+	 * 
+	 * The following methods provide a programmatic means to add the relationships
+	 * (if necessary) as they are now synthesized as necessary when parsing a TransitionUsage. 
+	 * This is particularly useful if an action or state model is read from an XMI or JSON 
+	 * file that was written without first transforming the model, using an implementation
+	 * version prior to 0.64.0.
+	 */
+	
+	public static void fixTransitionAdditionalMembersIn(Resource resource) {
+		Iterator<EObject> iterator = resource.getAllContents();
+		while (iterator.hasNext()) {
+			Object object = iterator.next();
+			if (object instanceof TransitionUsage transition) {
+				addTransitionAdditionalMembersTo(transition);
+			}
+		}
+	}
+	
+	public static void addTransitionAdditionalMembersTo(TransitionUsage transition) {
+		addTransitionSourceMembershipTo(transition);
+		addTransitionLinkFeatureTo(transition);
+	}
+	
+	public static void addTransitionSourceMembershipTo(TransitionUsage transition) {
+		List<Membership> ownedMemberships = transition.getOwnedMembership();
+		if (ownedMemberships.isEmpty() || ownedMemberships.get(0) instanceof ParameterMembership) {
+			Membership sourceFeatureMembership = SysMLFactory.eINSTANCE.createMembership();
+			transition.getOwnedRelationship().add(0, sourceFeatureMembership);
+		}
+	}
+	
+	public static void addTransitionLinkFeatureTo(TransitionUsage transition) {
+		Feature transitionLinkFeature = getTransitionLinkFeatureOf(transition);
+		if (transitionLinkFeature == null) {
+			transitionLinkFeature = SysMLFactory.eINSTANCE.createUsage();
+			TypeUtil.addOwnedFeatureTo(transition, transitionLinkFeature);
+		}
 	}
 	
 	// Views
